@@ -340,7 +340,7 @@ a:hover {color:var(--texthover) !important}
 #roblox {width: 300px;height: 100px;background-color: var(--wing1);margin-top: 20px;margin-bottom: 20px;}
 #preloader {
   width: calc(100% + 20px);
-  height: 100%;
+  height: calc(100% + 20px);
   margin-left: -10px;
   margin-top: -0px;
   background-color: var(--background);
