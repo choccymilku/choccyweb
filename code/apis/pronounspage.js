@@ -127,11 +127,10 @@ const generateCustomFlagElement = (customFlag) => {
     
       // Replace "00" with "12" in the formatted time
       let formattedTime = timeString;
-    
+      
       if (clockFormat === '12-hour') {
         formattedTime = formattedTime.replace(/^00/, '12');
       }
-    
       // Capitalize "am" and "pm"
       formattedTime = formattedTime.replace(/am|pm/gi, match => match.toUpperCase());
     
