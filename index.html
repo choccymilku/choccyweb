@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <link rel="icon" type="image/x-icon" href="./styles/icon.png">
+    <link rel="stylesheet" href="./styles/style.css">
+<!--     <link rel="stylesheet" href="./styles/reactive.css"> -->
+    <link rel="stylesheet" href="./fonts/stylesheet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.2/chroma.min.js"></script>
+
+<style>
+    .noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.disabledrag {
+   -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+   -user-drag: none;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: red;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: green; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: yellow; 
+}
+
+.clickable {display: block;}
+
+    .color-box {
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      border-radius: 10px;
+    }
+
+ @media (prefers-color-scheme: light) {
+  #preloader {
+    background-color: #FFF;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  #preloader {
+    background-color: #333;
+  }
+}
+
+</style>
+</head>
+<body id="body" class="light noselect">
+  
+<div id="preloader"></div>
+
+<div id="main">
+    
+<div id="tabs">
+  <div id="tab_me" class="tabs_style">./me</div>
+  <div id="tab_friends" class="tabs_style">./friends</div>
+  <a href="https://www.youtube.com/watch?v=Xsrjy7140Lw" target="_blank" class="tabs_style" style="border-top-right-radius: 8px;">./github <i style="margin-left: 5px;" class="fa-solid fa-arrow-up-right-from-square"></i></a>
+</div>
+
+<div id="topbar"> 
+  <div id="topbar_left">
+    <div style="margin-bottom: 0px;margin-top:-5px;font-weight: bold;font-size: 32px;" id="userTitle"></div>
+      <div id="status">
+        <div id="status_text_block">
+          <div id="status_arrow"></div>
+          <div id="status_text">loading...</div>
+        </div>
+      </div>
+    <div id='clock'>fetching...</div>
+  </div>
+
+  <div id="profile">
+      <img class="disabledrag" id="pfp" src="./styles/blank.png"/>
+
+      <div id="profile_hover">
+        <div id="profile_arrow"></div>
+
+          <div id="profile_inner">
+            <a id="pfp_link"></a>
+              <div id="accounts"></div>
+              <div style="height: 1px;width: 100%;background-color: var(--text);margin: 5px;margin-left: 0px;"></div>
+            
+            <div id="settings">
+              <span>
+                <i class="fa-solid fa-clock-rotate-left icon-style" style="margin-right: -3px;"></i>
+                <span style="border-bottom: 2px solid var(--text);">time format:</span> 
+                <span style="cursor: pointer;display: block;margin-top: 4px;" id="timeFormatBtn"></span>
+              </span>
+            </div>
+          </div>
+      </div>
+
+  </div>
+</div>
+
+<div id="text_outer">
+  <div class="bar" id="text"></div>
+</div>
+
+<div class="bar" id="people">
+  <div id="friends">
+    <div id="friends_scroll">
+      <div class="noselect" id="friends_inner"></div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+  <script>
+    const tabMe = document.getElementById('tab_me');
+    const tabPeople = document.getElementById('tab_friends');
+    const textTabContent = document.getElementById('text_outer');
+    const friendsTabContent = document.getElementById('friends');
+    const peopleTabContent = document.getElementById('people');
+    const activeColor = getComputedStyle(document.documentElement).getPropertyValue('--activeColor');
+
+    tabMe.addEventListener('click', () => {
+      tabMe.style.backgroundColor = 'var(--color4)';
+      tabPeople.style.backgroundColor = 'var(--color1)';
+      textTabContent.style.display = 'block';
+      friendsTabContent.style.display = 'block';
+      peopleTabContent.style.display = 'none';
+      localStorage.setItem('activeTab', 'tab_me');
+    });
+
+    tabPeople.addEventListener('click', () => {
+      tabMe.style.backgroundColor = 'var(--color1)';
+      tabPeople.style.backgroundColor = 'var(--color4)';
+      textTabContent.style.display = 'none';
+      friendsTabContent.style.display = 'none';
+      peopleTabContent.style.display = 'block';
+      localStorage.setItem('activeTab', 'tab_friends');
+    });
+
+    // Check for active tab in local storage and simulate a click
+    const activeTabId = localStorage.getItem('activeTab');
+    if (activeTabId === 'tab_me') {
+      tabMe.click();
+    } else if (activeTabId === 'tab_friends') {
+      tabPeople.click();
+    }
+  </script>
+
+<script>
+  // Get references to the profile elements
+  const profile = document.getElementById('profile');
+  const pfp = document.getElementById('pfp');
+  const profileHover = document.getElementById('profile_hover');
+
+  // Function to toggle the visibility of the profile_hover div
+  function toggleProfileHover() {
+    if (profileHover.style.display === 'block') {
+      profileHover.style.display = 'none';
+    } else {
+      profileHover.style.display = 'block';
+    }
+  }
+
+  // Event listener to show or hide profile_hover when clicking on pfp
+  pfp.addEventListener('click', function (event) {
+    event.stopPropagation(); // Prevent event bubbling to the document click listener
+    toggleProfileHover();
+  });
+
+  // Event listener to hide profile_hover when clicking outside the profile or profile_hover
+  document.addEventListener('click', function (event) {
+    const target = event.target;
+    if (target !== profile && target !== profileHover && !profile.contains(target)) {
+      hideProfileHover();
+    }
+  });
+
+  // Function to hide the profile_hover div
+  function hideProfileHover() {
+    profileHover.style.display = 'none';
+  }
+
+  // Function to show the profile_hover div
+  function showProfileHover() {
+    profileHover.style.display = 'block';
+  }
+</script>
+
+      
+<script>
+        var containers = document.querySelectorAll('#friends_scroll');
+        var scrollAmounts = {};
+        var isScrolling = false;
+        
+        containers.forEach(function(container) {
+          scrollAmounts[container.id] = 0;
+          
+          container.addEventListener('wheel', function(event) {
+            event.preventDefault();
+            scrollAmounts[container.id] += event.deltaY;
+            
+            if (!isScrolling) {
+              requestAnimationFrame(function() {
+                scrollContainer(container);
+              });
+              isScrolling = true;
+            }
+          });
+        });
+        
+        function scrollContainer(container) {
+          container.scrollLeft += scrollAmounts[container.id] * 0.1; // Adjust the scroll speed as desired
+          
+          scrollAmounts[container.id] *= 0.9; // Adjust the damping factor as desired
+          
+          if (Math.abs(scrollAmounts[container.id]) < 0.1) {
+            isScrolling = false;
+            return;
+          }
+          
+          requestAnimationFrame(function() {
+            scrollContainer(container);
+          });
+        }
+      </script>
+
+
+<script src="./config.js"></script>
+<script src="./code/similarColor.js"></script>
+<script src="./code/text.js"></script>
+<script src="./code/apis/accounts.js"></script>
+<script src="./code/apis/friends.js"></script>
+<script src="./code/apis/discord.js"></script>
+<script src="./code/apis/pronounspage.js"></script>
+<script src="./code/time.js"></script>
+</body>
+</html>

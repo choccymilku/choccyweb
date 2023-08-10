@@ -1,0 +1,352 @@
+/* 
+:root {
+  color-scheme: dark;
+  --background: #52546b;
+  --modal_background: #404254;
+  --item_background: #52546b;
+  --icon: #9e9eff;
+  --icon_hover: #6e6eb2;
+  --warn: #db5f6e;
+} */
+
+body {
+    font-family: Geologica Roman;
+    color: var(--text);
+    background-color: var(--color2);
+}
+
+#main {
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+#topbar {
+  height: 60px; /* Divide by the number of bars you want to fill the screen */
+  width: calc(100% - 30px);
+  margin: 5px;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  align-items: center; /* Align items vertically (center them) */
+  padding: 10px;
+  z-index: 9998;
+  background-color: var(--color1);
+}
+
+#topbar_left {
+  position: relative;
+  display: block;
+  background-color: var(--color2);
+  padding: 5px;
+  border-radius: 8px;
+  height: fit-content;
+  width: fit-content;
+  margin-left: -5px;
+  z-index: 9999;
+}
+
+#repos {
+  width: calc(100% - 0px);
+  font-size: 30px;
+  scrollbar-width: none;
+  padding: 10px;
+  padding-top: 135px;
+  margin-top: 0px;
+}
+#text_outer {
+  padding: 5px;
+  background-color: var(--color1);
+  width: calc(100% - 20px);
+  margin: 5px;
+  border-radius: 8px;
+}
+#text {
+  border-radius: 8px;
+  height: fit-content;
+  font-size: 30px;
+  scrollbar-width: none;
+  padding: 5px;
+  margin-top: 0px;
+  background-color:  var(--color2);
+}
+
+#status {
+  z-index: 0;
+  width: 85px;
+  height: 6px;
+  border-radius: 8px;
+  margin-left: -2px;
+  margin-top:-4px;
+}
+
+#status_arrow {
+  background-color: var(--color3);
+  width: 10px;
+  height: 10px;
+  margin-top: -2px;
+  position: absolute;
+  transform: rotate(45deg);
+  margin-left: 90px;
+}
+
+#status_text {
+  margin-left: 92px;
+  position: absolute;
+  margin-top: -7px;
+  background-color: var(--color3);
+  padding: 3px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-radius: 8px;
+}
+
+#status_text_block {
+  display: none;
+}
+
+#topbar_left:hover #status_text_block {
+  display: block;
+}
+
+#clock {
+border-radius:8px;
+font-size: 16px;
+margin-top: 2px;
+}
+
+
+
+
+#tabs {
+  height: 50px;
+  width: fit-content;
+  position: fixed;
+  display: flex;
+  z-index: 1;
+  margin-left: 14px;
+  z-index: 1;
+}
+
+.tabs_style {
+  height: 60px;
+  width: fit-content;
+  padding-left: 10px;
+  margin-top: -50px;
+  padding-right: 12px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -9px;
+  cursor: pointer;
+  border-top-left-radius: 8px;
+  background-color: var(--color1);
+  z-index: 0;
+}
+
+.tabs_style:hover {
+  filter: brightness(0.875);
+  z-index: 0;
+}
+
+#profile {
+  position: relative;
+  margin-left: auto;
+  margin-right: -3px;
+  margin-top: -10px;
+  height: 100%;
+  width: fit-content;
+}
+
+#pfp_wrapper {
+  position: absolute;
+}
+
+#profile_inner {
+  margin-top: -10px;
+  z-index: 2;
+  font-size: 22px;
+  position: relative;
+}
+
+#profile_hover {
+  position: relative;
+  z-index: 2;
+  background-color: var(--color3);
+  border-radius: 8px;
+  margin-top: 79px;
+  margin-right: -78px;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px;
+  float: left;
+  display: none;
+}
+
+#pfp_link {
+  font-size: 18px;
+  width: 100%;
+  display: block;
+}
+
+.connection-div {
+  width: 100%;
+  display: flex;
+  margin-top: 2px;
+  }
+
+  .icon-style {
+    width: 25px;
+    font-size: 22px;
+  }
+
+  .connection-name {
+    margin-left: 0px;
+    font-size: 22px;
+  }
+
+#profile_arrow {
+  background-color: var(--color3);
+  height: 15px;
+  width: 15px;
+  margin-top: -8px;
+  transform: rotate(45deg);
+  margin-left: auto;
+  margin-right: 30px;
+  z-index: 1;
+}
+
+#pfp {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1;
+  position: relative;
+  padding: 5px;
+  background-color: var(--color3);
+}
+
+
+#friends {
+  overflow-x: scroll;
+  position: relative;
+  display: flex !important;
+  border-radius: 8px;
+  height: 220px;
+  padding-top: 0px !important;
+  margin-top: 30px;
+  margin: 5px;
+  padding: 5px;
+  padding-bottom: 0px;
+  background-color: var(--color1);
+  z-index: 1000;
+  width: calc(100% - 20px);
+}
+
+#friends_scroll {
+  overflow-x: scroll;
+  border-radius: 8px;
+}
+
+#friends_inner {
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  padding: 5px;
+  margin-top: 5px;
+  background-color: var(--color2);
+  border-radius: 8px;
+  justify-content: space-between;
+  margin-bottom: -0px;
+}
+
+#friends_container {
+  width: calc(50% - 5px);
+  border-radius: 8px;
+  margin-right: 10px;
+  box-sizing: border-box;
+}
+
+#friends_container:last-child {
+  margin-right: 0px;
+}
+
+#friends_avatar {
+  height: 135px;
+  width: 135px;
+  padding: 5px;
+  margin: 5px;
+  background-color: var(--color3);
+  border-radius: 50%;
+}
+
+#friends_name {
+  margin-top: -5px;
+  max-width: 135px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  position: relative;
+  padding: 10px;
+  font-size: 20px;
+  background-color: var(--color3);
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+#timeFormatBtn:hover {
+  color: var(--texthover);
+}
+
+.flag-name {text-decoration: none;transition: 0.15s;color:var(--icon)}
+.flag-name:hover {color:var(--icon_hover) !important}
+.flag-name-null {color:var(--icon) !important}
+.flag-name-null:hover {color:var(--icon) !important}
+a {color:var(--text);text-decoration: none;}
+a:hover {color:var(--texthover) !important}
+.flag-emojis {height: 24px;margin-bottom: -3px;}
+#link:hover {color: var(--text);text-decoration: none;}
+#link {transition: 0.15s;}
+.emoji {
+  height: 28px;
+}
+.emoji-status {
+  height: 26px;
+  width: 26px;
+  border-radius: 8px;
+  float: left;
+}
+#status-emoji {
+  position: absolute;
+  z-index: 1;
+  height: 26px;
+  border-radius: 8px;
+  float: left;
+}
+.discord_emoji {
+  display: inline-block;
+  height: 36px;
+  margin-bottom: -8px;
+}
+.pronoun-values {background-color:var(--item_background);padding-left:5px;padding-right:5px;border-radius:8px;display: inline-block;word-break: break-word;}
+.divider {width: 100%;height: 3px;background-color:  var(--item_background);margin-top: 9px;margin-bottom: 9px;}
+
+#roblox {width: 300px;height: 100px;background-color: var(--wing1);margin-top: 20px;margin-bottom: 20px;}
+#preloader {
+  width: calc(100% + 20px);
+  height: 100%;
+  margin-left: -10px;
+  margin-top: -0px;
+  background-color: var(--background);
+  position: fixed;
+  z-index: 9999;
+}
+span {
+  font-family: Geologica Roman;
+}

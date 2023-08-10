@@ -1,0 +1,95 @@
+
+
+
+@media only screen and (max-width: 690px) {
+    #main {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    #left_side {
+        width: calc(100% - 20px);
+        margin-left: 0px;
+        margin-top: 0px;
+    }
+
+    #top_left {
+        display: block;
+        width: calc(100% - 20px);
+        height: 100%;
+    }
+
+
+    #left_side_wrapper {
+        overflow-y: hidden;
+        overflow-x: scroll;
+        display: block;
+    }
+
+    #menu {
+        width: calc(100% - 20px);
+        height: 100%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    #left_side_scrollable {
+        display: none !important;
+    }
+
+    #center_side {
+        height: 120px;
+        width: calc(100% - 158px);
+    }
+    .connection-icons {
+        width: 110px;
+        margin-left: 0px;
+    }
+
+    .connection-icons-custom {
+        margin-top: 0px;
+    }
+
+    .connection-div {
+        height: 110px;
+        width: 110px;
+        margin-right: 10px;
+    }
+
+    #account_wrapper {
+        display: none;
+    }
+    #accounts2 {
+        margin-right: -10px;
+        display: flex;
+        overflow-y: hidden;
+    }
+
+    #account_wrapper2 {
+        display: flex;
+    }
+    #main_wrapper {
+        margin: 10px;
+        overflow-y: scroll;
+        height: calc(100% - 20px);
+        border-radius: 8px;
+        display: block;
+        overflow-x:hidden;
+    }
+
+    #tester {
+        height: 120px;
+        width: 100%;
+    }
+
+    #preloader_tester {display: none !important;}
+
+    #not_implemented {
+        display: block;
+    }
+
+    #left_side_scrollable {
+        margin-left: 10px;
+        margin-top: 0px;
+    }
+  }

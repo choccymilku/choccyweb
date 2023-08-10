@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'Geologica Roman';
+    src: local('Geologica Roman Bold'), local('GeologicaRoman-Bold'),
+        url('GeologicaRoman-Bold.woff2') format('woff2'),
+        url('GeologicaRoman-Bold.woff') format('woff'),
+        url('GeologicaRoman-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geologica Roman';
+    src: local('Geologica Roman Regular'), local('GeologicaRoman-Regular'),
+        url('GeologicaRoman-Regular.woff2') format('woff2'),
+        url('GeologicaRoman-Regular.woff') format('woff'),
+        url('GeologicaRoman-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Sans Mono';
+    src: local('Noto Sans Mono Bold'), local('NotoSansMono-Bold'),
+        url('NotoSansMono-Bold.woff2') format('woff2'),
+        url('NotoSansMono-Bold.woff') format('woff'),
+        url('NotoSansMono-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Sans Mono';
+    src: local('Noto Sans Mono Regular'), local('NotoSansMono-Regular'),
+        url('NotoSansMono-Regular.woff2') format('woff2'),
+        url('NotoSansMono-Regular.woff') format('woff'),
+        url('NotoSansMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
