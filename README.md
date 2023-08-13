@@ -8,11 +8,16 @@ welcome, this is the open source project for https://choccy.pages.dev
 3. editing skills (open config.js to configure the website to your liking)
 
 # to-do
-switch between pronoun.page and discord pronound
+switch between pronoun.page and discord pronouns
+
 better mobile support
+
 add buttons straight from the config.js file
+
 be able to darken the generated colors if dark mode is preferred
+
 don't use generated colors at all
+
 more styles from config.js (no rounding)
 
 
