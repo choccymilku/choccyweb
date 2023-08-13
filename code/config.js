@@ -1,5 +1,5 @@
 // your discord ID
-const discord_user_id = '945717456163442708';
+const discord_user_id = '166331543378198528';
 
 // your roblox ID
 const roblox_id = "2450458016";
@@ -22,7 +22,10 @@ var username = "choccy";
 
 
 // "about me" text, supports markdowns
-var custom_text = `i made this, call me choccy, or one of [these](https://docs.google.com/document/d/1XfJdYyFmd_hLXrUItX6q1aZZLpJkq_nOiULA0cit8Mw)\n` +
+var custom_text = 
+`i made this, call me choccy, or one of [these](https://docs.google.com/document/d/1XfJdYyFmd_hLXrUItX6q1aZZLpJkq_nOiULA0cit8Mw)\n` +
+`i code, mostly javascript and websites\n` +
+`you can find the source code for this [here](https://github.com/choccymilku/choccy-newer-and-improved)\nn` + 
 `<span id='birthday'></span>, <span id='pronouns'></span>, <span id='flags'></span>`;
 
 /* var custom_text = 

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
     <link rel="icon" type="image/x-icon" href="./styles/icon.png">
     <link rel="stylesheet" href="./styles/style.css">
-<!--     <link rel="stylesheet" href="./styles/reactive.css"> -->
+    <link rel="stylesheet" href="./styles/reactive.css">
     <link rel="stylesheet" href="./fonts/stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -82,16 +82,15 @@
 <div id="preloader"></div>
 
 <div id="main">
-    
+
 <div id="tabs">
   <div id="tab_me" class="tabs_style">./me</div>
-  <div id="tab_friends" class="tabs_style">./friends</div>
-  <a href="https://www.youtube.com/watch?v=Xsrjy7140Lw" target="_blank" class="tabs_style" style="border-top-right-radius: 8px;">./github <i style="margin-left: 5px;" class="fa-solid fa-arrow-up-right-from-square"></i></a>
+  <div id="tab_friends" class="tabs_style">./people</div>
 </div>
 
 <div id="topbar"> 
   <div id="topbar_left">
-    <div style="margin-bottom: 0px;margin-top:-5px;font-weight: bold;font-size: 32px;" id="userTitle"></div>
+    <div style="margin-bottom: 0px;margin-top:-6px;font-weight: bold;font-size: 32px;" id="userTitle"></div>
       <div id="status">
         <div id="status_text_block">
           <div id="status_arrow"></div>
@@ -99,6 +98,19 @@
         </div>
       </div>
     <div id='clock'>fetching...</div>
+    <div style="font-size: 10px;font-weight: bold;">v.1 (wip)</div>
+  </div>
+
+  <div id="music">
+      <a id="music-link" target="_blank">
+        <img id="music-cover"></img>
+      </a>
+      <div id="music-content">
+        <div id="music-song"></div>
+        <div id="music-artist"></div>
+          <div id="music-elapsed-time-wrapper"></div>
+          <div id="music-progress-bar-wrapper"></div>
+      </div>
   </div>
 
   <div id="profile">

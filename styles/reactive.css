@@ -1,95 +1,66 @@
-
-
-
-@media only screen and (max-width: 690px) {
+@media only screen and (max-width: 480px) {
     #main {
-        max-width: 100%;
-        max-height: 100%;
+        margin-top: -27px;
+        height: calc(100% - 100px);
     }
 
-    #left_side {
-        width: calc(100% - 20px);
-        margin-left: 0px;
-        margin-top: 0px;
+    #tabs {
+        bottom: 0;
+        z-index: 0;
     }
 
-    #top_left {
-        display: block;
-        width: calc(100% - 20px);
-        height: 100%;
+    #pfp {
+        margin-top: 25px;
+        background-color: var(--color1);
+        height: 50px;
+        width: 50px;
+        border-bottom-left-radius: 50%;
+        border-bottom-right-radius: 50%;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
     }
-
-
-    #left_side_wrapper {
-        overflow-y: hidden;
-        overflow-x: scroll;
-        display: block;
+    #profile {
+        bottom: 0;
+        position: fixed;
+        height: 30px;
+        padding: 5px;
+        margin-right: 0px;
+        border-radius: 8px;
     }
-
-    #menu {
-        width: calc(100% - 20px);
-        height: 100%;
-        margin-top: 0px;
-        margin-bottom: 0px;
+    #profile_hover {
+        margin-top: -192px;
+        margin-right: -55px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
     }
-
-    #left_side_scrollable {
-        display: none !important;
-    }
-
-    #center_side {
-        height: 120px;
-        width: calc(100% - 158px);
-    }
-    .connection-icons {
-        width: 110px;
-        margin-left: 0px;
-    }
-
-    .connection-icons-custom {
-        margin-top: 0px;
-    }
-
-    .connection-div {
-        height: 110px;
-        width: 110px;
-        margin-right: 10px;
-    }
-
-    #account_wrapper {
+    #profile_arrow {
         display: none;
     }
-    #accounts2 {
-        margin-right: -10px;
-        display: flex;
-        overflow-y: hidden;
+    #profile_inner {
+        margin-top: -5px !important;
+    }
+    .tabs_style {
+        margin-top: 40px !important;
+        border-bottom-left-radius: 8px;
+        border-top-left-radius: 0px;
+    }
+    .tabs_style:last-child {
+        border-bottom-right-radius: 8px;
+        border-top-right-radius: 0px;
+    }
+    #text_outer {
+        height: calc(100% - 115px);
+    }
+    .bar {
+        border-bottom-right-radius: 0px !important;
+        height:calc(100% - 10px) !important;
     }
 
-    #account_wrapper2 {
-        display: flex;
+    /* temp */
+    #tab_friends {
+        display: none !important;
     }
-    #main_wrapper {
-        margin: 10px;
-        overflow-y: scroll;
-        height: calc(100% - 20px);
-        border-radius: 8px;
-        display: block;
-        overflow-x:hidden;
-    }
-
-    #tester {
-        height: 120px;
-        width: 100%;
-    }
-
-    #preloader_tester {display: none !important;}
-
-    #not_implemented {
-        display: block;
-    }
-
-    #left_side_scrollable {
-        margin-left: 10px;
-        margin-top: 0px;
+    #tab_me {
+        border-bottom-right-radius: 8px;
     }
   }

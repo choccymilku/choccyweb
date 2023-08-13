@@ -29,7 +29,7 @@ function getTextColorBasedOnBrightness(hexColor) {
 
   function getTextColorBasedOnBrightness2(hexColor2) {
     const color2 = chroma(hexColor2);
-    return color2.luminance() > 0.5 ? "#464646" : "#d8d8d8";
+    return color2.luminance() > 0.5 ? "#555555" : "#d8d8d8";
   }
   
   // Function to generate darker and brighter colors based on theme preference
