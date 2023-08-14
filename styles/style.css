@@ -13,6 +13,7 @@ body {
     font-family: Geologica Roman;
     color: var(--text);
     background-color: var(--color2);
+    overflow-y: hidden;
 }
 
 #main {
@@ -24,14 +25,79 @@ body {
   margin-top: 26px;
 }
 
+.bar {
+  background-color: var(--color1);
+  width: calc(100% - 20px);
+  border-radius: 8px;
+  position: relative;
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+}
+
+.bar_inner {
+  background-color: var(--color2);
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px; 
+  position: relative;
+  font-size: 30px;
+  scrollbar-width: none;
+  padding: 5px;
+  margin-top: 0px;
+  z-index: 0;
+  height: calc(100% - 10px);
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+
+/* bars */
+#tabs {
+  height: 50px;
+  width: fit-content;
+  position: fixed;
+  display: flex;
+  z-index: 1;
+  margin-left: 8px;
+}
+
+.tabs_style {
+  height: 60px;
+  width: fit-content;
+  padding-left: 10px;
+  margin-top: -50px;
+  padding-right: 12px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -3px;
+  cursor: pointer;
+  border-top-left-radius: 8px;
+  background-color: var(--color1);
+  z-index: 0;
+}
+
+.tabs_style:last-child {
+  border-top-right-radius: 8px;
+}
+
+.tabs_style:hover {
+  filter: brightness(0.875);
+  z-index: 0;
+}
+
+
+/* topbar */
 #topbar {
-  height: 70px; /* Divide by the number of bars you want to fill the screen */
+  height: 70px;
   width: calc(100% - 30px);
   margin: 5px;
   border-radius: 8px;
   position: relative;
   display: flex;
-  align-items: center; /* Align items vertically (center them) */
+  align-items: center;
   padding: 10px;
   z-index: 9998;
   background-color: var(--color1);
@@ -48,34 +114,6 @@ body {
   margin-left: -5px;
   z-index: 9999;
   height: 70px;
-}
-
-#repos {
-  width: calc(100% - 0px);
-  font-size: 30px;
-  scrollbar-width: none;
-  padding: 10px;
-  padding-top: 135px;
-  margin-top: 0px;
-}
-#text_outer {
-  padding: 5px;
-  background-color: var(--color1);
-  width: calc(100% - 20px);
-  margin: 5px;
-  border-radius: 8px;
-  z-index: 1;
-  position: relative;
-  overflow-y: scroll;
-}
-#text {
-  border-radius: 8px;
-  height: fit-content;
-  font-size: 30px;
-  scrollbar-width: none;
-  padding: 5px;
-  margin-top: 0px;
-  background-color:  var(--color2);
 }
 
 #status {
@@ -119,50 +157,44 @@ body {
 }
 
 #clock {
-border-radius:8px;
-font-size: 16px;
-margin-top: 2px;
+  font-size: 16px;
+  margin-top: 2px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#timeFormatBtn:hover {
+  color: var(--texthover);
 }
 
 
-
-
-#tabs {
-  height: 50px;
-  width: fit-content;
-  position: fixed;
-  display: flex;
-  z-index: 1;
-  margin-left: 8px;
-  z-index: 1;
-}
-
-.tabs_style {
-  height: 60px;
-  width: fit-content;
-  padding-left: 10px;
-  margin-top: -50px;
-  padding-right: 12px;
-  font-size: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: -3px;
-  cursor: pointer;
-  border-top-left-radius: 8px;
+/* other elements */
+#friends {
+  overflow-x: scroll;
+  position: relative;
+  display: flex !important;
+  border-radius: 8px;
+  padding-top: 0px !important;
+  margin: 5px;
+  padding-bottom: 0px;
   background-color: var(--color1);
-  z-index: 0;
+  z-index: 1000;
+  width: calc(100% - 10px);
 }
 
-.tabs_style:last-child {
-  border-top-right-radius: 8px;
+#friends_inner {
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  padding: 5px;
+  border-radius: 8px;
+  justify-content: space-between;
+  overflow-x: scroll;
+  position: relative;
 }
 
-.tabs_style:hover {
-  filter: brightness(0.875);
-  z-index: 0;
-}
-
+/* profile */
 #profile {
   margin-right:5px;
   margin-top: 10px;
@@ -206,20 +238,20 @@ margin-top: 2px;
   width: 100%;
   display: flex;
   margin-top: 2px;
-  }
+}
 
-  .icon-style {
-    width: 25px;
-    font-size: 22px;
-  }
+.icon-style {
+  width: 25px;
+  font-size: 22px;
+}
 
-  .connection-name {
-    margin-left: 0px;
-    font-size: 22px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
+.connection-name {
+  margin-left: 0px;
+  font-size: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
 
 #profile_arrow {
   background-color: var(--color3);
@@ -244,39 +276,7 @@ margin-top: 2px;
 }
 
 
-#friends {
-  overflow-x: scroll;
-  position: relative;
-  display: flex !important;
-  border-radius: 8px;
-  height: 220px;
-  padding-top: 0px !important;
-  margin-top: 30px;
-  margin: 5px;
-  padding: 5px;
-  padding-bottom: 0px;
-  background-color: var(--color1);
-  z-index: 1000;
-  width: calc(100% - 20px);
-}
-
-#friends_scroll {
-  overflow-x: scroll;
-  border-radius: 8px;
-}
-
-#friends_inner {
-  height: fit-content;
-  width: fit-content;
-  display: flex;
-  padding: 5px;
-  margin-top: 5px;
-  background-color: var(--color2);
-  border-radius: 8px;
-  justify-content: space-between;
-  margin-bottom: -0px;
-}
-
+/* friends */
 #friends_container {
   width: calc(50% - 5px);
   border-radius: 8px;
@@ -313,10 +313,7 @@ margin-top: 2px;
   margin-bottom: 0px;
 }
 
-#timeFormatBtn:hover {
-  color: var(--texthover);
-}
-
+/* other stuff*/
 .flag-name {text-decoration: none;transition: 0.15s;color:var(--text)}
 .flag-name:hover {color:var(--texthover) !important}
 .flag-name-null {color:var(--text) !important}
@@ -364,8 +361,7 @@ span {
   font-family: Geologica Roman;
 }
 
-
-
+/* music */
 #music {
   position: relative;
   padding: 5px;
@@ -387,54 +383,51 @@ span {
   display: flex;
 }
 
-  #music-content {
-    background-color: var(--color3);
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    padding: 5px;
-    height: 60px;
-    margin-left: 75px;
-    margin-top: -70px;
-    border-radius: 8px;
-    position: relative;
-    min-width: 100px;
-  }
+#music-content {
+  background-color: var(--color3);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 5px;
+  height: 60px;
+  margin-left: 75px;
+  margin-top: -70px;
+  border-radius: 8px;
+  position: relative;
+  min-width: 100px;
+}
 
-  #music-song {
+#music-song {
   font-weight: bold;
   font-size: 24px;
   text-overflow: ellipsis;
   overflow: hidden;
   text-align: left;
   margin-top: -4px;
-  }
+}
   
-  #music-artist {
-  font-size: 12px;
+#music-artist {
+  font-size: 11px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  height: 24px;
   text-align: left;
   margin-top: -5px;
-  }
+}
   
-  #music-elapsed-time-wrapper {
+#music-elapsed-time-wrapper {
   display: flex;
   align-items: center;
   width: calc(100% - 0px);
-  height: 30px;
-  margin-top: -4px;
-  }
+  margin-top: -38px;
+}
   
-  #music-elapsed-time {
+#music-elapsed-time {
   font-weight: 500;
-  font-size: 20px !important;
-  }
+}
 
-  #music-progress-bar-wrapper {
-    width: calc(100% - 12px);
-    margin-right: 0px;
-    margin-top: -6px;
-  }
+#music-progress-bar-wrapper {
+  width: calc(100% - 12px);
+  margin-right: 0px;
+  margin-top: 3px;
+}

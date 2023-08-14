@@ -20,6 +20,13 @@ const bday_year = '2007';
 
 var username = "choccy";
 
+// tabs
+const tabNames = ["./me", "./people", "./projects"];
+const tabIds = ["tab_me", "tab_friends", "tab_projects"];
+const tabBlocks = ["text_outer", "people", "projects"];
+const tabIcons = ["home", "users", "briefcase"];
+
+
 
 // "about me" text, supports markdowns
 var custom_text = 

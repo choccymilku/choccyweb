@@ -83,10 +83,7 @@
 
 <div id="main">
 
-<div id="tabs">
-  <div id="tab_me" class="tabs_style">./me</div>
-  <div id="tab_friends" class="tabs_style">./people</div>
-</div>
+<div id="tabs"></div>
 
 <div id="topbar"> 
   <div id="topbar_left">
@@ -137,56 +134,21 @@
   </div>
 </div>
 
-<div id="text_outer">
-  <div class="bar" id="text"></div>
+<div class="bar" id="text_outer">
+  <div class="noselect bar_inner" id="text"></div>
 </div>
 
 <div class="bar" id="people">
-  <div id="friends">
-    <div id="friends_scroll">
-      <div class="noselect" id="friends_inner"></div>
-    </div>
+    <div class="noselect bar_inner" id="friends_inner"></div>
+</div>
+
+<div class="bar" id="projects">
+  <div class="noselect bar_inner" id="project_inner">
+    yea
   </div>
 </div>
 
 </div>
-
-
-
-  <script>
-    const tabMe = document.getElementById('tab_me');
-    const tabPeople = document.getElementById('tab_friends');
-    const textTabContent = document.getElementById('text_outer');
-    const friendsTabContent = document.getElementById('friends');
-    const peopleTabContent = document.getElementById('people');
-    const activeColor = getComputedStyle(document.documentElement).getPropertyValue('--activeColor');
-
-    tabMe.addEventListener('click', () => {
-      tabMe.style.backgroundColor = 'var(--color4)';
-      tabPeople.style.backgroundColor = 'var(--color1)';
-      textTabContent.style.display = 'block';
-      friendsTabContent.style.display = 'block';
-      peopleTabContent.style.display = 'none';
-      localStorage.setItem('activeTab', 'tab_me');
-    });
-
-    tabPeople.addEventListener('click', () => {
-      tabMe.style.backgroundColor = 'var(--color1)';
-      tabPeople.style.backgroundColor = 'var(--color4)';
-      textTabContent.style.display = 'none';
-      friendsTabContent.style.display = 'none';
-      peopleTabContent.style.display = 'block';
-      localStorage.setItem('activeTab', 'tab_friends');
-    });
-
-    // Check for active tab in local storage and simulate a click
-    const activeTabId = localStorage.getItem('activeTab');
-    if (activeTabId === 'tab_me') {
-      tabMe.click();
-    } else if (activeTabId === 'tab_friends') {
-      tabPeople.click();
-    }
-  </script>
 
 <script>
   // Get references to the profile elements
@@ -230,44 +192,84 @@
 
       
 <script>
-        var containers = document.querySelectorAll('#friends_scroll');
-        var scrollAmounts = {};
-        var isScrolling = false;
-        
-        containers.forEach(function(container) {
-          scrollAmounts[container.id] = 0;
-          
-          container.addEventListener('wheel', function(event) {
-            event.preventDefault();
-            scrollAmounts[container.id] += event.deltaY;
-            
-            if (!isScrolling) {
-              requestAnimationFrame(function() {
-                scrollContainer(container);
-              });
-              isScrolling = true;
-            }
-          });
-        });
-        
-        function scrollContainer(container) {
-          container.scrollLeft += scrollAmounts[container.id] * 0.1; // Adjust the scroll speed as desired
-          
-          scrollAmounts[container.id] *= 0.9; // Adjust the damping factor as desired
-          
-          if (Math.abs(scrollAmounts[container.id]) < 0.1) {
-            isScrolling = false;
-            return;
-          }
-          
-          requestAnimationFrame(function() {
-            scrollContainer(container);
-          });
-        }
-      </script>
+  var containers = document.querySelectorAll('#friends_inner');
+  var scrollAmounts = {};
+  var isScrolling = false;
+  var isEnabled = true; // Initially enabled
+
+  function enableScroll() {
+    isEnabled = true;
+  }
+
+  function disableScroll() {
+    isEnabled = false;
+  }
+
+  function handleScroll(container, event) {
+    if (!isEnabled) {
+      return;
+    }
+
+    event.preventDefault();
+    scrollAmounts[container.id] += event.deltaY;
+
+    if (!isScrolling) {
+      requestAnimationFrame(function () {
+        scrollContainer(container);
+      });
+      isScrolling = true;
+    }
+  }
+
+  function scrollContainer(container) {
+    if (!isEnabled) {
+      isScrolling = false;
+      return;
+    }
+
+    container.scrollLeft += scrollAmounts[container.id] * 0.1; // Adjust the scroll speed as desired
+
+    scrollAmounts[container.id] *= 0.9; // Adjust the damping factor as desired
+
+    if (Math.abs(scrollAmounts[container.id]) < 0.1) {
+      isScrolling = false;
+      return;
+    }
+
+    requestAnimationFrame(function () {
+      scrollContainer(container);
+    });
+  }
+
+  // Function to check viewport width and enable/disable scroll based on the width
+  function checkViewportWidth() {
+    if (window.innerWidth < 480) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
+  }
+
+  // Initial check when the script is loaded
+  checkViewportWidth();
+
+  // Add a listener to continuously monitor the viewport width and adjust the behavior
+  window.addEventListener('resize', checkViewportWidth);
+
+  // Add the scroll event listener to each container
+  containers.forEach(function (container) {
+    scrollAmounts[container.id] = 0;
+
+    container.addEventListener('wheel', function (event) {
+      handleScroll(container, event);
+    });
+  });
+</script>
 
 
-<script src="./code/config.js"></script>
+
+<script src="./config.js"></script>
+<script src="./code/tabs.js"></script>
 <script src="./code/similarColor.js"></script>
 <script src="./code/text.js"></script>
 <script src="./code/apis/accounts.js"></script>
