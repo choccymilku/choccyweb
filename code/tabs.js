@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to update the tab styles based on screen width
     function updateTabStyles() {
-        const useIcons = window.innerWidth < 480;
+        const useIcons = window.innerWidth < 481;
 
         // Remove existing tabs
         tabsContainer.innerHTML = "";

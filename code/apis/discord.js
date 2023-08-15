@@ -130,6 +130,29 @@ updateTopBarHeight();
 // Attach the function to the window resize event
 window.addEventListener('resize', updateTopBarHeight);
 
+// Function to update .bar height for all elements with the class
+const updateBarHeight = () => {
+  const bars = document.querySelectorAll('.bar'); // Select all elements with the class 'bar'
+  
+  bars.forEach(bar => {
+    const listeningToMusic = activities ? activities.some(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 2 && activity.name === 'Spotify')) : false;
+
+    if (listeningToMusic && window.innerWidth < 481) {
+      bar.style.height = 'calc(100% - 200px)';
+    } else {
+      bar.style.height = '';
+    }
+  });
+};
+
+// Call the function initially
+updateBarHeight();
+
+// Attach the function to the window resize event
+window.addEventListener('resize', updateBarHeight);
+
+
+
 const listeningToMusic = activities ? activities.some(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 2 && activity.name === 'Spotify')) : false;
 
   if (listeningToMusic) {

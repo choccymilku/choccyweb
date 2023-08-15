@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.2/chroma.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
 
 <style>
     .noselect {
@@ -95,7 +96,7 @@
         </div>
       </div>
     <div id='clock'>fetching...</div>
-    <div style="font-size: 10px;font-weight: bold;">v.1 (wip)</div>
+    <div style="font-size: 10px;font-weight: bold;">v.1.1</div>
   </div>
 
   <div id="music">
@@ -111,26 +112,25 @@
   </div>
 
   <div id="profile">
-      <img class="disabledrag" id="pfp" src="./styles/blank.png"/>
+    <img class="disabledrag" id="pfp" src="./styles/blank.png"/>
 
-      <div id="profile_hover">
-        <div id="profile_arrow"></div>
+    <div id="profile_hover">
+      <div id="profile_arrow"></div>
 
-          <div id="profile_inner">
-            <a id="pfp_link"></a>
-              <div id="accounts"></div>
-              <div style="height: 1px;width: 100%;background-color: var(--text);margin: 5px;margin-left: 0px;"></div>
-            
-            <div id="settings">
-              <span>
-                <i class="fa-solid fa-clock-rotate-left icon-style" style="margin-right: -3px;"></i>
-                <span style="border-bottom: 2px solid var(--text);">time format:</span> 
-                <span style="cursor: pointer;display: block;margin-top: 4px;" id="timeFormatBtn"></span>
-              </span>
-            </div>
+        <div id="profile_inner">
+          <a id="pfp_link"></a>
+            <div id="accounts"></div>
+            <div style="height: 1px;width: 100%;background-color: var(--text);margin: 5px;margin-left: 0px;"></div>
+          
+          <div id="settings">
+            <span>
+              <i class="fa-solid fa-clock-rotate-left icon-style" style="margin-right: -3px;"></i>
+              <span style="border-bottom: 2px solid var(--text);">time format:</span> 
+              <span style="cursor: pointer;display: block;margin-top: 4px;" id="timeFormatBtn"></span>
+            </span>
           </div>
-      </div>
-
+        </div>
+    </div>
   </div>
 </div>
 
@@ -276,6 +276,7 @@
 <script src="./code/apis/friends.js"></script>
 <script src="./code/apis/discord.js"></script>
 <script src="./code/apis/pronounspage.js"></script>
+<script src="./code/apis/github.js"></script>
 <script src="./code/time.js"></script>
 </body>
 </html>
