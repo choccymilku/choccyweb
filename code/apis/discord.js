@@ -140,7 +140,7 @@ const updateBarHeight = () => {
     if (listeningToMusic && window.innerWidth < 481) {
       bar.style.height = 'calc(100% - 200px)';
     } else {
-      bar.style.height = '';
+      bar.style.height = 'calc(100% - 115px)';
     }
   });
 };
