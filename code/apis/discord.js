@@ -148,9 +148,9 @@ const updateBarHeight = () => {
 
   // 'project' is an element, so you need to set its style directly
   if (listeningToMusic && window.innerWidth < 481) {
-    project.style.height = 'calc(100% - 200px)';
+    project.style.maxHeight = 'calc(100% - 200px)';
   } else {
-    project.style.height = 'calc(100% - 115px)';
+    project.style.maxHeight = 'calc(100% - 115px)';
   }
 };
 

@@ -10,6 +10,14 @@ function fetchAndUpdateIcons(discord_user_id) {
   
         if (githubAccount) {
           const username = githubAccount.name; // Use the name from the "github" account
+
+        //make a map of the languages to the icons
+        const languageMap = {
+          "html": "devicon-html5-plain",
+          "css": "devicon-css3-plain",
+          "scss": "devicon-sass-original",
+          "vue": "devicon-vuejs-plain",
+        }
   
           fetch(`https://api.github.com/users/${username}/repos`)
       .then(response => response.json())
@@ -44,9 +52,15 @@ function fetchAndUpdateIcons(discord_user_id) {
             const repoLanguage = document.createElement('p');
             repoLanguage.classList.add('project-language');
             const languageText = repo.language ? repo.language.toLowerCase() : 'N/A';
-            const languageIconClass = languageText !== 'n/a' ? `devicon-${languageText}-plain` : '';
+            let languageIconClass = '';
             
-            if (languageText !== 'n/a') {
+            if (languageText in languageMap) {
+              languageIconClass = languageMap[languageText];
+            } else if (repo.name && repo.name.toLowerCase() in languageMap) {
+              languageIconClass = languageMap[repo.name.toLowerCase()];
+            }
+            
+            if (languageIconClass) {
               repoLanguage.innerHTML = 
                 `<i class="fa-solid fa-language"></i>
                 <span style="border-bottom:3px solid var(--text);">language:</span><br>
@@ -54,9 +68,7 @@ function fetchAndUpdateIcons(discord_user_id) {
             } else {
               repoLanguage.innerHTML = '';
             }
-            
-            
-            
+
             repoInnerDiv.appendChild(repoName);
             repoInnerDiv.appendChild(repoDescription);
             repoInnerDiv.appendChild(repoLanguage);
