@@ -23,25 +23,18 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
-  margin-top: 26px;
+  margin-top: 28px;
 }
 
 .bar {
   background-color: var(--color1);
   width: calc(100% - 20px);
-  height: calc(100% - 120px);
+  height: fit-content;
   border-radius: 8px;
   position: relative;
   padding: 5px;
   max-height: fit-content !important;
   margin: 5px;
-}
-
-#people{
-  height: fit-content;
-}
-#text_outer {
-  height: fit-content;
 }
 
 .bar_inner {

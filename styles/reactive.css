@@ -81,4 +81,8 @@
         border-bottom-right-radius: 0px;
     }
 
+    .bar {
+        height: calc(100% - 115px);
+    }
+
   }

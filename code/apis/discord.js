@@ -133,16 +133,25 @@ window.addEventListener('resize', updateTopBarHeight);
 // Function to update .bar height for all elements with the class
 const updateBarHeight = () => {
   const bars = document.querySelectorAll('.bar'); // Select all elements with the class 'bar'
+  const project = document.getElementById('projects');
   
-  bars.forEach(bar => {
-    const listeningToMusic = activities ? activities.some(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 2 && activity.name === 'Spotify')) : false;
+  // Assuming 'activities' is defined somewhere
+  const listeningToMusic = activities ? activities.some(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 2 && activity.name === 'Spotify')) : false;
 
+  bars.forEach(bar => {
     if (listeningToMusic && window.innerWidth < 481) {
       bar.style.height = 'calc(100% - 200px)';
     } else {
-      bar.style.height = 'calc(100% - 115px)';
+      bar.style.height = '';
     }
   });
+
+  // 'project' is an element, so you need to set its style directly
+  if (listeningToMusic && window.innerWidth < 481) {
+    project.style.height = 'calc(100% - 200px)';
+  } else {
+    project.style.height = 'calc(100% - 115px)';
+  }
 };
 
 // Call the function initially
