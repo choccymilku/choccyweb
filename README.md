@@ -10,9 +10,7 @@ welcome, this is the open source project for https://choccy.pages.dev
 # to-do
 switch between pronoun.page and discord pronouns
 
-better mobile support
-
-add buttons straight from the config.js file
+add more to projects
 
 be able to darken the generated colors if dark mode is preferred
 
