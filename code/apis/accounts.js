@@ -11,6 +11,7 @@ const accountUrls = {
   steam: "https://steamcommunity.com/profiles/",
   tiktok: "https://www.tiktok.com/@",
   facebook: "https://www.facebook.com/",
+  domain: "https://",
 };
 
 function fetchAndUpdateIcons() {
@@ -81,18 +82,14 @@ function fetchAndUpdateIcons() {
 }
 
 function createConnectionDiv(connection) {
-  const url = accountUrls[connection.type] + connection.id;
+  const url = accountUrls[connection.type] + connection.name;
   const name = connection.name;
 
   const connDiv = document.createElement("a");
   connDiv.classList.add("connection-div");
   connDiv.href = url;
   connDiv.target = "_blank";
-
-  // Create the icon element
-  const icon = document.createElement("i");
-  icon.classList.add("fa-brands", "fa-" + connection.type, "icon-style");
-
+  
   // Create the <span> element for the name
   const nameSpan = document.createElement("span");
   nameSpan.textContent = name;
@@ -117,6 +114,10 @@ function createConnectionDiv(connection) {
   
     // Append the Roblox icon (SVG) to the link element
     connDiv.appendChild(robloxIcon);
+  } else if (connection.type === "domain") {
+    const globeIcon = document.createElement("i");
+    globeIcon.classList.add("fa-solid", "fa-globe", "icon-style");
+    connDiv.appendChild(globeIcon);
   } else {  
     // Create the font awesome icon element
     const icon = document.createElement("i");

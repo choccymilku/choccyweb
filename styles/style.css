@@ -251,11 +251,20 @@ body {
   font-size: 22px;
 }
 
+.icon-style-domain {
+  width: 19px;
+  font-size: 21px;
+}
+
 .icon-style-roblox {
   width: 22px;
   height: 22px;
   margin-right: 3px;
   fill: var(--text)
+}
+
+.icon-style-domain {
+  margin-right: 5px;
 }
 
 .connection-name {
@@ -472,9 +481,12 @@ span {
   margin-top: -30px;
 }
 
-.project-language {
-  margin-top: -20px;
-  margin-bottom: 10px;
+.project-info {
+  padding-bottom: 15px;
+}
+
+.project-info-inner {
+  margin-bottom: -20px;
 }
 
 [class^=devicon-], [class*=" devicon-"] {

@@ -17,6 +17,7 @@ function fetchAndUpdateIcons(discord_user_id) {
           "css": "devicon-css3-plain",
           "scss": "devicon-sass-original",
           "vue": "devicon-vuejs-plain",
+          "shell" : "devicon-bash-plain",
         }
   
           fetch(`https://api.github.com/users/${username}/repos`)
@@ -25,57 +26,78 @@ function fetchAndUpdateIcons(discord_user_id) {
         repos.forEach(repo => {
             const repoDiv = document.createElement('div');
             repoDiv.classList.add('project-div');
-            
+    
             const repoInnerDiv = document.createElement('div');
             repoInnerDiv.classList.add('project-div-inner');
-            
+    
             const repoName = document.createElement('h3');
             repoName.classList.add('project-name');
-            const repoNameLink = document.createElement('a'); // Create <a> element for the name
+            const repoNameLink = document.createElement('a');
             repoNameLink.href = repo.html_url;
             repoNameLink.target = '_blank';
-            repoNameLink.innerHTML = `${repo.name} <i class="fa-solid fa-arrow-up-right-from-square"></i>`; // Set the name text
-            repoName.appendChild(repoNameLink); // Append the <a> element to the <h3>
-            
+            repoNameLink.innerHTML = `${repo.name} <i class="fa-solid fa-arrow-up-right-from-square"></i>`;
+            repoName.appendChild(repoNameLink);
+    
             const repoDescription = document.createElement('p');
             repoDescription.classList.add('project-description');
-            
             if (repo.description) {
-              repoDescription.innerHTML = 
-                `<i class="fa-solid fa-circle-info"></i>
-                <span style="border-bottom:3px solid var(--text);">description:</span><br>
-                ${repo.description}`;
+                repoDescription.innerHTML =
+                    `<i class="fa-solid fa-circle-info"></i>
+                    <span style="border-bottom:3px solid var(--text);">description:</span><br>
+                    ${repo.description}`;
             } else {
-              repoDescription.innerHTML = ``;
+                repoDescription.innerHTML = '';
             }
-        
+    
+            const repoInfoDiv = document.createElement('div'); // Create div for language and created_at
+            repoInfoDiv.classList.add('project-info');
+    
             const repoLanguage = document.createElement('p');
-            repoLanguage.classList.add('project-language');
+            repoLanguage.classList.add('project-info-inner');
             const languageText = repo.language ? repo.language.toLowerCase() : 'N/A';
-            let languageIconClass = '';
-            
-            if (languageText in languageMap) {
-              languageIconClass = languageMap[languageText];
-            } else if (repo.name && repo.name.toLowerCase() in languageMap) {
-              languageIconClass = languageMap[repo.name.toLowerCase()];
+            let languageIconClass = languageMap[languageText] || '';
+            if (!languageIconClass) {
+                if (languageText !== 'n/a') {
+                    languageIconClass = `devicon-${languageText}-plain`;
+                } else {
+                    languageIconClass = '';
+                }
             }
-            
             if (languageIconClass) {
-              repoLanguage.innerHTML = 
-                `<i class="fa-solid fa-language"></i>
-                <span style="border-bottom:3px solid var(--text);">language:</span><br>
-                <span style="margin-top:14px;">${languageText}</span> <i class="${languageIconClass}"></i>`;
+                repoLanguage.innerHTML =
+                    `<i class="fa-solid fa-language"></i>
+                    <span style="border-bottom:3px solid var(--text);">language:</span><br>
+                    <span style="margin-top:14px;">${languageText}</span> <i class="${languageIconClass}"></i>`;
             } else {
-              repoLanguage.innerHTML = '';
+                repoLanguage.innerHTML = '';
             }
+    
+            /* const repoCreated = document.createElement('p');
+            repoCreated.classList.add('project-info-inner');
+            const createdDate = new Date(repo.created_at);
+            repoCreated.innerHTML =
+                `<i class="fa-solid fa-calendar"></i>
+                <span style="border-bottom:3px solid var(--text);">created:</span>
+                ${createdDate.toLocaleDateString()}`;
 
+            const repoStars = document.createElement('p');
+            repoStars.classList.add('project-info-inner');
+            repoStars.innerHTML = 
+                `<i class="fa-solid fa-star"></i>
+                <span style="border-bottom:3px solid var(--text);">stars:</span>
+                ${repo.stargazers_count}`; */
+    
+            repoInfoDiv.appendChild(repoLanguage);
+/*             repoInfoDiv.appendChild(repoCreated);
+            repoInfoDiv.appendChild(repoStars); */
+    
             repoInnerDiv.appendChild(repoName);
             repoInnerDiv.appendChild(repoDescription);
-            repoInnerDiv.appendChild(repoLanguage);
-            
+            repoInnerDiv.appendChild(repoInfoDiv);
+    
             repoDiv.appendChild(repoInnerDiv);
             projectsMainElement.appendChild(repoDiv);
-        });            
+        });       
       })
       .catch(error => {
         console.error("Error fetching GitHub repos:", error);
