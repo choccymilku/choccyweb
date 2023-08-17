@@ -24,12 +24,12 @@ function isDarkThemePreferred() {
   // Function to determine if the text color should be white or black based on the color brightness
 function getTextColorBasedOnBrightness(hexColor) {
     const color = chroma(hexColor);
-    return color.luminance() > 0.45 ? "#1C1C1C" : "#f5f5f5";
+    return color.luminance() > 0.425 ? "#1C1C1C" : "#f5f5f5";
   }
 
   function getTextColorBasedOnBrightness2(hexColor2) {
     const color2 = chroma(hexColor2);
-    return color2.luminance() > 0.45 ? "#555555" : "#d8d8d8";
+    return color2.luminance() > 0.425 ? "#555555" : "#d8d8d8";
   }
   
   // Function to generate darker and brighter colors based on theme preference
