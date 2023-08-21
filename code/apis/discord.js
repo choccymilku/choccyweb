@@ -308,7 +308,7 @@ setInterval(updateElapsedTime, 1000);
 /*     const discordusername = `${discordUser.username}`;
     const discordtag = `${discordUser.discriminator}`; */
 
-const avatarUrl = `https://cdn.discordapp.com/avatars/${discordUser.id}/${avatarHash}.png?size=2048`;
+const avatarUrl = `https://cdn.discordapp.com/avatars/${discordUser.id}/${avatarHash}.${avatarFormat}?size=${avatarSize}`;
 
 const avatarLinkElement = document.getElementById('pfp_link');
 avatarLinkElement.href = `https://discordapp.com/users/${discordUser.id}`;

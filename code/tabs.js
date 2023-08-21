@@ -34,8 +34,10 @@ document.addEventListener("DOMContentLoaded", function () {
             if (tabElement) {
                 if (id === tabId) {
                     tabElement.style.backgroundColor = "var(--color4)";
+                    tabElement.style.filter = "brightness(0.875)";
                 } else {
                     tabElement.style.backgroundColor = "";
+                    tabElement.style.filter = "";
                 }
             }
         });
