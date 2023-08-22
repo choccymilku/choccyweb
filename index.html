@@ -64,7 +64,7 @@
       margin: 10px;
       border-radius: 10px;
     }
-/* 
+    
  @media (prefers-color-scheme: light) {
   #preloader {
     background-color: #FFF;
@@ -75,7 +75,6 @@
     background-color: #333;
   }
 }
- */
 </style>
 </head>
 <body id="body" class="light noselect">
@@ -96,7 +95,7 @@
         </div>
       </div>
     <div id='clock'>fetching...</div>
-    <div style="font-size: 10px;font-weight: bold;">v.1.1</div>
+    <div id="version" style="font-size: 10px;font-weight: bold;">v.1.2</div>
   </div>
 
   <div id="music">
@@ -127,6 +126,14 @@
               <i class="fa-solid fa-clock-rotate-left icon-style" style="margin-right: -3px;"></i>
               <span style="border-bottom: 2px solid var(--text);">time format:</span> 
               <span style="cursor: pointer;display: block;margin-top: 4px;" id="timeFormatBtn"></span>
+            </span>
+
+            <span>
+              <i class="fa-solid fa-text-height icon-style" style="margin-right: -3px;"></i>
+              <span style="border-bottom: 2px solid var(--text);">font style:</span> 
+              <div class="dyslexic-off">default</div>
+              <div class="dyslexic-on">dyslexic</div>
+
             </span>
           </div>
         </div>
@@ -272,6 +279,7 @@
 <script src="./code/tabs.js"></script>
 <script src="./code/similarColor.js"></script>
 <script src="./code/text.js"></script>
+<script src="./code/fontchange.js"></script>
 <script src="./code/apis/accounts.js"></script>
 <script src="./code/apis/friends.js"></script>
 <script src="./code/apis/discord.js"></script>

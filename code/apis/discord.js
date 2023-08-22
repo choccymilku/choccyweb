@@ -102,7 +102,7 @@ const updateTopBarHeight = () => {
   const music = document.getElementById('music');
   const textOuter = document.getElementById('text_outer');
 
-  const listeningToMusic = activities ? activities.some(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 2 && activity.name === 'Spotify')) : false;
+  const listeningToMusic = activities ? activities.some(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 0 && activity.name === 'YouTube Music') || (activity.type === 2 && activity.name === 'Spotify')) : false;
 
   if (listeningToMusic && window.innerWidth < 481) {
     topbar.style.height = '155px';
@@ -136,7 +136,7 @@ const updateBarHeight = () => {
   const project = document.getElementById('projects');
   
   // Assuming 'activities' is defined somewhere
-  const listeningToMusic = activities ? activities.some(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 2 && activity.name === 'Spotify')) : false;
+  const listeningToMusic = activities ? activities.some(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 0 && activity.name === 'YouTube Music') || (activity.type === 2 && activity.name === 'Spotify')) : false;
 
   bars.forEach(bar => {
     if (listeningToMusic && window.innerWidth < 481) {
@@ -162,11 +162,11 @@ window.addEventListener('resize', updateBarHeight);
 
 
 
-const listeningToMusic = activities ? activities.some(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 2 && activity.name === 'Spotify')) : false;
+const listeningToMusic = activities ? activities.some(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 0 && activity.name === 'YouTube Music') || (activity.type === 2 && activity.name === 'Spotify')) : false;
 
   if (listeningToMusic) {
     // Find the relevant music activity
-    const musicActivity = activities.find(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 2 && activity.name === 'Spotify'));
+    const musicActivity = activities.find(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 0 && activity.name === 'YouTube Music') || (activity.type === 2 && activity.name === 'Spotify'));
   
     // Get the necessary details based on the music platform
     const type = musicActivity.type; // 0 for SoundCloud, 2 for Spotify
@@ -226,13 +226,14 @@ const listeningToMusic = activities ? activities.some(activity => (activity.type
   artistElement.parentNode.insertBefore(ElapsedTimeWrapperNew, artistElement.nextSibling);
 
   const updateElapsedTime = () => {
+
     // Get the latest timestamps and calculate the elapsed time
     const Timestamps = musicActivity.timestamps;
     const StartTime = Timestamps.start;
     const EndTime = Timestamps.end;
     const elapsed = Date.now() - StartTime;
-  
     const elapsedDisplay = new Date(elapsed);
+
     let leftTimeDisplay = `${elapsedDisplay.getUTCMinutes().toString().padStart(2, '0')}:${elapsedDisplay.getUTCSeconds().toString().padStart(2, '0')}`;
     let rightTimeDisplay = `${TotalTime.getUTCMinutes().toString().padStart(2, '0')}:${TotalTime.getUTCSeconds().toString().padStart(2, '0')}`;
   
