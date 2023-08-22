@@ -20,7 +20,7 @@ function rgbToHex(r, g, b) {
 // Function to determine the text color based on the color brightness
 function getTextColorBasedOnBrightness(hexColor) {
   const color = chroma(hexColor);
-  return color.luminance() > 0.45 ? "#1C1C1C" : "#f5f5f5";
+  return color.luminance() > 0.4 ? "#1C1C1C" : "#f5f5f5";
 }
 
 // Function to generate similar colors with dynamic darkening or brightening
