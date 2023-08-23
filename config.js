@@ -1,7 +1,7 @@
 // discord related ⚠
 const discord_user_id = '945717456163442708';
 // avatar size and format
-const avatarSize = 64; //128, 256, 512, 1024, 2048
+const avatarSize = 128; //128, 256, 512, 1024, 2048
 const avatarFormat = "png"; //webp, png, jpg, gif
 
 // your roblox ID <not required>
