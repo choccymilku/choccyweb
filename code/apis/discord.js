@@ -164,31 +164,31 @@ window.addEventListener('resize', updateBarHeight);
 
 const listeningToMusic = activities ? activities.some(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 0 && activity.name === 'YouTube Music') || (activity.type === 2 && activity.name === 'Spotify')) : false;
 
-  if (listeningToMusic) {
-    // Find the relevant music activity
-    const musicActivity = activities.find(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 0 && activity.name === 'YouTube Music') || (activity.type === 2 && activity.name === 'Spotify'));
-  
-    // Get the necessary details based on the music platform
-    const type = musicActivity.type; // 0 for SoundCloud, 2 for Spotify
-    const trackId = musicActivity.sync_id;
-    const songName = musicActivity.details;
-    const artist = musicActivity.state;
-    const albumCover = type === 0 ? `${musicActivity.assets.large_image.replace(/^.*?i1.sndcdn.com\//, 'https://i1.sndcdn.com/')}` : `https://i.scdn.co/image/${musicActivity.assets.large_image.slice(8)}`;
-  
-    // Update the UI elements
-    const songNameElement = document.getElementById('music-song');
-    songNameElement.innerText = songName;
-  
-    const artistElement = document.getElementById('music-artist');
-    artistElement.innerText = artist;
-  
-    const albumCoverElement = document.getElementById('music-cover');
-    if (albumCover) {
-      albumCoverElement.src = albumCover;
-      albumCoverElement.setAttribute('title', songName + '\n' + artist);
-    } else {
-      albumCoverElement.src = ''; // Remove the image if no album cover available
-    }
+if (listeningToMusic) {
+  // Find the relevant music activity
+  const musicActivity = activities.find(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 0 && activity.name === 'YouTube Music') || (activity.type === 2 && activity.name === 'Spotify'));
+
+  // Get the necessary details based on the music platform
+  const type = musicActivity.type; // 0 for SoundCloud, 2 for Spotify
+  const trackId = musicActivity.sync_id;
+  const songName = musicActivity.details;
+  const artist = musicActivity.state;
+  const albumCover = type === 0 ? `https://${musicActivity.assets.large_image.replace(/^.*?https\//, '')}` : `https://lh3.googleusercontent.com/${musicActivity.assets.large_image.slice(musicActivity.assets.large_image.indexOf("https/"))}`;
+
+  // Update the UI elements
+  const songNameElement = document.getElementById('music-song');
+  songNameElement.innerText = songName;
+
+  const artistElement = document.getElementById('music-artist');
+  artistElement.innerText = artist;
+
+  const albumCoverElement = document.getElementById('music-cover');
+  if (albumCover) {
+    albumCoverElement.src = albumCover;
+    albumCoverElement.setAttribute('title', songName + '\n' + artist);
+  } else {
+    albumCoverElement.src = ''; // Remove the image if no album cover available
+  }
 
   // Get the initial timestamps and calculate the total time
   const Timestamps = musicActivity.timestamps;
@@ -226,7 +226,6 @@ const listeningToMusic = activities ? activities.some(activity => (activity.type
   artistElement.parentNode.insertBefore(ElapsedTimeWrapperNew, artistElement.nextSibling);
 
   const updateElapsedTime = () => {
-
     // Get the latest timestamps and calculate the elapsed time
     const Timestamps = musicActivity.timestamps;
     const StartTime = Timestamps.start;
@@ -236,7 +235,7 @@ const listeningToMusic = activities ? activities.some(activity => (activity.type
 
     let leftTimeDisplay = `${elapsedDisplay.getUTCMinutes().toString().padStart(2, '0')}:${elapsedDisplay.getUTCSeconds().toString().padStart(2, '0')}`;
     let rightTimeDisplay = `${TotalTime.getUTCMinutes().toString().padStart(2, '0')}:${TotalTime.getUTCSeconds().toString().padStart(2, '0')}`;
-  
+
     if ((EndTime - StartTime) >= 3600000) { // 3600000 is the number of milliseconds in an hour
       const hours = elapsedDisplay.getUTCHours();
       leftTimeDisplay = `${(hours < 10 ? hours.toString() : hours.toString().padStart(2, '0'))}:${leftTimeDisplay}`;
@@ -246,61 +245,63 @@ const listeningToMusic = activities ? activities.some(activity => (activity.type
       leftTimeDisplay = `${elapsedDisplay.getUTCMinutes()}:${elapsedDisplay.getUTCSeconds().toString().padStart(2, '0')}`;
       rightTimeDisplay = `${TotalTime.getUTCMinutes()}:${TotalTime.getUTCSeconds().toString().padStart(2, '0')}`;
     }
-  
+
     ElapsedTimeDisplayLeft.innerText = leftTimeDisplay;
     ElapsedTimeDisplayRight.innerText = rightTimeDisplay;
   };
 
-// Check if a progress bar element already exists and remove it
-const ProgressBarWrapper = document.getElementById('music-progress-bar-wrapper');
+  // Check if a progress bar element already exists and remove it
+  const ProgressBarWrapper = document.getElementById('music-progress-bar-wrapper');
 
-if (ProgressBarWrapper) {
-  ProgressBarWrapper.remove();
-}
+  if (ProgressBarWrapper) {
+    ProgressBarWrapper.remove();
+  }
 
-// Create a new element for the progress bar
-const ProgressBarWrapperNew = document.createElement('div');
-ProgressBarWrapperNew.id = 'music-progress-bar-wrapper';
-ProgressBarWrapperNew.style.width = '100%';
-ProgressBarWrapperNew.style.height = '4px';
-ProgressBarWrapperNew.style.backgroundColor = 'var(--color2)';
-ProgressBarWrapperNew.style.borderRadius = '4px';
+  // Create a new element for the progress bar
+  const ProgressBarWrapperNew = document.createElement('div');
+  ProgressBarWrapperNew.id = 'music-progress-bar-wrapper';
+  ProgressBarWrapperNew.style.width = '100%';
+  ProgressBarWrapperNew.style.height = '4px';
+  ProgressBarWrapperNew.style.backgroundColor = 'var(--color2)';
+  ProgressBarWrapperNew.style.borderRadius = '4px';
 
-const ProgressBar = document.createElement('div');
-ProgressBar.style.width = '0%';
-ProgressBar.style.height = '100%';
-ProgressBar.style.backgroundColor = 'var(--color5)';
-ProgressBar.style.borderRadius = '4px';
+  const ProgressBar = document.createElement('div');
+  ProgressBar.style.width = '0%';
+  ProgressBar.style.height = '100%';
+  ProgressBar.style.backgroundColor = 'var(--color5)';
+  ProgressBar.style.borderRadius = '4px';
 
-ProgressBarWrapperNew.appendChild(ProgressBar);
-artistElement.parentNode.insertBefore(ProgressBarWrapperNew, artistElement.nextSibling);
+  ProgressBarWrapperNew.appendChild(ProgressBar);
+  artistElement.parentNode.insertBefore(ProgressBarWrapperNew, artistElement.nextSibling);
 
-const updateProgressBar = () => {
-  // Get the latest timestamps and calculate the elapsed time
-  const Timestamps = musicActivity.timestamps;
-  const StartTime = Timestamps.start;
-  const EndTime = Timestamps.end;
-  const elapsed = Date.now() - StartTime;
-  const elapsedPercentage = (elapsed / TotalTime) * 100;
+  const updateProgressBar = () => {
+    // Get the latest timestamps and calculate the elapsed time
+    const Timestamps = musicActivity.timestamps;
+    const StartTime = Timestamps.start;
+    const EndTime = Timestamps.end;
+    const elapsed = Date.now() - StartTime;
+    const elapsedPercentage = (elapsed / TotalTime) * 100;
 
-  // Set the width of the progress bar to the calculated percentage
-  ProgressBar.style.width = `${elapsedPercentage}%`;
-};
+    // Set the width of the progress bar to the calculated percentage
+    ProgressBar.style.width = `${elapsedPercentage}%`;
+  };
 
-updateProgressBar();
-setInterval(updateProgressBar, 1000);
+  updateProgressBar();
+  setInterval(updateProgressBar, 1000);
 
-updateElapsedTime();
-setInterval(updateElapsedTime, 1000);
+  updateElapsedTime();
+  setInterval(updateElapsedTime, 1000);
 
   // Show the relevant music platform's UI
   const musicPlatform = document.getElementById('music');
   musicPlatform.style.display = 'block';
+
 } else {
   // Hide the music platform UI if not listening to music
   const musicPlatform = document.getElementById('music');
   musicPlatform.style.display = 'none';
 }
+
 
 
   const discordUser = data.discord_user;
