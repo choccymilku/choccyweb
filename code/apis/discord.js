@@ -173,7 +173,12 @@ if (listeningToMusic) {
   const trackId = musicActivity.sync_id;
   const songName = musicActivity.details;
   const artist = musicActivity.state;
-  const albumCover = type === 0 ? `https://${musicActivity.assets.large_image.replace(/^.*?https\//, '')}` : `https://lh3.googleusercontent.com/${musicActivity.assets.large_image.slice(musicActivity.assets.large_image.indexOf("https/"))}`;
+  const albumCover = type === 0
+  ? `https://${musicActivity.assets.large_image.replace(/^.*?https\//, '')}`
+  : type === 2
+    ? `https://i.scdn.co/image/${musicActivity.assets.large_image.replace('spotify:', '')}`
+    : `https://lh3.googleusercontent.com/${musicActivity.assets.large_image.slice(musicActivity.assets.large_image.indexOf("https/"))}`;
+
 
   // Update the UI elements
   const songNameElement = document.getElementById('music-song');
