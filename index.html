@@ -181,8 +181,25 @@
 <script>
   // use button id to reset localstorage or anything saved in the browser and reload the page
   document.getElementById('reset').addEventListener('click', function () {
-    localStorage.clear();
-    location.reload();
+// Clear localStorage
+localStorage.clear();
+
+// Clear sessionStorage
+sessionStorage.clear();
+
+// Clear cookies (This is a simplified example and might not work in all cases)
+document.cookie = '';
+
+// Clear cache (This is a simplified example and might not work in all browsers)
+caches.keys().then(function(names) {
+  for (let name of names) {
+    caches.delete(name);
+  }
+});
+
+// Reload the page
+location.reload();
+
   });
 </script>
 
