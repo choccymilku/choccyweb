@@ -5,21 +5,25 @@ const discordUserIds = [
   '906701264887382027', // Danny
   '768656516885774371', // prax
   '984835890608230430', // vin
-  '503676030536646716', // ashy
   '1035262868586766376', // Ben
-  '981935028751695943', // choi
-  '926367286338674688', // Flynn
-  '663160807114145809' // dalo
+  '503676030536646716', // ashy
+  '926367286338674688' // Flynn
 ];
 
-// get the friends-section-container element
-const friendsContainers = document.querySelectorAll('#friends_inner');
+function fetchDataAndUpdateLocalStorage() {
+  console.log('Fetching friends data...');
+  
+  Promise.all(discordUserIds.map(id => fetch(`https://discordlookup.mesavirep.xyz/v1/user/${id}`)))
+    .then(responses => Promise.all(responses.map(response => response.json())))
+    .then(data => {
+      console.log('Data fetched! :D'); // Log when data is fetched successfully
+      const timestamp = Date.now();
+      const savedData = { data, timestamp };
+      localStorage.setItem('discordFriends', JSON.stringify(savedData));
 
-  friendsContainers.forEach(friendsContainer => {
-    Promise.all(discordUserIds.map(id => fetch(`https://discordlookup.mesavirep.xyz/v1/user/${id}`)))
-      .then(responses => Promise.all(responses.map(response => response.json())))
-      .then(data => {
-        // generate friend elements
+      // generate friend elements
+      const friendsContainers = document.querySelectorAll('#friends_inner');
+      friendsContainers.forEach(friendsContainer => {
         data.forEach(friendData => {
           const id = friendData.id;
           const container = document.createElement('div');
@@ -29,15 +33,15 @@ const friendsContainers = document.querySelectorAll('#friends_inner');
           const avatar = document.createElement('img');
           avatar.setAttribute('src', `https://cdn.discordapp.com/avatars/${id}/${friendData.avatar.id}?size=2048`);
           avatar.setAttribute('id', 'friends_avatar');
-  
+
           const name = document.createElement('h6');
           name.textContent = friendData.tag.substring(0, friendData.tag.indexOf('#'));
           name.setAttribute('id', 'friends_name');
           name.title = friendData.tag.substring(0, friendData.tag.indexOf('#'));
-  
+
           container.appendChild(avatar);
           container.appendChild(name);
-  
+
           if (id === '1035262868586766376') {
             const link = document.createElement('a');
             link.href = 'https://benreyland.crd.co';
@@ -46,26 +50,65 @@ const friendsContainers = document.querySelectorAll('#friends_inner');
             name.textContent = '';
             name.appendChild(link);
           }
-          if (id === '981935028751695943') {
-            const link = document.createElement('a');
-            link.href = 'https://rentry.org/binarystarz';
-            link.textContent = friendData.tag.substring(0, friendData.tag.indexOf('#'));
-            link.target = '_blank';
-            name.textContent = '';
-            name.appendChild(link);
-          }
-  
+
           friendsContainer.appendChild(container);
-  
-          const savedData = JSON.parse(localStorage.getItem('discordFriends')) || {};
-          savedData[id] = friendData;
-          savedData.timestamp = Date.now();
-          localStorage.setItem('discordFriends', JSON.stringify(savedData));
         });
-      })
-      .catch(error => console.error(error));
-  
-    // Add console log for the next fetch
-    const timeUntilNextFetch = (Date.now() - data.timestamp) / 1000;
-    console.log(`Next fetch in ${timeUntilNextFetch} seconds.`);
+      });
+
+      const timeUntilNextFetch = (timestamp - Date.parse(localStorage.getItem('discordFriends').timestamp)) / 1000;
+      console.log(`Next fetch in ${12 * 3600 - timeUntilNextFetch} seconds.`);
+    })
+    .catch(error => console.error(error));
+}
+
+// Check if there is cached data in localStorage and it's less than 12 hours old
+const savedData = JSON.parse(localStorage.getItem('discordFriends'));
+
+if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
+  // If no data or data is outdated, fetch and update
+  fetchDataAndUpdateLocalStorage();
+} else {
+  // Use the cached data
+  const friendsContainers = document.querySelectorAll('#friends_inner');
+  friendsContainers.forEach(friendsContainer => {
+    savedData.data.forEach(friendData => {
+      const id = friendData.id;
+      const container = document.createElement('div');
+      container.setAttribute('id', 'friends_container');
+      container.style.backgroundColor = friendData.banner.color;
+
+      const avatar = document.createElement('img');
+      avatar.setAttribute('src', `https://cdn.discordapp.com/avatars/${id}/${friendData.avatar.id}?size=2048`);
+      avatar.setAttribute('id', 'friends_avatar');
+
+      const name = document.createElement('h6');
+      name.textContent = friendData.tag.substring(0, friendData.tag.indexOf('#'));
+      name.setAttribute('id', 'friends_name');
+      name.title = friendData.tag.substring(0, friendData.tag.indexOf('#'));
+
+      container.appendChild(avatar);
+      container.appendChild(name);
+
+      if (id === '1035262868586766376') {
+        const link = document.createElement('a');
+        link.href = 'https://benreyland.crd.co';
+        link.textContent = friendData.tag.substring(0, friendData.tag.indexOf('#'));
+        link.target = '_blank';
+        name.textContent = '';
+        name.appendChild(link);
+      }
+
+      friendsContainer.appendChild(container);
+    });
   });
+
+  const timeUntilNextFetch = (Date.now() - savedData.timestamp) / 1000;
+  const totalSecondsUntilNextFetch = 12 * 3600 - timeUntilNextFetch;
+  const hoursUntilNextFetch = Math.floor(totalSecondsUntilNextFetch / 3600);
+  const minutesUntilNextFetch = Math.floor((totalSecondsUntilNextFetch % 3600) / 60);
+  
+  console.log(`Next fetch in ${hoursUntilNextFetch} hours and ${minutesUntilNextFetch} minutes.`);
+}
+
+// Schedule periodic updates (every 12 hours)
+setInterval(fetchDataAndUpdateLocalStorage, 12 * 3600 * 1000);

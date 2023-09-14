@@ -99,7 +99,7 @@
   </div>
 
   <div id="music">
-      <a id="music-link" target="_blank">
+      <a id="music-track-link" target="_blank">
         <img id="music-cover"></img>
       </a>
       <div id="music-content">
@@ -131,15 +131,36 @@
             <span>
               <i class="fa-solid fa-text-height icon-style" style="margin-right: -3px;"></i>
               <span style="border-bottom: 2px solid var(--text);">font style:</span> 
-              <div class="dyslexic-off">default</div>
-              <div class="dyslexic-on">dyslexic</div>
+              <div class="dyslexic-off fontChange">default</div>
+              <div class="dyslexic-on fontChange">dyslexic</div>
+            </span>
 
+            <span id="resetDiv">
+              <i class="fa-solid fa-x icon-style" id="hideReset" style="width:fit-content;text-align: right;display:block;margin-left: auto;margin-bottom: -25px;padding-top:5px;cursor: pointer;"></i>
+              <i class="fa-solid fa-bug icon-style" style="margin-right: -3px;"></i>
+              <span style="border-bottom: 2px solid var(--text);">broken?</span>
+              <div id="reset">reset</div>
             </span>
           </div>
         </div>
     </div>
   </div>
 </div>
+
+<script>
+  // Check if "hideReset" flag is set in local storage and hide resetDiv if it's set to "true"
+  const hideResetFlag = localStorage.getItem('hideReset');
+  if (hideResetFlag === 'true') {
+    document.getElementById('resetDiv').style.display = 'none';
+  }
+
+  // Add an event listener to hide resetDiv when hideReset is clicked and save to local storage
+  document.getElementById('hideReset').addEventListener('click', function () {
+    document.getElementById('resetDiv').style.display = 'none';
+    localStorage.setItem('hideReset', 'true');
+  });
+</script>
+
 
 <div class="bar" id="text_outer">
   <div class="noselect bar_inner" id="text"></div>
@@ -156,6 +177,14 @@
 </div>
 
 </div>
+
+<script>
+  // use button id to reset localstorage or anything saved in the browser and reload the page
+  document.getElementById('reset').addEventListener('click', function () {
+    localStorage.clear();
+    location.reload();
+  });
+</script>
 
 <script>
   // Get references to the profile elements

@@ -14,7 +14,7 @@ function convertTimestamps(text) {
     const underlineRegex = /__(.*?)__/gi;
     const strikeRegex = /~~(.*?)~~/gi;
     const spoilerRegex = /\|\|([^|]+)\|\|/g;
-    const codeRegex = /`([^`]+)`/g;
+    const codeRegex = /''([^']+)''/g;
     const linkRegex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
     const flagRegex = /:flag_([a-z]{2}):/gi;
     const twemojiRegex = /([\u{1F300}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1F1E6}-\u{1F1FF}])/gu;
@@ -66,8 +66,8 @@ function convertTimestamps(text) {
         return `<img src="${twemojiUrl}" alt="${emoji}" class="emojis"/>`;
       })
 .replace(boldRegex, '<span style="font-weight: bold;">$1</span>')
-.replace(smallRegex, '<span style="font-size: 1rem;">$1</span>')
 .replace(italicRegex, '<span style="font-style: italic;">$1</span>')
+.replace(smallRegex, '<span style="font-size: 1rem;">$1</span>')
 .replace(underlineRegex, '<span style="text-decoration: underline;">$1</span>')
 .replace(strikeRegex, '<span style="text-decoration: line-through;">$1</span>')
 .replace(spoilerRegex, '<span class="spoiler" onclick="this.classList.toggle(\'clicked\')"><span class="inner">$1</span><span class="before"></span></span>')

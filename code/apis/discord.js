@@ -168,9 +168,10 @@ if (listeningToMusic) {
   // Find the relevant music activity
   const musicActivity = activities.find(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 0 && activity.name === 'YouTube Music') || (activity.type === 2 && activity.name === 'Spotify'));
 
+  const spotifytrackLink = data.spotify;
   // Get the necessary details based on the music platform
   const type = musicActivity.type; // 0 for SoundCloud, 2 for Spotify
-  const trackId = musicActivity.sync_id;
+  const trackId = musicActivity.track_id;
   const songName = musicActivity.details;
   const artist = musicActivity.state;
   const albumCover = type === 0
@@ -186,6 +187,19 @@ if (listeningToMusic) {
 
   const artistElement = document.getElementById('music-artist');
   artistElement.innerText = artist;
+
+  const trackLink = document.getElementById('music-track-link');
+  trackLink.href = `https://open.spotify.com/track/${trackId}`;
+
+  if (spotifytrackLink) {
+    const trackId = spotifytrackLink.track_id;
+    const trackLink = document.getElementById('music-track-link');
+    trackLink.href = `https://open.spotify.com/track/${trackId}`;
+    console.log('Spotify Track ID:', trackId);
+    console.log('Spotify Track Link:', `https://open.spotify.com/track/${trackId}`);
+  } else {
+    console.log('No Spotify entry found.');
+  }
 
   const albumCoverElement = document.getElementById('music-cover');
   if (albumCover) {

@@ -2,7 +2,7 @@
 const discord_user_id = '945717456163442708';
 // avatar size and format
 const avatarSize = 128; //128, 256, 512, 1024, 2048
-const avatarFormat = "png"; //webp, png, jpg, gif
+const avatarFormat = "png"; //webp, png, jpg
 
 // your roblox ID <not required>
 const roblox_id = "2450458016"; //your roblox ID
@@ -30,12 +30,63 @@ const tabBlocks = ["text_outer", "people", "projects"];
 const tabIcons = ["home", "users", "briefcase"];
 
 // "about me" text, supports markdowns, can be found in "text.js" <required> ⚠
-var custom_text = 
-`i made this, call me choccy, or one of [these](https://docs.google.com/document/d/1XfJdYyFmd_hLXrUItX6q1aZZLpJkq_nOiULA0cit8Mw)\n` +
-`i code, mostly javascript and websites\n` +
-`you can find the source code for this [here](https://github.com/choccymilku/choccy-newer-and-improved)\nn` + 
-`<span id='birthday'></span>, <span id='pronouns'></span>, <span id='flags'></span>`;
+// what you can use:
+// --- TEXT ---
+// - bold: **hello**
+// - italic: *hello*
+// - small: ^^hello^^
+// - underline: __hello__
+// - strikethrough: ~~hello~~
+// - spoiler: ||hello||
+// - code: ''hello!'' 
+// - link: [hello](https://hello.com)
+// - flag: :flag_<cz>: (https://flagicons.lipis.dev for all flags)
+// - superscript: #hello#
 
+// --- IMAGES ---
+// - images (emoji size): [[https://image.png]] OR [[./images/image.png]] (local)
+// - big image : [![https://image.png]!] OR [![./images/image.png]!] (local)
+// - bigger image: [!![https://image.png]!!] OR [!![./images/image.png]!!] (local)
+// - biggest image: [!!![https://image.png]!!!] OR [!!![./images/image.png]!!!] (local)
+
+// --- OTHER ---
+// - divider: ;;divider;; (creates a divider)
+// - new line: \n (creates a new line)
+// - spaces: \nn (creates a new line with a space)
+// - timestamps: use https://hammertime.cyou/en-GB to get your desired timestamp
+// - twemoji: (replaces emojis with twemojis): 😊 - converts to twemoji
+
+
+var custom_text = 
+`i made this, call me choccy, or one of [these](https://docs.google.com/document/d/1XfJdYyFmd_hLXrUItX6q1aZZLpJkq_nOiULA0cit8Mw) \n` +
+`i code, mostly javascript and websites\n` +
+`you can find the source code for this [here](https://github.com/choccymilku/choccy-newer-and-improved)\nn` +     
+`<span id='birthday'></span>, <span id='pronouns'></span>, <span id='flags'></span>` +
+`;;divider;;` + 
+`to-do:\n` +
+`improve dyslexic font\n`;
+
+/* var custom_text =
+`**bold**\n` +
+`*italic*\n` +
+`^^small^^\n` +
+`__underline__\n` +
+`~~strikethrough~~\n` +
+`||spoiler||\n` +
+`''code''\n` +
+`[link](https://link.com)\n` +
+`:flag_cz: :flag_us:\n` +
+`#superscript#\n` +
+
+`image [[https://cdn.discordapp.com/emojis/1068825486265942056.webp?size=96&quality=lossless]]\n` +
+`big image [![https://cdn.discordapp.com/emojis/1068825486265942056.webp?size=96&quality=lossless]!]\n` +
+`bigger image [!![https://cdn.discordapp.com/emojis/1068825486265942056.webp?size=96&quality=lossless]!!]\n` +
+`biggest image [!!![https://cdn.discordapp.com/emojis/1068825486265942056.webp?size=96&quality=lossless]!!!]\n` +
+
+`;;divider;;\n` +
+`timestamp: [1630953600](https://hammertime.cyou/en-GB)\n` +
+`twemoji: 😊\n` +
+`this is text \n this is also text, on the same line\nn this is text on a new line`; */
 
 //DO NOT EDIT BELOW THIS LINE
 document.title = `${title}`;
