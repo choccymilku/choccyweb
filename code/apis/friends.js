@@ -35,9 +35,9 @@ function fetchDataAndUpdateLocalStorage() {
           avatar.setAttribute('id', 'friends_avatar');
 
           const name = document.createElement('h6');
-          name.textContent = friendData.tag.substring(0, friendData.tag.indexOf('#'));
+          name.textContent = friendData.global_name;
           name.setAttribute('id', 'friends_name');
-          name.title = friendData.tag.substring(0, friendData.tag.indexOf('#'));
+          name.title = friendData.global_name;
 
           container.appendChild(avatar);
           container.appendChild(name);
@@ -45,7 +45,7 @@ function fetchDataAndUpdateLocalStorage() {
           if (id === '1035262868586766376') {
             const link = document.createElement('a');
             link.href = 'https://benreyland.crd.co';
-            link.textContent = friendData.tag.substring(0, friendData.tag.indexOf('#'));
+            link.textContent = friendData.global_name;
             link.target = '_blank';
             name.textContent = '';
             name.appendChild(link);
@@ -82,9 +82,9 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
       avatar.setAttribute('id', 'friends_avatar');
 
       const name = document.createElement('h6');
-      name.textContent = friendData.tag.substring(0, friendData.tag.indexOf('#'));
+      name.textContent = friendData.global_name;
       name.setAttribute('id', 'friends_name');
-      name.title = friendData.tag.substring(0, friendData.tag.indexOf('#'));
+      name.title = friendData.global_name;
 
       container.appendChild(avatar);
       container.appendChild(name);
@@ -92,7 +92,7 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
       if (id === '1035262868586766376') {
         const link = document.createElement('a');
         link.href = 'https://benreyland.crd.co';
-        link.textContent = friendData.tag.substring(0, friendData.tag.indexOf('#'));
+        link.textContent = friendData.global_name;
         link.target = '_blank';
         name.textContent = '';
         name.appendChild(link);

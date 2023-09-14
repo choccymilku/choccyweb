@@ -156,7 +156,7 @@ body {
 }
 #reset {
   cursor: pointer;
-  color: lightcoral;
+  color: lightcoral !important;
 }
 #reset:hover {
   filter: brightness(1.3);
@@ -319,6 +319,7 @@ body {
   border-radius: 8px;
   margin-right: 10px;
   box-sizing: border-box;
+  margin-bottom: 1px;
 }
 
 #friends_container:last-child {
@@ -347,7 +348,8 @@ body {
   font-size: 20px;
   background-color: var(--color3);
   text-align: center;
-  margin-bottom: 0px;
+  margin-bottom: -1px;
+  height: 25px;
 }
 
 /* other stuff*/
