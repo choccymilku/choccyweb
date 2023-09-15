@@ -47,7 +47,6 @@ function generateSimilarColors(dominantColor, numColors, increment = 0.3) {
   return similarColors;
 }
 
-
 // Function to update the CSS variables with dominant and similar colors
 function updateRootColors(dominantColor, similarColors) {
   document.documentElement.style.setProperty("--color1", dominantColor);
@@ -101,3 +100,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
   observer.observe(imageElement, { attributes: true });
 });
+
+function getUserPreference() {
+  return localStorage.getItem("theme") || "disabled"; // Use "disabled" as the default
+}
+
+function saveUserPreference(userPreference) {
+  localStorage.setItem("theme", userPreference);
+}
+
+function getAppliedMode(userPreference) {
+  if (userPreference === "light") {
+    return "light";
+  }
+  if (userPreference === "dark") {
+    return "dark";
+  }
+  return "disabled";
+}
+
+function setAppliedMode(mode) {
+  document.documentElement.dataset.appliedMode = mode;
+}
+
+function rotatePreferences(userPreference) {
+  if (userPreference === "dark") {
+    return "light";
+  }
+  if (userPreference === "light") {
+    return "disabled";
+  }
+  if (userPreference === "disabled") {
+    return "dark";
+  }
+  // for invalid values, just in case
+  return "disabled"; // Default to "disabled" if none of the above conditions match
+}
+
+const themeToggler = document.getElementById("theme-toggle");
+
+// Mimic heavy load done by other JS scripts
+setTimeout(() => {
+  let userPreference = getUserPreference();
+  setAppliedMode(getAppliedMode(userPreference));
+  themeToggler.innerText = userPreference;
+
+  themeToggler.onclick = () => {
+    const newUserPref = rotatePreferences(userPreference);
+    userPreference = newUserPref;
+    saveUserPreference(newUserPref);
+    themeToggler.innerText = newUserPref;
+    setAppliedMode(getAppliedMode(newUserPref));
+  };
+}, 0);

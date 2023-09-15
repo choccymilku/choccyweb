@@ -27,12 +27,12 @@ $(document).ready(function($) {
       var fontStyle = localStorage.getItem('fontStyle');
   
       if (fontStyle === 'dyslexic') {
-        console.log('fontStyle dyslexic');
+        console.log('using dyslexic font');
         $('.dyslexic-off').hide();
         $('.dyslexic-on').show();
         applyFontFamily('OpenDyslexic3');
       } else {
-        console.log('fontStyle mono');
+        console.log('using default font');
         $('.dyslexic-on').hide();
         $('.dyslexic-off').show();
         applyFontFamily('GeologicaRoman');

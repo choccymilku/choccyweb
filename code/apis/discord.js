@@ -188,25 +188,32 @@ if (listeningToMusic) {
   const artistElement = document.getElementById('music-artist');
   artistElement.innerText = artist;
 
-  const trackLink = document.getElementById('music-track-link');
-  trackLink.href = `https://open.spotify.com/track/${trackId}`;
+  const albumCoverElement = document.getElementById('music-cover');
+  const albumCoverElementNoLink = document.getElementById('music-cover-nolink');
 
+  
   if (spotifytrackLink) {
     const trackId = spotifytrackLink.track_id;
     const trackLink = document.getElementById('music-track-link');
     trackLink.href = `https://open.spotify.com/track/${trackId}`;
-    console.log('Spotify Track ID:', trackId);
-    console.log('Spotify Track Link:', `https://open.spotify.com/track/${trackId}`);
+    console.log('track ID:', trackId);
+    console.log('track link:', `https://open.spotify.com/track/${trackId}`);
+    albumCoverElementNoLink.style.display = 'none';
+    albumCoverElement.style.display = 'flex';
   } else {
-    console.log('No Spotify entry found.');
+    console.log('activity not spotify');
+    albumCoverElementNoLink.style.display = 'flex';
+    albumCoverElement.style.display = 'none';
   }
 
-  const albumCoverElement = document.getElementById('music-cover');
   if (albumCover) {
     albumCoverElement.src = albumCover;
     albumCoverElement.setAttribute('title', songName + '\n' + artist);
+    albumCoverElementNoLink.src = albumCover;
+    albumCoverElementNoLink.setAttribute('title', songName + '\n' + artist);
   } else {
     albumCoverElement.src = ''; // Remove the image if no album cover available
+    albumCoverElementNoLink.src = ''; // Remove the image if no album cover available
   }
 
   // Get the initial timestamps and calculate the total time

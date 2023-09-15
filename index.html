@@ -100,8 +100,9 @@
 
   <div id="music">
       <a id="music-track-link" target="_blank">
-        <img id="music-cover"></img>
+        <img id="music-cover" class="music-cover"></img>
       </a>
+      <img id="music-cover-nolink" class="music-cover"></img>
       <div id="music-content">
         <div id="music-song"></div>
         <div id="music-artist"></div>
@@ -135,32 +136,28 @@
               <div class="dyslexic-on fontChange">dyslexic</div>
             </span>
 
-            <span id="resetDiv">
-              <i class="fa-solid fa-x icon-style" id="hideReset" style="width:fit-content;text-align: right;display:block;margin-left: auto;margin-bottom: -25px;padding-top:5px;cursor: pointer;"></i>
+            <span>
+              <i class="fa-solid fa-pencil icon-style" style="margin-right: -3px;"></i>
+              <span style="border-bottom: 2px solid var(--text);">override theme:</span> 
+              <div id="theme-toggle" class="fontChange"></div>
+            </span>
+
+            <span>
               <i class="fa-solid fa-bug icon-style" style="margin-right: -3px;"></i>
               <span style="border-bottom: 2px solid var(--text);">broken?</span>
               <div id="reset">reset</div>
+            </span>
+
+            <span style="display: none;">
+              <div style="height: 1px;width: 100%;background-color: var(--text);margin: 5px;margin-left: 0px;"></div>
+
+              <span style="color:lightcoral;display:block;">EXPERIMENTAL</span> 
             </span>
           </div>
         </div>
     </div>
   </div>
 </div>
-
-<script>
-  // Check if "hideReset" flag is set in local storage and hide resetDiv if it's set to "true"
-  const hideResetFlag = localStorage.getItem('hideReset');
-  if (hideResetFlag === 'true') {
-    document.getElementById('resetDiv').style.display = 'none';
-  }
-
-  // Add an event listener to hide resetDiv when hideReset is clicked and save to local storage
-  document.getElementById('hideReset').addEventListener('click', function () {
-    document.getElementById('resetDiv').style.display = 'none';
-    localStorage.setItem('hideReset', 'true');
-  });
-</script>
-
 
 <div class="bar" id="text_outer">
   <div class="noselect bar_inner" id="text"></div>
@@ -171,9 +168,7 @@
 </div>
 
 <div class="bar" id="projects">
-  <div class="noselect bar_inner" id="project_inner">
-    yea
-  </div>
+  <div class="noselect bar_inner" id="project_inner"></div>
 </div>
 
 </div>
@@ -181,25 +176,12 @@
 <script>
   // use button id to reset localstorage or anything saved in the browser and reload the page
   document.getElementById('reset').addEventListener('click', function () {
-// Clear localStorage
-localStorage.clear();
-
-// Clear sessionStorage
-sessionStorage.clear();
-
-// Clear cookies (This is a simplified example and might not work in all cases)
-document.cookie = '';
-
-// Clear cache (This is a simplified example and might not work in all browsers)
-caches.keys().then(function(names) {
-  for (let name of names) {
-    caches.delete(name);
-  }
-});
-
-// Reload the page
-location.reload();
-
+  // Clear localStorage
+  localStorage.clear();
+  // Clear sessionStorage
+  sessionStorage.clear();
+  // Reload the page
+  location.reload();
   });
 </script>
 
