@@ -119,18 +119,19 @@ const generateCustomFlagElement = (customFlag) => {
       const clockFormat = localStorage.getItem('clockFormat');
       const timeOptions = {
         hour12: clockFormat === '12-hour', // Use 12-hour format if clockFormat is '12-hour'
-        hour: 'numeric',
+        hour: '2-digit', // Use 2-digit format for the hour
         minute: '2-digit',
         timeZone: timezone
       };
       const timeString = now.toLocaleTimeString([], timeOptions);
     
-      // Replace "00" with "12" in the formatted time
-      let formattedTime = timeString;
-      
+      // Replace "00" with "12" in the formatted time for 12-hour format
       if (clockFormat === '12-hour') {
-        formattedTime = formattedTime.replace(/^00/, '12');
+        formattedTime = timeString.replace(/^00/, '12');
+      } else {
+        formattedTime = timeString;
       }
+    
       // Capitalize "am" and "pm"
       formattedTime = formattedTime.replace(/am|pm/gi, match => match.toUpperCase());
     
@@ -153,6 +154,7 @@ const generateCustomFlagElement = (customFlag) => {
     
     // Then, update the clock every second
     setInterval(() => updateClock(timezone), 1000);
+    
   })
 
   .catch(error => {
