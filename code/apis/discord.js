@@ -150,7 +150,7 @@ const updateBarHeight = () => {
   if (listeningToMusic && window.innerWidth < 481) {
     project.style.maxHeight = 'calc(100% - 195px)';
   } else {
-    project.style.maxHeight = 'calc(100% - 115px)';
+    project.style.maxHeight = 'calc(100% - 120px)';
   }
 };
 

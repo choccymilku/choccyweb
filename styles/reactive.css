@@ -94,6 +94,7 @@
 
     .bar {
         height: calc(100% - 115px);
+        padding-bottom: 5px;
     }
 
   }
