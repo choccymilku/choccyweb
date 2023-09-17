@@ -58,13 +58,25 @@
     #friends_inner {
         display: block;
         overflow-y: scroll;
-        height: calc(100% - 10px)
+        height: 100%;
+    }
+
+    #friends_container:last-child {
+        border-bottom-right-radius: 0px !important;
     }
 
     #friends_container {
         width: 100% !important;
         margin-right: 0px !important;
         margin-bottom: 5px;
+        height: fit-content;
+    }
+    #friends_outer {
+        padding-right: 5px;
+    }
+
+    #friends_left {
+        display: none;
     }
     #friends_container:last-child {
         margin-bottom: 0px;
