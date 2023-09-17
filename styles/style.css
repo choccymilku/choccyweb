@@ -76,24 +76,35 @@ body {
   overflow-y: scroll;
 }
 
+
 /* bars */
 #tabs {
-  height: 50px;
+  height: 65px;
   position: fixed;
+  margin-top: -50px;
   display: flex;
   z-index: 1;
-  margin-left: 8px;
+  margin-left: 5px;
+  max-width: 1000px;
+  width: calc(100% - 10px);
+  overflow-y: scroll;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.tabs_style:first-child {
+  padding-left: 13px;
 }
 
 .tabs_style {
-  height: 60px;
   width: fit-content;
   padding-left: 10px;
-  margin-top: -50px;
+  margin-top: 0px;
+  padding-top: 11px;
+  padding-left: 10px;
   padding-right: 12px;
   font-size: 30px;
   display: flex;
-  align-items: center;
   justify-content: center;
   margin-left: -3px;
   cursor: pointer;
@@ -226,6 +237,8 @@ body {
   font-size: 22px;
   position: relative;
   z-index: 9999;
+  overflow-y: scroll;
+  max-height: 450px;
 }
 
 #profile_hover {
@@ -325,7 +338,8 @@ body {
 #friends_outer {
   background-color: var(--color2);
   overflow: hidden !important;
-  padding-right: 0px;
+  padding-right: 5px;
+  border-radius: 8px;
 }
 
 #friends_left {

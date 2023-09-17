@@ -1,16 +1,23 @@
 @media only screen and (max-width: 480px) {
     #main {
-        margin-top: -27px;
+        margin-top: -2px;
         height: calc(100% - 100px);
+        padding-bottom: 55px;
     }
 
     #tabs {
         bottom: 0;
         z-index: 0;
+        position:fixed;
+        width: calc(100% - 65px);
+    }
+
+    .tabs_style {
+        margin-top: 9px !important;
     }
 
     #pfp {
-        margin-top: 25px;
+        margin-top: -25px;
         background-color: var(--color1);
         height: 50px;
         width: 50px;
@@ -29,7 +36,7 @@
     }
     #profile_hover {
         position: fixed;
-        bottom: 10px;
+        bottom: 60px;
         right: 65px;
         margin-right: -55px;
         border-bottom-right-radius: 0px;
@@ -42,7 +49,6 @@
         margin-top: -5px !important;
     }
     .tabs_style {
-        margin-top: 40px !important;
         border-bottom-left-radius: 8px;
         border-top-left-radius: 0px;
     }
@@ -70,13 +76,6 @@
         margin-right: 0px !important;
         margin-bottom: 5px;
         height: fit-content;
-    }
-    #friends_outer {
-        padding-right: 5px;
-    }
-
-    #friends_left {
-        display: none;
     }
     #friends_container:last-child {
         margin-bottom: 0px;

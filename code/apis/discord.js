@@ -111,7 +111,7 @@ const updateTopBarHeight = () => {
     music.style.width = 'calc(100% - 20px)';
     music.style.position = 'absolute';
     music.style.marginLeft = '-5px';
-    textOuter.style.height = 'calc(100% - 200px)';
+    textOuter.style.height = 'calc(100% - 195px)';
   } else {
     topbar.style.height = ''; // Reset to default height
     topbarLeft.style.marginTop = '';
@@ -140,7 +140,7 @@ const updateBarHeight = () => {
 
   bars.forEach(bar => {
     if (listeningToMusic && window.innerWidth < 481) {
-      bar.style.height = 'calc(100% - 200px)';
+      bar.style.height = 'calc(100% - 195px)';
     } else {
       bar.style.height = '';
     }
@@ -148,7 +148,7 @@ const updateBarHeight = () => {
 
   // 'project' is an element, so you need to set its style directly
   if (listeningToMusic && window.innerWidth < 481) {
-    project.style.maxHeight = 'calc(100% - 200px)';
+    project.style.maxHeight = 'calc(100% - 195px)';
   } else {
     project.style.maxHeight = 'calc(100% - 115px)';
   }

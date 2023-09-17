@@ -83,96 +83,100 @@
 
 <div id="main">
 
-<div id="tabs"></div>
+  <div id="tabs"></div>
 
-<div id="topbar"> 
-  <div id="topbar_left">
-    <div style="margin-bottom: 0px;margin-top:-6px;font-weight: bold;font-size: 32px;" id="userTitle"></div>
-      <div id="status">
-        <div id="status_text_block">
-          <div id="status_arrow"></div>
-          <div id="status_text">loading...</div>
-        </div>
-      </div>
-    <div id='clock'>fetching...</div>
-    <div id="version" style="font-size: 10px;font-weight: bold;">v.1.2</div>
-  </div>
-
-  <div id="music">
-      <a id="music-track-link" target="_blank">
-        <img id="music-cover" class="music-cover"></img>
-      </a>
-      <img id="music-cover-nolink" class="music-cover"></img>
-      <div id="music-content">
-        <div id="music-song"></div>
-        <div id="music-artist"></div>
-          <div id="music-elapsed-time-wrapper"></div>
-          <div id="music-progress-bar-wrapper"></div>
-      </div>
-  </div>
-
-  <div id="profile">
-    <img class="disabledrag" id="pfp" src="./styles/blank.png"/>
-
-    <div id="profile_hover">
-      <div id="profile_arrow"></div>
-
-        <div id="profile_inner">
-          <a id="pfp_link"></a>
-            <div id="accounts"></div>
-            <div style="height: 1px;width: 100%;background-color: var(--text);margin: 5px;margin-left: 0px;"></div>
-          
-          <div id="settings">
-            <span>
-              <i class="fa-solid fa-clock-rotate-left icon-style" style="margin-right: -3px;"></i>
-              <span style="border-bottom: 2px solid var(--text);">time format:</span> 
-              <span style="cursor: pointer;display: block;margin-top: 4px;" id="timeFormatBtn"></span>
-            </span>
-
-            <span>
-              <i class="fa-solid fa-text-height icon-style" style="margin-right: -3px;"></i>
-              <span style="border-bottom: 2px solid var(--text);">font style:</span> 
-              <div class="dyslexic-off fontChange">default</div>
-              <div class="dyslexic-on fontChange">dyslexic</div>
-            </span>
-
-            <span>
-              <i class="fa-solid fa-pencil icon-style" style="margin-right: -3px;"></i>
-              <span style="border-bottom: 2px solid var(--text);">override theme:</span> 
-              <div id="theme-toggle" class="fontChange"></div>
-            </span>
-
-            <span>
-              <i class="fa-solid fa-bug icon-style" style="margin-right: -3px;"></i>
-              <span style="border-bottom: 2px solid var(--text);">broken?</span>
-              <div id="reset">reset</div>
-            </span>
-
-            <span style="display: none;">
-              <div style="height: 1px;width: 100%;background-color: var(--text);margin: 5px;margin-left: 0px;"></div>
-
-              <span style="color:lightcoral;display:block;">EXPERIMENTAL</span> 
-            </span>
+    <div id="topbar"> 
+      <div id="topbar_left">
+        <div style="margin-bottom: 0px;margin-top:-6px;font-weight: bold;font-size: 32px;" id="userTitle"></div>
+          <div id="status">
+            <div id="status_text_block">
+              <div id="status_arrow"></div>
+              <div id="status_text">loading...</div>
+            </div>
           </div>
+        <div id='clock'>fetching...</div>
+        <div id="version" style="font-size: 10px;font-weight: bold;">v.1.2</div>
+      </div>
+
+      <div id="music">
+        <a id="music-track-link" target="_blank">
+          <img id="music-cover" class="music-cover"></img>
+        </a>
+        <img id="music-cover-nolink" class="music-cover"></img>
+
+        <div id="music-content">
+          <div id="music-song"></div>
+          <div id="music-artist"></div>
+            <div id="music-elapsed-time-wrapper"></div>
+            <div id="music-progress-bar-wrapper"></div>
         </div>
+      </div>
+
+      <div id="profile">
+        <img class="disabledrag" id="pfp" src="./styles/blank.png"/>
+
+        <div id="profile_hover">
+          <div id="profile_arrow"></div>
+
+            <div id="profile_inner">
+              <a id="pfp_link"></a>
+                <div id="accounts"></div>
+                <div style="height: 1px;width: 100%;background-color: var(--text);margin: 5px;margin-left: 0px;"></div>
+          
+              <div id="settings">
+                <span>
+                  <i class="fa-solid fa-clock-rotate-left icon-style" style="margin-right: -3px;"></i>
+                  <span style="border-bottom: 2px solid var(--text);">time format:</span> 
+                  <span style="cursor: pointer;display: block;margin-top: 4px;" id="timeFormatBtn"></span>
+                </span>
+
+                <span>
+                  <i class="fa-solid fa-text-height icon-style" style="margin-right: -3px;"></i>
+                  <span style="border-bottom: 2px solid var(--text);">font style:</span> 
+                  <div class="dyslexic-off fontChange">default</div>
+                  <div class="dyslexic-on fontChange">dyslexic</div>
+                </span>
+
+                <span>
+                  <i class="fa-solid fa-pencil icon-style" style="margin-right: -3px;"></i>
+                  <span style="border-bottom: 2px solid var(--text);">override theme:</span> 
+                  <div id="theme-toggle" class="fontChange"></div>
+                </span>
+
+                <span>
+                  <i class="fa-solid fa-bug icon-style" style="margin-right: -3px;"></i>
+                  <span style="border-bottom: 2px solid var(--text);">broken?</span>
+                  <div id="reset">reset</div>
+                </span>
+
+                <span style="display: none;">
+                  <div style="height: 1px;width: 100%;background-color: var(--text);margin: 5px;margin-left: 0px;"></div>
+                <span style="color:lightcoral;display:block;">EXPERIMENTAL</span> 
+              </span>
+            </div>
+          </div>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="bar" id="text_outer">
-  <div class="noselect bar_inner" id="text"></div>
-</div>
+<!-- add your tabs here -->
 
-<div class="bar" id="people">
-  <div class="noselect bar_inner" id="friends_outer">
-    <div class="noselect bar_inner" id="friends_inner"></div>
+  <div class="bar" id="text_outer">
+    <div class="noselect bar_inner" id="text"></div>
   </div>
-  <div id="friends_left"></div>
-</div>
 
-<div class="bar" id="projects">
-  <div class="noselect bar_inner" id="project_inner"></div>
-</div>
+  <div class="bar" id="people">
+    <div class="noselect bar_outer" id="friends_outer">
+      <div class="noselect bar_inner" id="friends_inner"></div>
+    </div>
+  </div>
+
+  <div class="bar" id="projects">
+    <div class="noselect bar_inner" id="project_inner"></div>
+  </div>
+
+
+<!-- add your tabs here -->
 
 </div>
 
@@ -338,7 +342,7 @@ window.onload = function() {
 
       
 <script>
-  var containers = document.querySelectorAll('#friends_inner');
+  var containers = document.querySelectorAll('#friends_inner, #tabs');
   var scrollAmounts = {};
   var isScrolling = false;
   var isEnabled = true; // Initially enabled
