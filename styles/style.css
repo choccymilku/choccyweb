@@ -208,30 +208,6 @@ body {
 }
 
 
-/* other elements */
-#friends_inner {
-  display: flex;
-  width: 100%;
-  border-radius: 8px;
-  justify-content: space-between;
-  overflow-x: scroll;
-  position: relative;
-  padding: 0px;
-}
-
-#friends_outer {
-  background-color: var(--color2);
-  overflow: hidden !important;
-  padding-right: 0px;
-}
-
-#friends_left {
-  width: 20px;
-  margin-left: -15px;
-  border-radius: 8px;
-  background-color: var(--color2);
-}
-
 /* profile */
 #profile {
   margin-right:5px;
@@ -336,12 +312,38 @@ body {
 
 
 /* friends */
+#friends_inner {
+  display: flex;
+  width: 100%;
+  border-radius: 8px;
+  justify-content: space-between;
+  overflow-x: scroll;
+  position: relative;
+  padding: 0px;
+  background-color: transparent;
+}
+
+#friends_outer {
+  background-color: var(--color2);
+  overflow: hidden !important;
+  padding-right: 0px;
+}
+
+#friends_left {
+  width: 20px;
+  margin-left: -15px;
+  border-radius: 8px;
+  background-color: var(--color2);
+}
+
 #friends_container {
   width: calc(50% - 5px);
   border-radius: 8px;
   margin-right: 10px;
+  height: 195px;
   box-sizing: border-box;
   margin-bottom: 1px;
+  background-color: var(--color3);
 }
 
 #friends_container:last-child {
@@ -358,7 +360,7 @@ body {
 }
 
 #friends_name {
-  margin-top: 0px;
+  margin-top: -12.5px;
   max-width: 135px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -368,10 +370,8 @@ body {
   position: relative;
   padding: 10px;
   font-size: 20px;
-  background-color: var(--color3);
   text-align: center;
   margin-bottom: -1px;
-  height: 25px;
 }
 
 /* other stuff*/
