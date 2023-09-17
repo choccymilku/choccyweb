@@ -164,7 +164,10 @@
 </div>
 
 <div class="bar" id="people">
+  <div class="noselect bar_inner" id="friends_outer">
     <div class="noselect bar_inner" id="friends_inner"></div>
+  </div>
+  <div id="friends_left"></div>
 </div>
 
 <div class="bar" id="projects">
@@ -172,6 +175,114 @@
 </div>
 
 </div>
+
+<!-- <script>
+// Wait for the DOM to fully load before running the JavaScript code
+window.onload = function() {
+    // Get the #tabs element's width
+    const tabsElement = document.getElementById('tabs');
+    const tabsWidth = tabsElement.offsetWidth + 52;
+
+    // Create a style element and append it to the document head
+    const style = document.createElement('style');
+    document.head.appendChild(style);
+
+    console.log(tabsWidth);
+
+    // Define the media query string based on the tabsWidth
+    const mediaQuery = `@media screen and (max-width: ${tabsWidth}px) {
+    #main {
+        margin-top: -27px;
+        height: calc(100% - 100px);
+    }
+
+    #tabs {
+        bottom: 0;
+        z-index: 0;
+    }
+
+    #pfp {
+        margin-top: 25px;
+        background-color: var(--color1);
+        height: 50px;
+        width: 50px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+    #profile {
+        bottom: 0;
+        position: fixed;
+        height: 30px;
+        padding: 5px;
+        margin-right: 0px;
+        border-radius: 8px;
+    }
+    #profile_hover {
+        position: fixed;
+        bottom: 10px;
+        right: 65px;
+        margin-right: -55px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+    #profile_arrow {
+        display: none;
+    }
+    #profile_inner {
+        margin-top: -5px !important;
+    }
+    .tabs_style {
+        margin-top: 40px !important;
+        border-bottom-left-radius: 8px;
+        border-top-left-radius: 0px;
+    }
+    .tabs_style:last-child {
+        border-bottom-right-radius: 8px;
+        border-top-right-radius: 0px;
+    }
+
+    .bar, .bar_inner {
+        border-bottom-right-radius: 0px !important;
+    }
+
+    #friends_inner {
+        display: block;
+        overflow-y: scroll;
+        height: calc(100% - 10px)
+    }
+
+    #friends_container {
+        width: 100% !important;
+        margin-right: 0px !important;
+        margin-bottom: 5px;
+    }
+    #friends_container:last-child {
+        margin-bottom: 0px;
+    }
+    #friends_avatar {
+        width: calc(100% - 20px);
+        height: 100%;
+    }
+    #friends_name  {
+        width: 100%;
+        max-width: calc(100% - 20px);
+    }
+    .project-div:last-child {
+        border-bottom-right-radius: 0px;
+    }
+
+    .bar {
+        height: calc(100% - 115px);
+    }
+    }`;
+
+    // Add the media query to the style element
+    style.textContent = mediaQuery;
+}; -->
+
+</script>
 
 <script>
   // use button id to reset localstorage or anything saved in the browser and reload the page

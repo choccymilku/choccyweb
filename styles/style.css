@@ -79,7 +79,6 @@ body {
 /* bars */
 #tabs {
   height: 50px;
-  width: fit-content;
   position: fixed;
   display: flex;
   z-index: 1;
@@ -136,12 +135,11 @@ body {
   height: fit-content;
   width: fit-content;
   margin-left: -5px;
-  z-index: 9999;
+  z-index: 1;
   height: 70px;
 }
 
 #status {
-  z-index: 0;
   width: 85px;
   height: 6px;
   border-radius: 8px;
@@ -168,6 +166,7 @@ body {
   padding-top: 0px;
   padding-bottom: 0px;
   border-radius: 8px;
+  z-index: 9999;
 }
 
 .fontChange {
@@ -210,28 +209,27 @@ body {
 
 
 /* other elements */
-#friends {
-  overflow-x: scroll;
-  position: relative;
-  display: flex !important;
-  border-radius: 8px;
-  padding-top: 0px !important;
-  margin: 5px;
-  padding-bottom: 0px;
-  background-color: var(--color1);
-  z-index: 1000;
-  width: calc(100% - 10px);
-}
-
 #friends_inner {
-  height: fit-content;
-  width: fit-content;
   display: flex;
-  padding: 5px;
+  width: 100%;
   border-radius: 8px;
   justify-content: space-between;
   overflow-x: scroll;
   position: relative;
+  padding: 0px;
+}
+
+#friends_outer {
+  background-color: var(--color2);
+  overflow: hidden !important;
+  padding-right: 0px;
+}
+
+#friends_left {
+  width: 20px;
+  margin-left: -15px;
+  border-radius: 8px;
+  background-color: var(--color2);
 }
 
 /* profile */
@@ -252,6 +250,7 @@ body {
   z-index: 2;
   font-size: 22px;
   position: relative;
+  z-index: 9999;
 }
 
 #profile_hover {
@@ -431,7 +430,7 @@ a:hover {color:var(--texthover) !important}
   position: relative;
   padding: 5px;
   border-radius: 8px;
-  z-index: 9999;
+  z-index: 0 !important;
   margin-left: 5px;
   margin-top: 0px;
   background-color: var(--color2);

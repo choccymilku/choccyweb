@@ -162,7 +162,10 @@ window.addEventListener('resize', updateBarHeight);
 
 
 
-const listeningToMusic = activities ? activities.some(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 0 && activity.name === 'YouTube Music') || (activity.type === 2 && activity.name === 'Spotify')) : false;
+const listeningToMusic = activities ? activities.some(activity => 
+  (activity.type === 0 && activity.name === 'SoundCloud') || 
+  (activity.type === 0 && activity.name === 'YouTube Music') || 
+  (activity.type === 2 && activity.name === 'Spotify')) : false;
 
 if (listeningToMusic) {
   // Find the relevant music activity
@@ -171,13 +174,11 @@ if (listeningToMusic) {
   const spotifytrackLink = data.spotify;
   // Get the necessary details based on the music platform
   const type = musicActivity.type; // 0 for SoundCloud, 2 for Spotify
-  const trackId = musicActivity.track_id;
   const songName = musicActivity.details;
   const artist = musicActivity.state;
-  const albumCover = type === 0
-  ? `https://${musicActivity.assets.large_image.replace(/^.*?https\//, '')}`
-  : type === 2
-    ? `https://i.scdn.co/image/${musicActivity.assets.large_image.replace('spotify:', '')}`
+  const albumCover = 
+  type === 0 ? `https://${musicActivity.assets.large_image.replace(/^.*?https\//, '')}` : 
+  type === 2 ? `https://i.scdn.co/image/${musicActivity.assets.large_image.replace('spotify:', '')}`
     : `https://lh3.googleusercontent.com/${musicActivity.assets.large_image.slice(musicActivity.assets.large_image.indexOf("https/"))}`;
 
 
@@ -322,8 +323,8 @@ if (listeningToMusic) {
   const musicPlatform = document.getElementById('music');
   musicPlatform.style.display = 'block';
 
-} else {
-  // Hide the music platform UI if not listening to music
+} else if (!listeningToMusic) {
+  // Hide the music UI
   const musicPlatform = document.getElementById('music');
   musicPlatform.style.display = 'none';
 }
