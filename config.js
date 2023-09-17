@@ -24,10 +24,10 @@ const bday_year = '2007';
 var username = "choccy";
 
 // tabs <required>
-const tabNames = ["./me", "./people", "./projects", "about", "friends", "projects", "links"];
-const tabIds = ["tab_me", "tab_friends", "tab_projects", "tab_about", "tab_friends", "tab_projects", "tab_links"];
-const tabBlocks = ["text_outer", "people", "projects", "about", "friends", "projects", "links"];
-const tabIcons = ["home", "users", "briefcase", "info-circle", "users", "briefcase", "link"];
+const tabNames = ["./me", "./people", "./projects"];
+const tabIds = ["tab_me", "tab_friends", "tab_projects"];
+const tabBlocks = ["text_outer", "people", "projects"];
+const tabIcons = ["home", "users", "briefcase"];
 
 // "about me" text, supports markdowns, can be found in "text.js" <required> ⚠
 // what you can use:
