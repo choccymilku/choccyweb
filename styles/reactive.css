@@ -11,10 +11,12 @@
         position:fixed;
         width: calc(100% - 65px);
         border-bottom-left-radius: 8px;
+        height: 70px;
     }
 
     .tabs_style {
         margin-top: 9px !important;
+        padding-top:15px;
     }
 
     #pfp {
