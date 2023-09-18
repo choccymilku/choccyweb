@@ -10,6 +10,7 @@
         z-index: 0;
         position:fixed;
         width: calc(100% - 65px);
+        border-bottom-left-radius: 8px;
     }
 
     .tabs_style {
@@ -93,7 +94,7 @@
     }
 
     .bar {
-        height: calc(100% - 115px);
+        height: calc(100% - 110px);
         padding-bottom: 5px;
     }
 

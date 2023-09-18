@@ -134,7 +134,9 @@ window.addEventListener('resize', updateTopBarHeight);
 const updateBarHeight = () => {
   const bars = document.querySelectorAll('.bar'); // Select all elements with the class 'bar'
   const project = document.getElementById('projects');
-  
+  const profile = document.getElementById('profile');
+/*   const tabs = document.getElementById('tabs');
+ */  
   // Assuming 'activities' is defined somewhere
   const listeningToMusic = activities ? activities.some(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 0 && activity.name === 'YouTube Music') || (activity.type === 2 && activity.name === 'Spotify')) : false;
 
@@ -149,9 +151,13 @@ const updateBarHeight = () => {
   // 'project' is an element, so you need to set its style directly
   if (listeningToMusic && window.innerWidth < 481) {
     project.style.maxHeight = 'calc(100% - 195px)';
-  } else {
-    project.style.maxHeight = 'calc(100% - 120px)';
-  }
+/*     profile.style.height = '30px'; */
+/*     tabs.style.marginBottom = '0px';
+ */  } else {
+    project.style.maxHeight = 'calc(100% - 110px)';
+/*     profile.style.height = '35px'; */
+/*     tabs.style.marginBottom = '5px';
+ */  }
 };
 
 // Call the function initially
