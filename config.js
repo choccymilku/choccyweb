@@ -94,7 +94,7 @@ document.title = `${title}`;
 const userTitle = document.getElementById("userTitle");
 userTitle.textContent = username;
 
-fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/main/todo.md')
+fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/main/TO-DO.md')
     .then(response => response.text())
     .then(text => {
         var todo = text.split('\n');
