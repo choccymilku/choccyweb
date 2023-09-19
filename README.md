@@ -1,23 +1,11 @@
 # website project thingy
 
-welcome, this is the open source project for https://choccy.pages.dev
+welcome, this is the open source project for https://choccymilk.uk
 
-# what you'll need
-1. discord account (live data)
-2. pronouns.page account - optional but recommended (timezone, flags, pronouns etc.)
+# what you'll need to get started
+1. discord account (live data, activity, PFP etc.)
+2. pronouns.page account - optional but recommended (timezone, flags/custom flags, pronouns etc.)
 3. editing skills (open config.js to configure the website to your liking)
-
-# to-do
-switch between pronoun.page and discord pronouns
-
-add more to projects
-
-be able to darken the generated colors if dark mode is preferred
-
-don't use generated colors at all
-
-more styles from config.js (no rounding)
-
 
 # how do I publish it?
 1. download the repository by clicking the green button and select "download as a ZIP" from the dropdown (alternatively copy this repository onto your account or use github desktop) 
@@ -30,8 +18,9 @@ more styles from config.js (no rounding)
 CONFIGS WITH "⚠️" MUST HAVE AN INPUT, OTHERWISE IT WONT WORK
 
 # notes
-
 note this is currently work in progress, more info on how to host this will be made soon
 
 # what you can and can't do
 you're free to do anything with this, modify, change or something, just credit me and we'll both be fine.
+
+a full web editor for this thing? maybe..
