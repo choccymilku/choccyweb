@@ -64,7 +64,7 @@ var custom_text =
 `<span id='birthday'></span>, <span id='pronouns'></span>, <span id='flags'></span>` +
 `;;divider;;` + 
 `to-do:\n` +
-`improve dyslexic font\n fix mobile tabs`;
+`<div id="todo_list"></div>`;
 
 /* var custom_text =
 `**bold**\n` +
