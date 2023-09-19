@@ -23,6 +23,4 @@ note this is currently work in progress, more info on how to host this will be m
 # what you can and can't do
 you're free to do anything with this, modify, change or something, just credit me and we'll both be fine.
 
-<sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup>REALLY
-
-^a full web editor for this thing? maybe..^
+<sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup><sub><sup>a full web editor for this thing? maybe..
