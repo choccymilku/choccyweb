@@ -38,7 +38,7 @@ function setTextColorAndLinkColorBasedOnLuminance(container, hexColor) {
 function fetchDataAndUpdateLocalStorage() {
   console.log('Fetching friends data...');
 
-  Promise.all(discordUserIds.map(id => fetch(`https://discordlookup.mesavirep.xyz/v1/user/${id}`)))
+  Promise.all(discordUserIds.map(id => fetch(`https://lookup.choccymilk.uk/api?id=${id}`)))
     .then(responses => Promise.all(responses.map(response => response.json())))
     .then(data => {
       console.log('Data fetched! :D'); // Log when data is fetched successfully
@@ -53,10 +53,10 @@ function fetchDataAndUpdateLocalStorage() {
           const id = friendData.id;
           const container = document.createElement('div');
           container.setAttribute('id', 'friends_container');
-          container.style.backgroundColor = friendData.banner.color;
+          container.style.backgroundColor = friendData.banner_color;
 
           const avatar = document.createElement('img');
-          avatar.setAttribute('src', `https://cdn.discordapp.com/avatars/${id}/${friendData.avatar.id}?size=2048`);
+          avatar.setAttribute('src', friendData.avatar);
           avatar.setAttribute('id', 'friends_avatar');
 
           const name = document.createElement('h6');
@@ -68,7 +68,7 @@ function fetchDataAndUpdateLocalStorage() {
           container.appendChild(name);
 
           // Set the text color and link color based on luminance
-          setTextColorAndLinkColorBasedOnLuminance(container, friendData.banner.color);
+          setTextColorAndLinkColorBasedOnLuminance(container, friendData.banner_color);
 
           if (id === '1035262868586766376') {
             const link = document.createElement('a');
@@ -79,7 +79,7 @@ function fetchDataAndUpdateLocalStorage() {
             name.appendChild(link);
 
             // Set the link (a element) color based on luminance
-            setTextColorAndLinkColorBasedOnLuminance(link, friendData.banner.color);
+            setTextColorAndLinkColorBasedOnLuminance(link, friendData.banner_color);
           }
 
           friendsContainer.appendChild(container);
@@ -106,10 +106,10 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
       const id = friendData.id;
       const container = document.createElement('div');
       container.setAttribute('id', 'friends_container');
-      container.style.backgroundColor = friendData.banner.color;
+      container.style.backgroundColor = friendData.banner_color;
 
       const avatar = document.createElement('img');
-      avatar.setAttribute('src', `https://cdn.discordapp.com/avatars/${id}/${friendData.avatar.id}?size=2048`);
+      avatar.setAttribute('src', friendData.avatar);
       avatar.setAttribute('id', 'friends_avatar');
 
       const name = document.createElement('h6');
@@ -121,7 +121,7 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
       container.appendChild(name);
 
       // Set the text color and link color based on luminance
-      setTextColorAndLinkColorBasedOnLuminance(container, friendData.banner.color);
+      setTextColorAndLinkColorBasedOnLuminance(container, friendData.banner_color);
 
       if (id === '1035262868586766376') {
         const link = document.createElement('a');
@@ -132,7 +132,7 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
         name.appendChild(link);
 
         // Set the link (a element) color based on luminance
-        setTextColorAndLinkColorBasedOnLuminance(link, friendData.banner.color);
+        setTextColorAndLinkColorBasedOnLuminance(link, friendData.banner_color);
       }
 
       friendsContainer.appendChild(container);
