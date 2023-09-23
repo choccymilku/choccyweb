@@ -84,11 +84,11 @@
     .gallery_image {
         width: 100%;
         height: auto;
-        margin-bottom: 13px;
+        margin-bottom: -3px;
     }
 
     .gallery_image:last-child {
-        margin-bottom: -10px;
+        margin-bottom: 0px;
         border-bottom-right-radius: 0px;
     }
 
