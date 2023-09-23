@@ -133,7 +133,6 @@ body {
   display: flex;
   align-items: center;
   padding: 10px;
-  overflow: hidden;
   z-index: 9998;
   background-color: var(--color1);
 }
@@ -244,7 +243,7 @@ body {
 
 #profile_hover {
   position: relative;
-  z-index: 1;
+  z-index: 9999;
   background-color: var(--color3);
   border-radius: 8px;
   margin-top: 95px;
@@ -253,6 +252,7 @@ body {
   height: fit-content;
   padding: 5px;
   float: left;
+  display: flex;
   display: none;
 }
 
@@ -338,7 +338,6 @@ body {
 #gallery_outer {
   background-color: var(--color2);
   overflow: hidden !important;
-  padding-right: 5px;
   border-radius: 8px;
   height: fit-content;
   width: 100%;
