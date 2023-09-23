@@ -19,10 +19,6 @@
         padding-top:15px;
     }
 
-    .tabs_style:last-child {
-        border-bottom-right-radius: 0px !important;
-    }
-
     #pfp {
         margin-top: -25px;
         background-color: var(--color1);

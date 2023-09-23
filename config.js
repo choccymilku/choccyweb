@@ -109,3 +109,18 @@ fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/m
             }
         });
     });
+
+// can be removed if you don't intend to use to-do list anywhere, make sure the url is correct for your repository (must be raw.githubusercontent.com)
+fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/main/VERSIONS.md')
+    .then(response => response.text())
+    .then(text => {
+        var todo = text.split('\n');
+        var todo_list = document.getElementById('update_notes');
+        todo.forEach((item) => {
+            if (item.trim() !== '') {
+                var todo_item = document.createElement('li');
+                todo_item.textContent = item;
+                todo_list.appendChild(todo_item);
+            }
+        });
+    });

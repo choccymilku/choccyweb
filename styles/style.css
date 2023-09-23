@@ -611,3 +611,32 @@ a:hover {color:var(--texthover) !important}
 	opacity: 1;
 	width: 100%;
   }
+
+
+  #update_notes_inner {
+    background-color: var(--color4);
+    margin-left: 5px;
+    position: absolute;
+    z-index: 9999;
+    max-width: 952px;
+    width: calc(100% - 10px);
+    overflow: hidden;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    border-radius: 8px;
+  }
+  
+  #version_container {
+    display: none;
+  }
+
+  #update_notes {
+    background-color: var(--color2);
+    border-radius: 8px;
+    margin: 5px;
+    padding: 5px;
+  }
+
+  #version:hover #version_container {
+    display: block;
+  }

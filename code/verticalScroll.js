@@ -1,62 +1,74 @@
-var friendsContainer = document.querySelector('#friends_inner, #gallery_inner');
-var scrollAmount = 0;
-var isScrolling = false;
-var isEnabled = true; // Initially enabled
+var scroll2Containers = document.querySelectorAll('.inner_scrollables');
+  var scrollAmounts = new Map();
+  var isScrolling = false;
+  var isEnabled = true; // Initially enabled
 
-function enableScroll() {
-  isEnabled = true;
-}
-
-function disableScroll() {
-  isEnabled = false;
-}
-
-function handleScroll(event) {
-  if (!isEnabled) {
-    return;
+  function enableScroll() {
+    isEnabled = true;
   }
 
-  event.preventDefault();
-  scrollAmount += event.deltaY;
-
-  if (!isScrolling) {
-    requestAnimationFrame(scrollFriendsContainer);
-    isScrolling = true;
-  }
-}
-
-function scrollFriendsContainer() {
-  if (!isEnabled) {
-    isScrolling = false;
-    return;
+  function disableScroll() {
+    isEnabled = false;
   }
 
-  friendsContainer.scrollLeft += scrollAmount * 0.1; // Adjust the scroll speed as desired
+  function handleScroll(event) {
+    if (!isEnabled) {
+      return;
+    }
 
-  scrollAmount *= 0.9; // Adjust the damping factor as desired
+    event.preventDefault();
 
-  if (Math.abs(scrollAmount) < 0.1) {
-    isScrolling = false;
-    return;
+    // Store the scroll amount for each container
+    scroll2Containers.forEach(function(container) {
+      scrollAmounts.set(container, (scrollAmounts.get(container) || 0) + event.deltaY);
+    });
+
+    if (!isScrolling) {
+      requestAnimationFrame(scrollScrollContainers);
+      isScrolling = true;
+    }
   }
 
-  requestAnimationFrame(scrollFriendsContainer);
-}
+  function scrollScrollContainers() {
+    if (!isEnabled) {
+      isScrolling = false;
+      return;
+    }
 
-// Function to check viewport width and enable/disable scroll based on the width
-function checkViewportWidth() {
-  if (window.innerWidth < 580) {
-    disableScroll();
-  } else {
-    enableScroll();
+    scroll2Containers.forEach(function(container) {
+      var scrollAmount = scrollAmounts.get(container) || 0;
+      container.scrollLeft += scrollAmount * 0.1; // Adjust the scroll speed as desired
+      scrollAmounts.set(container, scrollAmount * 0.9); // Adjust the damping factor as desired
+
+      if (Math.abs(scrollAmounts.get(container)) < 0.1) {
+        scrollAmounts.delete(container);
+      }
+    });
+
+    if (scrollAmounts.size === 0) {
+      isScrolling = false;
+      return;
+    }
+
+    requestAnimationFrame(scrollScrollContainers);
   }
-}
 
-// Initial check when the script is loaded
-checkViewportWidth();
+  // Function to check viewport width and enable/disable scroll based on the width
+  function checkViewportWidth() {
+    if (window.innerWidth < 580) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
+  }
 
-// Add a listener to continuously monitor the viewport width and adjust the behavior
-window.addEventListener('resize', checkViewportWidth);
+  // Initial check when the script is loaded
+  checkViewportWidth();
 
-// Add the scroll event listener to #friends_inner container only
-friendsContainer.addEventListener('wheel', handleScroll);
+  // Add a listener to continuously monitor the viewport width and adjust the behavior
+  window.addEventListener('resize', checkViewportWidth);
+
+  // Add the scroll event listener to all containers with the "scroll-container" class
+  scroll2Containers.forEach(function(container) {
+    container.addEventListener('wheel', handleScroll);
+  });

@@ -88,7 +88,8 @@
             </div>
           </div>
         <div id='clock'>fetching...</div>
-        <div id="version" style="font-size: 10px;font-weight: bold;">v.1.2</div>
+        <div id="version" style="font-size: 10px;font-weight: bold;">v.1.3
+          <i class="fa-solid fa-circle-question"></i></div>
       </div>
 
       <div id="music">
@@ -152,6 +153,12 @@
     </div>
   </div>
 
+  <div id="version_container">
+    <div id="update_notes_inner">
+      <div id="update_notes"></div>
+    </div>
+  </div>
+
 <!-- add your tabs here -->
 
   <div class="bar" id="text_outer">
@@ -160,7 +167,7 @@
 
   <div class="bar" id="people">
     <div class="noselect bar_outer" id="friends_outer">
-      <div class="noselect bar_inner" id="friends_inner"></div>
+      <div class="noselect bar_inner inner_scrollables" id="friends_inner"></div>
     </div>
   </div>
 
@@ -171,13 +178,13 @@
   <div class="bar" id="gallery">
     <div class="noselect bar_outer" id="gallery_outer">
       <p style="margin-left: 10px;margin-top: 5px;margin-bottom: 5Px;">this is work in progress (more images soon)</p>
-      <div class="noselect bar_inner" id="gallery_inner"></div>
+      <div class="noselect bar_inner inner_scrollables" id="gallery_inner"></div>
     </div>
   </div>
 
 </div>
 
-<script>
+<!-- <script>
 // Wait for the DOM to fully load before running the JavaScript code
 window.onload = function() {
     // Get the #tabs element's width
@@ -198,7 +205,7 @@ window.onload = function() {
     // Add the media query to the style element
     style.textContent = mediaQuery;
 };
-</script>
+</script> -->
 
 <script> // reset button
   // use button id to reset localstorage or anything saved in the browser and reload the page
@@ -218,7 +225,6 @@ window.onload = function() {
 <script src="./code/text.js"></script>
 <script src="./code/fontchange.js"></script>
 <script src="./code/apis/accounts.js"></script>
-<script src="./code/apis/todolist.js"></script>
 <script src="./code/apis/friends.js"></script>
 <script src="./code/apis/discord.js"></script>
 <script src="./code/apis/pronounspage.js"></script>
@@ -226,7 +232,8 @@ window.onload = function() {
 <script src="./code/apis/gallery.js"></script>
 <script src="./code/time.js"></script>
 <script src="./code/profileHover.js"></script>
+<!-- <script src="./code/verticalScrollTabs.js"></script -->
 <script src="./code/verticalScroll.js"></script>
-<script src="./code/verticalScrollTabs.js"></script>
+<script src="./code/versionHover.js"></script>
 </body>
 </html>
