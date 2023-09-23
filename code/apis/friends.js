@@ -70,7 +70,7 @@ function fetchDataAndUpdateLocalStorage() {
 
           // Set the text color and link color based on luminance
           setTextColorAndLinkColorBasedOnLuminance(container, friendData.banner.color);
-
+/* 
           if (id === '1035262868586766376') {
             const link = document.createElement('a');
             link.href = 'https://benreyland.crd.co';
@@ -81,7 +81,7 @@ function fetchDataAndUpdateLocalStorage() {
 
             // Set the link (a element) color based on luminance
             setTextColorAndLinkColorBasedOnLuminance(link, friendData.banner.color);
-          }
+          } */
 
           friendsContainer.appendChild(container);
         });
@@ -124,7 +124,7 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
       // Set the text color and link color based on luminance
       setTextColorAndLinkColorBasedOnLuminance(container, friendData.banner.color);
 
-      if (id === '1035262868586766376') {
+/*       if (id === '1035262868586766376') {
         const link = document.createElement('a');
         link.href = 'https://benreyland.crd.co';
         link.textContent = friendData.global_name;
@@ -134,7 +134,7 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
 
         // Set the link (a element) color based on luminance
         setTextColorAndLinkColorBasedOnLuminance(link, friendData.banner.color);
-      }
+      } */
 
       friendsContainer.appendChild(container);
     });
