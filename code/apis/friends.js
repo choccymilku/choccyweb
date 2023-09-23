@@ -6,8 +6,7 @@ const discordUserIds = [
   '768656516885774371', // prax
   '984835890608230430', // vin
   '1035262868586766376', // Ben
-  '503676030536646716', // ashy
-  '926367286338674688' // Flynn
+  '503676030536646716' // ashy
 ];
 
 function calculateLuminance(hexColor) {
@@ -70,7 +69,7 @@ function fetchDataAndUpdateLocalStorage() {
 
           // Set the text color and link color based on luminance
           setTextColorAndLinkColorBasedOnLuminance(container, friendData.banner.color);
-/* 
+
           if (id === '1035262868586766376') {
             const link = document.createElement('a');
             link.href = 'https://benreyland.crd.co';
@@ -81,7 +80,7 @@ function fetchDataAndUpdateLocalStorage() {
 
             // Set the link (a element) color based on luminance
             setTextColorAndLinkColorBasedOnLuminance(link, friendData.banner.color);
-          } */
+          }
 
           friendsContainer.appendChild(container);
         });
@@ -124,7 +123,7 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
       // Set the text color and link color based on luminance
       setTextColorAndLinkColorBasedOnLuminance(container, friendData.banner.color);
 
-/*       if (id === '1035262868586766376') {
+      if (id === '1035262868586766376') {
         const link = document.createElement('a');
         link.href = 'https://benreyland.crd.co';
         link.textContent = friendData.global_name;
@@ -134,7 +133,7 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
 
         // Set the link (a element) color based on luminance
         setTextColorAndLinkColorBasedOnLuminance(link, friendData.banner.color);
-      } */
+      }
 
       friendsContainer.appendChild(container);
     });
