@@ -113,7 +113,7 @@ const updateTopBarHeight = () => {
     music.style.marginLeft = '-5px';
     textOuter.style.height = 'calc(100% - 195px)';
   } else {
-    topbar.style.height = ''; // Reset to default height
+    topbar.style.height = '';
     topbarLeft.style.marginTop = '';
     music.style.marginTop = '';
     music.style.width = '';

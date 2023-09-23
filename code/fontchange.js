@@ -4,6 +4,8 @@ $(document).ready(function($) {
         localStorage.setItem('fontStyle', 'dyslexic');
         $('.dyslexic-off').hide();
         $('.dyslexic-on').show();
+        $('.dyslexic-off').hide();
+        $('.dyslexic-on').show();
         $('.connection-name').css('margin-top', '-12px');
         $('#userTitle').css('margin-top', '-19px');
         $('#status').css('margin-top', '-15px');
@@ -16,7 +18,9 @@ $(document).ready(function($) {
         localStorage.setItem('fontStyle', 'default');
         $('.dyslexic-on').hide();
         $('.dyslexic-off').show();
-        $('.connection-name').css('margin-top', '');
+        $('.dyslexic-on').hide();
+        $('.dyslexic-off').show();
+        $('.connection-name').css('margin-top', '0px');
         $('#userTitle').css('margin-top', '-6px');
         $('#status').css('margin-top', '-4px');
         $('#clock').css('margin-top', '');
@@ -30,11 +34,25 @@ $(document).ready(function($) {
         console.log('using dyslexic font');
         $('.dyslexic-off').hide();
         $('.dyslexic-on').show();
+        $('.dyslexic-off').hide();
+        $('.dyslexic-on').show();
+        $('.connection-name').css('margin-top', '-12px');
+        $('#userTitle').css('margin-top', '-19px');
+        $('#status').css('margin-top', '-15px');
+        $('#clock').css('margin-top', '-2px');
+        $('#version').css('margin-top', '-8px');
         applyFontFamily('OpenDyslexic3');
       } else {
         console.log('using default font');
         $('.dyslexic-on').hide();
         $('.dyslexic-off').show();
+        $('.dyslexic-on').hide();
+        $('.dyslexic-off').show();
+        $('.connection-name').css('margin-top', '0px');
+        $('#userTitle').css('margin-top', '-6px');
+        $('#status').css('margin-top', '-4px');
+        $('#clock').css('margin-top', '');
+        $('#version').css('margin-top', '');
         applyFontFamily('GeologicaRoman');
       }
     }
