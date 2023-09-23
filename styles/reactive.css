@@ -1,4 +1,4 @@
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 550px) {
     #main {
         margin-top: -2px;
         height: calc(100% - 100px);
@@ -44,6 +44,9 @@
         margin-right: -55px;
         border-bottom-right-radius: 0px;
         border-bottom-left-radius: 0px;
+        max-height: calc(100% - 175px);
+        overflow: hidden;
+        overflow-y: scroll;
     }
     #profile_arrow {
         display: none;
@@ -68,6 +71,34 @@
         display: block;
         overflow-y: scroll;
         height: 100%;
+        width: calc(100% + 5px);
+    }
+
+    #gallery_inner {
+        display: block;
+        overflow-y: scroll;
+        height: 100%;
+        width: calc(100% + 5px);
+    }
+
+    .gallery_image {
+        width: 100%;
+        height: auto;
+    }
+
+    .gallery_image:last-child {
+        margin-bottom: -10px;
+        border-bottom-right-radius: 0px;
+    }
+
+    #gallery_outer {
+        height: 100%;
+        border-bottom-right-radius: 0px;
+    }
+
+    #friends_outer {
+        height: 100%;
+        border-bottom-right-radius: 0px;
     }
 
     #friends_container:last-child {
@@ -98,6 +129,11 @@
     .bar {
         height: calc(100% - 110px);
         padding-bottom: 5px;
+    }
+
+    #music {
+        width: 100%;
+        margin-right: -5px;
     }
 
   }

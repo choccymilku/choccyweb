@@ -88,6 +88,7 @@ body {
   overflow-y: scroll;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
+  overflow: hidden;
 }
 
 .tabs_style:first-child {
@@ -131,6 +132,7 @@ body {
   display: flex;
   align-items: center;
   padding: 10px;
+  overflow: hidden;
   z-index: 9998;
   background-color: var(--color1);
 }
@@ -241,7 +243,7 @@ body {
 
 #profile_hover {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   background-color: var(--color3);
   border-radius: 8px;
   margin-top: 95px;
@@ -320,6 +322,33 @@ body {
   background-color: var(--color2);
 }
 
+/* gallery */
+#gallery_inner {
+  display: flex;
+  width: 100%;
+  border-radius: 8px;
+  justify-content: space-between;
+  overflow-x: scroll;
+  position: relative;
+  padding: 0px;
+  background-color: transparent;
+}
+
+#gallery_outer {
+  background-color: var(--color2);
+  overflow: hidden !important;
+  padding-right: 5px;
+  border-radius: 8px;
+  height: 350px;
+  width: 100%;
+}
+
+.gallery_image {
+  height: 350px;
+  margin-right: 5px;
+  border-radius: 8px;
+}
+
 
 /* friends */
 #friends_inner {
@@ -338,6 +367,8 @@ body {
   overflow: hidden !important;
   padding-right: 5px;
   border-radius: 8px;
+  height: 195px;
+  width: 100%;
 }
 
 #friends_left {

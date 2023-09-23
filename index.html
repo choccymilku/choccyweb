@@ -57,13 +57,6 @@
 }
 
 .clickable {display: block;}
-
-    .color-box {
-      width: 100px;
-      height: 100px;
-      margin: 10px;
-      border-radius: 10px;
-    }
     
  @media (prefers-color-scheme: light) {
   #preloader {
@@ -175,17 +168,21 @@
     <div class="noselect bar_inner" id="project_inner"></div>
   </div>
 
-
-<!-- add your tabs here -->
+  <div class="bar" id="gallery">
+    <div class="noselect bar_outer" id="gallery_outer">
+      <p style="margin-left: 10px;margin-top: 5px;margin-bottom: 5Px;">this is work in progress (more images soon)</p>
+      <div class="noselect bar_inner" id="gallery_inner"></div>
+    </div>
+  </div>
 
 </div>
 
-<!-- <script>
+<script>
 // Wait for the DOM to fully load before running the JavaScript code
 window.onload = function() {
     // Get the #tabs element's width
-    const tabsElement = document.getElementById('tabs');
-    const tabsWidth = tabsElement.offsetWidth + 52;
+    const tabsElement = document.getElementById('profile');
+    const tabsWidth = tabsElement.offsetWidth;
 
     // Create a style element and append it to the document head
     const style = document.createElement('style');
@@ -194,101 +191,16 @@ window.onload = function() {
     console.log(tabsWidth);
 
     // Define the media query string based on the tabsWidth
-    const mediaQuery = `@media screen and (max-width: ${tabsWidth}px) {
-    #main {
-        margin-top: -27px;
-        height: calc(100% - 100px);
-    }
+    const mediaQuery = `@media screen and (max-height: ${tabsWidth}px) {
 
-    #tabs {
-        bottom: 0;
-        z-index: 0;
-    }
-
-    #pfp {
-        margin-top: 25px;
-        background-color: var(--color1);
-        height: 50px;
-        width: 50px;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-        border-top-left-radius: 0px;
-        border-top-right-radius: 0px;
-    }
-    #profile {
-        bottom: 0;
-        position: fixed;
-        height: 30px;
-        padding: 5px;
-        margin-right: 0px;
-        border-radius: 8px;
-    }
-    #profile_hover {
-        position: fixed;
-        bottom: 10px;
-        right: 65px;
-        margin-right: -55px;
-        border-bottom-right-radius: 0px;
-        border-bottom-left-radius: 0px;
-    }
-    #profile_arrow {
-        display: none;
-    }
-    #profile_inner {
-        margin-top: -5px !important;
-    }
-    .tabs_style {
-        margin-top: 40px !important;
-        border-bottom-left-radius: 8px;
-        border-top-left-radius: 0px;
-    }
-    .tabs_style:last-child {
-        border-bottom-right-radius: 8px;
-        border-top-right-radius: 0px;
-    }
-
-    .bar, .bar_inner {
-        border-bottom-right-radius: 0px !important;
-    }
-
-    #friends_inner {
-        display: block;
-        overflow-y: scroll;
-        height: calc(100% - 10px)
-    }
-
-    #friends_container {
-        width: 100% !important;
-        margin-right: 0px !important;
-        margin-bottom: 5px;
-    }
-    #friends_container:last-child {
-        margin-bottom: 0px;
-    }
-    #friends_avatar {
-        width: calc(100% - 20px);
-        height: 100%;
-    }
-    #friends_name  {
-        width: 100%;
-        max-width: calc(100% - 20px);
-    }
-    .project-div:last-child {
-        border-bottom-right-radius: 0px;
-    }
-
-    .bar {
-        height: calc(100% - 115px);
-    }
     }`;
 
     // Add the media query to the style element
     style.textContent = mediaQuery;
-}; -->
-
+};
 </script>
 
-<script>
+<script> // reset button
   // use button id to reset localstorage or anything saved in the browser and reload the page
   document.getElementById('reset').addEventListener('click', function () {
   // Clear localStorage
@@ -299,124 +211,6 @@ window.onload = function() {
   location.reload();
   });
 </script>
-
-<script>
-  // Get references to the profile elements
-  const profile = document.getElementById('profile');
-  const pfp = document.getElementById('pfp');
-  const profileHover = document.getElementById('profile_hover');
-
-  // Function to toggle the visibility of the profile_hover div
-  function toggleProfileHover() {
-    if (profileHover.style.display === 'block') {
-      profileHover.style.display = 'none';
-    } else {
-      profileHover.style.display = 'block';
-    }
-  }
-
-  // Event listener to show or hide profile_hover when clicking on pfp
-  pfp.addEventListener('click', function (event) {
-    event.stopPropagation(); // Prevent event bubbling to the document click listener
-    toggleProfileHover();
-  });
-
-  // Event listener to hide profile_hover when clicking outside the profile or profile_hover
-  document.addEventListener('click', function (event) {
-    const target = event.target;
-    if (target !== profile && target !== profileHover && !profile.contains(target)) {
-      hideProfileHover();
-    }
-  });
-
-  // Function to hide the profile_hover div
-  function hideProfileHover() {
-    profileHover.style.display = 'none';
-  }
-
-  // Function to show the profile_hover div
-  function showProfileHover() {
-    profileHover.style.display = 'block';
-  }
-</script>
-
-      
-<script>
-  var containers = document.querySelectorAll('#friends_inner, #tabs');
-  var scrollAmounts = {};
-  var isScrolling = false;
-  var isEnabled = true; // Initially enabled
-
-  function enableScroll() {
-    isEnabled = true;
-  }
-
-  function disableScroll() {
-    isEnabled = false;
-  }
-
-  function handleScroll(container, event) {
-    if (!isEnabled) {
-      return;
-    }
-
-    event.preventDefault();
-    scrollAmounts[container.id] += event.deltaY;
-
-    if (!isScrolling) {
-      requestAnimationFrame(function () {
-        scrollContainer(container);
-      });
-      isScrolling = true;
-    }
-  }
-
-  function scrollContainer(container) {
-    if (!isEnabled) {
-      isScrolling = false;
-      return;
-    }
-
-    container.scrollLeft += scrollAmounts[container.id] * 0.1; // Adjust the scroll speed as desired
-
-    scrollAmounts[container.id] *= 0.9; // Adjust the damping factor as desired
-
-    if (Math.abs(scrollAmounts[container.id]) < 0.1) {
-      isScrolling = false;
-      return;
-    }
-
-    requestAnimationFrame(function () {
-      scrollContainer(container);
-    });
-  }
-
-  // Function to check viewport width and enable/disable scroll based on the width
-  function checkViewportWidth() {
-    if (window.innerWidth < 480) {
-      disableScroll();
-    } else {
-      enableScroll();
-    }
-  }
-
-  // Initial check when the script is loaded
-  checkViewportWidth();
-
-  // Add a listener to continuously monitor the viewport width and adjust the behavior
-  window.addEventListener('resize', checkViewportWidth);
-
-  // Add the scroll event listener to each container
-  containers.forEach(function (container) {
-    scrollAmounts[container.id] = 0;
-
-    container.addEventListener('wheel', function (event) {
-      handleScroll(container, event);
-    });
-  });
-</script>
-
-
 
 <script src="./config.js"></script>
 <script src="./code/tabs.js"></script>
@@ -429,6 +223,9 @@ window.onload = function() {
 <script src="./code/apis/discord.js"></script>
 <script src="./code/apis/pronounspage.js"></script>
 <script src="./code/apis/github.js"></script>
+<script src="./code/apis/gallery.js"></script>
 <script src="./code/time.js"></script>
+<script src="./code/profileHover.js"></script>
+<script src="./code/verticalScroll.js"></script>
 </body>
 </html>
