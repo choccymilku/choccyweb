@@ -61,7 +61,7 @@ function fetchDataAndUpdateLocalStorage() {
 
           const name = document.createElement('h6');
           name.textContent = friendData.global_name;
-          name.setAttribute('id', 'friends_name');
+          name.setAttribute('class', 'friends_name');
           name.title = friendData.global_name;
 
           container.appendChild(avatar);
@@ -114,7 +114,7 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
 
       const name = document.createElement('h6');
       name.textContent = friendData.global_name;
-      name.setAttribute('id', 'friends_name');
+      name.setAttribute('class', 'friends_name');
       name.title = friendData.global_name;
 
       container.appendChild(avatar);

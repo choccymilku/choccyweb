@@ -11,6 +11,7 @@ $(document).ready(function($) {
         $('#status').css('margin-top', '-15px');
         $('#clock').css('margin-top', '-2px');
         $('#version').css('margin-top', '-8px');
+        $('.friends_name').css('margin-top', '-30.5px');
         applyFontFamily('OpenDyslexic3');
       });
   
@@ -25,6 +26,7 @@ $(document).ready(function($) {
         $('#status').css('margin-top', '-4px');
         $('#clock').css('margin-top', '');
         $('#version').css('margin-top', '');
+        $('.friends_name').css('margin-top', '-12.5px');
         applyFontFamily('GeologicaRoman');
       });
   
@@ -41,6 +43,7 @@ $(document).ready(function($) {
         $('#status').css('margin-top', '-15px');
         $('#clock').css('margin-top', '-2px');
         $('#version').css('margin-top', '-8px');
+        $('.friends_name').css('margin-top', '-30.5px');
         applyFontFamily('OpenDyslexic3');
       } else {
         console.log('using default font');
@@ -53,6 +56,7 @@ $(document).ready(function($) {
         $('#status').css('margin-top', '-4px');
         $('#clock').css('margin-top', '');
         $('#version').css('margin-top', '');
+        $('.friends_name').css('margin-top', '-12.5px');
         applyFontFamily('GeologicaRoman');
       }
     }

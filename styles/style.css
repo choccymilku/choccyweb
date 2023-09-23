@@ -407,7 +407,7 @@ h1 { margin:0px }
   border-radius: 50%;
 }
 
-#friends_name {
+.friends_name {
   margin-top: -12.5px;
   max-width: 135px;
   overflow: hidden;
