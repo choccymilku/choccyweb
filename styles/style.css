@@ -387,7 +387,7 @@ h1 { margin:0px }
 #friends_container {
   width: calc(50% - 5px);
   border-radius: 8px;
-  margin-right: 10px;
+  margin-right: 5px;
   height: 195px;
   box-sizing: border-box;
   margin-bottom: 1px;
