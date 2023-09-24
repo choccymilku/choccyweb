@@ -54,7 +54,6 @@ h1 { margin:0px }
 .bar {
   background-color: var(--color1);
   width: calc(100% - 20px);
-  height: fit-content;
   border-radius: 8px;
   position: relative;
   padding: 5px;
@@ -631,6 +630,10 @@ a:hover {color:var(--texthover) !important}
     display: none;
   }
 
+  #version {
+    cursor: pointer;
+  }
+
   #update_notes {
     background-color: var(--color2);
     border-radius: 8px;
@@ -640,4 +643,26 @@ a:hover {color:var(--texthover) !important}
 
   #version:hover #version_container {
     display: block;
+  }
+
+  #full_gallery {
+    font-size: 13px;
+    margin-top: -16px;
+    float: right;
+    background-color: transparent;
+    animation: identifier 1s infinite forwards;
+    text-shadow: 0px 0px 10px purple;
+    cursor: pointer;
+  }
+
+  @keyframes identifier {
+    0% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.5;
+    }
   }

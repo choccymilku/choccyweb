@@ -83,6 +83,7 @@
         overflow-y: scroll;
         height: 100%;
         width: calc(100% + 5px);
+        overflow-x: hidden;
     }
 
     .gallery_image {
@@ -92,7 +93,7 @@
     }
 
     .gallery_image:last-child {
-        margin-bottom: 0px;
+        margin-bottom: -8px;
         border-bottom-right-radius: 0px;
     }
 
