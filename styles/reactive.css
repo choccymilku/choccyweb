@@ -74,6 +74,10 @@
         width: calc(100% + 5px);
     }
 
+    .friends_name {
+        max-width: 100%;
+    }
+
     #gallery_inner {
         display: block;
         overflow-y: scroll;
