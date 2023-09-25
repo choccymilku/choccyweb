@@ -692,6 +692,7 @@ a:hover {color:var(--texthover) !important}
     cursor: pointer;
     background-color: var(--color4);
     filter: brightness(1.065);
+      -webkit-tap-highlight-color: transparent;
   }
 
   #gallery_full_button_left {
