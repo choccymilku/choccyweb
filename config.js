@@ -115,12 +115,19 @@ userTitle.textContent = username;
     .then(text => {
         var todo = text.split('\n');
         var todo_list = document.getElementById('update_notes');
+        var versionElement = document.getElementById('version'); // Add this line
+
         todo.forEach((item) => {
             if (item.trim() !== '') {
-                var element = document.createElement(item.toLowerCase().includes('version') ? 'h1' : 'li');
-                element.textContent = item;
-                todo_list.appendChild(element);
+                var versionMatch = item.replace(/version\s+/i, 'v.').match(/v\.\S+/i);
+                if (versionMatch) {
+                    // If a version is found, add it to the versionElement with the icon
+                    versionElement.innerHTML = versionMatch[0] + ' <i class="fa-solid fa-circle-question"></i>';
+                } else {
+                    var element = document.createElement(item.toLowerCase().includes('v.') ? 'h1' : 'li');
+                    element.textContent = item;
+                    todo_list.appendChild(element);
+                }
             }
         });
     });
-
