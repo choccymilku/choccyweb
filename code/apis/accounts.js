@@ -8,7 +8,7 @@ const accountUrls = {
   spotify: "https://open.spotify.com/user/",
   github: "https://github.com/",
   reddit: "https://www.reddit.com/user/",
-  steam: "https://steamcommunity.com/id/",
+  // steam: "https://steamcommunity.com/id/",
   tiktok: "https://www.tiktok.com/@",
   facebook: "https://www.facebook.com/",
   domain: "https://",
