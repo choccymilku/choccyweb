@@ -30,8 +30,7 @@ function fetchAndUpdateIcons() {
           conn.type === "leagueoflegends" ||
           conn.type === "riotgames" ||
           conn.type === "crunchyroll" ||
-          conn.type === "battlenet" ||
-          conn.type === "steam" // temporaty
+          conn.type === "battlenet"
         ) {
           // Skip unwanted connections
           continue;      
