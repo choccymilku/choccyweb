@@ -188,6 +188,10 @@
 
 </div>
 
+<div id="gallery_full_view">
+  <div id="gallery_full_images"></div>
+</div>
+
 <!-- <script>
 // Wait for the DOM to fully load before running the JavaScript code
 window.onload = function() {
@@ -225,7 +229,7 @@ window.onload = function() {
 <script>
   // Function to toggle the gallery
   function toggleGallery() {
-    var galleryInner = document.getElementById('gallery');
+    var galleryInner = document.getElementById('gallery_outer');
     
     if (galleryInner.style.display === "block") {
       galleryInner.style.cssText = ""; // Reset styles
@@ -259,7 +263,7 @@ window.onload = function() {
   // Set up a timer to continuously check for localStorage changes
   setInterval(function() {
     updateGalleryVisibility();
-  }, 100); // Check every 1 second (adjust as needed)
+  }, 0); // Check every 1 second (adjust as needed)
 </script>
 
 
