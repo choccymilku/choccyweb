@@ -83,7 +83,7 @@ function fetchAndUpdateIcons() {
 
 function createConnectionDiv(connection) {
   const url = accountUrls[connection.type] + connection.name;
-  const name = connection.name;
+  const name = (connection.type === "steam" ? connection.id : connection.name);
 
   const connDiv = document.createElement("a");
   connDiv.classList.add("connection-div");
@@ -118,6 +118,27 @@ function createConnectionDiv(connection) {
     const globeIcon = document.createElement("i");
     globeIcon.classList.add("fa-solid", "fa-globe", "icon-style");
     connDiv.appendChild(globeIcon);
+  } else if (connection.type === "steam") {
+    // Fetch Steam username using the Steam API
+    fetch(`https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=64A2D9B0EF63EC0B5ABB371668EE8762&steamids=${connection.id}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok.');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Assuming the Steam username can be found in the response
+        const player = data.response.players[0];
+        if (player && player.personaname) {
+          name = player.personaname;
+          // Update the nameSpan with the fetched Steam username
+          nameSpan.textContent = name;
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching Steam data:', error);
+      });
   } else {  
     // Create the font awesome icon element
     const icon = document.createElement("i");

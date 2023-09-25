@@ -182,14 +182,26 @@
 
   <div class="bar" id="gallery">
     <div class="noselect bar_outer" id="gallery_outer">
-      <div class="noselect bar_inner inner_scrollables" id="gallery_inner"></div>
+      <div class="noselect bar_inner inner_scrollables gallery_inner" id="gallery_inner"></div>
     </div>
   </div>
 
 </div>
 
 <div id="gallery_full_view">
-  <div id="gallery_full_images"></div>
+  <div id="gallery_button">
+    <div id="full_gallery2">close full view</div>
+  </div>
+
+  <div id="gallery_full_button_left" class="gallery_buttons" onclick="plusSlides(-1)">
+    <div id="prev_gallery_text" class="gallery_text">prev</div>
+  </div>
+
+    <div id="gallery_full_images" class="gallery_inner"></div>
+
+  <div id="gallery_full_button_right" class="gallery_buttons" onclick="plusSlides(1)">    
+    <div id="next_gallery_text" class="gallery_text">next</div>
+  </div>
 </div>
 
 <!-- <script>
@@ -227,49 +239,37 @@ window.onload = function() {
   });
 </script>
 <script>
+
   // Function to toggle the gallery
   function toggleGallery() {
-    var galleryInner = document.getElementById('gallery_outer');
+    var galleryInner = document.getElementById('gallery_full_view');
+    var fullGallery = document.getElementById('full_gallery');
+    var fullGallery2 = document.getElementById('full_gallery2');
     
-    if (galleryInner.style.display === "block") {
-      galleryInner.style.cssText = ""; // Reset styles
-    } else {
-      galleryInner.style.height = "100%";
-      galleryInner.style.width = "100%";
-      galleryInner.style.background = "red";
+    if (galleryInner.style.display === "none" || galleryInner.style.display === "") {
       galleryInner.style.display = "block";
-      galleryInner.style.position = "fixed";
-      galleryInner.style.marginTop = "-154px";
+    } else {
+      galleryInner.style.display = "none";
     }
+  }
+
+  // Function to close the gallery using #full_gallery2
+  function closeGallery() {
+    var galleryInner = document.getElementById('gallery_full_view');
+    var fullGallery2 = document.getElementById('full_gallery2');
+    
+    galleryInner.style.display = "none";
+    // Add CSS changes for #full_gallery2 when the gallery is turned off
+    fullGallery2.style.backgroundColor = ""; // Reset background color for full_gallery2
   }
 
   // Add click event listener to the full_gallery element
   document.getElementById('full_gallery').addEventListener('click', toggleGallery);
+
+  // Add click event listener to the full_gallery2 element
+  document.getElementById('full_gallery2').addEventListener('click', closeGallery);
 </script>
-
-<script>
-  // Function to update the visibility of full_gallery
-  function updateGalleryVisibility() {
-    if (localStorage.getItem('activeTab') === 'tab_gallery') {
-      document.getElementById('full_gallery').style.display = "block";
-    } else {
-      document.getElementById('full_gallery').style.display = "none";
-    }
-  }
-
-  // Initial setup
-  updateGalleryVisibility();
-
-  // Set up a timer to continuously check for localStorage changes
-  setInterval(function() {
-    updateGalleryVisibility();
-  }, 0); // Check every 1 second (adjust as needed)
 </script>
-
-
-
-
-
 
 
 

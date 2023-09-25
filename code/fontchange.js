@@ -12,6 +12,10 @@ $(document).ready(function($) {
         $('#clock').css('margin-top', '-2px');
         $('#version').css('margin-top', '-8px');
         $('.friends_name').css('margin-top', '-30.5px');
+        $('#full_gallery').css('margin-top', '-22px');
+        $('.gallery_text').css('margin-top', '20px');
+        $('#gallery_button').css('margin-left', 'calc(-50% + 135px)');
+        $('.tabs_style').css('padding-top', '-2px');
         applyFontFamily('OpenDyslexic3');
       });
   
@@ -27,6 +31,10 @@ $(document).ready(function($) {
         $('#clock').css('margin-top', '');
         $('#version').css('margin-top', '');
         $('.friends_name').css('margin-top', '-12.5px');
+        $('#full_gallery').css('margin-top', '');
+        $('.gallery_text').css('margin-top', '');
+        $('#gallery_button').css('margin-left', '');
+        $('.tabs_style').css('padding-top', '');
         applyFontFamily('GeologicaRoman');
       });
   
@@ -44,6 +52,10 @@ $(document).ready(function($) {
         $('#clock').css('margin-top', '-2px');
         $('#version').css('margin-top', '-8px');
         $('.friends_name').css('margin-top', '-30.5px');
+        $('#full_gallery').css('margin-top', '-22px');
+        $('.gallery_text').css('margin-top', '20px');
+        $('#gallery_button').css('margin-left', 'calc(-50% + 135px)');
+        $('.tabs_style').css('padding-top', '-2px');
         applyFontFamily('OpenDyslexic3');
       } else {
         console.log('using default font');
@@ -57,6 +69,10 @@ $(document).ready(function($) {
         $('#clock').css('margin-top', '');
         $('#version').css('margin-top', '');
         $('.friends_name').css('margin-top', '-12.5px');
+        $('#full_gallery').css('margin-top', '');
+        $('.gallery_text').css('margin-top', '');
+        $('#gallery_button').css('margin-left', '');
+        $('.tabs_style').css('padding-top', '');
         applyFontFamily('GeologicaRoman');
       }
     }

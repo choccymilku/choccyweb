@@ -89,12 +89,16 @@
     .gallery_image {
         width: 100%;
         height: auto;
-        margin-bottom: -3px;
+        margin-bottom: -15px;
     }
 
     .gallery_image:last-child {
-        margin-bottom: -8px;
+        margin-bottom: -20px;
         border-bottom-right-radius: 0px;
+    }
+
+    .gallery_text {
+        opacity: 1;
     }
 
     #gallery_outer {
@@ -112,7 +116,7 @@
     }
 
     #friends_container {
-        width: 100% !important;
+        width: calc(100% - 5px) !important;
         margin-right: 0px !important;
         margin-bottom: 5px;
         height: fit-content;
@@ -141,5 +145,35 @@
         width: 100%;
         margin-right: -5px;
     }
+
+    .gallery_buttons {
+        height: 100px;
+        width: 49.25%;
+        bottom: 0;
+        border-radius: 8px;
+    }
+
+    #gallery_full_images {
+        position: absolute;
+        top:50%;
+        left:50%;
+        height: 100%;
+        width: 95%;
+        transform: translate(-50%, -50%);
+        margin-bottom: 120px;
+      }
+
+      .gallery_image_full {
+        margin-top: 10px;
+        border-radius: 8px;
+        height: 100%;
+        max-height: 90%;
+      }
+
+      #gallery_button {
+        bottom: 0;
+        margin-bottom: 120px;
+        z-index: 9999;
+      }
 
   }
