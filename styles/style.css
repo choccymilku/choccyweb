@@ -239,7 +239,6 @@ h1 { margin:0px }
   position: relative;
   z-index: 9999;
   overflow-y: scroll;
-  max-height: 450px;
 }
 
 #profile_hover {
@@ -649,6 +648,7 @@ a:hover {color:var(--texthover) !important}
     margin-top: -16px;
     float: right;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
 
   #gallery_full_view {
@@ -726,7 +726,7 @@ a:hover {color:var(--texthover) !important}
 
   #full_gallery2 {
     font-size: 30px;
-    margin-top: 0px;
+    margin-top: 10px;
   }
 
   .gallery_text {

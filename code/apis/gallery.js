@@ -56,6 +56,7 @@ fetchDataWithRetry('https://api.choccymilk.uk/server/discord-connect/11327785947
   .catch((error) => {
     console.error('Max retries reached. Unable to fetch data:', error);
   });
+  
 
 
 
@@ -100,3 +101,5 @@ setInterval(function() {
     }
     slides[slideIndex-1].style.display = "block";
   }
+
+  

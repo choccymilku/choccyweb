@@ -101,6 +101,7 @@ const updateTopBarHeight = () => {
   const topbarLeft = document.getElementById('topbar_left');
   const music = document.getElementById('music');
   const textOuter = document.getElementById('text_outer');
+  const profile = document.getElementById('profile_hover');
 
   const listeningToMusic = activities ? activities.some(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 0 && activity.name === 'YouTube Music') || (activity.type === 2 && activity.name === 'Spotify')) : false;
 
@@ -112,6 +113,7 @@ const updateTopBarHeight = () => {
     music.style.position = 'absolute';
     music.style.marginLeft = '-5px';
     textOuter.style.height = 'calc(100% - 195px)';
+    profile.style.maxHeight = 'calc(100% - 260px)';
   } else {
     topbar.style.height = '';
     topbarLeft.style.marginTop = '';
@@ -121,6 +123,7 @@ const updateTopBarHeight = () => {
     music.style.marginLeft = '';
     textOuter.style.height = '';
     textOuter.style.height = '';
+    profile.style.maxHeight = 'calc(100% - 175px)';
   }
 };
 
@@ -134,7 +137,7 @@ window.addEventListener('resize', updateTopBarHeight);
 const updateBarHeight = () => {
   const bars = document.querySelectorAll('.bar'); // Select all elements with the class 'bar'
   const project = document.getElementById('projects');
-  const profile = document.getElementById('profile');
+  const profile = document.getElementById('profile_inner');
 /*   const tabs = document.getElementById('tabs');
  */  
   // Assuming 'activities' is defined somewhere
@@ -151,13 +154,9 @@ const updateBarHeight = () => {
   // 'project' is an element, so you need to set its style directly
   if (listeningToMusic && window.innerWidth < 481) {
     project.style.maxHeight = 'calc(100% - 195px)';
-/*     profile.style.height = '30px'; */
-/*     tabs.style.marginBottom = '0px';
- */  } else {
+    } else {
     project.style.maxHeight = 'calc(100% - 110px)';
-/*     profile.style.height = '35px'; */
-/*     tabs.style.marginBottom = '5px';
- */  }
+    }
 };
 
 // Call the function initially

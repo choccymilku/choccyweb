@@ -87,9 +87,9 @@
     }
 
     .gallery_image {
-        width: 100%;
+        width: calc(100% - 5px);
         height: auto;
-        margin-bottom: -15px;
+        margin-bottom: -3.5px;
     }
 
     .gallery_image:last-child {
