@@ -58,6 +58,8 @@ function fetchDataAndUpdateLocalStorage() {
           const avatar = document.createElement('img');
           avatar.setAttribute('src', friendData.avatar);
           avatar.setAttribute('id', 'friends_avatar');
+          avatar.setAttribute('loading', 'lazy');
+          avatar.setAttribute('class', 'disabledrag');
 
           const name = document.createElement('h6');
           name.textContent = friendData.global_name;
@@ -111,6 +113,8 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
       const avatar = document.createElement('img');
       avatar.setAttribute('src', friendData.avatar);
       avatar.setAttribute('id', 'friends_avatar');
+      avatar.setAttribute('loading', 'lazy');
+      avatar.setAttribute('class', 'disabledrag');
 
       const name = document.createElement('h6');
       name.textContent = friendData.global_name;

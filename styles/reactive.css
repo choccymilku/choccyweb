@@ -89,7 +89,7 @@
     .gallery_image {
         width: calc(100% - 5px);
         height: auto;
-        margin-bottom: -3.5px;
+        margin-bottom: -3px;
     }
 
     .gallery_image:last-child {

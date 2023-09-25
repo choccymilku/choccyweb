@@ -123,7 +123,7 @@ const updateTopBarHeight = () => {
     music.style.marginLeft = '';
     textOuter.style.height = '';
     textOuter.style.height = '';
-    profile.style.maxHeight = 'calc(100% - 175px)';
+    profile.style.maxHeight = '';
   }
 };
 

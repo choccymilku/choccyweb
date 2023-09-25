@@ -36,6 +36,7 @@ fetchDataWithRetry('https://api.choccymilk.uk/server/discord-connect/11327785947
 
       // Add the gallery_image class to the img element
       img.classList.add('gallery_image');
+      img.classList.add('disabledrag');
 
       // Append the img to the first div
       const div1 = document.querySelector(CHANNEL_IDS[0]);
