@@ -3,8 +3,6 @@
 function updateClockFormat(format) {
   localStorage.setItem('clockFormat', format);
   document.getElementById('timeFormatBtn').textContent = format;
-
-location.reload();
 }
 
 // Function to initialize the clock format on page load
