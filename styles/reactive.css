@@ -148,9 +148,11 @@
 
     .gallery_buttons {
         height: 100px;
-        width: 49.25%;
+        width: calc(50% - 15px);
         bottom: 0;
+        margin:10px;
         border-radius: 8px;
+        top: auto;
     }
 
     #gallery_full_images {
@@ -172,8 +174,19 @@
 
       #gallery_button {
         bottom: 0;
-        margin-bottom: 120px;
+        margin-bottom: 130px;
         z-index: 9999;
       }
+
+      .gallery_text {
+        margin-top: 30px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        writing-mode: inherit; /* Vertical right-to-left writing mode */
+        text-orientation: inherit;
+    }
+
+    
 
   }
