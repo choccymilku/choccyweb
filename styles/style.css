@@ -51,6 +51,10 @@ h1 { margin:0px }
   max-width: 100vh;
 }
 
+#preloadere {
+display:block !important;
+}
+
 .bar {
   background-color: var(--color1);
   width: calc(100% - 20px);
