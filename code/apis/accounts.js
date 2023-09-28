@@ -31,7 +31,7 @@ function fetchAndUpdateIcons() {
           conn.type === "riotgames" ||
           conn.type === "crunchyroll" ||
           conn.type === "battlenet" ||
-          conn.type === "steam" // temporaty
+conn.type === "steam"
         ) {
           // Skip unwanted connections
           continue;      
