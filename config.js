@@ -60,10 +60,11 @@ const tabIcons = ["home", "users", "briefcase", "image"];
 
 
 var custom_text = 
-`i made this, call me choccy, or one of [these](https://docs.google.com/document/d/1XfJdYyFmd_hLXrUItX6q1aZZLpJkq_nOiULA0cit8Mw) \n` +
+`''i give up''`;
+/* `i made this, call me choccy, or one of [these](https://docs.google.com/document/d/1XfJdYyFmd_hLXrUItX6q1aZZLpJkq_nOiULA0cit8Mw) \n` +
 `i code, mostly javascript and websites\n` +
 `you can find the source code for this [here](https://github.com/choccymilku/choccy-newer-and-improved)\nn` +     
-`<span id='birthday'></span>, <span id='pronouns'></span>, <span id='flags'></span>`;
+`<span id='birthday'></span>, <span id='pronouns'></span>, <span id='flags'></span>`; */
 /* `;;divider;; to-do:\n<div id="todo_list"></div` */
 
 /* var custom_text =
