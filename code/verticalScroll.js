@@ -72,3 +72,5 @@ var scroll2Containers = document.querySelectorAll('.inner_scrollables');
   scroll2Containers.forEach(function(container) {
     container.addEventListener('wheel', handleScroll);
   });
+
+  

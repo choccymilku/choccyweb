@@ -617,8 +617,8 @@ a:hover {color:var(--texthover) !important}
     margin-left: 5px;
     position: absolute;
     z-index: 9999;
-    max-width: 952px;
-    width: calc(100% - 10px);
+    max-width: calc(100% - 10px);
+    width: fit-content;
     overflow: hidden;
     word-wrap: break-word;
     text-overflow: ellipsis;
@@ -685,7 +685,7 @@ a:hover {color:var(--texthover) !important}
 
   .gallery_buttons {
     height: 30%;
-    top: 25%;
+    top: 33%;
     width: 8%;
     z-index: 9999;
     position: absolute;

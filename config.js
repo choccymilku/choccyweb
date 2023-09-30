@@ -123,20 +123,21 @@ userTitle.textContent = username;
                 todo_list.appendChild(document.createElement('br'));
             } else {
                 // Check for different keywords and replace them with corresponding icons
-                var modifiedItem = item.replace(/bug\s+-/i, '<i class="fa-solid fa-bug"></i>');
-                modifiedItem = modifiedItem.replace(/fix\s+-/i, '<i class="fa-solid fa-screwdriver-wrench"></i>');
-                modifiedItem = modifiedItem.replace(/temp\s+-/i, '<i class="fa-solid fa-trowel-bricks></i>');
+                var modifiedItem = item.replace(/bug\s+-/i, '<i class="fa-solid fa-bug" title="bug"></i>');
+                modifiedItem = modifiedItem.replace(/fix\s+-/i, '<i class="fa-solid fa-screwdriver-wrench" title="fix"></i>');
+                modifiedItem = modifiedItem.replace(/temp\s+-/i, '<i class="fa-solid fa-trowel-bricks" title="temporary fix"></i>');
 
                 var versionMatch = modifiedItem.replace(/version\s+/i, 'v.').match(/v\.\S+/i);
                 if (versionMatch) {
                     // If a version is found, add it to the versionElement with the icon
                     versionElement.innerHTML = versionMatch[0] + ' <i class="fa-solid fa-circle-question"></i>';
                 } else {
-                    var element = document.createElement(modifiedItem.toLowerCase().includes('v.') ? 'h1' : 'li');
+                    var element = document.createElement(modifiedItem.toLowerCase().includes('v.') ? 'h1' : 'div');
                     element.innerHTML = modifiedItem; // Use innerHTML to render the icons
                     todo_list.appendChild(element);
                 }
             }
         });
     });
+
 
