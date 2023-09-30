@@ -617,8 +617,8 @@ a:hover {color:var(--texthover) !important}
     margin-left: 5px;
     position: absolute;
     z-index: 9999;
-    max-width: calc(100% - 10px);
-    width: fit-content;
+    max-width: 952px;
+    width: calc(100% - 10px);
     overflow: hidden;
     word-wrap: break-word;
     text-overflow: ellipsis;

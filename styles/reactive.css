@@ -190,8 +190,4 @@
     #full_gallery {
         display: none !important;
     }
-
-    #update_notes_inner {
-        width: 100%;
-    }
-  }
+}
