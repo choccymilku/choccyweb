@@ -83,7 +83,8 @@ conn.type === "steam"
 }
 
 function createConnectionDiv(connection) {
-  const url = accountUrls[connection.type] + connection.name;
+  const userId = connection.id; // Use user ID for Roblox connection
+  const url = accountUrls[connection.type] + userId; // Construct URL with user ID
   const name = connection.name;
 
   const connDiv = document.createElement("a");
