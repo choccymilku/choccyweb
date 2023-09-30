@@ -41,7 +41,7 @@ $(document).ready(function($) {
       var fontStyle = localStorage.getItem('fontStyle');
   
       if (fontStyle === 'dyslexic') {
-        console.log('using dyslexic font');
+        console.log('🐛 using dyslexic font');
         $('.dyslexic-off').hide();
         $('.dyslexic-on').show();
         $('.dyslexic-off').hide();
@@ -58,7 +58,7 @@ $(document).ready(function($) {
         $('.tabs_style').css('padding-top', '-2px');
         applyFontFamily('OpenDyslexic3');
       } else {
-        console.log('using default font');
+        console.log('🐛 using default font');
         $('.dyslexic-on').hide();
         $('.dyslexic-off').show();
         $('.dyslexic-on').hide();

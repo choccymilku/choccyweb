@@ -202,12 +202,12 @@ if (listeningToMusic) {
     const trackId = spotifytrackLink.track_id;
     const trackLink = document.getElementById('music-track-link');
     trackLink.href = `https://open.spotify.com/track/${trackId}`;
-    console.log('track ID:', trackId);
-    console.log('track link:', `https://open.spotify.com/track/${trackId}`);
+    console.log('🐛 track ID:', trackId);
+    console.log('🐛 track link:', `https://open.spotify.com/track/${trackId}`);
     albumCoverElementNoLink.style.display = 'none';
     albumCoverElement.style.display = 'flex';
   } else {
-    console.log('activity not spotify');
+    console.log('🐛 activity not spotify');
     albumCoverElementNoLink.style.display = 'flex';
     albumCoverElement.style.display = 'none';
   }

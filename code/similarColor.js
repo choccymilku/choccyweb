@@ -5,10 +5,10 @@ function getDominantColorFromImage(image) {
 
     if (dominantColor) {
       const hexColor = rgbToHex(dominantColor[0], dominantColor[1], dominantColor[2]);
-      console.log("Dominant Color Hex:", hexColor); // Add this line to log the hex color
+      console.log("🐛 Dominant Color Hex:", hexColor); // Add this line to log the hex color
       resolve(hexColor);
     } else {
-      reject("Unable to extract the dominant color from the image.");
+      reject("🐛 Unable to extract the dominant color from the image.");
     }
   });
 }
@@ -83,13 +83,13 @@ document.addEventListener("DOMContentLoaded", () => {
               const dominantColor = await getDominantColorFromImage(img);
               const similarColors = generateSimilarColors(dominantColor, 4);
               updateRootColors(dominantColor, similarColors);
-              console.log("Generated Colors:", similarColors);
+              console.log("🐛 Generated Colors:", similarColors);
             } catch (error) {
               console.error(error);
             }
           };
           img.onerror = () => {
-            console.error("Error loading the image.");
+            console.error("🐛 Error loading the image.");
           };
           img.src = imageUrl;
           observer.disconnect();

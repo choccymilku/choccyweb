@@ -118,16 +118,25 @@ userTitle.textContent = username;
         var versionElement = document.getElementById('version'); // Add this line
 
         todo.forEach((item) => {
-            if (item.trim() !== '') {
-                var versionMatch = item.replace(/version\s+/i, 'v.').match(/v\.\S+/i);
+            if (item.trim() === '') {
+                // If the line is empty, add a line break
+                todo_list.appendChild(document.createElement('br'));
+            } else {
+                // Check for different keywords and replace them with corresponding icons
+                var modifiedItem = item.replace(/bug\s+-/i, '<i class="fa-solid fa-bug"></i>');
+                modifiedItem = modifiedItem.replace(/fix\s+-/i, '<i class="fa-solid fa-screwdriver-wrench"></i>');
+                modifiedItem = modifiedItem.replace(/temp\s+-/i, '<i class="fa-solid fa-trowel-bricks></i>');
+
+                var versionMatch = modifiedItem.replace(/version\s+/i, 'v.').match(/v\.\S+/i);
                 if (versionMatch) {
                     // If a version is found, add it to the versionElement with the icon
                     versionElement.innerHTML = versionMatch[0] + ' <i class="fa-solid fa-circle-question"></i>';
                 } else {
-                    var element = document.createElement(item.toLowerCase().includes('v.') ? 'h1' : 'li');
-                    element.textContent = item;
+                    var element = document.createElement(modifiedItem.toLowerCase().includes('v.') ? 'h1' : 'li');
+                    element.innerHTML = modifiedItem; // Use innerHTML to render the icons
                     todo_list.appendChild(element);
                 }
             }
         });
     });
+

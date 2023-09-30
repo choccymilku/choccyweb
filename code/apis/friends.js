@@ -36,7 +36,7 @@ function setTextColorAndLinkColorBasedOnLuminance(container, hexColor) {
 }
 
 function fetchDataAndUpdateLocalStorage() {
-  console.log('Fetching friends data...');
+  console.log('🐛 Fetching friends data...');
 
   Promise.all(discordUserIds.map(id => fetch(`https://lookup.choccymilk.uk/api?id=${id}`)))
     .then(responses => Promise.all(responses.map(response => response.json())))
@@ -148,7 +148,7 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
   const hoursUntilNextFetch = Math.floor(totalSecondsUntilNextFetch / 3600);
   const minutesUntilNextFetch = Math.floor((totalSecondsUntilNextFetch % 3600) / 60);
 
-  console.log(`Next fetch in ${hoursUntilNextFetch} hours and ${minutesUntilNextFetch} minutes.`);
+  console.log(`🐛 Next fetch in ${hoursUntilNextFetch} hours and ${minutesUntilNextFetch} minutes.`);
 }
 
 // Schedule periodic updates (every 12 hours)

@@ -1,7 +1,5 @@
-version 1.3.2
-
-back from the dead, improved gallery image API a bit (hopefully)
-bug - removed steam connection, url isn't correct 
-bug - roblox connection leads to an incorrect url
+version 1.3.3
+fix - steam url, had to use steam web api
+fix - roblox url, add a statement
 bug - full view gallery misaligned on smaller screens
 bug - tabs with dyslexic font misplaced

@@ -24,34 +24,17 @@ function fetchAndUpdateIcons() {
       connectionsContainer.innerHTML = "";
 
       for (const conn of connections) {
-        if (conn.type === "steam") {
-          const url = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=${steamKey}&steamids=${conn.id}`)}`;
-          // Fetch Steam user info using Steam API with CORS proxy
-          fetch(url)
-            .then(response => response.json())
-            .then(steamData => {
-              const steamUser = steamData.response.players[0];
-              if (steamUser) {
-                conn.name = steamUser.personaname;
-                conn.profileUrl = steamUser.profileurl; // Store Steam profile URL
-                // Add Steam data to the connectionsContainer
-                const connDiv = createConnectionDiv(conn);
-                connectionsContainer.appendChild(connDiv);
-              }
-            })
-            .catch(error => {
-              console.error('Error fetching Steam data:', error);
-            });
-        } else if (
-          conn.type === "epicgames" ||
-          conn.type === "leagueoflegends" ||
-          conn.type === "riotgames" ||
-          conn.type === "crunchyroll" ||
-          conn.type === "battlenet"
+        if (
+            conn.type === "epicgames" ||
+            conn.type === "leagueoflegends" ||
+            conn.type === "riotgames" ||
+            conn.type === "crunchyroll" ||
+            conn.type === "battlenet"
         ) {
-          // Skip unwanted connections
-          continue;
+            // Skip unwanted connections
+            continue;
         }
+
 
         const connDiv = createConnectionDiv(conn);
         connectionsContainer.appendChild(connDiv);
@@ -99,21 +82,51 @@ function fetchAndUpdateIcons() {
 }
 
 function createConnectionDiv(connection) {
-  const userId = connection.id; // Use user ID for Roblox connection
-  const url = accountUrls[connection.type] + userId; // Construct URL with user ID
+  const userId = connection.name;
+  let url = accountUrls[connection.type] + userId;
   const name = connection.name;
 
   const connDiv = document.createElement("a");
   connDiv.classList.add("connection-div");
-  connDiv.href = url;
   connDiv.target = "_blank";
-  
+
   // Create the <span> element for the name
   const nameSpan = document.createElement("span");
   nameSpan.textContent = name;
   nameSpan.classList.add("connection-name");
 
+  if (connection.type === "steam") {
+    const steamUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=${steamKey}&steamids=${connection.id}`)}`;
+        
+    // Fetch Steam user info using Steam API with CORS proxy
+    fetch(steamUrl)
+    .then(response => response.json())
+    .then(steamData => {
+        const parsedData = JSON.parse(steamData.contents);
+        const playerData = parsedData.response.players[0];
+        const profileUrl = playerData.profileurl;
+
+        // Use profileUrl for the Steam connection
+        url = profileUrl;
+        console.log('🐛 steam url: ' + url);
+
+        //assign the url to the connection div
+        connDiv.href = url;
+      })
+      .catch(error => {
+          console.error('Error fetching Steam data:', error);
+      });
+  }
+  
+  // if connection is roblox, use connection.id instead of connection.name
   if (connection.type === "roblox") {
+    url = accountUrls[connection.type] + connection.id;
+  }
+
+  connDiv.href = url;
+
+
+ if (connection.type === "roblox") {
     // Create the SVG element for the Roblox icon
     const robloxIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     robloxIcon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
@@ -144,9 +157,9 @@ function createConnectionDiv(connection) {
     // Append the icon to the link element
     connDiv.appendChild(icon);
   }
-  // Append the nameSpan to the icon element
-  connDiv.appendChild(nameSpan);
 
+  // Append the nameSpan to the link element
+  connDiv.appendChild(nameSpan);
   connDiv.classList.add("noselect");
 
   return connDiv;
