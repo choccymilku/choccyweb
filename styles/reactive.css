@@ -186,4 +186,12 @@
         writing-mode: inherit; /* Vertical right-to-left writing mode */
         text-orientation: inherit;
     }
+
+    #full_gallery {
+        display: none !important;
+    }
+
+    #update_notes_inner {
+        width: 100%;
+    }
   }
