@@ -8,7 +8,6 @@ const accountUrls = {
   spotify: "https://open.spotify.com/user/",
   github: "https://github.com/",
   reddit: "https://www.reddit.com/user/",
-  // steam: "https://steamcommunity.com/id/",
   tiktok: "https://www.tiktok.com/@",
   facebook: "https://www.facebook.com/",
   domain: "https://",
@@ -25,16 +24,33 @@ function fetchAndUpdateIcons() {
       connectionsContainer.innerHTML = "";
 
       for (const conn of connections) {
-        if (
+        if (conn.type === "steam") {
+          const url = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=${steamKey}&steamids=${conn.id}`)}`;
+          // Fetch Steam user info using Steam API with CORS proxy
+          fetch(url)
+            .then(response => response.json())
+            .then(steamData => {
+              const steamUser = steamData.response.players[0];
+              if (steamUser) {
+                conn.name = steamUser.personaname;
+                conn.profileUrl = steamUser.profileurl; // Store Steam profile URL
+                // Add Steam data to the connectionsContainer
+                const connDiv = createConnectionDiv(conn);
+                connectionsContainer.appendChild(connDiv);
+              }
+            })
+            .catch(error => {
+              console.error('Error fetching Steam data:', error);
+            });
+        } else if (
           conn.type === "epicgames" ||
           conn.type === "leagueoflegends" ||
           conn.type === "riotgames" ||
           conn.type === "crunchyroll" ||
-          conn.type === "battlenet" ||
-conn.type === "steam"
+          conn.type === "battlenet"
         ) {
           // Skip unwanted connections
-          continue;      
+          continue;
         }
 
         const connDiv = createConnectionDiv(conn);

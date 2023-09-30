@@ -12,7 +12,7 @@ const mastodon_username = ""; //bjork
 // your pronouns.page username (or ID) <not required, but recommended> ⚠
 const pronounspage_username = "choccymilk"; //choccymilk or 01GXT9SVRPDFYR3DJGMAEJ2FN4
 
-const steamKey = '40BB13B558CF4F6FC5F19202C83C6FD8'
+const steamKey = '64A2D9B0EF63EC0B5ABB371668EE8762'
 
 // title for the page (shown in the tab) <required> ⚠
 const title = "choccy's thing"; 
