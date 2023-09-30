@@ -1,5 +1,7 @@
-version 1.35
+version 1.3.2
 
-full view gallery tab (click "full view" at the top)
-removed steam connection (url lead to a different account, may be fixed)
-tabs with dyslexic font misplaced (tried to fix, didn't work (maybe soon))
+back from the dead, improved gallery image API a bit (hopefully)
+bug - removed steam connection, url isn't correct 
+bug - roblox connection leads to an incorrect url
+bug - full view gallery misaligned on smaller screens
+bug - tabs with dyslexic font misplaced
