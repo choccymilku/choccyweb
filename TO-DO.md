@@ -1,2 +1,2 @@
-improve dyslexic font
-fix steam profile url
+add lastfm for music stats
+playtime tracker for games
