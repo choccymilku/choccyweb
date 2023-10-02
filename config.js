@@ -101,14 +101,17 @@ userTitle.textContent = username;
     .then(text => {
         var todo = text.split('\n');
         var todo_list = document.getElementById('todo_list');
+        var olElement = document.createElement('ol'); // Create the <ol> element
+        todo_list.appendChild(olElement); // Append <ol> to the parent element
         todo.forEach((item) => {
             if (item.trim() !== '') {
-                var todo_item = document.createElement('ol');
-                todo_item.textContent = item;
-                todo_list.appendChild(todo_item);
+                var liElement = document.createElement('li'); // Create <li> for each item
+                liElement.textContent = item;
+                olElement.appendChild(liElement); // Append <li> to <ol>
             }
         });
     });
+
 
     fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/main/VERSION.MD')
     .then(response => response.text())
