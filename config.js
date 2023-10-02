@@ -103,7 +103,7 @@ userTitle.textContent = username;
         var todo_list = document.getElementById('todo_list');
         todo.forEach((item) => {
             if (item.trim() !== '') {
-                var todo_item = document.createElement('li');
+                var todo_item = document.createElement('ol');
                 todo_item.textContent = item;
                 todo_list.appendChild(todo_item);
             }
