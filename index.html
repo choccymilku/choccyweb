@@ -62,11 +62,26 @@
   #preloader {
     background-color: #FFF;
   }
+  #preloader_logo {
+    fill: #000;
+  }
 }
 @media (prefers-color-scheme: dark) {
   #preloader {
-    background-color: #333;
+    background-color: #2e2f37;
   }
+  #preloader_logo {
+    fill: #4d4f5d;
+  }
+  @keyframes logo_fin {
+    0% {
+      fill: #4d4f5d;
+    }
+    100% {
+      fill: #e3e3e3;
+      filter: drop-shadow(0px 0px 4px #e3e3e3);
+    }
+  } 
 }
 </style>
 </head>
@@ -76,7 +91,35 @@
 <!-- <div style="background-color: black;width: 100%;height: 100%;position: absolute;z-index: 9999;margin-left: -6px;margin-top: -10px;" id="text">
     </div> -->
   
-<div id="preloader"></div>
+<div id="preloader">
+  <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+  width="320.000000pt" height="320.000000pt" viewBox="0 0 320.000000 320.000000"
+  preserveAspectRatio="xMidYMid meet" id="preloader_logo" class="preloader_loading">
+ 
+ <g transform="translate(0.000000,320.000000) scale(0.100000,-0.100000)" stroke="none">
+ <path d="M552 2647 c-434 -434 -552 -557 -552 -577 0 -20 99 -124 460 -485
+ l461 -461 -31 -29 c-58 -55 -51 -67 148 -267 153 -154 181 -178 208 -178 31 0
+ 55 19 68 54 6 17 65 -39 369 -342 283 -283 368 -362 387 -362 37 0 1130 1093
+ 1130 1130 0 19 -80 105 -362 387 -303 304 -359 363 -342 369 35 13 54 37 54
+ 68 0 27 -24 55 -178 208 -200 199 -212 206 -267 148 l-29 -31 -461 461 c-361
+ 361 -465 460 -485 460 -20 0 -142 -117 -578 -553z m770 206 l188 -188 -217
+ -217 c-120 -120 -221 -218 -225 -218 -4 0 -91 84 -194 187 l-186 186 219 219
+ c120 120 220 218 223 218 3 0 89 -84 192 -187z m473 -473 l190 -190 -220 -220
+ -220 -220 -192 192 -193 193 217 217 c120 120 220 218 223 218 3 0 91 -86 195
+ -190z m-1011 -55 c102 -102 186 -189 186 -193 0 -4 -98 -105 -218 -225 l-217
+ -217 -190 190 -190 190 220 220 c121 121 221 220 222 220 1 0 85 -83 187 -185z
+ m1481 -245 c68 -68 94 -101 84 -105 -8 -2 -92 -29 -188 -59 -95 -30 -180 -60
+ -188 -69 -8 -8 -46 -115 -84 -238 -38 -122 -71 -224 -72 -226 -2 -1 -104 -34
+ -228 -72 -142 -44 -230 -77 -239 -89 -8 -10 -39 -97 -69 -193 -29 -96 -56
+ -177 -60 -181 -4 -4 -51 37 -106 92 l-100 100 570 570 c313 314 572 570 575
+ 570 3 0 50 -45 105 -100z m-1035 -645 l-220 -220 -192 193 -193 192 220 220
+ 220 220 192 -192 193 -193 -220 -220z m1465 45 l350 -350 -488 -487 -487 -488
+ -350 350 c-192 192 -350 357 -350 365 0 8 17 71 38 139 l38 124 224 69 c124
+ 38 233 77 242 86 9 9 48 118 86 242 l69 224 119 37 c65 21 128 38 139 38 14 1
+ 133 -112 370 -349z"/>
+ </g>
+ </svg>
+</div>
 
 <div id="main">
 
@@ -155,7 +198,7 @@
                 <span style="display: none;">
                   <div style="height: 1px;width: 100%;background-color: var(--text);margin: 5px;margin-left: 0px;"></div>
                 <span style="color:lightcoral;display:block;">EXPERIMENTAL</span> 
-              </span>
+              </span>            
             </div>
           </div>
       </div>
@@ -167,7 +210,7 @@
       <div id="update_notes"></div>
     </div>
   </div>
-  
+
 
 <!-- add your tabs here -->
 
@@ -177,17 +220,24 @@
 
   <div class="bar" id="people">
     <div class="noselect bar_outer" id="friends_outer">
-      <div class="noselect bar_inner inner_scrollables" id="friends_inner"></div>
+      <div class="noselect bar_inner inner_scrollables" id="friends_inner">
+        <div id="skeleton_loader_friends" class="skelly"></div>
+      </div>
     </div>
   </div>
 
   <div class="bar" id="projects">
-    <div class="noselect bar_inner" id="project_inner"></div>
+    <div class="noselect bar_outer" id="project_outer">
+      <div class="noselect bar_inner" id="project_inner">
+      </div>
+  </div>
   </div>
 
   <div class="bar" id="gallery">
     <div class="noselect bar_outer" id="gallery_outer">
-      <div class="noselect bar_inner inner_scrollables gallery_inner" id="gallery_inner"></div>
+      <div class="noselect bar_inner inner_scrollables gallery_inner" id="gallery_inner">
+        <div id="skeleton_loader_gallery" class="skelly"></div>
+      </div>
     </div>
   </div>
 
@@ -208,6 +258,38 @@
     <div id="next_gallery_text" class="gallery_text">next</div>
   </div>
 </div>
+
+<!--   <div id="scroll-container">
+    <div id="draggable-div"></div>
+  </div> -->
+
+  <script>
+    const scrollContainer = document.getElementById('scroll-container');
+    const draggableDiv = document.getElementById('draggable-div');
+    let isDragging = false;
+    let startX, scrollLeft;
+
+    draggableDiv.addEventListener('mousedown', (event) => {
+      isDragging = true;
+      startX = event.pageX - draggableDiv.offsetLeft;
+      scrollLeft = scrollContainer.scrollLeft;
+
+      // Prevent text selection during drag
+      event.preventDefault();
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    document.addEventListener('mousemove', (event) => {
+      if (!isDragging) return;
+      const x = event.pageX - draggableDiv.offsetLeft;
+      const walk = (x - startX) * 2; // Adjust the drag sensitivity
+      scrollContainer.scrollLeft = scrollLeft - walk;
+    });
+  </script>
+
 
 <!-- <script>
 // Wait for the DOM to fully load before running the JavaScript code
@@ -274,10 +356,6 @@ window.onload = function() {
   // Add click event listener to the full_gallery2 element
   document.getElementById('full_gallery2').addEventListener('click', closeGallery);
 </script>
-</script>
-
-
-
 <script src="./config.js"></script>
 <script src="./code/tabs.js"></script>
 <script src="./code/similarColor.js"></script>
@@ -293,5 +371,6 @@ window.onload = function() {
 <script src="./code/profileHover.js"></script>
 <script src="./code/verticalScroll.js"></script>
 <script src="./code/versionHover.js"></script>
+<script src="./code/apis/lastfm.js"></script>
 </body>
 </html>

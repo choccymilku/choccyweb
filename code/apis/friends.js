@@ -38,6 +38,15 @@ function setTextColorAndLinkColorBasedOnLuminance(container, hexColor) {
 function fetchDataAndUpdateLocalStorage() {
   console.log('🐛 Fetching friends data...');
 
+  const skeletonLoaderFriends = document.getElementById('skeleton_loader_friends');
+  skeletonLoaderFriends.innerHTML = ''; // Clear existing content
+
+  discordUserIds.forEach(id => {
+    const skeletonDiv = document.createElement('div');
+    skeletonDiv.setAttribute('class', 'skeleton_loader_friends_container'); // You can add a CSS class for styling if needed
+    skeletonLoaderFriends.appendChild(skeletonDiv);
+  });
+
   Promise.all(discordUserIds.map(id => fetch(`https://lookup.choccymilk.uk/api?id=${id}`)))
     .then(responses => Promise.all(responses.map(response => response.json())))
     .then(data => {
@@ -92,6 +101,8 @@ function fetchDataAndUpdateLocalStorage() {
       console.log(`Next fetch in ${12 * 3600 - timeUntilNextFetch} seconds.`);
     })
     .catch(error => console.error(error));
+    // remove skeleton loader
+    skeletonLoaderFriends.remove();
 }
 
 // Check if there is cached data in localStorage and it's less than 12 hours old

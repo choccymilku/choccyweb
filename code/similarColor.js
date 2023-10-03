@@ -64,7 +64,8 @@ function updateRootColors(dominantColor, similarColors) {
   document.documentElement.style.setProperty("--texthover", textHoverColor);
 
   // Hide the preloader once the colors are added
-  $("#preloader").fadeOut(250);
+  $("#preloader").delay(500).fadeOut(250);
+  $("#preloader_logo").addClass("preloader_fin");
 }
 
 // Wait for the DOM to fully load

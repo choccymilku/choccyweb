@@ -6,8 +6,10 @@ const avatarFormat = "png"; //png, jpg
 
 // your roblox ID <not required>
 const roblox_id = "2450458016"; //your roblox ID
-// your mastodon username <not required>
+
 const mastodon_username = ""; //bjork
+const bsky_name = ""; //your bsky name
+const co_host_name = ""; //your co-host name
 
 // your pronouns.page username (or ID) <not required, but recommended> ⚠
 const pronounspage_username = "choccymilk"; //choccymilk or 01GXT9SVRPDFYR3DJGMAEJ2FN4
@@ -64,6 +66,9 @@ var custom_text =
 `i code, mostly javascript and websites\n` +
 `you can find the source code for this [here](https://github.com/choccymilku/choccy-newer-and-improved)\nn` +     
 `<span id='birthday'></span>, <span id='pronouns'></span>, <span id='flags'></span>` +
+`;;divider;;` +
+`recently listened songs\n<div class="lastfm_outer" id="lastfm_recent_outer"><div id="lastfm_recent"></div></div>` +
+`top song\n<div class="lastfm_outer"><div class="inner_scrollables" id="lastfm_top"></div></div>` +
 `;;divider;; to-do:\n<div id="todo_list"></div`;
 
 /* var custom_text =
@@ -129,6 +134,7 @@ userTitle.textContent = username;
                 var modifiedItem = item.replace(/bug\s+-/i, '<i class="fa-solid fa-bug" title="bug"></i>');
                 modifiedItem = modifiedItem.replace(/fix\s+-/i, '<i class="fa-solid fa-screwdriver-wrench" title="fix"></i>');
                 modifiedItem = modifiedItem.replace(/temp\s+-/i, '<i class="fa-solid fa-trowel-bricks" title="temporary fix"></i>');
+                modifiedItem = modifiedItem.replace(/add\s+-/i, '<i class="fa-solid fa-plus" title="add"></i>');
 
                 var versionMatch = modifiedItem.replace(/version\s+/i, 'v.').match(/v\.\S+/i);
                 if (versionMatch) {

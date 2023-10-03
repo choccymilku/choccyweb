@@ -128,9 +128,12 @@
         width: calc(100% - 20px);
         height: 100%;
     }
-    #friends_name  {
+    .friends_name  {
         width: 100%;
         max-width: calc(100% - 20px);
+        padding: 10px !important;
+        margin-bottom: 0px;
+        margin-top: -10px !important;
     }
     .project-div:last-child {
         border-bottom-right-radius: 0px;

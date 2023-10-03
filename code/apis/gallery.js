@@ -52,14 +52,46 @@ fetchDataWithRetry('https://api.choccymilk.uk/server/discord-connect/11554943283
         imgClone.classList.add('gallery_image_full'); // Add a different class
         div2.appendChild(imgClone);
       }
+
+      // Remove the skeleton loader once the images are loaded
+      const skeletonLoader = document.querySelector('#skeleton_loader_gallery');
+      if (skeletonLoader) {
+        skeletonLoader.remove();
+      }
     });
   })
   .catch((error) => {
     console.error('Max retries reached. Unable to fetch data:', error);
   });
+
+  // create skeleton loaders
+  const gallerySkeleton = document.getElementById('skeleton_loader_gallery');
+  let totalWidth = 0;
   
-
-
+  for (let i = 0; i < 3; i++) {
+    // Generate a random width between 250 and 450 pixels
+    const width = Math.floor(Math.random() * (450 - 250 + 1)) + 250;
+  
+    // Create a div element
+    const gallerySkeletonImage = document.createElement('div');
+    gallerySkeletonImage.classList.add('skeleton_loader_gallery_image');
+    gallerySkeletonImage.style.width = `${width}px`; // Set the width of the div
+  
+    // Append the div to the skeleton_loader_gallery container
+    gallerySkeleton.appendChild(gallerySkeletonImage);
+  
+    // Update total width
+    totalWidth += width;
+  }
+  
+  // Ensure the total width is equal or over 1000 pixels
+  if (totalWidth < 1000) {
+    // If total width is less than 1000 pixels, adjust the width of a random div to meet the requirement
+    const randomIndex = Math.floor(Math.random() * 3);
+    const remainingWidth = 1000 - totalWidth;
+    const additionalWidth = Math.max(remainingWidth, 250); // Ensure additional width is at least 250 pixels
+    gallerySkeleton.children[randomIndex].style.width = `${additionalWidth}px`;
+  }
 
 // show full view gallery
 

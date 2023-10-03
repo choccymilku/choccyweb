@@ -18,6 +18,7 @@ function fetchAndUpdateIcons(discord_user_id) {
           "scss": "devicon-sass-original",
           "vue": "devicon-vuejs-plain",
           "shell" : "devicon-bash-plain",
+          "go" : "devicon-go-original-wordmark"
         }
   
           fetch(`https://api.github.com/users/${username}/repos`)

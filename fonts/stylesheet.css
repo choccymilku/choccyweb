@@ -39,22 +39,9 @@
 }
 
 @font-face {
-    font-family: 'ShadowHand';
-    src: url('ShadowHand.woff2') format('woff2'),
-        url('ShadowHand.woff') format('woff'),
-        url('ShadowHand.ttf') format('truetype');
+    font-family: 'Rubik';
+    src: url('RubikMonoOne-Regular.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
-
-@font-face {
-    font-family: 'Short Stack';
-    src: url('ShortStack.woff2') format('woff2'),
-        url('ShortStack.woff') format('woff'),
-        url('ShortStack.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-

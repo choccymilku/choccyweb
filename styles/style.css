@@ -58,6 +58,7 @@ h1 { margin:0px }
   position: relative;
   padding: 5px;
   margin: 5px;
+  max-height: calc(100% - 110px);
 }
 
 .bar_inner {
@@ -239,6 +240,7 @@ h1 { margin:0px }
   position: relative;
   z-index: 9999;
   overflow-y: scroll;
+  max-height: 450px;
 }
 
 #profile_hover {
@@ -246,15 +248,14 @@ h1 { margin:0px }
   z-index: 9999;
   background-color: var(--color3);
   border-radius: 8px;
+  border-top-left-radius: 0px;
   margin-top: 95px;
   margin-right: -80px;
   width: fit-content;
   height: fit-content;
   padding: 5px;
   float: left;
-  display: flex;
   display: none;
-  max-height: 450px;
 }
 
 #pfp_link {
@@ -276,6 +277,16 @@ h1 { margin:0px }
 .icon-style {
   width: 25px;
   font-size: 22px;
+}
+
+.icon-style-cohost {
+  margin-top: 1px;
+}
+
+.icon-style-bsky {
+  font-size: 18px;
+  margin-right: 3px;
+  margin-top: 3px;
 }
 
 .icon-style-domain {
@@ -337,7 +348,7 @@ h1 { margin:0px }
 }
 
 #gallery_outer {
-  background-color: var(--color2);
+  background-color: var(--color1);
   overflow: hidden !important;
   border-radius: 8px;
   height: fit-content;
@@ -362,13 +373,14 @@ h1 { margin:0px }
   border-radius: 8px;
   justify-content: space-between;
   overflow-x: scroll;
+  height: fit-content;
   position: relative;
   padding: 0px;
   background-color: transparent;
 }
 
 #friends_outer {
-  background-color: var(--color2);
+  background-color: var(--color1);
   overflow: hidden !important;
   border-radius: 8px;
   height: 195px;
@@ -399,14 +411,14 @@ h1 { margin:0px }
 #friends_avatar {
   height: 135px;
   width: 135px;
-  padding: 5px;
   margin: 5px;
-  background-color: var(--color3);
+  padding: 5px;
+  background-color: var(--color2);
   border-radius: 50%;
 }
 
 .friends_name {
-  margin-top: -12.5px;
+  margin-top: -2px !important;
   max-width: 135px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -414,10 +426,9 @@ h1 { margin:0px }
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   position: relative;
-  padding: 10px;
+  padding-left: 10px;
   font-size: 20px;
   text-align: center;
-  margin-bottom: -1px;
 }
 
 /* other stuff*/
@@ -554,19 +565,36 @@ a:hover {color:var(--texthover) !important}
   margin-top: 0px;
 }
 
-.project-div{
+.project-div:last-child {
+  margin-bottom: 0px;
+}
+
+#project_outer {
+  overflow: scroll;
+  width: 100%;
+}
+
+#project_inner {
+  height: 100%;
+  overflow: scroll;
+  padding: 0px !important;
   background-color: var(--color1);
-  margin-top: 5px;
+}
+
+.project-div{
   border-radius: 8px;
   overflow: hidden;
   word-wrap: break-word;
   text-overflow: ellipsis;
+  background-color: var(--color2);
+  margin-bottom: 5px;
 }
 
+
 .project-div-inner {
-  margin: 10px;
+  margin: 5px;
   margin-top: 5px;
-  border-radius: 8px;
+  border-radius: 8px
 }
 
 .project-name {
@@ -582,7 +610,7 @@ a:hover {color:var(--texthover) !important}
 }
 
 .project-info-inner {
-  margin-bottom: -20px;
+  margin-bottom: -10px;
 }
 
 [class^=devicon-], [class*=" devicon-"] {
@@ -742,4 +770,170 @@ a:hover {color:var(--texthover) !important}
     white-space: nowrap;
     opacity: 0;
   }
+
+  .skelly {
+    display: flex;
+  }
+
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 100% 50%;
+    }
+    50% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .skeleton_loader_friends_container {
+    width: 155px;
+    border-radius: 8px;
+    margin-right: 5px;
+    height: 195px;
+    box-sizing: border-box;
+    margin-bottom: 1px;
+    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3)); /* Initial gradient background */
+    background-size: 200% 100%; /* Set background size for animation */
+    animation: gradientAnimation 1.5s ease infinite forwards; /* Apply the gradient animation */
+  }
+
+  .skeleton_loader_gallery_image {
+    height: 300px;
+    margin-right: 5px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3)); /* Initial gradient background */
+    background-size: 200% 100%; /* Set background size for animation */
+    animation: gradientAnimation 1.5s ease infinite forwards; /* Apply the gradient animation */
+  }
   
+  .skeleton_loader_gallery_image:last-child, .skeleton_loader_friends_container:last-child {
+    margin-right: 0px;
+  }
+
+  .skeleton_loader_lastfm {
+    width: 155px;
+    border-radius: 8px;
+    height: 155px;
+    box-sizing: border-box;
+    margin-bottom: 1px;
+    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3)); /* Initial gradient background */
+    background-size: 200% 100%; /* Set background size for animation */
+    animation: gradientAnimation 1.5s ease infinite forwards; /* Apply the gradient animation */
+  }
+
+  .lastfm_top_song, .lastfm_recent_song {
+    background-color: var(--color2);
+    height: 200px;
+    min-width: 155px;
+    padding: 5px;
+    border-radius: 8px;
+    margin-right: 5px;
+  }
+
+  .lastfm_recent_song {
+    background-color: red;
+  }
+
+  .lastfm_top_song:last-child {
+    margin-right: 0px;
+  }
+
+  .lastfm_top_song_image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .lastfm_top_recent_image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .lastfm_top_song_playcount {
+    background-color: var(--color2);
+    width: fit-content;
+    position: relative;
+    margin-left: auto;
+    margin-top: -38px;
+    margin-right: -1px;
+    font-family: Rubik;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 8px;
+    font-size: 24px;
+    padding: 2px;
+  }
+
+  .lastfm_top_name {
+    font-weight: bold;
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .lastfm_recent_name {
+    font-weight: bold;
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: -6px;
+  }
+
+  .lastfm_top_artist {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #lastfm_top {
+    display: flex;
+    background-color: transparent;
+    overflow-x: scroll;
+    border-radius: 8px;
+    overflow-y: hidden;
+  }
+
+  #lastfm_recent {
+    display: flex;
+    background-color: transparent;
+    overflow-x: scroll;
+    border-radius: 8px;
+    overflow-y: hidden;
+  }
+
+  .lastfm_outer {
+    background-color: var(--color3);
+    padding: 5px;
+    border-radius: 8px;
+  }
+
+  #scroll-container {
+    width: 100%;
+    height: 200px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  #draggable-div {
+    width: 2000px; /* Set a large width for the content inside the scroll container */
+    height: 100px;
+    background-color: lightblue;
+  }
+
+  #preloader_logo {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .preloader_fin {
+    animation: logo_fin 0.5s ease forwards;
+  }
