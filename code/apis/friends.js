@@ -47,7 +47,7 @@ function fetchDataAndUpdateLocalStorage() {
     skeletonLoaderFriends.appendChild(skeletonDiv);
   });
 
-  Promise.all(discordUserIds.map(id => fetch(`https://lookup.choccymilk.uk/api?id=${id}`)))
+  Promise.all(discordUserIds.map(id => fetch(`https://uapi.choccymilk.uk/api?id=${id}`)))
     .then(responses => Promise.all(responses.map(response => response.json())))
     .then(data => {
       console.log('Data fetched! :D'); // Log when data is fetched successfully
