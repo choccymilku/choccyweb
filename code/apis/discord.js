@@ -3,7 +3,7 @@ let connected = false;
 let reconnectTimeout;
 
 function connect() {
-  ws = new WebSocket('wss://lanyard.choccymilk.uk/socket');
+  ws = new WebSocket('wss://lapi.choccymilk.uk/socket');
 
   ws.addEventListener('open', () => {
     ws.send(JSON.stringify({
