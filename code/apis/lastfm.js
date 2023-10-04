@@ -33,7 +33,7 @@ function getToken() {
 
 function fetchRecentlyListenedFromLastFM() {
   try {
-      fetch(`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${lastFmUsername}&api_key=${lastFmApiKey}&limit=${numberOfTracks + 1}&format=json`)
+      fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${lastFmUsername}&api_key=${lastFmApiKey}&limit=${numberOfTracks + 1}&format=json`)
       .then(response => {
           if (!response.ok) {
               throw new Error("Network response was not ok");
@@ -56,7 +56,7 @@ function fetchRecentlyListenedFromLastFM() {
 
 function fetchTopTracksFromLastFM() {
   try {
-      fetch(`http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${lastFmUsername}&api_key=${lastFmApiKey}&limit=${numberOfTracks}&format=json`)
+      fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${lastFmUsername}&api_key=${lastFmApiKey}&limit=${numberOfTracks}&format=json`)
       .then(response => {
           if (!response.ok) {
               throw new Error("Network response was not ok");

@@ -66,9 +66,9 @@ var custom_text =
 `i code, mostly javascript and websites\n` +
 `you can find the source code for this [here](https://github.com/choccymilku/choccy-newer-and-improved)\nn` +     
 `<span id='birthday'></span>, <span id='pronouns'></span>, <span id='flags'></span>` +
-/*`;;divider;;` +
+`;;divider;;` +
 `recently listened songs\n<div class="lastfm_outer" id="lastfm_recent_outer"><div id="lastfm_recent"></div></div>` +
-`top song\n<div class="lastfm_outer"><div class="inner_scrollables" id="lastfm_top"></div></div>` +*/
+`top song\n<div class="lastfm_outer"><div class="inner_scrollables" id="lastfm_top"></div></div>` +
 `;;divider;; to-do:\n<div id="todo_list"></div`;
 
 /* var custom_text =
