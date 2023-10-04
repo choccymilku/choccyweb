@@ -25,7 +25,7 @@ const fetchDataWithRetry = (url, maxRetries, retryInterval) => {
     });
 };
 
-fetchDataWithRetry('https://api.choccymilk.uk/server/discord-connect/1155494328316207156-288c4be6ba', maxRetries, retryInterval)
+fetchDataWithRetry('https://gapi.choccymilk.uk/server/discord-connect/1155494328316207156-4f25143de8', maxRetries, retryInterval)
   .then((data) => {
     // Assuming data is an array of objects
     data.forEach((item, index) => {
