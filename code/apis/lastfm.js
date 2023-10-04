@@ -1,9 +1,4 @@
-var clientId = "83346dac54144a1eb3b29265f09caf83";
-var clientSecret = "992ef057388a4e4589ed8ea36776b4bf";
 var spotifyToken = "";
-var lastFmApiKey = "53b12a31e5c9e626ef29a22967e54e63";
-var lastFmUsername = "choccymilku";
-var numberOfTracks = 10;
 
 function getToken() {
   var basicAuth = btoa(`${clientId}:${clientSecret}`);
