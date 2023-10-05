@@ -18,7 +18,7 @@ function getToken() {
   })
   .then(data => {
       spotifyToken = data.access_token;
-      console.log("Spotify Token acquired:", spotifyToken);
+      console.log("🐛 spotify token acquired:");
   })
   .catch(error => {
       console.error("Error acquiring Spotify token:", error);
@@ -36,7 +36,7 @@ function fetchTopArtistsFromLastFM() {
           return response.json();
       })
       .then(data => {
-          console.log("Recently Listened Tracks from Last.fm Response:", data);
+          console.log("🐛 top artists - last.fm", data);
           displayTopArtists(data.topartists.artist);
       })
       .catch(error => {
@@ -59,7 +59,7 @@ function fetchTopTracksFromLastFM() {
           return response.json();
       })
       .then(data => {
-          console.log("Top Tracks from Last.fm Response:", data);
+          console.log("🐛 top tracks - last.fm", data);
           displayTopTracks(data.toptracks.track);
       })
       .catch(error => {
