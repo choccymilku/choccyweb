@@ -574,6 +574,18 @@ a:hover {color:var(--texthover) !important}
   width: 100%;
 }
 
+#data_outer {
+  overflow: scroll;
+  width: 100%; 
+}
+
+#data_inner {
+  height: calc(100% - 10px);
+  overflow: scroll;
+  padding: 5px !important;
+  background-color: var(--color2);
+}
+
 #project_inner {
   height: 100%;
   overflow: scroll;
@@ -823,7 +835,7 @@ a:hover {color:var(--texthover) !important}
     animation: gradientAnimation 1.5s ease infinite forwards; /* Apply the gradient animation */
   }
 
-  .lastfm_top_song, .lastfm_recent_song {
+  .lastfm_container {
     background-color: var(--color2);
     height: 200px;
     min-width: 155px;
@@ -832,29 +844,20 @@ a:hover {color:var(--texthover) !important}
     margin-right: 5px;
   }
 
-  .lastfm_recent_song {
-    background-color: red;
-  }
-
-  .lastfm_top_song:last-child {
+  .lastfm_container:last-child {
     margin-right: 0px;
   }
 
-  .lastfm_top_song_image {
+  .lastfm_image {
     height: 100%;
     width: 100%;
+    max-height: 155px;
     object-fit: cover;
     border-radius: 8px;
+    background-color: red;
   }
 
-  .lastfm_top_recent_image {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-
-  .lastfm_top_song_playcount {
+  .lastfm_playcount {
     background-color: var(--color2);
     width: fit-content;
     position: relative;
@@ -868,24 +871,24 @@ a:hover {color:var(--texthover) !important}
     padding: 2px;
   }
 
-  .lastfm_top_name {
+  .lastfm_name {
     font-weight: bold;
     font-size: 20px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
-  .lastfm_recent_name {
+  
+  .lastfm_artist_name {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 29px;
     white-space: nowrap;
     overflow: hidden;
+    margin-top: 3px;
     text-overflow: ellipsis;
-    margin-top: -6px;
   }
 
-  .lastfm_top_artist {
+  .lastfm_artist {
     font-size: 12px;
     white-space: nowrap;
     overflow: hidden;
@@ -900,7 +903,7 @@ a:hover {color:var(--texthover) !important}
     overflow-y: hidden;
   }
 
-  #lastfm_recent {
+  #lastfm_artist {
     display: flex;
     background-color: transparent;
     overflow-x: scroll;
@@ -912,6 +915,7 @@ a:hover {color:var(--texthover) !important}
     background-color: var(--color3);
     padding: 5px;
     border-radius: 8px;
+    width: calc(100% - 20px);
   }
 
   #scroll-container {

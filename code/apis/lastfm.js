@@ -1,4 +1,4 @@
-var spotifyToken = "";
+
 
 function getToken() {
   var basicAuth = btoa(`${clientId}:${clientSecret}`);
@@ -26,9 +26,9 @@ function getToken() {
   });
 }
 
-function fetchRecentlyListenedFromLastFM() {
+function fetchTopArtistsFromLastFM() {
   try {
-      fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${lastFmUsername}&api_key=${lastFmApiKey}&limit=${numberOfTracks + 1}&format=json`)
+      fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${lastFmUsername}&api_key=${lastFmApiKey}&limit=${numberOfTracks + 1}&format=json`)
       .then(response => {
           if (!response.ok) {
               throw new Error("Network response was not ok");
@@ -37,7 +37,7 @@ function fetchRecentlyListenedFromLastFM() {
       })
       .then(data => {
           console.log("Recently Listened Tracks from Last.fm Response:", data);
-          displayRecentTracks(data.recenttracks.track);
+          displayTopArtists(data.topartists.artist);
       })
       .catch(error => {
           console.error("Error fetching recently listened tracks from Last.fm API:", error);
@@ -83,7 +83,7 @@ function fetchSpotifyImage(trackName, artistName, trackDiv) {
           var imageUrl = res.tracks.items[0].album.images[0].url;
           var imageElement = document.createElement("img");
           imageElement.src = imageUrl;
-          imageElement.className = "lastfm_top_song_image noselect disabledrag";
+          imageElement.className = "lastfm_image noselect disabledrag";
           trackDiv.appendChild(imageElement);
       } else {
           console.log("Song not found on Spotify.");
@@ -91,34 +91,79 @@ function fetchSpotifyImage(trackName, artistName, trackDiv) {
   });
 }
 
-function displayRecentTracks(tracks) {
-  var topTracksDiv = document.getElementById("lastfm_recent");
+function fetchSpotifyArtistImage(artistName, trackDiv) {
+    const artistParts = artistName.split(','); // Split artist name into parts
+    
+    // Function to fetch artist image for a single part
+    function fetchArtistImageForPart(artistPart) {
+        return fetch(`https://api.spotify.com/v1/search?q=artist:${encodeURIComponent(artistPart.trim())}&type=artist&limit=1`, {
+            headers: {
+                "Authorization": `Bearer ${spotifyToken}`
+            },
+            method: "GET"
+        }).then(res => res.json());
+    }
+
+    // Function to recursively fetch artist images for all parts
+    function fetchImagesRecursively(index) {
+        if (index >= artistParts.length) {
+            console.log("Artist not found on Spotify.");
+            return; // All parts have been tried, and the artist is still not found
+        }
+
+        fetchArtistImageForPart(artistParts[index])
+            .then(res => {
+                if (res.artists.items.length >= 1) {
+                    // Artist found, display the image
+                    var imageUrl = res.artists.items[0].images[0].url;
+                    var imageElement = document.createElement("img");
+                    imageElement.src = imageUrl;
+                    imageElement.className = "lastfm_image noselect disabledrag"; // Modify the class name as needed
+                    trackDiv.appendChild(imageElement);
+                } else {
+                    // Artist not found for this part, try the next one
+                    fetchImagesRecursively(index + 1);
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching artist image:", error);
+                // Handle the error, retry the request, or perform other actions as necessary
+            });
+    }
+
+    // Start fetching images for parts recursively, beginning with the first part
+    fetchImagesRecursively(0);
+}
+
+  
+
+
+
+function displayTopArtists(tracks) {
+  var topTracksDiv = document.getElementById("lastfm_artist");
   // Limit the displayed tracks to numberOfTracks
   tracks = tracks.slice(0, numberOfTracks);
   tracks.forEach(track => {
-      var trackDiv = document.createElement("a");
-      trackDiv.className = "lastfm_top_song";
-      trackDiv.href = track.url;
-      trackDiv.target = "_blank";
+      var trackDiv = document.createElement("div");
+      trackDiv.className = "lastfm_container noselect disabledrag";
 
       var trackImage = document.createElement("div");
-      // Use the medium-sized image URL from Last.fm JSON response
-      var imageUrl = track.image.find(img => img.size === "large")["#text"];
-      var imageElement = document.createElement("img");
-      imageElement.src = imageUrl;
-      imageElement.className = "lastfm_top_recent_image noselect disabledrag";
-      trackImage.appendChild(imageElement);
+      fetchSpotifyArtistImage(track.name, trackImage);
       trackDiv.appendChild(trackImage);
 
-      var trackName = document.createElement("div");
-      trackName.textContent = track.name;
-      trackName.classList.add("lastfm_recent_name");
-      trackDiv.appendChild(trackName);
+      var playCount = document.createElement("div");
+      playCount.textContent = track.playcount;
+      playCount.classList.add("lastfm_playcount"); 
+      trackDiv.appendChild(playCount);
 
       var artistName = document.createElement("div");
-      artistName.textContent = track.artist["#text"];
-      artistName.classList.add("lastfm_top_artist");
+      var fullName = track.name;
+      var firstWord = fullName.split(",")[0].trim();
+      artistName.textContent = firstWord;
+      artistName.classList.add("lastfm_artist_name");
       trackDiv.appendChild(artistName);
+      
+      
 
       topTracksDiv.appendChild(trackDiv);
   });
@@ -127,28 +172,26 @@ function displayRecentTracks(tracks) {
 function displayTopTracks(tracks) {
   var topTracksDiv = document.getElementById("lastfm_top");
   tracks.forEach(track => {
-      var trackDiv = document.createElement("a");
-      trackDiv.className = "lastfm_top_song";
-      trackDiv.href = track.url;
-      trackDiv.target = "_blank";
+      var trackDiv = document.createElement("div");
+      trackDiv.className = "lastfm_container noselect disabledrag";
 
       var trackImage = document.createElement("div");
-      fetchSpotifyImage(track.name, track.artist.name, trackImage); // Fetch Spotify image and set it in the img element
+      fetchSpotifyImage(track.name, track.artist.name, trackImage);
       trackDiv.appendChild(trackImage);
 
       var playCount = document.createElement("div");
       playCount.textContent = track.playcount;
-      playCount.classList.add("lastfm_top_song_playcount"); 
+      playCount.classList.add("lastfm_playcount"); 
       trackDiv.appendChild(playCount);
 
       var trackName = document.createElement("div");
       trackName.textContent = track.name;
-      trackName.classList.add("lastfm_top_name");
+      trackName.classList.add("lastfm_name");
       trackDiv.appendChild(trackName);
 
       var artistName = document.createElement("div");
       artistName.textContent = track.artist.name;
-      artistName.classList.add("lastfm_top_artist");
+      artistName.classList.add("lastfm_artist");
       trackDiv.appendChild(artistName);
 
       topTracksDiv.appendChild(trackDiv);
@@ -160,4 +203,4 @@ function displayTopTracks(tracks) {
 // Initial token retrieval and fetching top tracks
 getToken();
 fetchTopTracksFromLastFM();
-fetchRecentlyListenedFromLastFM();
+fetchTopArtistsFromLastFM();

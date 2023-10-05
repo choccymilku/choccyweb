@@ -14,7 +14,10 @@ const co_host_name = ""; //your co-host name
 // last.fm
 var lastFmApiKey = "53b12a31e5c9e626ef29a22967e54e63";
 var lastFmUsername = "choccymilku";
-var numberOfTracks = 10;
+var numberOfTracks = 6;
+
+// waka time
+var waka_name = "choccy";
 
 // Spotify credentials
 var clientId = "83346dac54144a1eb3b29265f09caf83";
@@ -37,10 +40,10 @@ const bday_year = '2007';
 var username = "choccy";
 
 // tabs <required>
-const tabNames = ["./me", "./people", "./projects", "./gallery"];
-const tabIds = ["tab_me", "tab_friends", "tab_projects", "tab_gallery"];
-const tabBlocks = ["text_outer", "people", "projects", "gallery"];
-const tabIcons = ["home", "users", "briefcase", "image"];
+const tabNames = ["./me", "./data", "./people", "./projects", "./gallery"];
+const tabIds = ["tab_me", "tab_data","tab_friends", "tab_projects", "tab_gallery"];
+const tabBlocks = ["text_outer", "data", "people", "projects", "gallery"];
+const tabIcons = ["home", "clock", "users", "briefcase", "image"];
 
 // "about me" text, supports markdowns, can be found in "text.js" <required> ⚠
 // what you can use:
@@ -75,9 +78,6 @@ var custom_text =
 `i code, mostly javascript and websites\n` +
 `you can find the source code for this [here](https://github.com/choccymilku/choccy-newer-and-improved)\nn` +     
 `<span id='birthday'></span>, <span id='pronouns'></span>, <span id='flags'></span>` +
-`;;divider;;` +
-`recently listened songs\n<div class="lastfm_outer" id="lastfm_recent_outer"><div id="lastfm_recent"></div></div>` +
-`top song\n<div class="lastfm_outer"><div class="inner_scrollables" id="lastfm_top"></div></div>` +
 `;;divider;; to-do:\n<div id="todo_list"></div`;
 
 /* var custom_text =

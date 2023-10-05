@@ -193,4 +193,34 @@
     #full_gallery {
         display: none !important;
     }
+
+    #lastfm_artist > .lastfm_container {
+        flex: 0%;
+        margin-bottom: 5px;
+    }
+    #lastfm_top > .lastfm_container {
+        flex: 0%;
+        margin-bottom: 5px;
+    }
+
+    #lastfm_artist {
+        margin-bottom: -5px !important;
+    }
+
+    #lastfm_artist, #lastfm_top {
+        flex-wrap: wrap;
+    }
+
+    #lastfm_top {
+        width: calc(100% + 5px);
+        margin-bottom: -5px !important;
+    }
+
+    #lastfm_artist {
+        width: calc(100% + 5px);
+    }
+
+    .lastfm_container:last-child {
+        margin-right: 5px;
+      }
 }

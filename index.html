@@ -218,6 +218,22 @@
     <div class="noselect bar_inner" id="text"></div>
   </div>
 
+  <div class="bar" id="data">
+    <div class="noselect bar_outer" id="data_outer">
+      <div class="noselect bar_inner" id="data_inner">
+        <div style="font-family: Rubik;">top artists</div>
+          <div class="lastfm_outer" id="lastfm_recent_outer">
+            <div class="inner_scrollables" id="lastfm_artist"></div>
+          </div>
+
+        <div style="font-family: Rubik;margin-top: 10px;">top songs</div>
+          <div class="lastfm_outer">
+            <div class="inner_scrollables" id="lastfm_top"></div>
+          </div>
+      </div>
+  </div>
+  </div>
+
   <div class="bar" id="people">
     <div class="noselect bar_outer" id="friends_outer">
       <div class="noselect bar_inner inner_scrollables" id="friends_inner">
@@ -259,36 +275,68 @@
   </div>
 </div>
 
-<!--   <div id="scroll-container">
-    <div id="draggable-div"></div>
-  </div> -->
+<script>
+  // Function to handle mouse events for multiple elements
+  function handleMouseEvents(containers) {
+      let isDown = false;
+      let startX, startY, startScrollLeft, startScrollTop;
+  
+      function mouseIsDown(e, index) {
+          isDown = true;
+          startY = e.pageY - containers[index].offsetTop;
+          startX = e.pageX - containers[index].offsetLeft;
+          startScrollLeft = containers[index].scrollLeft;
+          startScrollTop = containers[index].scrollTop;
+      }
+  
+      function mouseUp() {
+          isDown = false;
+      }
+  
+      function mouseLeave() {
+          isDown = false;
+      }
+  
+      function mouseMove(e, index) {
+          if (isDown) {
+              e.preventDefault();
+              const y = e.pageY - containers[index].offsetTop;
+              const walkY = y - startY;
+              containers[index].scrollTop = startScrollTop - walkY;
+              const x = e.pageX - containers[index].offsetLeft;
+              const walkX = x - startX;
+              containers[index].scrollLeft = startScrollLeft - walkX * 1.75;
+          }
+      }
+  
+      for (let i = 0; i < containers.length; i++) {
+          containers[i].addEventListener('mousedown', (e) => mouseIsDown(e, i));
+          containers[i].addEventListener('mouseup', mouseUp);
+          containers[i].addEventListener('mouseleave', mouseLeave);
+          containers[i].addEventListener('mousemove', (e) => mouseMove(e, i));
+      }
+  }
+  
+  // Function to check if the elements are added to the DOM
+  function checkElementsAdded() {
+      const containerIDs = ['#lastfm_artist', '#lastfm_top', '#tabs']; // Add more IDs as needed
+      const containers = containerIDs.map(id => document.querySelector(id)).filter(Boolean);
+  
+      if (containers.length === containerIDs.length) {
+          // All elements are added, attach event listeners
+          handleMouseEvents(containers);
+      } else {
+          // Elements are not added yet, wait and check again
+          setTimeout(checkElementsAdded, 100);
+      }
+  }
+  
+  // Use MutationObserver to check for element addition
+  const observerLastfm = new MutationObserver(checkElementsAdded);
+  observerLastfm.observe(document.body, { childList: true, subtree: true });
+</script>
 
-  <script>
-    const scrollContainer = document.getElementById('scroll-container');
-    const draggableDiv = document.getElementById('draggable-div');
-    let isDragging = false;
-    let startX, scrollLeft;
-
-    draggableDiv.addEventListener('mousedown', (event) => {
-      isDragging = true;
-      startX = event.pageX - draggableDiv.offsetLeft;
-      scrollLeft = scrollContainer.scrollLeft;
-
-      // Prevent text selection during drag
-      event.preventDefault();
-    });
-
-    document.addEventListener('mouseup', () => {
-      isDragging = false;
-    });
-
-    document.addEventListener('mousemove', (event) => {
-      if (!isDragging) return;
-      const x = event.pageX - draggableDiv.offsetLeft;
-      const walk = (x - startX) * 2; // Adjust the drag sensitivity
-      scrollContainer.scrollLeft = scrollLeft - walk;
-    });
-  </script>
+    
 
 
 <!-- <script>
@@ -367,6 +415,7 @@ window.onload = function() {
 <script src="./code/apis/pronounspage.js"></script>
 <script src="./code/apis/github.js"></script>
 <script src="./code/apis/gallery.js"></script>
+<script src="./code/apis/wakatime.js"></script>
 <script src="./code/time.js"></script>
 <script src="./code/profileHover.js"></script>
 <script src="./code/verticalScroll.js"></script>
