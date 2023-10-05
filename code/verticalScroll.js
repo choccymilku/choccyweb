@@ -55,7 +55,7 @@ var scroll2Containers = document.querySelectorAll('.inner_scrollables');
 
   // Function to check viewport width and enable/disable scroll based on the width
   function checkViewportWidth() {
-    if (window.innerWidth < 580) {
+    if (window.innerWidth < 550) {
       disableScroll();
     } else {
       enableScroll();
