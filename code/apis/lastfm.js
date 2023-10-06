@@ -120,6 +120,9 @@ function fetchSpotifyArtistImage(artistName, trackDiv) {
                     imageElement.src = imageUrl;
                     imageElement.className = "lastfm_image noselect disabledrag"; // Modify the class name as needed
                     trackDiv.appendChild(imageElement);
+
+                    // Log the fetched artist name
+                    console.log("Fetched artist name:", artistParts[index].trim());
                 } else {
                     // Artist not found for this part, try the next one
                     fetchImagesRecursively(index + 1);
@@ -134,6 +137,7 @@ function fetchSpotifyArtistImage(artistName, trackDiv) {
     // Start fetching images for parts recursively, beginning with the first part
     fetchImagesRecursively(0);
 }
+
 
   
 
@@ -202,5 +206,8 @@ function displayTopTracks(tracks) {
 
 // Initial token retrieval and fetching top tracks
 getToken();
-fetchTopTracksFromLastFM();
-fetchTopArtistsFromLastFM();
+// wait for token to be retrieved
+setTimeout(() => {
+  fetchTopArtistsFromLastFM();
+  fetchTopTracksFromLastFM();
+}, 100);

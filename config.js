@@ -29,7 +29,7 @@ const pronounspage_username = "choccymilk"; //choccymilk or 01GXT9SVRPDFYR3DJGMA
 const steamKey = '64A2D9B0EF63EC0B5ABB371668EE8762'
 
 // title for the page (shown in the tab) <required> ⚠
-const title = "choccy's thing"; 
+const title = "choccy, developer?"; 
 
 // your birthday (shown in the "about me" section) <not required>
 const bday_day = '6';
@@ -102,30 +102,25 @@ var custom_text =
 `twemoji: 😊\n` +
 `this is text \n this is also text, on the same line\nn this is text on a new line`; */
 
-//DO NOT EDIT BELOW THIS LINE
-document.title = `${title}`;
-
-const userTitle = document.getElementById("userTitle");
-userTitle.textContent = username;
-
 
 // can be removed if you don't intend to use to-do list anywhere, make sure the url is correct for your repository (must be raw.githubusercontent.com)
- fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/main/TO-DO.md')
-    .then(response => response.text())
-    .then(text => {
-        var todo = text.split('\n');
-        var todo_list = document.getElementById('todo_list');
-        var olElement = document.createElement('ol'); // Create the <ol> element
-        todo_list.appendChild(olElement); // Append <ol> to the parent element
-        todo.forEach((item) => {
-            if (item.trim() !== '') {
-                var liElement = document.createElement('li'); // Create <li> for each item
-                liElement.textContent = item;
-                olElement.appendChild(liElement); // Append <li> to <ol>
-            }
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/main/TO-DO.md')
+        .then(response => response.text())
+        .then(text => {
+            var todo = text.split('\n');
+            var todo_list = document.getElementById('todo_list');
+            var olElement = document.createElement('ol'); // Create the <ol> element
+            todo_list.appendChild(olElement); // Append <ol> to the parent element
+            todo.forEach((item) => {
+                if (item.trim() !== '') {
+                    var liElement = document.createElement('li'); // Create <li> for each item
+                    liElement.textContent = item;
+                    olElement.appendChild(liElement); // Append <li> to <ol>
+                }
+            });
         });
-    });
-
+});
 
     fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/main/VERSION.MD')
     .then(response => response.text())
@@ -159,3 +154,8 @@ userTitle.textContent = username;
     });
 
 
+//DO NOT EDIT BELOW THIS LINE
+document.title = `${title}`;
+
+const userTitle = document.getElementById("userTitle");
+userTitle.textContent = username;

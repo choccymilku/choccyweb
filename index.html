@@ -57,17 +57,6 @@
 }
 
 .clickable {display: block;}
-    
- @media (prefers-color-scheme: light) {
-  #preloader {
-    background-color: #f1f1f1;
-  }
-}
-@media (prefers-color-scheme: dark) {
-  #preloader {
-    background-color: #2e2f37;
-  }
-}
 </style>
 </head>
 <body id="body" class="light noselect">
@@ -79,16 +68,46 @@
 <div id="main">
 
   <div id="preloader">
+    <div id="preloader_tabs_fill"></div>
     <div id="preloader_tabs"></div>
     <div id="preloader_topbar">
-      <div id="preloader_topbar_left_inner">
-        <div id="preloader_topbar_left"></div>
+      <div id="preloader_topbar_left"></div>
+      <div id="preloader_music">
+        <div id="preloader_music_art"></div>
+        <div id="preloader_music_inner"></div>
+      </div>
+      <div id="preloader_pfp"></div>
+    </div>
+
+    <div id="preloader_fill"></div>
+
+    <div id="preloader_main">
+      <div class="preloader_inner">
+        <div id="preloader_text"></div>
       </div>
     </div>
-    <div id="preloader_main">
-      <div id="preloader_main_inner"></div>
-    </div>
   </div>
+
+
+  <script>
+    // Get a random number between 6 and 12 for the number of elements
+    var numberOfElements = Math.floor(Math.random() * 7) + 6;
+  
+    // into #preloader_text, create divs with class="preloader_text" and random widths
+    for (var i = 0; i < numberOfElements; i++) {
+      // Get a random number between 40 and 120
+      var randomNumber = Math.floor(Math.random() * 81) + 40;
+      // Create a div element
+      var div = document.createElement('div');
+      // Assign class name
+      div.className = 'preloader_text';
+      // Set width using calc(100% - randomNumber)
+      div.style.width = 'calc(100% - ' + randomNumber + 'px)';
+      // Append the div to #preloader_text
+      document.getElementById('preloader_text').appendChild(div);
+    }
+  </script>
+  
 
   <div id="tabs"></div>
 
@@ -106,16 +125,16 @@
         <div id="version" style="font-size: 10px;font-weight: bold;">v.1.3
           <i class="fa-solid fa-circle-question"></i></div>
 
-        <div id="full_gallery">
+<!--         <div id="full_gallery">
           full view
-          <i class="fa-solid fa-panorama"></i></div>
+          <i class="fa-solid fa-panorama"></i></div> -->
       </div>
 
       <div id="music">
         <a id="music-track-link" target="_blank" class="music-cover disabledrag">
-          <img id="music-cover" class="music-cover disabledrag"></img>
+          <img id="music-cover" src="./blank.png" class="music-cover disabledrag"></img>
         </a>
-        <img id="music-cover-nolink" class="music-cover disabledrag"></img>
+        <img id="music-cover-nolink" src="./blank.png" class="music-cover disabledrag"></img>
 
         <div id="music-content">
           <div id="music-song"></div>
@@ -302,32 +321,6 @@
   const observerLastfm = new MutationObserver(checkElementsAdded);
   observerLastfm.observe(document.body, { childList: true, subtree: true });
 </script>
-
-    
-
-
-<!-- <script>
-// Wait for the DOM to fully load before running the JavaScript code
-window.onload = function() {
-    // Get the #tabs element's width
-    const tabsElement = document.getElementById('profile');
-    const tabsWidth = tabsElement.offsetWidth;
-
-    // Create a style element and append it to the document head
-    const style = document.createElement('style');
-    document.head.appendChild(style);
-
-    console.log(tabsWidth);
-
-    // Define the media query string based on the tabsWidth
-    const mediaQuery = `@media screen and (max-height: ${tabsWidth}px) {
-
-    }`;
-
-    // Add the media query to the style element
-    style.textContent = mediaQuery;
-};
-</script> -->
 
 <script> // reset button
   // use button id to reset localstorage or anything saved in the browser and reload the page

@@ -103,9 +103,19 @@ const updateTopBarHeight = () => {
   const textOuter = document.getElementById('text_outer');
   const profile = document.getElementById('profile_hover');
 
+  const preloader_topbar = document.getElementById('preloader_topbar');
+  const preloader_main = document.getElementById('preloader_main');
+  const preloader_music = document.getElementById('preloader_music');
+
   const listeningToMusic = activities ? activities.some(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 0 && activity.name === 'YouTube Music') || (activity.type === 2 && activity.name === 'Spotify')) : false;
 
   if (listeningToMusic && window.innerWidth < 481) {
+    preloader_topbar.style.height = '176px';
+    preloader_main.style.height = 'calc(100% - 269px)'
+    preloader_main.style.transition = '0s';
+
+    preloader_music.style.display = 'block';
+
     topbar.style.height = '155px';
     topbarLeft.style.marginTop = '-85px';
     music.style.marginTop = '83px';
@@ -115,6 +125,7 @@ const updateTopBarHeight = () => {
     textOuter.style.height = 'calc(100% - 195px)';
     profile.style.maxHeight = 'calc(100% - 260px)';
   } else {
+    preloader_topbar.style.height = '';
     topbar.style.height = '';
     topbarLeft.style.marginTop = '';
     music.style.marginTop = '';

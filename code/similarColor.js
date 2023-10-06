@@ -62,9 +62,27 @@ function updateRootColors(dominantColor, similarColors) {
   const textHoverColor = getHoverTextColorBasedOnBrightness(dominantColor);
   document.documentElement.style.setProperty("--texthover", textHoverColor);
 
-  // Hide the preloader once the colors are added
-  $("#preloadere").delay(500).fadeOut(250);
-  $("#preloader_logoe").addClass("preloader_fin");
+/*   // set height of preloader_main to the same size of text
+  if ($(window).width() >= 550) {
+    var textHeight = $("#text").height();
+    var updatedHeight = textHeight + 12; // Add 20 pixels to the original height
+    
+    $("#preloader_main").css("height", updatedHeight + "px", "important");
+    console.log("🐛 Text Height:", textHeight);
+  } */
+
+  setTimeout(function() {
+    $("#preloader_main").css("transition", "0s")
+  }, 300);
+  
+  // 500ms delay
+  setTimeout(function() {
+    $("#preloader").fadeOut(300);
+    $("#preloader_fill").remove();
+    $("#preloader_main").css("margin-top", "5px");
+    $("body").css("background-color", "var(--color2)");
+  }, 500);
+
 }
 
 // Wait for the DOM to fully load

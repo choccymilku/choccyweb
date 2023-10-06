@@ -34,8 +34,8 @@
 
 body {
     color: var(--text);
-    background-color: var(--color2);
     overflow-y: hidden;
+    transition: 0.3s;
 }
 
 h1 { margin:0px }
@@ -59,6 +59,7 @@ h1 { margin:0px }
   padding: 5px;
   margin: 5px;
   max-height: calc(100% - 110px);
+  display: none;
 }
 
 .bar_inner {
@@ -918,87 +919,175 @@ a:hover {color:var(--texthover) !important}
     width: calc(100% - 20px);
   }
 
-  #scroll-container {
-    width: 100%;
-    height: 200px;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
-  #draggable-div {
-    width: 2000px; /* Set a large width for the content inside the scroll container */
-    height: 100px;
-    background-color: lightblue;
-  }
-
-  #preloader_logo {
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .preloader_fin {
-    animation: logo_fin 0.5s ease forwards;
-  }
-
   #preloader_topbar {
-    height: 80px;
-    background-color: red;
-    margin-bottom: 6px;
+    height: 90px;
+    margin-bottom: 5px;
     border-radius: 8px;
-    padding: 5px;
-    margin-top: -10px;
+    margin-top: -5px;
     position: relative;
     z-index: 1;
+    overflow: hidden;
   }
 
   #preloader_topbar_left {
-    background-color: lightblue;
     max-width: 120px;
+    width: 120px;
     height: 80px;
     border-radius: 8px;
+    position: absolute;
+    margin: 5px;
+    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3));
+    background-size: 200% 100%;
+    animation: gradientAnimation 1.5s ease infinite forwards;
   }
 
-  #preloader_topbar_left_inner {
-    background-color: olive;
-    width: 100%;
-    height: 100%;
+  .preloader_inner {
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    padding: 5px;
     border-radius: 8px;
+    overflow: hidden;
   }
-
-  #preloader_main_inner {
-    background-color: olive;
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-  }
-
-  #preloader_tabs {
-    width: 100%;
-    height: 65px;
-    background-color: orange;
-    margin-top: -100px;
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-    position: relative;
-    z-index: 0;
-  }
-
 
   #preloader_main {
-    background-color: blue;
-    height: calc(100% - 140px);
+    height: calc(100% - 128px);
     width: calc(100% - 10px);
     padding: 5px;
     border-radius: 8px;
+    margin-top: -5px;
+    transition: 0.3s;
   }
 
   #preloader {
-    margin-top: 50px;
-    opacity: 0.5;
+    margin-top: 45px;
     width: calc(100% - 10px);
     margin-left: 5px;
     background-color: transparent;
   }
-  
+
+  #preloader_pfp {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    right: 0;
+    margin-right: 5px;
+    margin-top: -85px;
+    border-radius: 50%;
+    border: 5px solid var(--color2);
+    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3));
+    background-size: 200% 100%;
+    animation: gradientAnimation 1.5s ease infinite forwards;
+  }
+
+  @media only screen and (max-width: 550px) {
+    #preloader_pfp {
+      border: 5px solid var(--color1) !important;
+    }
+  }
+
+  #preloader_tabs {
+    width: 100%;
+    height: 60px;
+    margin-top: -100px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+  }
+
+  #preloader_fill {
+    width: 100%;
+    height: 15px;
+    margin-top: -10px;
+  }
+
+  .preloader_text {
+    height: 37px;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3));
+  }
+
+
+  @keyframes preloaderAnimation {
+    0% {
+      background-position: 100% 50%;
+    }
+    50% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+
+  #preloader_music {
+    width: calc(100% - 220px);
+    height: 80px;
+    margin: 5px;
+    background-color: red;
+    border-radius: 8px;
+    margin-left: 130px;
+    position: relative;
+  }
+
+  #preloader_music_art {
+    height: 70px;
+    width: 70px;
+    background-color: blue;
+    border-radius: 8px;
+    margin-left: 5px;
+    top: 5px;
+    position: relative;
+  }
+
+  #preloader_music_inner {
+    background-color: orange;
+    width: calc(100% - 85px);
+    height: calc(100% - 10px);
+    border-radius: 8px;
+    margin-left: 80px;
+    margin-top: -70px;
+    top: 5px;
+    position: relative;
+  }
+
+
+  body {
+    background-color: var(--color2);
+  }
+  #preloader_fill {
+    background-color: var(--color2);
+  }
+  #preloader_topbar {
+    background-color: var(--color1);
+  }
+  #preloader_main {
+    background-color: var(--color1);
+  }
+  #preloader_tabs {
+    background-color: var(--color1);
+  }
+  .preloader_inner {
+    background-color: var(--color2);
+  }
+  .preloader_text {
+    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3));
+    background-size: 200% 100%;
+    animation: gradientAnimation 1.5s ease infinite forwards;
+  }
+
+  #preloader_music {
+    background-color: var(--color2);
+  }
+
+  #preloader_music_art {
+    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3));
+    background-size: 200% 100%;
+    animation: gradientAnimation 1.5s ease infinite forwards;
+  }
+
+  #preloader_music_inner {
+    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3));
+    background-size: 200% 100%;
+    animation: gradientAnimation 1.5s ease infinite forwards;
+  }

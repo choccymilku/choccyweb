@@ -1,12 +1,11 @@
-version 1.3.6
-add - loaders for, loading stuff
-add - using hop.io for self-hosted APIs 
+version 1.3.7
+add - updated loaders
 add - data tab, currently with songs only
 
 fix - few visual errors
+fix - to-do not loading sometimes
 
-bug - to-do not loading sometimes
 bug - full view gallery misaligned on smaller screens
 bug - tabs with dyslexic font misplaced
 
-temp - removed full view on mobile
+temp - removed full view globally
