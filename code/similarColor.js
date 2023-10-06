@@ -20,19 +20,19 @@ function rgbToHex(r, g, b) {
 // Function to determine the text color based on the color brightness
 function getTextColorBasedOnBrightness(hexColor) {
   const color = chroma(hexColor);
-  return color.luminance() > 0.4 ? "#1C1C1C" : "#f5f5f5";
+  return color.luminance() > 0.4 ? "#1C1C1C" : "#fff";
 }
 
 function getHoverTextColorBasedOnBrightness(hexColor) {
   const color = chroma(hexColor);
-  return color.luminance() > 0.4 ? "#686868" : "#c2c2c2";
+  return color.luminance() > 0.4 ? "#686868" : "var(--color5)";
 }
 
 // Function to generate similar colors with dynamic darkening or brightening
 function generateSimilarColors(dominantColor, numColors, increment = 0.3) {
   const baseColor = chroma(dominantColor);
   const similarColors = [];
-  const isDarkDominantColor = baseColor.luminance() <= 0.5;
+  const isDarkDominantColor = baseColor.luminance() <= 0.4;
 
   for (let i = 1; i <= numColors; i++) {
     let generatedColor;
@@ -54,7 +54,6 @@ function updateRootColors(dominantColor, similarColors) {
   document.documentElement.style.setProperty("--color3", similarColors[1]);
   document.documentElement.style.setProperty("--color4", similarColors[2]);
   document.documentElement.style.setProperty("--color5", similarColors[3]);
-  // ... other color properties
   
   // Set the text color based on the brightness of the dominant color
   const textColor = getTextColorBasedOnBrightness(dominantColor);
@@ -64,8 +63,8 @@ function updateRootColors(dominantColor, similarColors) {
   document.documentElement.style.setProperty("--texthover", textHoverColor);
 
   // Hide the preloader once the colors are added
-  $("#preloader").delay(500).fadeOut(250);
-  $("#preloader_logo").addClass("preloader_fin");
+  $("#preloadere").delay(500).fadeOut(250);
+  $("#preloader_logoe").addClass("preloader_fin");
 }
 
 // Wait for the DOM to fully load
