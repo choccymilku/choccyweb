@@ -5,6 +5,7 @@ add - data tab, currently with songs only
 
 fix - few visual errors
 
+bug - to-do not loading sometimes
 bug - full view gallery misaligned on smaller screens
 bug - tabs with dyslexic font misplaced
 
