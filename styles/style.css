@@ -20,6 +20,65 @@
   --texthover: #c2c2c2 !important;
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #2C2E41;
+  }
+  #preloader_fill {
+    background-color: #2C2E41;
+  }
+  #preloader_topbar {
+    background-color: #242636;
+  }
+  #preloader_main {
+    background-color: #242636;
+  }
+  #preloader_tabs {
+    background-color: #242636;
+  }
+  .preloader_inner {
+    background-color: #2C2E41;
+  }
+  .preloader_text {
+    background: linear-gradient(90deg, #34344B, #44465A , #34344B);
+    background-size: 200% 100%;
+    animation: gradientAnimation 1.5s ease infinite forwards;
+  }
+
+  #preloader_music {
+    background-color: #2C2E41;
+  }
+
+  #preloader_music_art {
+    background: linear-gradient(90deg, #34344B, #44465A , #34344B);    
+    background-size: 200% 100%;
+    animation: gradientAnimation 1.5s ease infinite forwards;
+  }
+
+  #preloader_music_inner {
+    background: linear-gradient(90deg, #34344B, #44465A , #34344B);    
+    background-size: 200% 100%;
+    animation: gradientAnimation 1.5s ease infinite forwards;
+  }
+  
+  #preloader_music {
+    background-color: #2C2E41;
+  }
+
+  #preloader_pfp {
+    background: linear-gradient(90deg, #34344B, #44465A , #34344B);    
+    border: 5px solid #2C2E41;
+  }
+
+  #preloader_topbar_left {
+    background: linear-gradient(90deg, #34344B, #44465A , #34344B) !important;  
+  }
+
+  #preloader {
+    background-color: #2C2E41;
+  }
+}
+
 
 :root[data-applied-mode="light"] {
     color-scheme: light;
@@ -475,9 +534,9 @@ a:hover {color:var(--texthover) !important}
 #roblox {width: 300px;height: 100px;background-color: var(--wing1);margin-top: 20px;margin-bottom: 20px;}
 
 #preloader {
-  width: calc(100% + 20px);
+  width: calc(100% + 18px);
   height: calc(100% + 20px);
-  margin-left: -10px;
+  margin-left: -11px;
   margin-top: -10px;
   position: fixed;
   z-index: 9999;
@@ -920,7 +979,7 @@ a:hover {color:var(--texthover) !important}
   }
 
   #preloader_topbar {
-    height: 90px;
+    height: 92px;
     margin-bottom: 5px;
     border-radius: 8px;
     margin-top: -5px;
@@ -936,7 +995,6 @@ a:hover {color:var(--texthover) !important}
     border-radius: 8px;
     position: absolute;
     margin: 5px;
-    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3));
     background-size: 200% 100%;
     animation: gradientAnimation 1.5s ease infinite forwards;
   }
@@ -954,15 +1012,15 @@ a:hover {color:var(--texthover) !important}
     width: calc(100% - 10px);
     padding: 5px;
     border-radius: 8px;
-    margin-top: -5px;
     transition: 0.3s;
+    margin-top: -2px;
   }
 
   #preloader {
-    margin-top: 45px;
-    width: calc(100% - 10px);
-    margin-left: 5px;
-    background-color: transparent;
+    margin-top: -51px;
+    width: calc(100% - 8px);
+    margin-left: 4px;
+    padding-top: 100px;
   }
 
   #preloader_pfp {
@@ -973,8 +1031,6 @@ a:hover {color:var(--texthover) !important}
     margin-right: 5px;
     margin-top: -85px;
     border-radius: 50%;
-    border: 5px solid var(--color2);
-    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3));
     background-size: 200% 100%;
     animation: gradientAnimation 1.5s ease infinite forwards;
   }
@@ -1004,7 +1060,6 @@ a:hover {color:var(--texthover) !important}
     width: 100%;
     margin-bottom: 10px;
     border-radius: 8px;
-    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3));
   }
 
 
@@ -1024,7 +1079,6 @@ a:hover {color:var(--texthover) !important}
     width: calc(100% - 220px);
     height: 80px;
     margin: 5px;
-    background-color: red;
     border-radius: 8px;
     margin-left: 130px;
     position: relative;
@@ -1033,7 +1087,6 @@ a:hover {color:var(--texthover) !important}
   #preloader_music_art {
     height: 70px;
     width: 70px;
-    background-color: blue;
     border-radius: 8px;
     margin-left: 5px;
     top: 5px;
@@ -1041,7 +1094,6 @@ a:hover {color:var(--texthover) !important}
   }
 
   #preloader_music_inner {
-    background-color: orange;
     width: calc(100% - 85px);
     height: calc(100% - 10px);
     border-radius: 8px;
@@ -1049,45 +1101,4 @@ a:hover {color:var(--texthover) !important}
     margin-top: -70px;
     top: 5px;
     position: relative;
-  }
-
-
-  body {
-    background-color: var(--color2);
-  }
-  #preloader_fill {
-    background-color: var(--color2);
-  }
-  #preloader_topbar {
-    background-color: var(--color1);
-  }
-  #preloader_main {
-    background-color: var(--color1);
-  }
-  #preloader_tabs {
-    background-color: var(--color1);
-  }
-  .preloader_inner {
-    background-color: var(--color2);
-  }
-  .preloader_text {
-    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3));
-    background-size: 200% 100%;
-    animation: gradientAnimation 1.5s ease infinite forwards;
-  }
-
-  #preloader_music {
-    background-color: var(--color2);
-  }
-
-  #preloader_music_art {
-    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3));
-    background-size: 200% 100%;
-    animation: gradientAnimation 1.5s ease infinite forwards;
-  }
-
-  #preloader_music_inner {
-    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3));
-    background-size: 200% 100%;
-    animation: gradientAnimation 1.5s ease infinite forwards;
   }

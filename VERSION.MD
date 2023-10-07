@@ -9,3 +9,4 @@ bug - full view gallery misaligned on smaller screens
 bug - tabs with dyslexic font misplaced
 
 temp - removed full view globally
+temp - removed gallery, bot seems to be broken (help me im losing it)

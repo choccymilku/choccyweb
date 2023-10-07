@@ -74,12 +74,12 @@ function updateRootColors(dominantColor, similarColors) {
   setTimeout(function() {
     $("#preloader_main").css("transition", "0s")
   }, 300);
+  $("#preloader").css("background-color", "transparent");
   
   // 500ms delay
   setTimeout(function() {
     $("#preloader").fadeOut(300);
     $("#preloader_fill").remove();
-    $("#preloader_main").css("margin-top", "5px");
     $("body").css("background-color", "var(--color2)");
   }, 500);
 

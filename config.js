@@ -40,7 +40,7 @@ const bday_year = '2007';
 var username = "choccy";
 
 // tabs <required>
-const tabNames = ["./me", "./data", "./people", "./projects", "./gallery"];
+const tabNames = ["./me", "./data", "./people", "./projects"];
 const tabIds = ["tab_me", "tab_data","tab_friends", "tab_projects", "tab_gallery"];
 const tabBlocks = ["text_outer", "data", "people", "projects", "gallery"];
 const tabIcons = ["home", "clock", "users", "briefcase", "image"];
