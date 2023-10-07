@@ -49,6 +49,7 @@ function generateSimilarColors(dominantColor, numColors, increment = 0.3) {
 
 // Function to update the CSS variables with dominant and similar colors
 function updateRootColors(dominantColor, similarColors) {
+setTimeout(function() {
   document.documentElement.style.setProperty("--color1", dominantColor);
   document.documentElement.style.setProperty("--color2", similarColors[0]);
   document.documentElement.style.setProperty("--color3", similarColors[1]);
@@ -61,28 +62,59 @@ function updateRootColors(dominantColor, similarColors) {
 
   const textHoverColor = getHoverTextColorBasedOnBrightness(dominantColor);
   document.documentElement.style.setProperty("--texthover", textHoverColor);
+}, 500);
 
-/*   // set height of preloader_main to the same size of text
-  if ($(window).width() >= 550) {
-    var textHeight = $("#text").height();
-    var updatedHeight = textHeight + 12; // Add 20 pixels to the original height
+if ($(window).width() >= 550) {
+    var visibleBarHeight = $(".bar:visible").height();
+    var updatedHeight = visibleBarHeight + 2; // Add 12 pixels to the original height
     
     $("#preloader_main").css("height", updatedHeight + "px", "important");
-    console.log("🐛 Text Height:", textHeight);
-  } */
+    console.log("🐛 Visible Bar Height:", visibleBarHeight);
+}
 
-  setTimeout(function() {
-    $("#preloader_main").css("transition", "0s")
-  }, 300);
-  $("#preloader").css("background-color", "transparent");
+$(document).ready(function() {
+  var musicWidth = $("#music").width();
+  var updatedMusicWidth = musicWidth + 11; // Add 12 pixels to the original height
+  
+  $("#preloader_music").css("width", updatedMusicWidth + "px", "important");
+  console.log("🐛 Visible Music width:", musicWidth);
+
+  // disable if window width is less than 550px
+  if ($(window).width() <= 550) {
+    $("#preloader_music").css("width", "100%", "important");
+    console.log("🐛 Visible Music width:", musicWidth);
+  }
+});
+
+$(document).ready(function() {
+  var totalWidth = 0;
+  var maxWidth = $("#tabs").width(); // Get the maximum allowed width of #tabs
+
+  $("#tabs").children().each(function(index) {
+    var elementWidth = $(this).width();
+    totalWidth += elementWidth + 19.5;
+  });
+
+  if (totalWidth <= maxWidth) {
+    var updatedWidth = totalWidth;
+    $("#preloader_tabs").css("width", updatedWidth + "px");
+    console.log("🐛 Total Tabs Width:", totalWidth);
+  } else {
+    console.log("Total width exceeds the maximum allowed width. Script disabled.");
+  }
+});
+
+
+
+$("#preloader").css("background-color", "transparent");
+$("#preloader_tabs").css("transition", "0.3s");
+$("#preloader_main").css("transition", "0.3s");
   
   // 500ms delay
   setTimeout(function() {
     $("#preloader").fadeOut(300);
-    $("#preloader_fill").remove();
     $("body").css("background-color", "var(--color2)");
   }, 500);
-
 }
 
 // Wait for the DOM to fully load

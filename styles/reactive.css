@@ -23,7 +23,7 @@
 
     #pfp {
         margin-top: -25px;
-        background-color: var(--color1);
+        border: 5px solid var(--color1);
         height: 50px;
         width: 50px;
         border-bottom-left-radius: 8px;
@@ -71,10 +71,11 @@
     }
 
     #friends_inner {
-        display: block;
+        display: flex;
         overflow-y: scroll;
-        height: 100%;
+        height: calc(100% + 5px);
         width: calc(100% + 5px);
+        flex-wrap: wrap;
     }
 
     .friends_name {
@@ -116,19 +117,24 @@
 
     #friends_container:last-child {
         border-bottom-right-radius: 0px !important;
+        margin-right: 5px;
     }
 
     #friends_container {
-        width: calc(100% - 5px) !important;
-        margin-right: 0px !important;
+        width: calc(50% - 5px);
+        margin-right: 5px;
         margin-bottom: 5px;
         height: fit-content;
+        min-width: 165px;
     }
-    #friends_container:last-child {
-        margin-bottom: 0px;
+
+    @media only screen and (max-width: 409px) {
+        #friends_container {
+            width: 100%;
+        }
     }
     #friends_avatar {
-        width: calc(100% - 20px);
+        width: 100%;
         height: 100%;
     }
     .friends_name  {
@@ -234,23 +240,17 @@
         border-top-left-radius: 0px;
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
-        margin-bottom: -1px;
     }
     #preloader_topbar {
-        margin-top: -45px;
-    }
-
-    #preloader_main {
-        height: calc(100% - 183px);
+        margin-top: -50px;
     }
 
     #preloader_pfp {
         position: fixed;
         bottom: 0;
         height: 50px;
-        width: 52px;
-        margin-bottom: -1px;
-        margin-right: 4px !important;
+        width: 50px;
+        margin-right: 5px !important;
         border-radius: 0px;
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
@@ -264,6 +264,7 @@
 
     #preloader_music {
         width: calc(100% - 135px) !important;
+        max-width: inherit;
       }
 
       #preloader_tabs_fill {
@@ -273,12 +274,17 @@
         top: -45px;
         position: relative;
       }
+
+      .preloader_inner {
+        border-bottom-right-radius: 0px;
+      }
 }
 
 @media only screen and (max-width: 481px) {
     #preloader_music {
         margin-top: 90px;
-        margin-left: 5px;
+        margin-left: -125px;
+        max-width: calc(100% - 10px);
         width: calc(100% - 10px) !important;
     }
 }

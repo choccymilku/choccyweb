@@ -202,6 +202,19 @@ if (listeningToMusic) {
   const songNameElement = document.getElementById('music-song');
   songNameElement.innerText = songName;
 
+  $(document).ready(function() {
+    setTimeout(function() { 
+      const preloaderMusic = document.getElementById('preloader_music');
+      preloaderMusic.style.opacity = '1';
+    }, 300);
+    var topbarLeftWidth = $("#topbar_left").width();
+    var updatedtopbarLeftWidth = topbarLeftWidth + 10; // Add 10 pixels to the original width
+  
+    $("#preloader_topbar_left").css("width", updatedtopbarLeftWidth + "px", "important");
+    console.log("🐛 Visible Music width:", topbarLeftWidth);
+  });
+  
+
   const artistElement = document.getElementById('music-artist');
   artistElement.innerText = artist;
 

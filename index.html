@@ -208,14 +208,17 @@
     <div class="noselect bar_outer" id="data_outer">
       <div class="noselect bar_inner" id="data_inner">
         <div style="font-family: Rubik;">top artists</div>
+
           <div class="lastfm_outer" id="lastfm_recent_outer">
             <div class="inner_scrollables" id="lastfm_artist"></div>
           </div>
 
         <div style="font-family: Rubik;margin-top: 10px;">top songs</div>
+
           <div class="lastfm_outer">
             <div class="inner_scrollables" id="lastfm_top"></div>
           </div>
+
       </div>
   </div>
   </div>
@@ -261,67 +264,6 @@
   </div>
 </div>
 
-<script>
-  // Function to handle mouse events for multiple elements
-  function handleMouseEvents(containers) {
-      let isDown = false;
-      let startX, startY, startScrollLeft, startScrollTop;
-  
-      function mouseIsDown(e, index) {
-          isDown = true;
-          startY = e.pageY - containers[index].offsetTop;
-          startX = e.pageX - containers[index].offsetLeft;
-          startScrollLeft = containers[index].scrollLeft;
-          startScrollTop = containers[index].scrollTop;
-      }
-  
-      function mouseUp() {
-          isDown = false;
-      }
-  
-      function mouseLeave() {
-          isDown = false;
-      }
-  
-      function mouseMove(e, index) {
-          if (isDown) {
-              e.preventDefault();
-              const y = e.pageY - containers[index].offsetTop;
-              const walkY = y - startY;
-              containers[index].scrollTop = startScrollTop - walkY;
-              const x = e.pageX - containers[index].offsetLeft;
-              const walkX = x - startX;
-              containers[index].scrollLeft = startScrollLeft - walkX * 1.75;
-          }
-      }
-  
-      for (let i = 0; i < containers.length; i++) {
-          containers[i].addEventListener('mousedown', (e) => mouseIsDown(e, i));
-          containers[i].addEventListener('mouseup', mouseUp);
-          containers[i].addEventListener('mouseleave', mouseLeave);
-          containers[i].addEventListener('mousemove', (e) => mouseMove(e, i));
-      }
-  }
-  
-  // Function to check if the elements are added to the DOM
-  function checkElementsAdded() {
-      const containerIDs = ['#lastfm_artist', '#lastfm_top', '#tabs']; // Add more IDs as needed
-      const containers = containerIDs.map(id => document.querySelector(id)).filter(Boolean);
-  
-      if (containers.length === containerIDs.length) {
-          // All elements are added, attach event listeners
-          handleMouseEvents(containers);
-      } else {
-          // Elements are not added yet, wait and check again
-          setTimeout(checkElementsAdded, 100);
-      }
-  }
-  
-  // Use MutationObserver to check for element addition
-  const observerLastfm = new MutationObserver(checkElementsAdded);
-  observerLastfm.observe(document.body, { childList: true, subtree: true });
-</script>
-
 <script> // reset button
   // use button id to reset localstorage or anything saved in the browser and reload the page
   document.getElementById('reset').addEventListener('click', function () {
@@ -364,6 +306,57 @@
   // Add click event listener to the full_gallery2 element
   document.getElementById('full_gallery2').addEventListener('click', closeGallery);
 </script>
+
+<script>
+if (localStorage.getItem('theme') === 'light') {
+  document.getElementById('body').style.transition = '0s';
+  document.getElementById('body').style.backgroundColor = '#d4d4d4';
+  document.getElementById('preloader_topbar').style.backgroundColor = '#e7e7e7';
+  document.getElementById('preloader_main').style.backgroundColor = '#e7e7e7';
+  document.getElementById('preloader_main').style.transition = '0s';
+  document.getElementById('preloader_tabs').style.backgroundColor = '#e7e7e7';
+  document.getElementById('preloader_tabs').style.transition = '0s';
+  document.getElementById('preloader_music').style.backgroundColor = '#d4d4d4';
+  document.getElementById('preloader_music').style.backgroundColor = '#d4d4d4';
+  document.getElementById('preloader').style.backgroundColor = '#d4d4d4';
+
+  document.getElementById('preloader_pfp').style.background = 'linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1)';
+  document.getElementById('preloader_pfp').style.backgroundSize = '200% 100%';
+  document.getElementById('preloader_pfp').style.animation = 'gradientAnimation 1.5s ease infinite forwards';
+  document.getElementById('preloader_pfp').style.border = '5px solid #d4d4d4';
+
+  document.getElementById('preloader_music_art').style.background = 'linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1)';
+  document.getElementById('preloader_music_art').style.backgroundSize = '200% 100%';
+  document.getElementById('preloader_music_art').style.animation = 'gradientAnimation 1.5s ease infinite forwards';
+
+  document.getElementById('preloader_music_inner').style.background= 'linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1)';
+  document.getElementById('preloader_music_inner').style.backgroundSize = '200% 100%';
+  document.getElementById('preloader_music_inner').style.animation = 'gradientAnimation 1.5s ease infinite forwards';
+    
+  document.getElementById('preloader_topbar_left').style.background= 'linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1)';
+  document.getElementById('preloader_topbar_left').style.backgroundSize = '200% 100%';
+  document.getElementById('preloader_topbar_left').style.animation = 'gradientAnimation 1.5s ease infinite forwards';
+
+  document.querySelector('.preloader_inner').style.backgroundColor = '#d4d4d4';
+
+  // Select all elements with class 'preloader_text'
+  var preloaderTextElements = document.querySelectorAll('.preloader_text');
+
+  // Loop through the NodeList and set the background color for each element
+  preloaderTextElements.forEach(function(element) {
+    element.style.background = 'linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1)';
+    element.style.backgroundSize = '200% 100%';
+    element.style.animation = 'gradientAnimation 1.5s ease infinite forwards;';
+  });
+
+  // if window size is less than 600px, change the border color of preloader_pfp
+  if (window.innerWidth < 600) {
+    document.getElementById('preloader_pfp').style.border = '5px solid #e7e7e7';
+  }
+} else {
+}
+</script>
+
 <script src="./config.js"></script>
 <script src="./code/tabs.js"></script>
 <script src="./code/similarColor.js"></script>
@@ -374,7 +367,7 @@
 <script src="./code/apis/discord.js"></script>
 <script src="./code/apis/pronounspage.js"></script>
 <script src="./code/apis/github.js"></script>
-<!-- <script src="./code/apis/gallery.js"></script> -->
+<script src="./code/apis/gallery.js"></script>
 <script src="./code/apis/wakatime.js"></script>
 <script src="./code/time.js"></script>
 <script src="./code/profileHover.js"></script>

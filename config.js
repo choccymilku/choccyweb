@@ -14,7 +14,7 @@ const co_host_name = ""; //your co-host name
 // last.fm
 var lastFmApiKey = "53b12a31e5c9e626ef29a22967e54e63";
 var lastFmUsername = "choccymilku";
-var numberOfTracks = 6;
+var numberOfTracks = 10;
 
 // waka time
 var waka_name = "choccy";
@@ -40,7 +40,7 @@ const bday_year = '2007';
 var username = "choccy";
 
 // tabs <required>
-const tabNames = ["./me", "./data", "./people", "./projects"];
+const tabNames = ["./me", "./data", "./people", "./projects", "./gallery"];
 const tabIds = ["tab_me", "tab_data","tab_friends", "tab_projects", "tab_gallery"];
 const tabBlocks = ["text_outer", "data", "people", "projects", "gallery"];
 const tabIcons = ["home", "clock", "users", "briefcase", "image"];

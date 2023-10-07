@@ -6,10 +6,11 @@ const discordUserIds = [
   '768656516885774371', // prax
   '984835890608230430', // vin
   '1035262868586766376', // Ben
+  '981935028751695943',  // nari
   '503676030536646716' // ashy
 ];
 
-function calculateLuminance(hexColor) {
+/* function calculateLuminance(hexColor) {
   // Remove the '#' if it exists
   hexColor = hexColor.replace(/^#/, '');
 
@@ -33,7 +34,7 @@ function setTextColorAndLinkColorBasedOnLuminance(container, hexColor) {
   links.forEach(link => {
     link.style.color = textColor;
   });
-}
+} */
 
 function fetchDataAndUpdateLocalStorage() {
   console.log('🐛 Fetching friends data...');
@@ -62,7 +63,6 @@ function fetchDataAndUpdateLocalStorage() {
           const id = friendData.id;
           const container = document.createElement('div');
           container.setAttribute('id', 'friends_container');
-          container.style.backgroundColor = friendData.banner_color;
 
           const avatar = document.createElement('img');
           avatar.setAttribute('src', friendData.avatar);
@@ -79,8 +79,8 @@ function fetchDataAndUpdateLocalStorage() {
           container.appendChild(name);
 
           // Set the text color and link color based on luminance
-          setTextColorAndLinkColorBasedOnLuminance(container, friendData.banner_color);
-
+/*           setTextColorAndLinkColorBasedOnLuminance(container, friendData.banner_color);
+ */
           if (id === '1035262868586766376') {
             const link = document.createElement('a');
             link.href = 'https://benreyland.crd.co';
@@ -90,8 +90,8 @@ function fetchDataAndUpdateLocalStorage() {
             name.appendChild(link);
 
             // Set the link (a element) color based on luminance
-            setTextColorAndLinkColorBasedOnLuminance(link, friendData.banner_color);
-          }
+/*             setTextColorAndLinkColorBasedOnLuminance(link, friendData.banner_color);
+ */          }
 
           friendsContainer.appendChild(container);
         });
@@ -119,7 +119,6 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
       const id = friendData.id;
       const container = document.createElement('div');
       container.setAttribute('id', 'friends_container');
-      container.style.backgroundColor = friendData.banner_color;
 
       const avatar = document.createElement('img');
       avatar.setAttribute('src', friendData.avatar);
@@ -135,9 +134,6 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
       container.appendChild(avatar);
       container.appendChild(name);
 
-      // Set the text color and link color based on luminance
-      setTextColorAndLinkColorBasedOnLuminance(container, friendData.banner_color);
-
       if (id === '1035262868586766376') {
         const link = document.createElement('a');
         link.href = 'https://benreyland.crd.co';
@@ -145,9 +141,6 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
         link.target = '_blank';
         name.textContent = '';
         name.appendChild(link);
-
-        // Set the link (a element) color based on luminance
-        setTextColorAndLinkColorBasedOnLuminance(link, friendData.banner_color);
       }
 
       friendsContainer.appendChild(container);

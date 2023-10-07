@@ -24,9 +24,6 @@
   body {
     background-color: #2C2E41;
   }
-  #preloader_fill {
-    background-color: #2C2E41;
-  }
   #preloader_topbar {
     background-color: #242636;
   }
@@ -71,14 +68,19 @@
   }
 
   #preloader_topbar_left {
-    background: linear-gradient(90deg, #34344B, #44465A , #34344B) !important;  
+    background: linear-gradient(90deg, #34344B, #44465A , #34344B);
   }
 
   #preloader {
     background-color: #2C2E41;
   }
-}
 
+  @media only screen and (max-width: 550px) {
+    #preloader_pfp {
+      border: 5px solid #242636;
+    }
+  }
+}
 
 :root[data-applied-mode="light"] {
     color-scheme: light;
@@ -89,6 +91,68 @@
     --color5: #9b9b9b  !important;
     --text: #1C1C1C !important;
     --texthover: #686868 !important;
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #d4d4d4;
+  }
+  #preloader_topbar {
+    background-color: #e7e7e7;
+  }
+  #preloader_main {
+    background-color: #e7e7e7;
+  }
+  #preloader_tabs {
+    background-color: #e7e7e7;
+  }
+  .preloader_inner {
+    background-color: #d4d4d4;
+  }
+  .preloader_text {
+    background: linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1);
+    background-size: 200% 100%;
+    animation: gradientAnimation 1.5s ease infinite forwards;
+  }
+
+  #preloader_music {
+    background-color: #d4d4d4;
+  }
+
+  #preloader_music_art {
+    background: linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1);
+    background-size: 200% 100%;
+    animation: gradientAnimation 1.5s ease infinite forwards;
+  }
+
+  #preloader_music_inner {
+    background: linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1);
+    background-size: 200% 100%;
+    animation: gradientAnimation 1.5s ease infinite forwards;
+  }
+  
+  #preloader_music {
+    background-color: #d4d4d4;
+  }
+
+  #preloader_pfp {
+    background: linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1);
+    border: 5px solid #d4d4d4;
+  }
+
+  #preloader_topbar_left {
+    background: linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1);
+  }
+
+  #preloader {
+    background-color: #d4d4d4;
+  }
+  
+  @media only screen and (max-width: 550px) {
+    #preloader_pfp {
+      border: 5px solid #e7e7e7 !important;
+    }
+  }
 }
 
 body {
@@ -391,7 +455,7 @@ h1 { margin:0px }
   cursor: pointer;
   z-index: 1;
   position: relative;
-  padding: 5px;
+  border: 5px solid var(--color2);
   background-color: var(--color2);
 }
 
@@ -461,7 +525,7 @@ h1 { margin:0px }
   height: 195px;
   box-sizing: border-box;
   margin-bottom: 1px;
-  background-color: var(--color3);
+  background-color: var(--color2);
 }
 
 #friends_container:last-child {
@@ -469,12 +533,12 @@ h1 { margin:0px }
 }
 
 #friends_avatar {
-  height: 135px;
-  width: 135px;
-  margin: 5px;
-  padding: 5px;
+  height: 155px;
+  width: 155px;
   background-color: var(--color2);
-  border-radius: 50%;
+  border-radius: 8px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .friends_name {
@@ -899,7 +963,6 @@ a:hover {color:var(--texthover) !important}
     background-color: var(--color2);
     height: 200px;
     min-width: 155px;
-    padding: 5px;
     border-radius: 8px;
     margin-right: 5px;
   }
@@ -914,7 +977,8 @@ a:hover {color:var(--texthover) !important}
     max-height: 155px;
     object-fit: cover;
     border-radius: 8px;
-    background-color: var(--color3)
+    background-color: var(--color3);
+    border-bottom-left-radius: 0px;
   }
 
   .lastfm_playcount {
@@ -923,7 +987,6 @@ a:hover {color:var(--texthover) !important}
     position: relative;
     margin-left: auto;
     margin-top: -38px;
-    margin-right: -1px;
     font-family: Rubik;
     border-bottom-right-radius: 8px;
     border-top-left-radius: 8px;
@@ -935,6 +998,8 @@ a:hover {color:var(--texthover) !important}
     font-weight: bold;
     font-size: 20px;
     white-space: nowrap;
+    padding: 5px;
+    margin-top: -8px;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -944,7 +1009,8 @@ a:hover {color:var(--texthover) !important}
     font-size: 29px;
     white-space: nowrap;
     overflow: hidden;
-    margin-top: 3px;
+    padding: 5px;
+    margin-top: -5px;
     text-overflow: ellipsis;
   }
 
@@ -952,6 +1018,8 @@ a:hover {color:var(--texthover) !important}
     font-size: 12px;
     white-space: nowrap;
     overflow: hidden;
+    padding: 5px;
+    margin-top: -10px;
     text-overflow: ellipsis;
   }
 
@@ -979,22 +1047,25 @@ a:hover {color:var(--texthover) !important}
   }
 
   #preloader_topbar {
-    height: 92px;
+    height: 90px;
     margin-bottom: 5px;
     border-radius: 8px;
     margin-top: -5px;
     position: relative;
     z-index: 1;
     overflow: hidden;
+    display: flex;
   }
 
   #preloader_topbar_left {
-    max-width: 120px;
     width: 120px;
     height: 80px;
     border-radius: 8px;
-    position: absolute;
+    position: relative;
+    display: flex;
+    align-items: center;
     margin: 5px;
+    transition: 0.3s;
     background-size: 200% 100%;
     animation: gradientAnimation 1.5s ease infinite forwards;
   }
@@ -1017,9 +1088,9 @@ a:hover {color:var(--texthover) !important}
   }
 
   #preloader {
-    margin-top: -51px;
-    width: calc(100% - 8px);
-    margin-left: 4px;
+    margin-top: -50px;
+    width: calc(100% - 10px);
+    margin-left: 5px;
     padding-top: 100px;
   }
 
@@ -1029,16 +1100,10 @@ a:hover {color:var(--texthover) !important}
     position: absolute;
     right: 0;
     margin-right: 5px;
-    margin-top: -85px;
+    margin-top: 5px;
     border-radius: 50%;
     background-size: 200% 100%;
     animation: gradientAnimation 1.5s ease infinite forwards;
-  }
-
-  @media only screen and (max-width: 550px) {
-    #preloader_pfp {
-      border: 5px solid var(--color1) !important;
-    }
   }
 
   #preloader_tabs {
@@ -1047,6 +1112,7 @@ a:hover {color:var(--texthover) !important}
     margin-top: -100px;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
+    transition: 0.3s;
   }
 
   #preloader_fill {
@@ -1076,12 +1142,15 @@ a:hover {color:var(--texthover) !important}
   }
 
   #preloader_music {
-    width: calc(100% - 220px);
+    max-width: calc(100% - 220px);
     height: 80px;
+    width: 200px;
     margin: 5px;
     border-radius: 8px;
-    margin-left: 130px;
     position: relative;
+    margin-left: 0px;
+    opacity: 0;
+    transition: 0.3s;
   }
 
   #preloader_music_art {
