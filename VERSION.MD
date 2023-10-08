@@ -7,5 +7,3 @@ bug - tabs with dyslexic font misplaced (on hold)
 bug - tab loader on smaller devices not working properly (on hold)
 
 temp - removed full view on mobile (it will come back someday)
-
-submit your bugs on the github repo https://github.com/choccymilku/choccy-newer-and-improved
