@@ -75,6 +75,10 @@
     background-color: #2C2E41;
   }
 
+  #load_time {
+    color: white;
+  }
+
   @media only screen and (max-width: 550px) {
     #preloader_pfp {
       border: 5px solid #242636;
@@ -147,6 +151,10 @@
   #preloader {
     background-color: #d4d4d4;
   }
+
+  #load_time {
+    color: black;
+  }
   
   @media only screen and (max-width: 550px) {
     #preloader_pfp {
@@ -213,7 +221,6 @@ h1 { margin:0px }
   width: calc(100% - 10px);
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
-  overflow: hidden;
   overflow-y: scroll;
   -webkit-tap-highlight-color: transparent;
 }
@@ -1170,4 +1177,115 @@ a:hover {color:var(--texthover) !important}
     margin-top: -70px;
     top: 5px;
     position: relative;
+  }
+  .waka_lang_graph {
+    background-color: var(--color5);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    height: 48px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+
+  .waka_lang_container {
+    display: flex;
+    margin-bottom: 5px;
+    font-size: 16px;
+    border-radius: 8px;
+    width: calc(100% + 10px);
+  }
+
+  .waka_lang_container:last-child {
+    margin-bottom: 0px;
+  }
+
+  .waka_lang_graph_border {
+    width: calc(100% - 195px);
+    border: 3px solid var(--color2);
+    border-radius: 8px;
+    margin-left: 5px;
+    overflow: hidden;
+  }
+
+  .waka_lang_time_and_name {
+    display: block;
+    width: 180px;
+    padding: 5px;
+    background-color: var(--color2);
+    border-radius: 8px;
+  }
+
+  #waka_lang {
+    background-color: var(--color3);
+    width: calc(100% - 15px);
+    padding: 2.5px;
+    border-radius: 8px;
+  }
+
+  .waka_lang_time {
+    margin-top: 0px;
+  }
+
+  .games_image {
+    width: 155px;
+    height: 155px;
+    margin-top: 0px;
+    object-fit: cover;
+    position: absolute;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+  }
+
+  .games_name {
+    top: 150px;
+    margin: 5px;
+    position: absolute;
+    font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 155px;
+  }
+  .games_lasted {
+    top: 175px;
+    margin: 5px;
+    position: absolute;
+    font-size: 12px;
+  }
+
+  .games_activity {
+    background-color: var(--color2);
+    min-width: 155px;
+    height: 200px;
+    border-radius: 8px;
+    margin-right: 5px;
+    position: relative;
+  }
+
+  .games_activity:last-child {
+    margin-right: 0px;
+  }
+
+  #games_data_outer {
+    background-color: var(--color3);
+    position: relative;
+    padding: 5px;
+    width: calc(100% - 20px);
+    border-radius: 8px;
+  }
+
+  #games_data {
+    display: flex;
+    overflow-x: scroll;
+    border-radius: 8px;
+    width: 100%;
+  }
+
+  .info {
+    font-family: SourceCode;
+    font-size: 12px;
+    text-align: right;
+    margin-right: 10px;
+    margin-top: 5px;
   }

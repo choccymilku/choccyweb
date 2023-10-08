@@ -18,7 +18,6 @@ function getToken() {
   })
   .then(data => {
       spotifyToken = data.access_token;
-      console.log("🐛 spotify token acquired:");
   })
   .catch(error => {
       console.error("Error acquiring Spotify token:", error);
@@ -111,22 +110,24 @@ function fetchSpotifyArtistImage(artistName, trackDiv) {
             return; // All parts have been tried, and the artist is still not found
         }
 
-        fetchArtistImageForPart(artistParts[index])
-            .then(res => {
-                if (res.artists.items.length >= 1) {
-                    // Artist found, display the image
-                    var imageUrl = res.artists.items[0].images[0].url;
-                    var imageElement = document.createElement("img");
-                    imageElement.src = imageUrl;
-                    imageElement.className = "lastfm_image noselect disabledrag"; // Modify the class name as needed
-                    trackDiv.appendChild(imageElement);
+        var fetchedArtistNames = [];
 
-                    // Log the fetched artist name
-                    console.log("Fetched artist name:", artistParts[index].trim());
-                } else {
-                    // Artist not found for this part, try the next one
-                    fetchImagesRecursively(index + 1);
-                }
+        fetchArtistImageForPart(artistParts[index])
+.then(res => {
+    if (res.artists.items.length >= 1) {
+        // Artist found, display the image
+        var imageUrl = res.artists.items[0].images[0].url;
+        var imageElement = document.createElement("img");
+        imageElement.src = imageUrl;
+        imageElement.className = "lastfm_image noselect disabledrag"; // Modify the class name as needed
+        trackDiv.appendChild(imageElement);
+
+        // Add the fetched artist name to the array
+        fetchedArtistNames.push(artistParts[index].trim());
+    } else {
+        // Artist not found for this part, try the next one
+        fetchImagesRecursively(index + 1);
+    }
             })
             .catch(error => {
                 console.error("Error fetching artist image:", error);

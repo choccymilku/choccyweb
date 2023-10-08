@@ -1,7 +1,7 @@
 // discord related ⚠
 const discord_user_id = '945717456163442708';
 // avatar size and format
-const avatarSize = 256; //128, 256, 512, 1024, 2048
+const avatarSize = 128; //128, 256, 512, 1024, 2048
 const avatarFormat = "png"; //png, jpg
 
 // your roblox ID <not required>
@@ -18,10 +18,14 @@ var numberOfTracks = 10;
 
 // waka time
 var waka_name = "choccy";
+const WakaApiKey = 'waka_f7541cd9-baf0-43b3-bf48-5b5a394aa225';
 
 // Spotify credentials
 var clientId = "83346dac54144a1eb3b29265f09caf83";
 var clientSecret = "992ef057388a4e4589ed8ea36776b4bf";
+
+// game artworks
+const GamesApiKey = '11bae39651d94abb8e2b8499bb4a29cf'; // Replace with your RAWG API key
 
 // your pronouns.page username (or ID) <not required, but recommended> ⚠
 const pronounspage_username = "choccymilk"; //choccymilk or 01GXT9SVRPDFYR3DJGMAEJ2FN4

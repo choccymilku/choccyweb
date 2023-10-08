@@ -104,17 +104,30 @@ $(document).ready(function() {
   }
 });
 
-
-
 $("#preloader").css("background-color", "transparent");
 $("#preloader_tabs").css("transition", "0.3s");
 $("#preloader_main").css("transition", "0.3s");
+
+// calculate how long it takes to load the page and color the background
+var loadtime = performance.now();
+var loadtime = Math.round(loadtime);
+var loadtime = loadtime / 1000;
+var loadtime = loadtime + "s";
+console.log("🐛 Page Load Time:", loadtime);
+// display into load_time id
+document.getElementById("load_time").innerHTML = loadtime;
   
   // 500ms delay
   setTimeout(function() {
     $("#preloader").fadeOut(300);
     $("body").css("background-color", "var(--color2)");
+/*     $("#load_time").css("display", "block"); */
   }, 500);
+
+  setTimeout(function() {
+    $("body").css("transition", "0s");
+  }, 800);
+  
 }
 
 // Wait for the DOM to fully load

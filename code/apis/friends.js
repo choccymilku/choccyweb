@@ -48,7 +48,7 @@ function fetchDataAndUpdateLocalStorage() {
     skeletonLoaderFriends.appendChild(skeletonDiv);
   });
 
-  Promise.all(discordUserIds.map(id => fetch(`https://uapi.choccymilk.uk/api?id=${id}`)))
+  Promise.all(discordUserIds.map(id => fetch(`https://user.choccymilk.uk/api?id=${id}`)))
     .then(responses => Promise.all(responses.map(response => response.json())))
     .then(data => {
       console.log('Data fetched! :D'); // Log when data is fetched successfully
@@ -69,6 +69,10 @@ function fetchDataAndUpdateLocalStorage() {
           avatar.setAttribute('id', 'friends_avatar');
           avatar.setAttribute('loading', 'lazy');
           avatar.setAttribute('class', 'disabledrag');
+          avatar.onerror = function() {
+            // Set a fallback image URL here
+            avatar.src = '../styles/blank.png'; // Replace 'fallback_avatar_url.png' with the actual fallback image URL
+          };
 
           const name = document.createElement('h6');
           name.textContent = friendData.global_name;
