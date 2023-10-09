@@ -25,7 +25,7 @@ const fetchDataWithRetry = (url, maxRetries, retryInterval) => {
     });
 };
 
-fetchDataWithRetry('https://gallery.choccymilk.uk/gallery', maxRetries, retryInterval)
+fetchDataWithRetry('https://gallerybot-reboot.choccymilku.repl.co/gallery', maxRetries, retryInterval)
   .then((data) => {
     // Assuming data is an array of objects
     data.forEach((item, index) => {

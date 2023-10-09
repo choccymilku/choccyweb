@@ -63,7 +63,6 @@
   var tabFriendsLogged = false;
   var tabGalleryLogged = false;
   var tabProjectsLogged = false;
-  var tabMeLogged = false;
 
   function checkLocalStorage() {
     var activeTabValue = localStorage.getItem('activeTab');
@@ -85,11 +84,7 @@
       console.log('🐛 loading projects...');
       tabProjectsLogged = true;
       loadScript('./code/apis/github.js');
-    } else if (activeTabValue === 'tab_me' && !tabMeLogged) {
-      console.log('🐛 loading me...');
-      tabMeLogged = true;
-      loadScript('./code/apis/pronounspage.js');
-    }
+    } 
   }
 
   // Function to dynamically load scripts
@@ -440,6 +435,7 @@ if (localStorage.getItem('theme') === 'light') {
 <script src="./code/tabs.js"></script>
 <script src="./code/similarColor.js"></script>
 <script src="./code/text.js"></script>
+<script src="./code/pronounspage.js"></script>
 <script src="./code/fontchange.js"></script>
 <script src="./code/apis/accounts.js"></script>
 <script src="./code/apis/discord.js"></script>
