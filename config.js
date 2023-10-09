@@ -100,23 +100,6 @@ var custom_text =
 
 
 // can be removed if you don't intend to use to-do list anywhere, make sure the url is correct for your repository (must be raw.githubusercontent.com)
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/main/TO-DO.md')
-        .then(response => response.text())
-        .then(text => {
-            var todo = text.split('\n');
-            var todo_list = document.getElementById('todo_list');
-            var olElement = document.createElement('ol'); // Create the <ol> element
-            todo_list.appendChild(olElement); // Append <ol> to the parent element
-            todo.forEach((item) => {
-                if (item.trim() !== '') {
-                    var liElement = document.createElement('li'); // Create <li> for each item
-                    liElement.textContent = item;
-                    olElement.appendChild(liElement); // Append <li> to <ol>
-                }
-            });
-        });
-});
 
     fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/main/VERSION.MD')
     .then(response => response.text())

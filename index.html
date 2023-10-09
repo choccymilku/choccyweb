@@ -59,39 +59,48 @@
 .clickable {display: block;}
 </style>
 <script>
-  // Variable to track if the message has been logged
-  var isMessageLogged = false;
+  var tabDataLogged = false;
+  var tabFriendsLogged = false;
+  var tabGalleryLogged = false;
+  var tabProjectsLogged = false;
+  var tabMeLogged = false;
 
-  // Function to check localStorage for changes
   function checkLocalStorage() {
     var activeTabValue = localStorage.getItem('activeTab');
-    if (activeTabValue === 'tab_data') {
-      // Console log when light theme is enabled
-      console.log('%c Light theme enabled', 'background: #e7e7e7; color: #000000; padding: 5px; border-radius: 5px;');
-      var gamescript = document.createElement('script');
-      gamescript.src = './code/apis/games.js';
-      document.body.appendChild(gamescript);
-
-      var wakascript = document.createElement('script');
-      wakascript.src = './code/apis/wakatime.js';
-      document.body.appendChild(wakascript);
-
-      var lastfmscript = document.createElement('script');
-      lastfmscript.src = './code/apis/lastfm.js';
-      document.body.appendChild(lastfmscript);
-
-      // Set isMessageLogged to true
-      isMessageLogged = true;
-      // disable script
-      clearInterval(intervalId);
-    } else if(activeTabValue === 'tab_people' && activeTabValue === 'tab_projects' && activeTabValue === 'tab_gallery') {
-      console.log('meh');
-      return;
+    if (activeTabValue === 'tab_data' && !tabDataLogged) {
+      console.log('🐛 loading data...');
+      tabDataLogged = true;
+      loadScript('./code/apis/games.js');
+      loadScript('./code/apis/wakatime.js');
+      loadScript('./code/apis/lastfm.js');
+    } else if (activeTabValue === 'tab_friends' && !tabFriendsLogged) {
+      console.log('🐛 loading friends...');
+      tabFriendsLogged = true;
+      loadScript('./code/apis/friends.js');
+    } else if (activeTabValue === 'tab_gallery' && !tabGalleryLogged) {
+      console.log('🐛 loading gallery...');
+      tabGalleryLogged = true;
+      loadScript('./code/apis/gallery.js');
+    } else if (activeTabValue === 'tab_projects' && !tabProjectsLogged) {
+      console.log('🐛 loading projects...');
+      tabProjectsLogged = true;
+      loadScript('./code/apis/github.js');
+    } else if (activeTabValue === 'tab_me' && !tabMeLogged) {
+      console.log('🐛 loading me...');
+      tabMeLogged = true;
+      loadScript('./code/apis/pronounspage.js');
     }
   }
 
-  // Check localStorage every 1000 milliseconds (1 second)
-  var intervalId = setInterval(checkLocalStorage, 1000);
+  // Function to dynamically load scripts
+function loadScript(scriptUrl) {
+  var script = document.createElement('script');
+  script.src = scriptUrl;
+  script.setAttribute('data-dynamic', 'true'); // Mark script as dynamic
+  document.body.appendChild(script);
+}
+
+  setInterval(checkLocalStorage, 1000);
 </script>
 
 
@@ -433,15 +442,10 @@ if (localStorage.getItem('theme') === 'light') {
 <script src="./code/text.js"></script>
 <script src="./code/fontchange.js"></script>
 <script src="./code/apis/accounts.js"></script>
-<script src="./code/apis/friends.js"></script>
 <script src="./code/apis/discord.js"></script>
-<script src="./code/apis/pronounspage.js"></script>
-<script src="./code/apis/github.js"></script>
-<script src="./code/apis/gallery.js"></script>
 <script src="./code/time.js"></script>
 <script src="./code/profileHover.js"></script>
 <script src="./code/verticalScroll.js"></script>
 <script src="./code/versionHover.js"></script>
-<!-- <script src="./code/apis/lastfm.js"></script> -->
 </body>
 </html>
