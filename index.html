@@ -58,6 +58,49 @@
 
 .clickable {display: block;}
 </style>
+<script>
+  // Variable to track if the message has been logged
+  var isMessageLogged = false;
+
+  // Function to check localStorage for changes
+  function checkLocalStorage() {
+    var activeTabValue = localStorage.getItem('activeTab');
+    if (activeTabValue === 'tab_data') {
+      // Console log when light theme is enabled
+      console.log('%c Light theme enabled', 'background: #e7e7e7; color: #000000; padding: 5px; border-radius: 5px;');
+      var gamescript = document.createElement('script');
+      gamescript.src = './code/apis/games.js';
+      document.body.appendChild(gamescript);
+
+      var wakascript = document.createElement('script');
+      wakascript.src = './code/apis/wakatime.js';
+      document.body.appendChild(wakascript);
+
+      var lastfmscript = document.createElement('script');
+      lastfmscript.src = './code/apis/lastfm.js';
+      document.body.appendChild(lastfmscript);
+
+      // Set isMessageLogged to true
+      isMessageLogged = true;
+      // disable script
+      clearInterval(intervalId);
+    } else if(activeTabValue === 'tab_people' && activeTabValue === 'tab_projects' && activeTabValue === 'tab_gallery') {
+      console.log('meh');
+      return;
+    }
+  }
+
+  // Check localStorage every 1000 milliseconds (1 second)
+  var intervalId = setInterval(checkLocalStorage, 1000);
+</script>
+
+
+
+
+
+
+
+
 </head>
 <body id="body" class="light noselect">
 
@@ -384,7 +427,6 @@ if (localStorage.getItem('theme') === 'light') {
 } else {
 }
 </script>
-
 <script src="./config.js"></script>
 <script src="./code/tabs.js"></script>
 <script src="./code/similarColor.js"></script>
@@ -396,12 +438,10 @@ if (localStorage.getItem('theme') === 'light') {
 <script src="./code/apis/pronounspage.js"></script>
 <script src="./code/apis/github.js"></script>
 <script src="./code/apis/gallery.js"></script>
-<script src="./code/apis/wakatime.js"></script>
-<script src="./code/apis/games.js"></script>
 <script src="./code/time.js"></script>
 <script src="./code/profileHover.js"></script>
 <script src="./code/verticalScroll.js"></script>
 <script src="./code/versionHover.js"></script>
-<script src="./code/apis/lastfm.js"></script>
+<!-- <script src="./code/apis/lastfm.js"></script> -->
 </body>
 </html>

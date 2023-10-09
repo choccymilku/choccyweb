@@ -106,27 +106,28 @@ function createConnectionDiv(connection) {
   nameSpan.classList.add("connection-name");
 
   if (connection.type === "steam") {
-    const steamUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=${steamKey}&steamids=${connection.id}`)}`;
-        
+    const steamUrl = `https://api.choccymilk.uk/steam-summary`;
+
     // Fetch Steam user info using Steam API with CORS proxy
     fetch(steamUrl)
     .then(response => response.json())
-    .then(steamData => {
-        const parsedData = JSON.parse(steamData.contents);
-        const playerData = parsedData.response.players[0];
-        const profileUrl = playerData.profileurl;
+    .then(data => {
+        const steamData = data.response.players[0];
+        const profileUrl = steamData.profileurl;
 
         // Use profileUrl for the Steam connection
         url = profileUrl;
         console.log('🐛 steam url: ' + url);
 
-        //assign the url to the connection div
+        // Assign the url to the connection div
         connDiv.href = url;
+
       })
       .catch(error => {
           console.error('Error fetching Steam data:', error);
       });
-  }
+}
+
   
   // if connection is roblox, use connection.id instead of connection.name
   if (connection.type === "roblox") {

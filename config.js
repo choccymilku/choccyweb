@@ -12,13 +12,7 @@ const bsky_name = ""; //your bsky name
 const co_host_name = ""; //your co-host name
 
 // last.fm
-var lastFmApiKey = "53b12a31e5c9e626ef29a22967e54e63";
-var lastFmUsername = "choccymilku";
 var numberOfTracks = 10;
-
-// waka time
-var waka_name = "choccy";
-const WakaApiKey = 'waka_f7541cd9-baf0-43b3-bf48-5b5a394aa225';
 
 // Spotify credentials
 var clientId = "83346dac54144a1eb3b29265f09caf83";
@@ -29,8 +23,6 @@ const GamesApiKey = '11bae39651d94abb8e2b8499bb4a29cf'; // Replace with your RAW
 
 // your pronouns.page username (or ID) <not required, but recommended> ⚠
 const pronounspage_username = "choccymilk"; //choccymilk or 01GXT9SVRPDFYR3DJGMAEJ2FN4
-
-const steamKey = '64A2D9B0EF63EC0B5ABB371668EE8762'
 
 // title for the page (shown in the tab) <required> ⚠
 const title = "choccy, developer?"; 

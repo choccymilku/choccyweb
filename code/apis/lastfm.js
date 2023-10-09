@@ -27,7 +27,7 @@ function getToken() {
 
 function fetchTopArtistsFromLastFM() {
   try {
-      fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${lastFmUsername}&api_key=${lastFmApiKey}&limit=${numberOfTracks + 1}&format=json`)
+      fetch(`https://api.choccymilk.uk/lastfm-artists`)
       .then(response => {
           if (!response.ok) {
               throw new Error("Network response was not ok");
@@ -50,7 +50,7 @@ function fetchTopArtistsFromLastFM() {
 
 function fetchTopTracksFromLastFM() {
   try {
-      fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${lastFmUsername}&api_key=${lastFmApiKey}&limit=${numberOfTracks}&format=json`)
+      fetch(`https://api.choccymilk.uk/lastfm-tracks`)
       .then(response => {
           if (!response.ok) {
               throw new Error("Network response was not ok");

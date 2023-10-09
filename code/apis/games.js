@@ -81,7 +81,7 @@ fetch('https://games.choccymilk.uk/activity')
   .catch(error => console.error(error));
 
 
-  fetch('https://cors-anywhere.herokuapp.com/http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=64A2D9B0EF63EC0B5ABB371668EE8762&steamid=76561198971685433&include_appinfo=true&include_appinfo=true&format=json')
+  fetch('https://api.choccymilk.uk/steam-games')
   .then(response => response.json())
   //only log app id if it has a playtime of more than 0
   .then(data => {

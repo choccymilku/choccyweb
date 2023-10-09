@@ -119,7 +119,7 @@ document.getElementById("load_time").innerHTML = loadtime;
   
   // 500ms delay
   setTimeout(function() {
-    $("#preloader").fadeOut(300);
+    $("#preloader").css("display", "none");
     $("body").css("background-color", "var(--color2)");
 /*     $("#load_time").css("display", "block"); */
   }, 500);

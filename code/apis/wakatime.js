@@ -1,12 +1,8 @@
-const apiKey = 'waka_f7541cd9-baf0-43b3-bf48-5b5a394aa225';
-const apiUrl = `https://wakatime.com/api/v1/users/${waka_name}/stats/all_time`;
+const apiUrl = `https://wakakaka.choccymilku.repl.co/wakatime`;
 let resultArray = []; // Create an empty array to store the extracted information
 
 
 fetch(`${apiUrl}`, {
-    headers: {
-        'Authorization': `Basic ${btoa(apiKey)}`, // Use Basic Authentication with your API key
-    },
 })
 .then(response => response.json())
 .then(data => {
