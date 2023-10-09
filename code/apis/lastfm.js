@@ -1,6 +1,4 @@
-
-
-function getToken() {
+function getToken() { 
   var basicAuth = btoa(`${clientId}:${clientSecret}`);
   fetch("https://accounts.spotify.com/api/token", {
       headers: {

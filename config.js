@@ -11,9 +11,6 @@ const mastodon_username = ""; //bjork
 const bsky_name = ""; //your bsky name
 const co_host_name = ""; //your co-host name
 
-// last.fm
-var numberOfTracks = 10;
-
 // Spotify credentials
 var clientId = "83346dac54144a1eb3b29265f09caf83";
 var clientSecret = "992ef057388a4e4589ed8ea36776b4bf";

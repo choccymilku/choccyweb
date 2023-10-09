@@ -32,7 +32,6 @@ fetchDataWithRetry('https://gallerybot-reboot.choccymilku.repl.co/gallery', maxR
       // Create an img element
       const img = document.createElement('img');
       img.src = item; // Set the src attribute to the URL
-      img.loading = 'lazy'; // Set the loading attribute to "lazy" for lazy loading
 
       // Add the gallery_image class to the img element
       img.classList.add('gallery_image');
