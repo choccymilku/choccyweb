@@ -208,10 +208,14 @@ function displayTopTracks(tracks) {
 function removeSkeletonLoaders() {
     if (!isLoading) {
       // Remove skeleton loaders from the DOM
-      const skeletonLoaders = document.querySelectorAll('.skeleton-loader');
+      const skeletonLoaders = document.querySelectorAll('#lastfm_loader_top');
+      const skeletonLoaders2 = document.querySelectorAll('#lastfm_loader_artist');
       skeletonLoaders.forEach(loader => {
         loader.remove();
       });
+        skeletonLoaders2.forEach(loader => {
+            loader.remove();
+        });
     }
   }
 
