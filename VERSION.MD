@@ -1,4 +1,4 @@
-version 1.3.95
+version 1.4 dev
 add - redesigned loaders (now imitating the layout), last.fm and friends tabs
 add - data tab, now with songs, games and code data
 add - performance improvements

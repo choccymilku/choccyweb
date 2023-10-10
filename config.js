@@ -7,9 +7,9 @@ const avatarFormat = "png"; //png, jpg
 // your roblox ID <not required>
 const roblox_id = "2450458016"; //your roblox ID
 
-const mastodon_username = ""; //bjork
-const bsky_name = ""; //your bsky name
-const co_host_name = ""; //your co-host name
+const mastodon_username = "ya"; //bjork
+const bsky_name = "ya"; //your bsky name
+const co_host_name = "ya"; //your co-host name
 
 // game artworks
 const GamesApiKey = '11bae39651d94abb8e2b8499bb4a29cf'; // Replace with your RAWG API key

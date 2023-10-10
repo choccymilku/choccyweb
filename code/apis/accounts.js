@@ -43,9 +43,8 @@ function fetchAndUpdateIcons() {
       // Adding custom connections
       const customConnections = [];
 
-      if (roblox_id) {
         // Fetch the Roblox displayName using the Roblox API
-        fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://users.roblox.com/v1/users/${roblox_id}`)}`)
+        fetch(`https://api.choccymilk.uk/roblox/${encodeURIComponent(roblox_id)}`)
           .then(response => {
             if (!response.ok) {
               throw new Error('Network response was not ok.');
@@ -53,9 +52,9 @@ function fetchAndUpdateIcons() {
             return response.json();
           })
           .then(data => {
-            const apiResponse = JSON.parse(data.contents);
-            const robloxDisplayName = apiResponse.displayName;
-            customConnections.push({ type: "roblox", id: roblox_id, name: robloxDisplayName });
+            const roblox_username = data.displayName;
+            const roblox_id = data.id;
+            customConnections.push({ type: "roblox", id: roblox_id, name: roblox_username });
             
             // Check if the Mastodon connection already exists before adding it
             const existingMastodonConnection = customConnections.find(conn => conn.type === "mastodon");
@@ -82,7 +81,6 @@ function fetchAndUpdateIcons() {
           .catch(error => {
             console.error('Error fetching Roblox data:', error);
           });
-      }
       
       for (const conn of customConnections) {
         const connDiv = createConnectionDiv(conn);
@@ -130,16 +128,12 @@ function createConnectionDiv(connection) {
 
   
   // if connection is roblox, use connection.id instead of connection.name
-  if (connection.type === "roblox") {
-    url = accountUrls[connection.type] + connection.id;
-  } else if (connection.type === "youtube") {
+  if (connection.type === "roblox" || connection.type === "youtube" || connection.type === "spotify") {
     url = accountUrls[connection.type] + connection.id;
   } else if (connection.type === "bsky") {
     url = "https://bsky.app/profile/" + bsky_name + ".bsky.social";
   } else if (connection.type === "co-host") {
     url = "https://cohost.org/" + co_host_name;
-  } else if (connection.type === "spotify") {
-    url = accountUrls[connection.type] + connection.id;
   }
 
   connDiv.href = url;
