@@ -1,4 +1,4 @@
-var scroll2Containers = document.querySelectorAll('.inner_scrollables, #tabs');
+var scroll2Containers = document.querySelectorAll('.inner_scrollables, #tabs, #games_data');
 var scrollAmounts = new Map();
 var isScrolling = false;
 var isEnabled = true; // Initially enabled
@@ -64,6 +64,8 @@ function scrollScrollContainers() {
 function checkViewportWidth() {
   if (window.innerWidth < 550) {
     disableScroll();
+    // dont disable scroll on tabs
+    document.getElementById('games_data').addEventListener('wheel', handleScroll);
   } else {
     enableScroll();
   }
