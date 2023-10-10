@@ -75,12 +75,12 @@ fetch(`${apiUrl}`, {
         // Create an element for the language name
         const langName = document.createElement('div');
         langName.className = 'waka_lang_name';
-        langName.innerText = languageName;
+        langName.innerText = `${languageName} (${languagePercentage}%)`;
 
         // Create an element for the language time
         const langTime = document.createElement('div');
         langTime.className = 'waka_lang_time';
-        langTime.innerText = `${languageText} (${languagePercentage}%)`;
+        langTime.innerText = `${languageText}`;
 
         // Create a border for the bar graph
         const langGraphBorder = document.createElement('div');

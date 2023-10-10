@@ -1,3 +1,6 @@
+
+const skeletonLoader = document.getElementById('games_loader');
+
 // Make a fetch request to the JSON endpoint
 fetch('https://games.choccymilk.uk/activity')
   .then(response => response.json())
@@ -55,31 +58,35 @@ fetch('https://games.choccymilk.uk/activity')
       gamesDataContainer.appendChild(activityDiv);
 
       // Fetch game image using the name
-      fetch(`https://api.rawg.io/api/games?key=${GamesApiKey}&search=${encodeURIComponent(name)}`)
+      fetch(`https://api.choccymilk.uk/rawg?name=${encodeURIComponent(name)}`)
         .then(response => response.json())
         .then(data => {
-          // Check if there are results
-          if (data.results && data.results.length > 0) {
-            const game = data.results[0];
-            const imageUrl = game.background_image; // URL of the game image
-
+          // Check if the response contains the imageUrl property
+          if (data.imageUrl) {
+            const imageUrl = data.imageUrl;
+      
             // Create an image element and set its source to the retrieved URL
             const gameImage = document.createElement('img');
             gameImage.classList.add('games_image');
             gameImage.src = imageUrl;
-
+      
             // Append the image to the current activity div
             activityDiv.appendChild(gameImage);
-            console.log('Game found');
+            console.log('🐛 game found');
           } else {
-            console.log('Game not found');
+            console.log('🐛 game not found');
           }
         })
         .catch(error => console.error(error));
     });
   })
-  .catch(error => console.error(error));
-
+  .catch(error => console.error(error))
+  .finally(() => {
+    // Remove the skeleton loader once the first fetch operation is completed
+    if (skeletonLoader) {
+      skeletonLoader.remove();
+    }
+  });
 
   fetch('https://api.choccymilk.uk/steam-games')
   .then(response => response.json())
@@ -125,9 +132,21 @@ fetch('https://games.choccymilk.uk/activity')
           steamDiv.appendChild(steamName);
           steamDiv.appendChild(steamTime);
           steamDiv.appendChild(steamImage);
+
+          const skeletonLoader3 = document.getElementById('lastfm_loader_artist');
+          // Remove the skeleton loader once the image is loaded
+          if (skeletonLoader3) {
+            skeletonLoader3.remove();
+          }
       }
     });
   })
   .catch(error => {
     console.error('Error fetching data:', error);
+  })
+  .finally(() => {
+    // Remove the skeleton loader once the second fetch operation is completed
+    if (skeletonLoader) {
+      skeletonLoader.remove();
+    }
   });

@@ -931,10 +931,8 @@ a:hover {color:var(--texthover) !important}
   }
 
   .skeleton_loader_friends_container {
-    width: 155px;
     border-radius: 8px;
     margin-right: 5px;
-    height: 195px;
     box-sizing: border-box;
     margin-bottom: 1px;
     background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3)); /* Initial gradient background */
@@ -946,6 +944,32 @@ a:hover {color:var(--texthover) !important}
     height: 300px;
     margin-right: 5px;
     border-radius: 8px;
+    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3)); /* Initial gradient background */
+    background-size: 200% 100%; /* Set background size for animation */
+    animation: gradientAnimation 1.5s ease infinite forwards; /* Apply the gradient animation */
+  }
+
+  .skeleton_loader_friends_image {
+    margin-right: 5px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3)); /* Initial gradient background */
+    background-size: 200% 100%; /* Set background size for animation */
+    animation: gradientAnimation 1.5s ease infinite forwards; /* Apply the gradient animation */
+  }
+
+  .skeleton_loader_projects_image {
+    margin-right: 5px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3)); /* Initial gradient background */
+    background-size: 200% 100%; /* Set background size for animation */
+    animation: gradientAnimation 1.5s ease infinite forwards; /* Apply the gradient animation */
+  }
+
+  .lastfm_loader_artist, .lastfm_loader_top {
+    margin-right: 5px;
+    border-radius: 8px;
+    height: 200px;
+    min-width: 155px;
     background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3)); /* Initial gradient background */
     background-size: 200% 100%; /* Set background size for animation */
     animation: gradientAnimation 1.5s ease infinite forwards; /* Apply the gradient animation */
@@ -964,6 +988,13 @@ a:hover {color:var(--texthover) !important}
     background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3)); /* Initial gradient background */
     background-size: 200% 100%; /* Set background size for animation */
     animation: gradientAnimation 1.5s ease infinite forwards; /* Apply the gradient animation */
+  }
+
+  #skeleton_loader_projects {
+    height: 100%;
+    position: relative;
+    z-index: 9999;
+    display: block;
   }
 
   .lastfm_container {

@@ -98,7 +98,14 @@ function fetchAndUpdateIcons(discord_user_id) {
     
             repoDiv.appendChild(repoInnerDiv);
             projectsMainElement.appendChild(repoDiv);
-        });       
+
+                    // Remove skeleton loaders in case of an error
+        const skeletonLoaderProjects = document.getElementById('skeleton_loader_projects');
+        if (skeletonLoaderProjects) {
+          skeletonLoaderProjects.remove();
+          console.log('🐛 Skeleton loader removed.');
+        }
+          })     
       })
       .catch(error => {
         console.error("Error fetching GitHub repos:", error);
@@ -109,6 +116,5 @@ function fetchAndUpdateIcons(discord_user_id) {
         console.error("Error fetching data:", error);
       });
   }
-  
   fetchAndUpdateIcons(discord_user_id);
   

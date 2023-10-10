@@ -10,53 +10,19 @@ const discordUserIds = [
   '503676030536646716' // ashy
 ];
 
-/* function calculateLuminance(hexColor) {
-  // Remove the '#' if it exists
-  hexColor = hexColor.replace(/^#/, '');
-
-  // Calculate the relative luminance using the formula for sRGB color space
-  const r = parseInt(hexColor.slice(0, 2), 16) / 255;
-  const g = parseInt(hexColor.slice(2, 4), 16) / 255;
-  const b = parseInt(hexColor.slice(4, 6), 16) / 255;
-
-  const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-
-  return luminance;
-}
-
-function setTextColorAndLinkColorBasedOnLuminance(container, hexColor) {
-  // Set the text color based on luminance
-  const textColor = calculateLuminance(hexColor) > 0.5 ? 'black' : 'white';
-  container.style.color = textColor;
-
-  // Set the link (a element) color
-  const links = container.querySelectorAll('a');
-  links.forEach(link => {
-    link.style.color = textColor;
-  });
-} */
-
 function fetchDataAndUpdateLocalStorage() {
   console.log('🐛 Fetching friends data...');
 
   const skeletonLoaderFriends = document.getElementById('skeleton_loader_friends');
-  skeletonLoaderFriends.innerHTML = ''; // Clear existing content
-
-  discordUserIds.forEach(id => {
-    const skeletonDiv = document.createElement('div');
-    skeletonDiv.setAttribute('class', 'skeleton_loader_friends_container'); // You can add a CSS class for styling if needed
-    skeletonLoaderFriends.appendChild(skeletonDiv);
-  });
 
   Promise.all(discordUserIds.map(id => fetch(`https://user.choccymilk.uk/api?id=${id}`)))
     .then(responses => Promise.all(responses.map(response => response.json())))
     .then(data => {
-      console.log('Data fetched! :D'); // Log when data is fetched successfully
+      console.log('Data fetched! :D');
       const timestamp = Date.now();
       const savedData = { data, timestamp };
       localStorage.setItem('discordFriends', JSON.stringify(savedData));
 
-      // generate friend elements
       const friendsContainers = document.querySelectorAll('#friends_inner');
       friendsContainers.forEach(friendsContainer => {
         data.forEach(friendData => {
@@ -70,8 +36,7 @@ function fetchDataAndUpdateLocalStorage() {
           avatar.setAttribute('loading', 'lazy');
           avatar.setAttribute('class', 'disabledrag');
           avatar.onerror = function() {
-            // Set a fallback image URL here
-            avatar.src = '../styles/blank.png'; // Replace 'fallback_avatar_url.png' with the actual fallback image URL
+            avatar.src = '../styles/blank.png';
           };
 
           const name = document.createElement('h6');
@@ -82,9 +47,6 @@ function fetchDataAndUpdateLocalStorage() {
           container.appendChild(avatar);
           container.appendChild(name);
 
-          // Set the text color and link color based on luminance
-/*           setTextColorAndLinkColorBasedOnLuminance(container, friendData.banner_color);
- */
           if (id === '1035262868586766376') {
             const link = document.createElement('a');
             link.href = 'https://benreyland.crd.co';
@@ -92,10 +54,7 @@ function fetchDataAndUpdateLocalStorage() {
             link.target = '_blank';
             name.textContent = '';
             name.appendChild(link);
-
-            // Set the link (a element) color based on luminance
-/*             setTextColorAndLinkColorBasedOnLuminance(link, friendData.banner_color);
- */          }
+          }
 
           friendsContainer.appendChild(container);
         });
@@ -103,20 +62,22 @@ function fetchDataAndUpdateLocalStorage() {
 
       const timeUntilNextFetch = (timestamp - Date.parse(localStorage.getItem('discordFriends').timestamp)) / 1000;
       console.log(`Next fetch in ${12 * 3600 - timeUntilNextFetch} seconds.`);
+
+      // Remove the skeleton loader element from the DOM
+      if (skeletonLoaderFriends) {
+        skeletonLoaderFriends.remove();
+        console.log('🐛 Skeleton loader removed.');
+      }
     })
     .catch(error => console.error(error));
-    // remove skeleton loader
-    skeletonLoaderFriends.remove();
 }
 
-// Check if there is cached data in localStorage and it's less than 12 hours old
 const savedData = JSON.parse(localStorage.getItem('discordFriends'));
+const skeletonLoaderFriends = document.getElementById('skeleton_loader_friends');
 
 if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
-  // If no data or data is outdated, fetch and update
   fetchDataAndUpdateLocalStorage();
 } else {
-  // Use the cached data
   const friendsContainers = document.querySelectorAll('#friends_inner');
   friendsContainers.forEach(friendsContainer => {
     savedData.data.forEach(friendData => {
@@ -148,6 +109,12 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
       }
 
       friendsContainer.appendChild(container);
+
+            // Remove the skeleton loader element from the DOM
+            if (skeletonLoaderFriends) {
+              skeletonLoaderFriends.remove();
+              console.log('🐛 Skeleton loader removed.');
+            }
     });
   });
 
@@ -157,6 +124,7 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
   const minutesUntilNextFetch = Math.floor((totalSecondsUntilNextFetch % 3600) / 60);
 
   console.log(`🐛 Next fetch in ${hoursUntilNextFetch} hours and ${minutesUntilNextFetch} minutes.`);
+  
 }
 
 // Schedule periodic updates (every 12 hours)

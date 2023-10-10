@@ -66,13 +66,13 @@
 
   function checkLocalStorage() {
     var activeTabValue = localStorage.getItem('activeTab');
-    if (activeTabValue === 'tab_data' && !tabDataLogged) {
+     if (activeTabValue === 'tab_data' && !tabDataLogged) {
       console.log('🐛 loading data...');
       tabDataLogged = true;
       loadScript('./code/apis/games.js');
       loadScript('./code/apis/wakatime.js');
       loadScript('./code/apis/lastfm.js');
-    } else if (activeTabValue === 'tab_friends' && !tabFriendsLogged) {
+    }  else if (activeTabValue === 'tab_friends' && !tabFriendsLogged) {
       console.log('🐛 loading friends...');
       tabFriendsLogged = true;
       loadScript('./code/apis/friends.js');
@@ -259,13 +259,17 @@ function loadScript(scriptUrl) {
         <div style="font-family: Rubik;">top artists</div>
 
           <div class="lastfm_outer" id="lastfm_recent_outer">
-            <div class="inner_scrollables" id="lastfm_artist"></div>
+            <div class="inner_scrollables" id="lastfm_artist">
+              <div id="lastfm_loader_artist" class="skelly"></div>
+            </div>
           </div>
 
         <div style="font-family: Rubik;margin-top: 10px;">top songs</div>
 
           <div class="lastfm_outer">
-            <div class="inner_scrollables" id="lastfm_top"></div>
+            <div class="inner_scrollables" id="lastfm_top">
+              <div id="lastfm_loader_top" class="skelly"></div>
+            </div>
           </div>
         <div class="info">
           fetched from <a style="text-decoration: underline;" href="https://www.last.fm/api" target="_blank">last.fm</a>, 
@@ -276,7 +280,9 @@ function loadScript(scriptUrl) {
 
         <div style="font-family: Rubik;">games & activities</div>
         <div id="games_data_outer">
-          <div class="inner_scrollables"id="games_data"></div>
+          <div class="inner_scrollables"id="games_data">
+            <div id="games_loader" class="skelly"></div>
+          </div>
         </div>
         <div class="info">
           fetched from <a style="text-decoration: underline;" href="https://games.choccymilk.uk/activity" target="_blank">games.choccymilk.uk</a>
@@ -299,17 +305,18 @@ function loadScript(scriptUrl) {
 
   <div class="bar" id="people">
     <div class="noselect bar_outer" id="friends_outer">
-      <div class="noselect bar_inner inner_scrollables" id="friends_inner">
-        <div id="skeleton_loader_friends" class="skelly"></div>
+        <div class="noselect bar_inner inner_scrollables" id="friends_inner">
+          <div id="skeleton_loader_friends" class="skelly"></div>
       </div>
     </div>
   </div>
 
   <div class="bar" id="projects">
     <div class="noselect bar_outer" id="project_outer">
-      <div class="noselect bar_inner" id="project_inner">
+      <div id="skeleton_loader_projects" class="skelly"></div>
+        <div class="noselect bar_inner" id="project_inner">
       </div>
-  </div>
+    </div>
   </div>
 
   <div class="bar" id="gallery">
@@ -443,5 +450,6 @@ if (localStorage.getItem('theme') === 'light') {
 <script src="./code/profileHover.js"></script>
 <script src="./code/verticalScroll.js"></script>
 <script src="./code/versionHover.js"></script>
+<script src="./code/skeletons.js"></script>
 </body>
 </html>

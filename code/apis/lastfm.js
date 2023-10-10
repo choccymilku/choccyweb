@@ -1,28 +1,19 @@
-function getToken() { 
-  var basicAuth = btoa(`${clientId}:${clientSecret}`);
-  fetch("https://accounts.spotify.com/api/token", {
-      headers: {
-          "Authorization": `Basic ${basicAuth}`,
-          "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: "POST",
-      body: "grant_type=client_credentials"
-  })
-  .then(response => {
-      if (!response.ok) {
-          throw new Error(`Failed to retrieve Spotify token: ${response.status} - ${response.statusText}`);
-      }
-      return response.json();
-  })
-  .then(data => {
-      spotifyToken = data.access_token;
-  })
-  .catch(error => {
-      console.error("Error acquiring Spotify token:", error);
-      // Handle the error, retry the request, or perform other actions as necessary
-  });
-}
+let isLoading = true;
 
+function getToken() {
+    fetch('https://api.choccymilk.uk/spotify', {
+      method: 'POST',
+    })
+      .then(response => response.json())
+      .then(data => {
+        const spotifyToken = data.accessToken;
+        console.log('🐛 got spotify token, fetching last.fm...');
+      })
+      .catch(error => {
+        console.error('Error acquiring Spotify token:', error);
+        // Handle the error, retry the request, or perform other actions as necessary
+      });
+  }
 function fetchTopArtistsFromLastFM() {
   try {
       fetch(`https://api.choccymilk.uk/lastfm-artists`)
@@ -43,6 +34,10 @@ function fetchTopArtistsFromLastFM() {
   } catch (err) {
       console.error("Last.fm request error:", err);
       // Handle the error, retry the request, or perform other actions as necessary
+  } finally {
+    // Set loading state to false when the request completes (whether it succeeds or fails)
+    isLoading = false;
+    removeSkeletonLoaders(); // Call the function to remove skeleton loaders
   }
 }
 
@@ -66,6 +61,10 @@ function fetchTopTracksFromLastFM() {
   } catch (err) {
       console.error("Last.fm request error:", err);
       // Handle the error, retry the request, or perform other actions as necessary
+  } finally {
+    // Set loading state to false when the request completes (whether it succeeds or fails)
+    isLoading = false;
+    removeSkeletonLoaders(); // Call the function to remove skeleton loaders
   }
 }
 
@@ -137,15 +136,8 @@ function fetchSpotifyArtistImage(artistName, trackDiv) {
     fetchImagesRecursively(0);
 }
 
-
-  
-
-
-
 function displayTopArtists(tracks) {
   var topTracksDiv = document.getElementById("lastfm_artist");
-  // Limit the displayed tracks to numberOfTracks
-  tracks = tracks.slice(0, numberOfTracks);
   tracks.forEach(track => {
       var trackDiv = document.createElement("div");
       trackDiv.className = "lastfm_container noselect disabledrag";
@@ -201,6 +193,15 @@ function displayTopTracks(tracks) {
   });
 }
 
+function removeSkeletonLoaders() {
+    if (!isLoading) {
+      // Remove skeleton loaders from the DOM
+      const skeletonLoaders = document.querySelectorAll('.skeleton-loader');
+      skeletonLoaders.forEach(loader => {
+        loader.remove();
+      });
+    }
+  }
 
 
 // Initial token retrieval and fetching top tracks

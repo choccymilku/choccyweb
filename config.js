@@ -11,10 +11,6 @@ const mastodon_username = ""; //bjork
 const bsky_name = ""; //your bsky name
 const co_host_name = ""; //your co-host name
 
-// Spotify credentials
-var clientId = "83346dac54144a1eb3b29265f09caf83";
-var clientSecret = "992ef057388a4e4589ed8ea36776b4bf";
-
 // game artworks
 const GamesApiKey = '11bae39651d94abb8e2b8499bb4a29cf'; // Replace with your RAWG API key
 
