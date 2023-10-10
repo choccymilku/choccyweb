@@ -5,7 +5,7 @@ function getToken() {
     .then(response => response.json())
     .then(data => {
         spotifyToken = data.accessToken;
-        console.log("🐛 spotify token", spotifyToken);
+        console.log("🐛 spotify token acquired, fetching...");
     })
 
   }
