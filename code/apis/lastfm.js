@@ -1,29 +1,13 @@
 let isLoading = true;
 
 function getToken() { 
-    var basicAuth = btoa(`${clientId}:${clientSecret}`);
-    fetch("https://accounts.spotify.com/api/token", {
-        headers: {
-            "Authorization": `Basic ${basicAuth}`,
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        method: "POST",
-        body: "grant_type=client_credentials"
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Failed to retrieve Spotify token: ${response.status} - ${response.statusText}`);
-        }
-        return response.json();
-    })
+    fetch("https://api.choccymilk.uk/spotify")
+    .then(response => response.json())
     .then(data => {
-        spotifyToken = data.access_token;
-        console.log("🐛 Spotify token:", spotifyToken);
+        spotifyToken = data.accessToken;
+        console.log("🐛 spotify token", spotifyToken);
     })
-    .catch(error => {
-        console.error("Error acquiring Spotify token:", error);
-        // Handle the error, retry the request, or perform other actions as necessary
-    });
+
   }
   
 function fetchTopArtistsFromLastFM() {

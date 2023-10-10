@@ -1,4 +1,3 @@
-
 const skeletonLoader = document.getElementById('games_loader');
 
 // Make a fetch request to the JSON endpoint
@@ -11,6 +10,11 @@ fetch('https://games.choccymilk.uk/activity')
     // Loop through activities
     activities.forEach(activity => {
       const { name, time_lasted } = activity;
+
+      // if activity = "Custom Status", don't display it
+      if (name === "Custom Status") {
+        return;
+      }
 
       // Convert time from milliseconds to various units
       const millisecondsPerSecond = 1000;
