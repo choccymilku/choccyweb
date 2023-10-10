@@ -2,12 +2,12 @@ let isLoading = true;
 
 function getToken() {
     fetch('https://api.choccymilk.uk/spotify', {
-      method: 'POST',
+      method: 'GET',
     })
       .then(response => response.json())
       .then(data => {
         const spotifyToken = data.accessToken;
-        console.log('🐛 got spotify token, fetching last.fm...');
+        console.log(spotifyToken);
       })
       .catch(error => {
         console.error('Error acquiring Spotify token:', error);
