@@ -1,5 +1,31 @@
 let isLoading = true;
 
+function getToken() { 
+    var basicAuth = btoa(`${clientId}:${clientSecret}`);
+    fetch("https://accounts.spotify.com/api/token", {
+        headers: {
+            "Authorization": `Basic ${basicAuth}`,
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        method: "POST",
+        body: "grant_type=client_credentials"
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Failed to retrieve Spotify token: ${response.status} - ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        spotifyToken = data.access_token;
+        console.log("🐛 Spotify token:", spotifyToken);
+    })
+    .catch(error => {
+        console.error("Error acquiring Spotify token:", error);
+        // Handle the error, retry the request, or perform other actions as necessary
+    });
+  }
+  
 function fetchTopArtistsFromLastFM() {
   try {
       fetch(`https://api.choccymilk.uk/lastfm-artists`)
@@ -54,22 +80,7 @@ function fetchTopTracksFromLastFM() {
   }
 }
 
-function getToken() {
-    fetch('https://api.choccymilk.uk/spotify', {
-      method: 'GET',
-    })
-      .then(response => response.json())
-      .then(data => {
-        const spotifyToken = data.accessToken;
-        console.log(spotifyToken);
-      })
-      .catch(error => {
-        console.error('Error acquiring Spotify token:', error);
-        // Handle the error, retry the request, or perform other actions as necessary
-      });
-  }
-
-function fetchSpotifyImage(spotifyToken, trackName, artistName, trackDiv) {
+function fetchSpotifyImage(trackName, artistName, trackDiv) {
   fetch(`https://api.spotify.com/v1/search?q=track:${encodeURIComponent(trackName)}%20artist:${encodeURIComponent(artistName)}&type=track&limit=1`, {
       headers: {
           "Authorization": `Bearer ${spotifyToken}`
