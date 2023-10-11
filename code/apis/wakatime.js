@@ -7,8 +7,8 @@ fetch(`https://wakakaka.choccymilku.repl.co/wakatime`, {
 .then(data => {
     // declare best day constant
     const bestDay = data.data.best_day;
-    const dailyAverage = data.data.human_readable_daily_average;
-    const total = data.data.human_readable_total;
+    const dailyAverage = data.data.human_readable_daily_average.replace(' hrs', 'h').replace(' mins', 'm');
+    const total = data.data.human_readable_total.replace(' hrs', 'h').replace(' mins', 'm');
     const languages = data.data.languages;
 
     // handle bestday conversion to human readable format (e.g. 7th october 2021)
@@ -44,8 +44,12 @@ fetch(`https://wakakaka.choccymilku.repl.co/wakatime`, {
     console.log('Extracted Information:', resultArray);
 
     const bestDayDiv = document.createElement('div');
-    bestDayDiv.innerHTML = `<div style="font-family: Rubik;">most active day</div><div>${readableDay} ${readableMonth}, ${readableYear} (${bestDay.text})</div>`;
+    bestDayDiv.innerHTML = `<div style="font-family: Rubik;">most active day</div><div>${readableMonth} ${readableDay}, ${readableYear} (${bestDay.text.replace(' hrs', 'h').replace(' mins', 'm')})</div>`;
     document.getElementById('waka_data').appendChild(bestDayDiv);
+
+    const totalDiv = document.createElement('div');
+    totalDiv.innerHTML = `<div style="font-family: Rubik;margin-top:18px;">total time</div><div>${total}</div>`;
+    document.getElementById('waka_data').appendChild(totalDiv);
 
     // Calculate total seconds for all languages
     const totalSeconds = languages.reduce((total, language) => total + language.total_seconds, 0);
@@ -79,7 +83,7 @@ fetch(`https://wakakaka.choccymilku.repl.co/wakatime`, {
         // Create an element for the language time
         const langTime = document.createElement('div');
         langTime.className = 'waka_lang_time';
-        langTime.innerText = `${languageText}`;
+        langTime.innerText = `${languageText.replace(' hrs', 'h').replace(' mins', 'm')}`;
 
         // Create a border for the bar graph
         const langGraphBorder = document.createElement('div');

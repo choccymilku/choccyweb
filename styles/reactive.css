@@ -305,6 +305,35 @@
         width: calc(50% - 5px);
         margin-bottom: 5px;
       }
+
+      .waka_lang_time_and_name {
+        width: 100%;
+        height: 22px;
+        display: flex;
+      }
+
+      .waka_lang_time::before {
+        content: "‎ | ";
+        }
+    
+      .waka_lang_container {
+        height: 73px;
+      }
+
+      .waka_lang_container:last-child {
+        margin-bottom: 1px;
+      }
+
+      .waka_lang_graph_border {
+        margin-top: 36px;
+        width: calc(100% - 35px);
+        margin-left: 0;
+        position: absolute;
+      }
+
+      .waka_lang_graph {
+        height: 32px;
+      }
 }
 
 @media only screen and (max-width: 481px) {

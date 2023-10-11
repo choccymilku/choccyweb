@@ -17,6 +17,11 @@ function handleScroll(event) {
     return;
   }
 
+  // Check if the scrolling event is targeting the #games_data element
+  if (event.currentTarget.id === 'games_data') {
+    return;
+  }
+
   event.preventDefault();
 
   // Check if any other container is currently scrolling
@@ -64,8 +69,6 @@ function scrollScrollContainers() {
 function checkViewportWidth() {
   if (window.innerWidth < 550) {
     disableScroll();
-    // dont disable scroll on tabs
-    document.getElementById('games_data').addEventListener('wheel', handleScroll);
   } else {
     enableScroll();
   }

@@ -1,7 +1,7 @@
 const skeletonLoader = document.getElementById('games_loader');
 
 // Make a fetch request to the JSON endpoint
-fetch('https://games.choccymilk.uk/activity')
+fetch('https://api.choccymilk.uk/activity')
   .then(response => response.json())
   .then(data => {
     // Extracting user, activities, and timers from the response
