@@ -1,7 +1,7 @@
-version 1.4 dev
-add - redesigned loaders (now imitating the layout), last.fm and friends tabs
-add - data tab, now with songs, games and code data
-add - performance improvements
+version 1.4
+add - new loaders
+add - data tabs with, data
+add - performance and back-end improvements
 
 bug - full view gallery misaligned on smaller screens (on hold)
 bug - tabs with dyslexic font misplaced (on hold)
