@@ -86,7 +86,7 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
       container.setAttribute('id', 'friends_container');
 
       const avatar = document.createElement('img');
-      avatar.setAttribute('src', friendData.avatar);
+          avatar.setAttribute('src', `https://cdn.discordapp.com/avatars/${friendData.id}/${friendData.avatar}?size=512`);
       avatar.setAttribute('id', 'friends_avatar');
       avatar.setAttribute('loading', 'lazy');
       avatar.setAttribute('class', 'disabledrag');
