@@ -17,11 +17,6 @@ function handleScroll(event) {
     return;
   }
 
-  // Check if the scrolling event is targeting the #games_data element
-  if (event.currentTarget.id === 'games_data') {
-    return;
-  }
-
   event.preventDefault();
 
   // Check if any other container is currently scrolling

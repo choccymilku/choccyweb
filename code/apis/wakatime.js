@@ -63,11 +63,11 @@ fetch(`https://api.choccymilk.uk/wakatime`, {
         const languageName = language.name;
         const languageText = language.text;
 
-        // ignore XML and Markdown and only show upto 5
-        if (languagesContainer.childElementCount >= 5) {
+        // ignore if percentage is less than 1%
+        if (((language.total_seconds / totalSeconds) * 100).toFixed(2) < 1) {
             return;
         }
-
+        
         // calculate percentage 
         const languagePercentage = ((language.total_seconds / totalSeconds) * 100).toFixed(2);
 
