@@ -1,8 +1,7 @@
-const apiUrl = `https://wakakaka.choccymilku.repl.co/wakatime`;
 let resultArray = []; // Create an empty array to store the extracted information
 
 
-fetch(`${apiUrl}`, {
+fetch(`https://wakakaka.choccymilku.repl.co/wakatime`, {
 })
 .then(response => response.json())
 .then(data => {
