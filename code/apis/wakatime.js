@@ -1,7 +1,7 @@
 let resultArray = []; // Create an empty array to store the extracted information
 
 
-fetch(`https://wakakaka.choccymilku.repl.co/wakatime`, {
+fetch(`https://api.choccymilk.uk/wakatime`, {
 })
 .then(response => response.json())
 .then(data => {

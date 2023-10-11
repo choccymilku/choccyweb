@@ -6,6 +6,7 @@ fetch('https://api.choccymilk.uk/activity')
   .then(data => {
     // Extracting user, activities, and timers from the response
     const { user, activities, timers } = data;
+    console.log('🐛 activity:', data);
 
     // Loop through activities
     activities.forEach(activity => {
@@ -65,6 +66,7 @@ fetch('https://api.choccymilk.uk/activity')
       fetch(`https://api.choccymilk.uk/rawg?name=${encodeURIComponent(name)}`)
         .then(response => response.json())
         .then(data => {
+          console.log('🐛 images:', data);
           // Check if the response contains the imageUrl property
           if (data.imageUrl) {
             const imageUrl = data.imageUrl;
@@ -96,6 +98,7 @@ fetch('https://api.choccymilk.uk/activity')
   .then(response => response.json())
   //only log app id if it has a playtime of more than 0
   .then(data => {
+    console.log('🐛 steam:', data);
     const { games } = data.response;
     games.forEach(game => {
       if (game.playtime_forever > 30) {
