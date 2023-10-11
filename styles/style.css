@@ -941,7 +941,7 @@ a:hover {color:var(--texthover) !important}
   }
 
   .skeleton_loader_gallery_image {
-    height: 300px;
+    height: 350px;
     margin-right: 5px;
     border-radius: 8px;
     background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3)); /* Initial gradient background */

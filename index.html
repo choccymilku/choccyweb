@@ -211,16 +211,23 @@ function loadScript(scriptUrl) {
                 </span>
 
                 <span>
+                  <i class="fa-solid fa-pencil icon-style" style="margin-right: -3px;"></i>
+                  <span style="border-bottom: 2px solid var(--text);">override theme:</span> 
+                  <div id="theme-toggle" class="fontChange"></div>
+                </span>
+
+                <span style="color:gray;fill:gray;">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon-style" style="margin-right: -3px;" viewBox="0 0 576 512">
+                    <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 208H296c13.3 0 24 10.7 24 24s-10.7 24-24 24H120c-13.3 0-24-10.7-24-24s10.7-24 24-24zm256 0h80c13.3 0 24 10.7 24 24s-10.7 24-24 24H376c-13.3 0-24-10.7-24-24s10.7-24 24-24zM120 336h80c13.3 0 24 10.7 24 24s-10.7 24-24 24H120c-13.3 0-24-10.7-24-24s10.7-24 24-24zm160 0H456c13.3 0 24 10.7 24 24s-10.7 24-24 24H280c-13.3 0-24-10.7-24-24s10.7-24 24-24z"/></svg>
+                  <span style="border-bottom: 2px solid gray;">translation:</span> <!--var(--text)-->
+                  <div class="translate">WIP</div>
+                </span>
+
+                <span>
                   <i class="fa-solid fa-text-height icon-style" style="margin-right: -3px;"></i>
                   <span style="border-bottom: 2px solid var(--text);">font style:</span> 
                   <div class="dyslexic-off fontChange">default</div>
                   <div class="dyslexic-on fontChange">dyslexic</div>
-                </span>
-
-                <span>
-                  <i class="fa-solid fa-pencil icon-style" style="margin-right: -3px;"></i>
-                  <span style="border-bottom: 2px solid var(--text);">override theme:</span> 
-                  <div id="theme-toggle" class="fontChange"></div>
                 </span>
 
                 <span>
@@ -287,7 +294,6 @@ function loadScript(scriptUrl) {
         <div class="info">
           fetched from <a style="text-decoration: underline;" href="https://games.choccymilk.uk/activity" target="_blank">games.choccymilk.uk</a>
           and <a style="text-decoration: underline;" href="https://developer.valvesoftware.com/wiki/Steam_Web_API#GetOwnedGames_.28v0001.29" target="_blank">steam</a>
-          <div style="font-size: 8px;">(not 100% accurate)</div>
         </div>
 
         <div class="divider" style="margin-bottom: 20px;margin-top: 10px;"></div>
