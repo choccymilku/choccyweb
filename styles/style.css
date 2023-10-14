@@ -223,6 +223,7 @@ h1 { margin:0px }
   border-top-left-radius: 8px;
   overflow-y: scroll;
   -webkit-tap-highlight-color: transparent;
+  scrollbar-width: none;
 }
 
 .tabs_style:first-child {
@@ -549,7 +550,7 @@ h1 { margin:0px }
 }
 
 .friends_name {
-  margin-top: -2px !important;
+  margin-top: -2px;
   max-width: 135px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -593,6 +594,11 @@ a:hover {color:var(--texthover) !important}
   height: 26px;
   border-radius: 8px;
   float: left;
+}
+
+.country-flags {
+  width: 40px;
+  object-fit:cover;
 }
 .discord_emoji {
   display: inline-block;
@@ -703,15 +709,18 @@ a:hover {color:var(--texthover) !important}
 #project_outer {
   overflow: scroll;
   width: 100%;
+  scrollbar-width: none;
 }
 
 #data_outer {
   overflow: scroll;
   width: 100%; 
+  scrollbar-width: none;
 }
 
 #data_inner {
   height: calc(100% - 10px);
+  width: calc(100% - 10px);
   overflow: scroll;
   padding: 5px !important;
   background-color: var(--color2);
@@ -1067,6 +1076,7 @@ a:hover {color:var(--texthover) !important}
     overflow-x: scroll;
     border-radius: 8px;
     overflow-y: hidden;
+    scrollbar-width: none;
   }
 
   #lastfm_artist {
@@ -1075,13 +1085,14 @@ a:hover {color:var(--texthover) !important}
     overflow-x: scroll;
     border-radius: 8px;
     overflow-y: hidden;
+    scrollbar-width: none;
   }
 
   .lastfm_outer {
     background-color: var(--color3);
     padding: 5px;
     border-radius: 8px;
-    width: calc(100% - 20px);
+    width: calc(100% - 10px);
   }
 
   #preloader_topbar {
@@ -1214,7 +1225,7 @@ a:hover {color:var(--texthover) !important}
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    height: 48px;
+    height: 100%;
     border-bottom-right-radius: 0px;
     border-top-right-radius: 0px;
   }
@@ -1232,7 +1243,7 @@ a:hover {color:var(--texthover) !important}
   }
 
   .waka_lang_graph_border {
-    width: calc(100% - 195px);
+    width: calc(100% - 210px);
     border: 3px solid var(--color2);
     border-radius: 8px;
     margin-left: 5px;
@@ -1249,7 +1260,7 @@ a:hover {color:var(--texthover) !important}
 
   #waka_lang {
     background-color: var(--color3);
-    width: calc(100% - 15px);
+    width: calc(100% - 5px);
     padding: 2.5px;
     border-radius: 8px;
   }
@@ -1270,8 +1281,8 @@ a:hover {color:var(--texthover) !important}
 
   .games_name {
     top: 150px;
+    position: relative;
     margin: 5px;
-    position: absolute;
     font-size: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1302,7 +1313,7 @@ a:hover {color:var(--texthover) !important}
     background-color: var(--color3);
     position: relative;
     padding: 5px;
-    width: calc(100% - 20px);
+    width: calc(100% - 10px);
     border-radius: 8px;
   }
 
@@ -1311,6 +1322,7 @@ a:hover {color:var(--texthover) !important}
     overflow-x: scroll;
     border-radius: 8px;
     width: 100%;
+    scrollbar-width: none;
   }
 
   .info {

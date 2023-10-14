@@ -1,4 +1,4 @@
-version 1.4
+version 1.4.1
 add - new loaders
 add - data tabs with, data
 add - performance and back-end improvements
@@ -9,3 +9,4 @@ bug - tab loader on smaller devices not working properly (on hold)
 bug - can't scroll version div (on hold)
 
 temp - removed full view on mobile (it will come back someday)
+temp - removed fonts, needs fixing

@@ -47,6 +47,7 @@
         margin-right: -55px;
         border-bottom-right-radius: 0px;
         border-bottom-left-radius: 0px;
+        border-top-left-radius: 8px;
         max-height: calc(100% - 175px);
         overflow: hidden;
         overflow-y: scroll;
@@ -287,6 +288,27 @@
         min-width: 165px;
         box-sizing: border-box;
       }
+
+      .games_activity {
+        width: calc(50% - 5px) !important;
+        margin-right: 0px;
+      }
+
+      #games_data {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        width: calc(100% + 5px);
+      }
+
+      .games_image {
+        width: 100%;
+      }
+
+      .games_name {
+        max-width: fit-content;
+      }
+
       #skeleton_loader_friends {
         width: calc(100% + 5px);
         height: calc(100% + 5px);
@@ -318,6 +340,7 @@
     
       .waka_lang_container {
         height: 73px;
+        width: 100%;
       }
 
       .waka_lang_container:last-child {
@@ -326,7 +349,7 @@
 
       .waka_lang_graph_border {
         margin-top: 36px;
-        width: calc(100% - 35px);
+        width: calc(100% - 26px);
         margin-left: 0;
         position: absolute;
       }
@@ -345,11 +368,27 @@
     }
 }
 
-@media only screen and (max-width: 409px) {
+@media only screen and (max-width: 394px) {
     #friends_container {
         width: 100%;
     }
     .skeleton_loader_friends_image {
         width: 100% !important;
+      }
+
+      .games_activity {
+        width: calc(100% - 5px) !important;
+        margin-right: 0px;
+      }
+
+      #games_data {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        width: calc(100% + 5px);
+      }
+
+      .games_image {
+        width: 100%;
       }
 }

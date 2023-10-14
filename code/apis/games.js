@@ -1,6 +1,6 @@
 const skeletonLoader = document.getElementById('games_loader');
 
-// Make a fetch request to the JSON endpoint
+/* // Make a fetch request to the JSON endpoint
 fetch('https://api.choccymilk.uk/activity')
   .then(response => response.json())
   .then(data => {
@@ -92,16 +92,21 @@ fetch('https://api.choccymilk.uk/activity')
     if (skeletonLoader) {
       skeletonLoader.remove();
     }
-  });
+  }); */
 
   fetch('https://api.choccymilk.uk/steam-games')
   .then(response => response.json())
-  //only log app id if it has a playtime of more than 0
   .then(data => {
-    console.log('🐛 steam:', data);
     const { games } = data.response;
-    games.forEach(game => {
-      if (game.playtime_forever > 30) {
+    
+    // Filter and sort games by playtime
+    const filteredGames = games.filter(game => game.playtime_forever > 30 && game.name !== "Wallpaper Engine");
+    filteredGames.sort((a, b) => b.playtime_forever - a.playtime_forever);
+    
+    // Keep only the top 5 games
+    const topGames = filteredGames.slice(0, 10);
+
+    topGames.forEach(game => {
 
         // convert playtime to hours and minutes
         function convertPlaytime(playtimeInMinutes) {
@@ -115,41 +120,31 @@ fetch('https://api.choccymilk.uk/activity')
         }
           // create divs for each game
           const steamDiv = document.createElement('div');
-          steamDiv.className = 'games_activity';
-          const playtime = convertPlaytime(game.playtime_forever);
+      steamDiv.className = 'games_activity';
+      const playtime = convertPlaytime(game.playtime_forever);
   
-          // name
-          const steamName = document.createElement('div');
-          steamName.innerHTML = game.name;
-          steamName.className = 'games_name';
+      // name
+      const steamName = document.createElement('div');
+      steamName.innerHTML = game.name;
+      steamName.className = 'games_name';
   
-          // time played
-          const steamTime = document.createElement('div');
-          steamTime.innerHTML = playtime;
-          steamTime.className = 'games_lasted';
+      // time played
+      const steamTime = document.createElement('div');
+      steamTime.innerHTML = playtime;
+      steamTime.className = 'games_lasted';
   
-          // image
-          const steamImage = document.createElement('img');
-          steamImage.src = `https://cdn.akamai.steamstatic.com/steam/apps/${game.appid}/header.jpg`;
-          steamImage.className = 'games_image';
+      // image
+      const steamImage = document.createElement('img');
+      steamImage.src = `https://cdn.akamai.steamstatic.com/steam/apps/${game.appid}/header.jpg`;
+      steamImage.className = 'games_image';
   
-          // append to games_data div
-          const steamDataContainer = document.getElementById('games_data');
-          steamDataContainer.appendChild(steamDiv);
-          steamDiv.appendChild(steamName);
-          steamDiv.appendChild(steamTime);
-          steamDiv.appendChild(steamImage);
-
-          const skeletonLoader3 = document.getElementById('lastfm_loader_artist');
-          // Remove the skeleton loader once the image is loaded
-          if (skeletonLoader3) {
-            skeletonLoader3.remove();
-          }
-      }
+      // append to games_data div
+      const steamDataContainer = document.getElementById('games_data');
+      steamDataContainer.appendChild(steamDiv);
+      steamDiv.appendChild(steamImage);
+      steamDiv.appendChild(steamName);
+      steamDiv.appendChild(steamTime);
     });
-  })
-  .catch(error => {
-    console.error('Error fetching data:', error);
   })
   .finally(() => {
     // Remove the skeleton loader once the second fetch operation is completed

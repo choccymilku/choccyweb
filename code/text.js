@@ -59,7 +59,7 @@ function convertTimestamps(text) {
       .replace(flagRegex, (match, countryCode) => {
         const countryName = countryCode.toUpperCase();
         const flagUrl = `https://flagicons.lipis.dev/flags/4x3/${countryCode}.svg`;
-        return `<img src="${flagUrl}" title="flag of ${countryName}" class="flag-emojis"/>`;
+        return `<img src="${flagUrl}" title="flag of ${countryName}" class="flag-emojis country-flags"/>`;
       }) 
       .replace(twemojiRegex, (match, emoji) => {
         const twemojiUrl = `https://twemoji.maxcdn.com/v/latest/svg/${emoji.codePointAt(0).toString(16)}.svg`;

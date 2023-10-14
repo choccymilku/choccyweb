@@ -40,15 +40,12 @@ fetch(`https://api.choccymilk.uk/wakatime`, {
     };
     resultArray.push(extractedData);
 
-    // Output the result array
-    console.log('Extracted Information:', resultArray);
-
     const bestDayDiv = document.createElement('div');
-    bestDayDiv.innerHTML = `<div style="font-family: Rubik;">most active day</div><div>${readableMonth} ${readableDay}, ${readableYear} (${bestDay.text.replace(' hrs', 'h').replace(' mins', 'm')})</div>`;
+    bestDayDiv.innerHTML = `<div id="waka_best" style="font-family: Rubik;"><span>most active day</span></div><div>${readableMonth} ${readableDay}, ${readableYear} (${bestDay.text.replace(' hrs', 'h').replace(' mins', 'm')})</div>`;
     document.getElementById('waka_data').appendChild(bestDayDiv);
 
     const totalDiv = document.createElement('div');
-    totalDiv.innerHTML = `<div style="font-family: Rubik;margin-top:18px;">total time</div><div>${total}</div>`;
+    totalDiv.innerHTML = `<div id="waka_total" style="font-family: Rubik;margin-top:18px;"><span>total time</span></div><div>${total}</div>`;
     document.getElementById('waka_data').appendChild(totalDiv);
 
     // Calculate total seconds for all languages

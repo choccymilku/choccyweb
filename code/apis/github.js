@@ -103,7 +103,6 @@ function fetchAndUpdateIcons(discord_user_id) {
         const skeletonLoaderProjects = document.getElementById('skeleton_loader_projects');
         if (skeletonLoaderProjects) {
           skeletonLoaderProjects.remove();
-          console.log('🐛 Skeleton loader removed.');
         }
           })     
       })

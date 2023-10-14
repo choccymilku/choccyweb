@@ -226,8 +226,6 @@ if (listeningToMusic) {
     const trackId = spotifytrackLink.track_id;
     const trackLink = document.getElementById('music-track-link');
     trackLink.href = `https://open.spotify.com/track/${trackId}`;
-    console.log('🐛 track ID:', trackId);
-    console.log('🐛 track link:', `https://open.spotify.com/track/${trackId}`);
     albumCoverElementNoLink.style.display = 'none';
     albumCoverElement.style.display = 'flex';
   } else {
@@ -357,22 +355,4 @@ if (listeningToMusic) {
   const musicPlatform = document.getElementById('music');
   musicPlatform.style.display = 'none';
 }
-
-
-
-  const discordUser = data.discord_user;
-  if (discordUser) {
-    const avatarHash = discordUser.avatar;
-/*     const discordusername = `${discordUser.username}`;
-    const discordtag = `${discordUser.discriminator}`; */
-
-const avatarUrl = `https://cdn.discordapp.com/avatars/${discordUser.id}/${avatarHash}.${avatarFormat}?size=${avatarSize}`;
-
-const avatarLinkElement = document.getElementById('pfp_link');
-avatarLinkElement.href = `https://discordapp.com/users/${discordUser.id}`;
-avatarLinkElement.innerHTML = '<i class="fa-brands fa-discord" class="icon-style"></i>' + '<span class="connection-name" style="margin-left: 2px;">' + discordUser.username + '</span>';
-avatarLinkElement.target = '_blank';
-
-const avatarImg = document.getElementById('pfp');
-avatarImg.src = avatarUrl;
-}}
+}

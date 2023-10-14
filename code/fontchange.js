@@ -11,11 +11,14 @@ $(document).ready(function($) {
         $('#status').css('margin-top', '-15px');
         $('#clock').css('margin-top', '-2px');
         $('#version').css('margin-top', '-8px');
-        $('.friends_name').css('margin-top', '-30.5px');
-        $('#full_gallery').css('margin-top', '-22px');
-        $('.gallery_text').css('margin-top', '20px');
-        $('#gallery_button').css('margin-left', 'calc(-50% + 135px)');
-        $('.tabs_style').css('padding-top', '-2px');
+        $('.friends_name').css('margin-top', '-18px');
+        $('#todo_list').css('margin-left', '16px');
+        $('.lastfm_playcount').css('margin-top', '-49px');
+        $('.lastfm_artist_name').css('margin-top', '-14px');
+        $('.lastfm_artist').css('margin-top', '-22px');
+        $('.lastfm_name').css('margin-top', '-14px');
+        $('.games_name').css('margin-top', '-2px');
+        $('.games_lasted').css('margin-top', '0px');
         applyFontFamily('OpenDyslexic3');
       });
   
@@ -30,11 +33,14 @@ $(document).ready(function($) {
         $('#status').css('margin-top', '-4px');
         $('#clock').css('margin-top', '');
         $('#version').css('margin-top', '');
-        $('.friends_name').css('margin-top', '-12.5px');
-        $('#full_gallery').css('margin-top', '');
-        $('.gallery_text').css('margin-top', '');
-        $('#gallery_button').css('margin-left', '');
-        $('.tabs_style').css('padding-top', '');
+        $('.friends_name').css('margin-top', '');
+        $('#todo_list').css('margin-left', '');
+        $('.lastfm_playcount').css('margin-top', '');
+        $('.lastfm_artist_name').css('margin-top', '');
+        $('.lastfm_artist').css('margin-top', '');
+        $('.lastfm_name').css('margin-top', '');
+        $('.games_name').css('margin-top', '');
+        $('.games_lasted').css('margin-top', '');
         applyFontFamily('GeologicaRoman');
       });
   
@@ -51,11 +57,14 @@ $(document).ready(function($) {
         $('#status').css('margin-top', '-15px');
         $('#clock').css('margin-top', '-2px');
         $('#version').css('margin-top', '-8px');
-        $('.friends_name').css('margin-top', '-30.5px');
-        $('#full_gallery').css('margin-top', '-22px');
-        $('.gallery_text').css('margin-top', '20px');
-        $('#gallery_button').css('margin-left', 'calc(-50% + 135px)');
-        $('.tabs_style').css('padding-top', '-2px');
+        $('.friends_name').css('margin-top', '-18px');
+        $('#todo_list').css('margin-left', '16px');
+        $('.lastfm_playcount').css('margin-top', '-49px');
+        $('.lastfm_artist_name').css('margin-top', '-14px');
+        $('.lastfm_artist').css('margin-top', '-22px');
+        $('.lastfm_name').css('margin-top', '-14px');
+        $('.games_name').css('margin-top', '-2px');
+        $('.games_lasted').css('margin-top', '0px');
         applyFontFamily('OpenDyslexic3');
       } else {
         console.log('🐛 using default font');
@@ -68,11 +77,14 @@ $(document).ready(function($) {
         $('#status').css('margin-top', '-4px');
         $('#clock').css('margin-top', '');
         $('#version').css('margin-top', '');
-        $('.friends_name').css('margin-top', '-12.5px');
-        $('#full_gallery').css('margin-top', '');
-        $('.gallery_text').css('margin-top', '');
-        $('#gallery_button').css('margin-left', '');
-        $('.tabs_style').css('padding-top', '');
+        $('.friends_name').css('margin-top', '');
+        $('#todo_list').css('margin-left', '');
+        $('.lastfm_playcount').css('margin-top', '');
+        $('.lastfm_artist_name').css('margin-top', '');
+        $('.lastfm_artist').css('margin-top', '');
+        $('.lastfm_name').css('margin-top', '');
+        $('.games_name').css('margin-top', '');
+        $('.games_lasted').css('margin-top', '');
         applyFontFamily('GeologicaRoman');
       }
     }

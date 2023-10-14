@@ -19,6 +19,18 @@ function fetchAndUpdateIcons() {
     .then(data => {
       const connections = data.connected_accounts;
       const connectionsContainer = document.getElementById("accounts");
+      const discordUser = data.user;
+
+      
+const avatarUrl = `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.${avatarFormat}?size=${avatarSize}`;
+
+const avatarLinkElement = document.getElementById('pfp_link');
+avatarLinkElement.href = `https://discordapp.com/users/${discordUser.id}`;
+avatarLinkElement.innerHTML = '<i class="fa-brands fa-discord" class="icon-style"></i>' + '<span class="connection-name" style="margin-left: 2px;">' + discordUser.username + '</span>';
+avatarLinkElement.target = '_blank';
+
+const avatarImg = document.getElementById('pfp');
+avatarImg.src = avatarUrl;
 
       // Clear the existing icons
       connectionsContainer.innerHTML = "";
@@ -115,7 +127,6 @@ function createConnectionDiv(connection) {
 
         // Use profileUrl for the Steam connection
         url = profileUrl;
-        console.log('🐛 steam url: ' + url);
 
         // Assign the url to the connection div
         connDiv.href = url;

@@ -82,7 +82,6 @@ $(document).ready(function() {
   // disable if window width is less than 550px
   if ($(window).width() <= 550) {
     $("#preloader_music").css("width", "100%", "important");
-    console.log("🐛 Visible Music width:", musicWidth);
   }
 });
 

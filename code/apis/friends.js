@@ -6,7 +6,7 @@ const discordUserIds = [
   '768656516885774371', // prax
   '984835890608230430', // vin
   '1035262868586766376', // Ben
-  '981935028751695943',  // nari
+  '1065682790827442188',  // doma
   '503676030536646716' // ashy
 ];
 
@@ -66,7 +66,6 @@ function fetchDataAndUpdateLocalStorage() {
       // Remove the skeleton loader element from the DOM
       if (skeletonLoaderFriends) {
         skeletonLoaderFriends.remove();
-        console.log('🐛 Skeleton loader removed.');
       }
     })
     .catch(error => console.error(error));
@@ -86,10 +85,13 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
       container.setAttribute('id', 'friends_container');
 
       const avatar = document.createElement('img');
-          avatar.setAttribute('src', `https://cdn.discordapp.com/avatars/${friendData.id}/${friendData.avatar}?size=512`);
+      avatar.setAttribute('src', `https://cdn.discordapp.com/avatars/${friendData.id}/${friendData.avatar}?size=512`);
       avatar.setAttribute('id', 'friends_avatar');
       avatar.setAttribute('loading', 'lazy');
       avatar.setAttribute('class', 'disabledrag');
+      avatar.onerror = function() {
+        avatar.src = '../styles/blank.png';
+      };
 
       const name = document.createElement('h6');
       name.textContent = friendData.global_name;
@@ -110,11 +112,10 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
 
       friendsContainer.appendChild(container);
 
-            // Remove the skeleton loader element from the DOM
-            if (skeletonLoaderFriends) {
-              skeletonLoaderFriends.remove();
-              console.log('🐛 Skeleton loader removed.');
-            }
+      // Remove the skeleton loader element from the DOM
+        if (skeletonLoaderFriends) {
+          skeletonLoaderFriends.remove();
+        }
     });
   });
 
