@@ -1,7 +1,8 @@
-version 1.4.1
+version 1.4.2
 add - new loaders
 add - data tabs with, data
 add - performance and back-end improvements
+add - view scrollbars
 
 bug - full view gallery misaligned on smaller screens (on hold)
 bug - tabs with dyslexic font misplaced (on hold)

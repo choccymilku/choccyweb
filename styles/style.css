@@ -208,6 +208,10 @@ h1 { margin:0px }
   overflow-y: scroll;
 }
 
+.bar_outer {
+  overflow: hidden !important;
+}
+
 
 /* bars */
 #tabs {
@@ -221,7 +225,7 @@ h1 { margin:0px }
   width: calc(100% - 10px);
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
-  overflow-y: scroll;
+  overflow-y: hidden;
   -webkit-tap-highlight-color: transparent;
   scrollbar-width: none;
 }
@@ -372,6 +376,7 @@ h1 { margin:0px }
   position: relative;
   z-index: 9999;
   overflow-y: scroll;
+  overflow-x: hidden;
   max-height: 450px;
 }
 
@@ -474,6 +479,7 @@ h1 { margin:0px }
   border-radius: 8px;
   justify-content: space-between;
   overflow-x: scroll;
+  overflow-y: hidden;
   position: relative;
   padding: 0px;
   background-color: transparent;
@@ -505,6 +511,7 @@ h1 { margin:0px }
   border-radius: 8px;
   justify-content: space-between;
   overflow-x: scroll;
+  overflow-y: hidden;
   height: fit-content;
   position: relative;
   padding: 0px;
@@ -515,7 +522,7 @@ h1 { margin:0px }
   background-color: var(--color1);
   overflow: hidden !important;
   border-radius: 8px;
-  height: 195px;
+  height: fit-content;
   width: 100%;
 }
 
@@ -713,7 +720,6 @@ a:hover {color:var(--texthover) !important}
 }
 
 #data_outer {
-  overflow: scroll;
   width: 100%; 
   scrollbar-width: none;
 }
@@ -721,14 +727,15 @@ a:hover {color:var(--texthover) !important}
 #data_inner {
   height: calc(100% - 10px);
   width: calc(100% - 10px);
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   padding: 5px !important;
   background-color: var(--color2);
 }
 
 #project_inner {
   height: 100%;
-  overflow: scroll;
+  overflow-x: hidden;
   padding: 0px !important;
   background-color: var(--color1);
 }
@@ -1331,4 +1338,8 @@ a:hover {color:var(--texthover) !important}
     text-align: right;
     margin-right: 10px;
     margin-top: 5px;
+  }
+
+  #text {
+    overflow-x: hidden;
   }

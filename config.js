@@ -91,36 +91,41 @@ var custom_text =
 
 // can be removed if you don't intend to use to-do list anywhere, make sure the url is correct for your repository (must be raw.githubusercontent.com)
 
-    fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/main/VERSION.MD')
-    .then(response => response.text())
-    .then(text => {
-        var todo = text.split('\n');
-        var todo_list = document.getElementById('update_notes');
-        var versionElement = document.getElementById('version'); // Add this line
+fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/main/VERSION.MD')
+.then(response => response.text())
+.then(text => {
+    var todo = text.split('\n');
+    var todo_list = document.getElementById('update_notes');
+    var versionElement = document.getElementById('version'); // Add this line
+    const versionPattern = /\bversion (\d+\.\d+(\.\d+)?)/i;
 
-        todo.forEach((item) => {
-            if (item.trim() === '') {
-                // If the line is empty, add a line break
-                todo_list.appendChild(document.createElement('br'));
+    todo.forEach((item) => {
+        if (item.trim() === '') {
+            // If the line is empty, add a line break
+            todo_list.appendChild(document.createElement('br'));
+        } else {
+            // Check for different keywords and replace them with corresponding icons
+            var modifiedItem = item.replace(/bug\s+-/i, '<i class="fa-solid fa-bug" title="bug"></i>');
+            modifiedItem = modifiedItem.replace(/fix\s+-/i, '<i class="fa-solid fa-screwdriver-wrench" title="fix"></i>');
+            modifiedItem = modifiedItem.replace(/temp\s+-/i, '<i class="fa-solid fa-trowel-bricks" title="temporary fix"></i>');
+            modifiedItem = modifiedItem.replace(/add\s+-/i, '<i class="fa-solid fa-plus" title="add"></i>');
+
+            const versionMatch = versionPattern.exec(modifiedItem);
+            if (versionMatch) {
+                // If a version is found, abbreviate and add it to the versionElement with the icon
+                versionElement.innerHTML = 'v.' + versionMatch[0].substring(8).replace(/\s/g, '') + ' <i class="fa-solid fa-circle-question"></i>';
+                console.log(versionElement.innerHTML);
             } else {
-                // Check for different keywords and replace them with corresponding icons
-                var modifiedItem = item.replace(/bug\s+-/i, '<i class="fa-solid fa-bug" title="bug"></i>');
-                modifiedItem = modifiedItem.replace(/fix\s+-/i, '<i class="fa-solid fa-screwdriver-wrench" title="fix"></i>');
-                modifiedItem = modifiedItem.replace(/temp\s+-/i, '<i class="fa-solid fa-trowel-bricks" title="temporary fix"></i>');
-                modifiedItem = modifiedItem.replace(/add\s+-/i, '<i class="fa-solid fa-plus" title="add"></i>');
-
-                var versionMatch = modifiedItem.replace(/version\s+/i, 'v.').match(/v\.\S+/i);
-                if (versionMatch) {
-                    // If a version is found, add it to the versionElement with the icon
-                    versionElement.innerHTML = versionMatch[0] + ' <i class="fa-solid fa-circle-question"></i>';
-                } else {
-                    var element = document.createElement(modifiedItem.toLowerCase().includes('v.') ? 'h1' : 'div');
-                    element.innerHTML = modifiedItem; // Use innerHTML to render the icons
-                    todo_list.appendChild(element);
-                }
+                var element = document.createElement(modifiedItem.toLowerCase().includes('v.') ? 'h1' : 'div');
+                element.innerHTML = modifiedItem; // Use innerHTML to render the icons
+                todo_list.appendChild(element);
             }
-        });
+        }
     });
+});
+
+
+
 
 
 //DO NOT EDIT BELOW THIS LINE
