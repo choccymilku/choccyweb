@@ -1,2 +1,2 @@
-more to about me
 fix dyslexic font
+scrollbar fixes
