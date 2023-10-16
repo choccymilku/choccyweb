@@ -64,7 +64,6 @@ avatarImg.src = avatarUrl;
             return response.json();
           })
           .then(data => {
-            console.log(data);
             const roblox_username = data.displayName;
             const roblox_id = data.id;
             customConnections.push({ type: "roblox", id: roblox_id, name: roblox_username });

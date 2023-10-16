@@ -326,7 +326,7 @@ h1 { margin:0px }
 }
 #reset {
   cursor: pointer;
-  color: lightcoral !important;
+  color: #d53d36;
 }
 #reset:hover {
   filter: brightness(1.3);
@@ -352,7 +352,10 @@ h1 { margin:0px }
 }
 
 #timeFormatBtn:hover {
-  color: var(--texthovefr);
+  color: var(--texthover);
+}
+.scrollbars:hover {
+  color: var(--texthover);
 }
 
 
