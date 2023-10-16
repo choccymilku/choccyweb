@@ -36,11 +36,15 @@
 }
 
 /* width */
-::-webkit-scrollbar {
-  width: var(--scrollbar-width, 10px); /* Change the width of the scrollbar */
-  height: var(--scrollbar-height, 10px); /* Change the width of the scrollbar */
-}
+/* ::-webkit-scrollbar {
+  width: var(--scrollbar-width, 10px);
+  height: var(--scrollbar-height, 10px);
+} */
 
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
 /* Track */
 ::-webkit-scrollbar-track {
   background: var(--color3);
@@ -489,7 +493,7 @@ if (localStorage.getItem('theme') === 'light') {
 <script src="./code/apis/translations.js"></script>
 <script src="./code/time.js"></script>
 <script src="./code/profileHover.js"></script>
-<script src="./code/verticalScroll.js"></script>
+<script src="./code/horizontalScroll.js"></script>
 <script src="./code/versionHover.js"></script>
 <script src="./code/skeletons.js"></script>
 <script src="./code/scrollbars.js"></script>
