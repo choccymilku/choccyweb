@@ -230,9 +230,9 @@ if (listeningToMusic) {
     albumCoverElementNoLink.style.display = 'none';
     albumCoverElement.style.display = 'flex';
     albumCoverElementLink.style.display = 'flex';
-    console.log('listening to spotify');
+    console.log('🐛 listening to spotify');
   } else {
-    console.log('🐛 activity not spotify');
+    console.log('🐛 listening to something else than spotify');
     albumCoverElementNoLink.style.display = 'flex';
     albumCoverElement.style.display = 'none';
     albumCoverElementLink.style.display = 'none';

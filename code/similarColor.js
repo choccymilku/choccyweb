@@ -5,10 +5,10 @@ function getDominantColorFromImage(image) {
 
     if (dominantColor) {
       const hexColor = rgbToHex(dominantColor[0], dominantColor[1], dominantColor[2]);
-      console.log("🐛 Dominant Color Hex:", hexColor); // Add this line to log the hex color
+      console.log("🐛 dominant Color Hex:", hexColor); // Add this line to log the hex color
       resolve(hexColor);
     } else {
-      reject("🐛 Unable to extract the dominant color from the image.");
+      reject("🐛 unable to extract the dominant color from the image.");
     }
   });
 }
@@ -64,12 +64,17 @@ setTimeout(function() {
   document.documentElement.style.setProperty("--texthover", textHoverColor);
 }, 500);
 
-if ($(window).width() >= 550) {
-    var visibleBarHeight = $(".bar:visible").height();
-    var updatedHeight = visibleBarHeight + 2; // Add 12 pixels to the original height
-    
-    $("#preloader_main").css("height", updatedHeight + "px", "important");
-    console.log("🐛 Visible Bar Height:", visibleBarHeight);
+if (localStorage.getItem("activeTab") !== "tab_data") {
+  console.log("🐛 not data tab");
+  if ($(window).width() >= 550) {
+      var visibleBarHeight = $(".bar:visible").height();
+      var updatedHeight = visibleBarHeight + 2; // Add 2 pixels to the original height
+      
+      $("#preloader_main").css("height", updatedHeight + "px", "important");
+      console.log("🐛 visible Bar Height:", visibleBarHeight);
+  }
+} else if (localStorage.getItem("activeTab") === "tab_data") {
+  console.log("🐛 data tab");
 }
 
 $(document).ready(function() {
@@ -77,7 +82,7 @@ $(document).ready(function() {
   var updatedMusicWidth = musicWidth + 11; // Add 12 pixels to the original height
   
   $("#preloader_music").css("width", updatedMusicWidth + "px", "important");
-  console.log("🐛 Visible Music width:", musicWidth);
+  console.log("🐛 visible Music width:", musicWidth);
 
   // disable if window width is less than 550px
   if ($(window).width() <= 550) {
@@ -97,9 +102,9 @@ $(document).ready(function() {
   if (totalWidth <= maxWidth) {
     var updatedWidth = totalWidth;
     $("#preloader_tabs").css("width", updatedWidth + "px");
-    console.log("🐛 Total Tabs Width:", totalWidth);
+    console.log("🐛 total Tabs Width:", totalWidth);
   } else {
-    console.log("Total width exceeds the maximum allowed width. Script disabled.");
+    console.log("total width exceeds the maximum allowed width");
   }
 });
 
@@ -113,20 +118,22 @@ var loadtime = Math.round(loadtime);
 var loadtime = loadtime / 1000;
 var loadtime = loadtime + "s";
 console.log("🐛 Page Load Time:", loadtime);
-// display into load_time id
-document.getElementById("load_time").innerHTML = loadtime;
   
   // 500ms delay
   setTimeout(function() {
     $("#preloader").css("display", "none");
     $("body").css("background-color", "var(--color2)");
-/*     $("#load_time").css("display", "block"); */
   }, 500);
 
   setTimeout(function() {
     $("body").css("transition", "0s");
   }, 800);
   
+  //detect if website has loaded and console log
+  $(window).on("load", function() {
+    console.log("🐛 page Loaded!");
+  });
+
 }
 
 // Wait for the DOM to fully load
@@ -151,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           };
           img.onerror = () => {
-            console.error("🐛 Error loading the image.");
+            console.error("🐛 error loading the image.");
           };
           img.src = imageUrl;
           observer.disconnect();
@@ -178,6 +185,12 @@ function getAppliedMode(userPreference) {
   if (userPreference === "dark") {
     return "dark";
   }
+  if (userPreference == "halloween") {
+    return "halloween";
+  }
+  if (userPreference === "christmas") {
+    return "christmas";
+  }
   return "disabled";
 }
 
@@ -190,6 +203,12 @@ function rotatePreferences(userPreference) {
     return "light";
   }
   if (userPreference === "light") {
+    return "halloween";
+  }
+  if (userPreference === "halloween") {
+    return "christmas";
+  }
+  if (userPreference === "christmas") {
     return "disabled";
   }
   if (userPreference === "disabled") {
@@ -201,8 +220,6 @@ function rotatePreferences(userPreference) {
 
 const themeToggler = document.getElementById("theme-toggle");
 
-// Mimic heavy load done by other JS scripts
-setTimeout(() => {
   let userPreference = getUserPreference();
   setAppliedMode(getAppliedMode(userPreference));
   themeToggler.innerText = userPreference;
@@ -214,4 +231,3 @@ setTimeout(() => {
     themeToggler.innerText = newUserPref;
     setAppliedMode(getAppliedMode(newUserPref));
   };
-}, 0);

@@ -109,12 +109,11 @@ fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/m
             modifiedItem = modifiedItem.replace(/fix\s+-/i, '<i class="fa-solid fa-screwdriver-wrench" title="fix"></i>');
             modifiedItem = modifiedItem.replace(/temp\s+-/i, '<i class="fa-solid fa-trowel-bricks" title="temporary fix"></i>');
             modifiedItem = modifiedItem.replace(/add\s+-/i, '<i class="fa-solid fa-plus" title="add"></i>');
+            modifiedItem = modifiedItem.replace(/kill\s+-/i, '<i class="fa-solid fa-skull" title="removed"></i>');
 
             const versionMatch = versionPattern.exec(modifiedItem);
             if (versionMatch) {
-                // If a version is found, abbreviate and add it to the versionElement with the icon
                 versionElement.innerHTML = 'v.' + versionMatch[0].substring(8).replace(/\s/g, '') + ' <i class="fa-solid fa-circle-question"></i>';
-                console.log(versionElement.innerHTML);
             } else {
                 var element = document.createElement(modifiedItem.toLowerCase().includes('v.') ? 'h1' : 'div');
                 element.innerHTML = modifiedItem; // Use innerHTML to render the icons

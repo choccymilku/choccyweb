@@ -108,5 +108,32 @@ setInterval(function() {
     }
 }
 
+  // toggle full gallery
+  function toggleGallery() {
+    var galleryInner = document.getElementById('gallery_full_view');
+    var fullGallery = document.getElementById('full_gallery');
+    var fullGallery2 = document.getElementById('full_gallery2');
+    
+    if (galleryInner.style.display === "none" || galleryInner.style.display === "") {
+      galleryInner.style.display = "block";
+    } else {
+      galleryInner.style.display = "none";
+    }
+  }
 
+  // close full gallery
+  function closeGallery() {
+    var galleryInner = document.getElementById('gallery_full_view');
+    var fullGallery2 = document.getElementById('full_gallery2');
+    
+    galleryInner.style.display = "none";
+    // Add CSS changes for #full_gallery2 when the gallery is turned off
+    fullGallery2.style.backgroundColor = ""; // Reset background color for full_gallery2
+  }
+
+  // Add click event listener to the full_gallery element
+  document.getElementById('full_gallery').addEventListener('click', toggleGallery);
+
+  // Add click event listener to the full_gallery2 element
+  document.getElementById('full_gallery2').addEventListener('click', closeGallery);
   

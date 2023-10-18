@@ -1,13 +1,11 @@
-version 1.4.2
-add - new loaders
-add - data tabs with, data
+version 1.4.3
 add - performance and back-end improvements
-add - view scrollbars
+add - halloween and christmas theme
 
 bug - full view gallery misaligned on smaller screens (on hold)
 bug - tabs with dyslexic font misplaced (on hold)
-bug - tab loader on smaller devices not working properly (on hold)
-bug - can't scroll version div (on hold)
+fix - tab loader on smaller devices not working properly
 
-temp - removed full view on mobile (it will come back someday)
-temp - removed fonts, needs fixing
+kill - removed scrollbars
+kill - removed gallery full view
+kill - can't scroll version div
