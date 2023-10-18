@@ -219,6 +219,7 @@ if (listeningToMusic) {
   artistElement.innerText = artist;
 
   const albumCoverElement = document.getElementById('music-cover');
+  const albumCoverElementLink = document.getElementById('music-track-link');
   const albumCoverElementNoLink = document.getElementById('music-cover-nolink');
 
   
@@ -228,10 +229,14 @@ if (listeningToMusic) {
     trackLink.href = `https://open.spotify.com/track/${trackId}`;
     albumCoverElementNoLink.style.display = 'none';
     albumCoverElement.style.display = 'flex';
+    albumCoverElementLink.style.display = 'flex';
+    console.log('listening to spotify');
   } else {
     console.log('🐛 activity not spotify');
     albumCoverElementNoLink.style.display = 'flex';
     albumCoverElement.style.display = 'none';
+    albumCoverElementLink.style.display = 'none';
+    console.log('not listening to spotify');
   }
 
   if (albumCover) {
