@@ -4,6 +4,7 @@ add - halloween and christmas theme
 
 bug - full view gallery misaligned on smaller screens (on hold)
 bug - tabs with dyslexic font misplaced (on hold)
+
 fix - tab loader on smaller devices not working properly
 
 kill - removed scrollbars
