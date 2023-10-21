@@ -65,7 +65,6 @@ setTimeout(function() {
 }, 500);
 
 if (localStorage.getItem("activeTab") !== "tab_data") {
-  console.log("🐛 not data tab");
   if ($(window).width() >= 550) {
       var visibleBarHeight = $(".bar:visible").height();
       var updatedHeight = visibleBarHeight + 2; // Add 2 pixels to the original height
@@ -74,7 +73,6 @@ if (localStorage.getItem("activeTab") !== "tab_data") {
       console.log("🐛 visible Bar Height:", visibleBarHeight);
   }
 } else if (localStorage.getItem("activeTab") === "tab_data") {
-  console.log("🐛 data tab");
 }
 
 $(document).ready(function() {

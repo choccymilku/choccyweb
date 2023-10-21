@@ -219,7 +219,6 @@ if (listeningToMusic) {
 
   const albumCoverElement = document.getElementById('music-cover');
   const trackLink = document.getElementById('music-track-link');
-  const trackId = spotifytrackLink.track_id;
 
 // Function to check if the text is present in elements
 function checkTextAvailability() {
@@ -239,7 +238,6 @@ function getToken() {
       .then(data => {
           var spotifyToken = data.accessToken; // Define spotifyToken inside this block
           console.log("🐛 spotify token for fetching link acquired, fetching...");
-          console.log(songNameElement.innerText);
 
           // Make the Spotify API request with the obtained token and text data
           fetch(`https://api.spotify.com/v1/search?q=track:${encodeURIComponent(songNameElement.innerText)}&type=track&limit=1`, {
@@ -251,16 +249,18 @@ function getToken() {
               .then(res => res.json())
               .then(res => {
                   if (res.tracks.items.length >= 1) {
-                      console.log("🐛 spotify link fetched!");
                       if (spotifytrackLink) {
+                        const trackId = spotifytrackLink.track_id;
                         console.log('🐛 spotify link: https://open.spotify.com/track/' + trackId);
                         trackLink.href = `https://open.spotify.com/track/${trackId}`;
                       } else {
-                        console.log('🐛 non-spotify link: ' + res.tracks.items[0].external_urls.spotify);
+                        console.log('🐛 non-spotify song: ' + songNameElement.innerText + ' | ' + res.tracks.items[0].external_urls.spotify);
                         trackLink.href = res.tracks.items[0].external_urls.spotify;
                       }
                   } else {
-                      console.log("Song not found on Spotify.");
+                      console.log("🐛 non-spotify song not found");
+                      // remove href
+                      trackLink.removeAttribute('href');
                   }
               });
       });
