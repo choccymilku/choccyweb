@@ -204,7 +204,7 @@ if (listeningToMusic) {
       preloaderMusic.style.opacity = '1';
     }, 300);
     var topbarLeftWidth = $("#topbar_left").width();
-    var updatedtopbarLeftWidth = topbarLeftWidth + 10; // Add 10 pixels to the original width
+    var updatedtopbarLeftWidth = topbarLeftWidth + 12; // Add 10 pixels to the original width
   
     $("#preloader_topbar_left").css("width", updatedtopbarLeftWidth + "px", "important");
     console.log("🐛 Visible Music width:", topbarLeftWidth);
@@ -218,7 +218,8 @@ if (listeningToMusic) {
   artistElement.innerText = artist;
 
   const albumCoverElement = document.getElementById('music-cover');
-  const albumCoverElementLink = document.getElementById('music-track-link');
+  const trackLink = document.getElementById('music-track-link');
+  const trackId = spotifytrackLink.track_id;
 
 // Function to check if the text is present in elements
 function checkTextAvailability() {
@@ -252,13 +253,10 @@ function getToken() {
                   if (res.tracks.items.length >= 1) {
                       console.log("🐛 spotify link fetched!");
                       if (spotifytrackLink) {
-                        console.log(trackId);
-                        const trackLink = document.getElementById('music-track-link');
-                        const trackId = spotifytrackLink.track_id;
+                        console.log('🐛 spotify link: https://open.spotify.com/track/' + trackId);
                         trackLink.href = `https://open.spotify.com/track/${trackId}`;
                       } else {
-                        console.log(res.tracks.items[0].external_urls.spotify);
-                        const trackLink = document.getElementById('music-track-link');
+                        console.log('🐛 non-spotify link: ' + res.tracks.items[0].external_urls.spotify);
                         trackLink.href = res.tracks.items[0].external_urls.spotify;
                       }
                   } else {
