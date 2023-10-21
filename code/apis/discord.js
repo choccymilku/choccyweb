@@ -198,10 +198,6 @@ if (listeningToMusic) {
     : `https://lh3.googleusercontent.com/${musicActivity.assets.large_image.slice(musicActivity.assets.large_image.indexOf("https/"))}`;
 
 
-  // Update the UI elements
-  const songNameElement = document.getElementById('music-song');
-  songNameElement.innerText = songName;
-
   $(document).ready(function() {
     setTimeout(function() { 
       const preloaderMusic = document.getElementById('preloader_music');
@@ -213,40 +209,74 @@ if (listeningToMusic) {
     $("#preloader_topbar_left").css("width", updatedtopbarLeftWidth + "px", "important");
     console.log("🐛 Visible Music width:", topbarLeftWidth);
   });
-  
 
+  // Update the UI elements
+  const songNameElement = document.getElementById('music-song');
+  songNameElement.innerText = songName;
+  
   const artistElement = document.getElementById('music-artist');
   artistElement.innerText = artist;
 
   const albumCoverElement = document.getElementById('music-cover');
   const albumCoverElementLink = document.getElementById('music-track-link');
-  const albumCoverElementNoLink = document.getElementById('music-cover-nolink');
 
-  
-  if (spotifytrackLink) {
-    const trackId = spotifytrackLink.track_id;
-    const trackLink = document.getElementById('music-track-link');
-    trackLink.href = `https://open.spotify.com/track/${trackId}`;
-    albumCoverElementNoLink.style.display = 'none';
-    albumCoverElement.style.display = 'flex';
-    albumCoverElementLink.style.display = 'flex';
-    console.log('🐛 listening to spotify');
+// Function to check if the text is present in elements
+function checkTextAvailability() {
+  if (songNameElement.innerText && artistElement.innerText) {
+      // If both song name and artist are present, get the token and make the API request
+      getToken();
   } else {
-    console.log('🐛 listening to something else than spotify');
-    albumCoverElementNoLink.style.display = 'flex';
-    albumCoverElement.style.display = 'none';
-    albumCoverElementLink.style.display = 'none';
-    console.log('not listening to spotify');
+      // If text is not available, wait and check again after a delay
+      setTimeout(checkTextAvailability, 1000); // Wait for 1 second and check again
   }
+}
+
+// Function to handle Spotify API request
+function getToken() {
+  fetch("https://api.choccymilk.uk/spotify")
+      .then(response => response.json())
+      .then(data => {
+          var spotifyToken = data.accessToken; // Define spotifyToken inside this block
+          console.log("🐛 spotify token for fetching link acquired, fetching...");
+          console.log(songNameElement.innerText);
+
+          // Make the Spotify API request with the obtained token and text data
+          fetch(`https://api.spotify.com/v1/search?q=track:${encodeURIComponent(songNameElement.innerText)}&type=track&limit=1`, {
+              headers: {
+                  "Authorization": `Bearer ${spotifyToken}`
+              },
+              method: "GET"
+          })
+              .then(res => res.json())
+              .then(res => {
+                  if (res.tracks.items.length >= 1) {
+                      console.log("🐛 spotify link fetched!");
+                      if (spotifytrackLink) {
+                        console.log(trackId);
+                        const trackLink = document.getElementById('music-track-link');
+                        const trackId = spotifytrackLink.track_id;
+                        trackLink.href = `https://open.spotify.com/track/${trackId}`;
+                      } else {
+                        console.log(res.tracks.items[0].external_urls.spotify);
+                        const trackLink = document.getElementById('music-track-link');
+                        trackLink.href = res.tracks.items[0].external_urls.spotify;
+                      }
+                  } else {
+                      console.log("Song not found on Spotify.");
+                  }
+              });
+      });
+}
+
+// Call the function to check for text availability
+checkTextAvailability();
+
 
   if (albumCover) {
     albumCoverElement.src = albumCover;
     albumCoverElement.setAttribute('title', songName + '\n' + artist);
-    albumCoverElementNoLink.src = albumCover;
-    albumCoverElementNoLink.setAttribute('title', songName + '\n' + artist);
   } else {
     albumCoverElement.src = ''; // Remove the image if no album cover available
-    albumCoverElementNoLink.src = ''; // Remove the image if no album cover available
   }
 
   // Get the initial timestamps and calculate the total time

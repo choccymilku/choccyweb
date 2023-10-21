@@ -403,6 +403,7 @@ h1 { margin:0px }
   overflow-y: scroll;
   overflow-x: hidden;
   max-height: 450px;
+  scrollbar-width: none;
 }
 
 #profile_hover {
@@ -418,6 +419,7 @@ h1 { margin:0px }
   padding: 5px;
   float: left;
   display: none;
+  scrollbar-width: none;
 }
 
 #pfp_link {
