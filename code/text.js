@@ -85,15 +85,22 @@ function convertTimestamps(text) {
 
 return formattedText;
 }
-
 document.addEventListener('DOMContentLoaded', function() {
+  // Fetch the TO-DO list from the URL
   fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/main/TO-DO.md')
       .then(response => response.text())
       .then(text => {
           var todo = text.split('\n');
           var todo_list = document.getElementById('todo_list');
           var olElement = document.createElement('ol'); // Create the <ol> element
-          todo_list.appendChild(olElement); // Append <ol> to the parent element
+          
+          // Add "To-Do List:" as a text node before the <ol>
+          todo_list.appendChild(document.createTextNode('to-do list:'));
+          
+          // Append <ol> to the parent element
+          todo_list.appendChild(olElement);
+          
+          // Populate the TO-DO list items
           todo.forEach((item) => {
               if (item.trim() !== '') {
                   var liElement = document.createElement('li'); // Create <li> for each item
@@ -103,3 +110,4 @@ document.addEventListener('DOMContentLoaded', function() {
           });
       });
 });
+

@@ -110,20 +110,27 @@ const updateTopBarHeight = () => {
   const listeningToMusic = activities ? activities.some(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 0 && activity.name === 'YouTube Music') || (activity.type === 2 && activity.name === 'Spotify')) : false;
 
   if (listeningToMusic && window.innerWidth < 481) {
+    topbar.style.height = '155px';
+    topbarLeft.style.marginTop = '-85px';
     preloader_topbar.style.height = '176px';
     preloader_main.style.height = 'calc(100% - 269px)'
     preloader_main.style.transition = '0s';
 
     preloader_music.style.display = 'block';
 
-    topbar.style.height = '155px';
-    topbarLeft.style.marginTop = '-85px';
     music.style.marginTop = '83px';
     music.style.width = 'calc(100% - 20px)';
     music.style.position = 'absolute';
     music.style.marginLeft = '-5px';
     textOuter.style.height = 'calc(100% - 195px)';
     profile.style.maxHeight = 'calc(100% - 260px)';
+    if (localStorage.getItem('music') === 'true') {
+      topbar.style.height = '70px';
+      topbarLeft.style.marginTop = '0px';
+      preloader_topbar.style.height = '90px';
+      preloader_main.style.height = 'calc(100% - 183px)'
+      profile.style.maxHeight = 'calc(100% - 260px)';
+    }
   } else {
     preloader_topbar.style.height = '';
     topbar.style.height = '';
@@ -157,6 +164,9 @@ const updateBarHeight = () => {
   bars.forEach(bar => {
     if (listeningToMusic && window.innerWidth < 481) {
       bar.style.height = 'calc(100% - 195px)';
+      if (localStorage.getItem('music') === 'true') {
+        bar.style.height = 'calc(100% - 110px)';
+       }
     } else {
       bar.style.height = '';
     }
@@ -164,7 +174,7 @@ const updateBarHeight = () => {
 
   // 'project' is an element, so you need to set its style directly
   if (listeningToMusic && window.innerWidth < 481) {
-    project.style.maxHeight = 'calc(100% - 195px)';
+    project.style.maxHeight = 'calc(100% - 105px)';
     } else {
     project.style.maxHeight = 'calc(100% - 110px)';
     }
@@ -387,5 +397,37 @@ checkTextAvailability();
   // Hide the music UI
   const musicPlatform = document.getElementById('music');
   musicPlatform.style.display = 'none';
+}
+// if #music_hide is clicked, set localstorage, hide #music
+$('#music_hide').click(function() {
+  localStorage.setItem('music', 'true');
+  $('#music').hide();
+  $('#music_hide').hide();
+  $('#music_show').show();
+  if (window.innerWidth < 481) {
+    $('#topbar').css('height', '70px');
+    $('#topbar_left').css('margin-top', '0px');
+    $('.bar').css('height', 'calc(100% - 110px)');
+  }
+});
+// or if #music_show is clicked, set localstorage, show #music
+$('#music_show').click(function() {
+  localStorage.setItem('music', 'false');
+  $('#music').show();
+  $('#music_show').hide();
+  $('#music_hide').show();
+  if (window.innerWidth < 481) {
+    $('#topbar').css('height', '155px');
+    $('#topbar_left').css('margin-top', '-85px');
+    $('.bar').css('height', 'calc(100% - 195px)');
+  }
+});
+// make sure to check localstorage on page load
+if (localStorage.getItem('music') === 'true') {
+  $('#music').hide();
+  $('#music_hide').hide();
+  $('#music_show').show();
+} else if (localStorage.getItem('music') === 'false' && window.innerWidth < 481) {
+  $('#topbar').css('height', '155px');
 }
 }

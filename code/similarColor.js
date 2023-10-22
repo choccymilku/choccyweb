@@ -25,7 +25,7 @@ function getTextColorBasedOnBrightness(hexColor) {
 
 function getHoverTextColorBasedOnBrightness(hexColor) {
   const color = chroma(hexColor);
-  return color.luminance() > 0.4 ? "#686868" : "var(--color5)";
+  return color.luminance() > 0.4 ? "#686868" : "#a6a6a6";
 }
 
 // Function to generate similar colors with dynamic darkening or brightening
@@ -103,6 +103,8 @@ $(document).ready(function() {
     console.log("🐛 total Tabs Width:", totalWidth);
   } else {
     console.log("total width exceeds the maximum allowed width");
+    $("#preloader_tabs").css("width", "calc(100% - 20px)");
+    $("#preloader_tabs").css("transition", "0s");
   }
 });
 
