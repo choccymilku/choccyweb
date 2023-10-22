@@ -90,6 +90,8 @@ document.addEventListener('DOMContentLoaded', function() {
   fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/main/TO-DO.md')
       .then(response => response.text())
       .then(text => {
+        // Check if the fetched text is empty
+        if (text.trim() !== '') {
           var todo = text.split('\n');
           var todo_list = document.getElementById('todo_list');
           var olElement = document.createElement('ol'); // Create the <ol> element
@@ -108,6 +110,11 @@ document.addEventListener('DOMContentLoaded', function() {
                   olElement.appendChild(liElement); // Append <li> to <ol>
               }
           });
+        } else {
+          console.log('TO-DO list is empty.'); // Log a message if the TO-DO list is empty
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching TO-DO list:', error); // Handle errors if fetching fails
       });
 });
-

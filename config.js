@@ -64,7 +64,7 @@ var custom_text =
 `i code mostly in javascript and make websites for fun + trying to learn 3D modelling\n` +
 `i tinker with whatever my heart desires, and i talk too much about it ''#(ask me if you want to know some)#''\n` +   
 `<span id='birthday'></span>, <span id='pronouns'></span>, <span id='flags'></span> & czech :flag_cz: ''#(sadly)#''` +
-`;;divider;;\n<div id="todo_list"></div`;
+`<div id="todo_list">;;divider;;\n</div`;
 
 /* var custom_text =
 `**bold**\n` +
