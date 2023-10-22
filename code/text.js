@@ -95,9 +95,15 @@ document.addEventListener('DOMContentLoaded', function() {
           var todo = text.split('\n');
           var todo_list = document.getElementById('todo_list');
           var olElement = document.createElement('ol'); // Create the <ol> element
+          olElement.classList.add('todo_list_items');
           
-          // Add "To-Do List:" as a text node before the <ol>
-          todo_list.appendChild(document.createTextNode('to-do list:'));
+          // Create a <span> element for "to-do list:" text
+          var spanElement = document.createElement('span');
+          spanElement.classList.add('todo_list_text');
+          spanElement.innerHTML = 'to-do list: ';
+          
+          // Append <span> to the parent element
+          todo_list.appendChild(spanElement);
           
           // Append <ol> to the parent element
           todo_list.appendChild(olElement);
@@ -118,3 +124,4 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Error fetching TO-DO list:', error); // Handle errors if fetching fails
       });
 });
+

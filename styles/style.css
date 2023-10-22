@@ -1388,3 +1388,19 @@ a:hover {color:var(--texthover) !important}
   #settings {
     margin-left: 2px;
   }
+
+  #todo_list {
+    border-top: 3px solid var(--color4);
+    margin-top: 10px;
+  }
+
+  .todo_list_items {
+    margin-bottom: 6px;
+  }
+
+  .todo_list_text {
+    height: 30px;
+    top: 10px;
+    position: relative;
+    display: block;
+  }
