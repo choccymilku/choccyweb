@@ -155,9 +155,7 @@ window.addEventListener('resize', updateTopBarHeight);
 const updateBarHeight = () => {
   const bars = document.querySelectorAll('.bar'); // Select all elements with the class 'bar'
   const project = document.getElementById('projects');
-  const profile = document.getElementById('profile_inner');
-/*   const tabs = document.getElementById('tabs');
- */  
+
   // Assuming 'activities' is defined somewhere
   const listeningToMusic = activities ? activities.some(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 0 && activity.name === 'YouTube Music') || (activity.type === 2 && activity.name === 'Spotify')) : false;
 
@@ -217,7 +215,7 @@ if (listeningToMusic) {
     var updatedtopbarLeftWidth = topbarLeftWidth + 12; // Add 10 pixels to the original width
   
     $("#preloader_topbar_left").css("width", updatedtopbarLeftWidth + "px", "important");
-    console.log("🐛 Visible Music width:", topbarLeftWidth);
+    console.log("🎶 visible Music width:", topbarLeftWidth);
   });
 
   // Update the UI elements
@@ -247,7 +245,7 @@ function getToken() {
       .then(response => response.json())
       .then(data => {
           var spotifyToken = data.accessToken; // Define spotifyToken inside this block
-          console.log("🐛 spotify token for fetching link acquired, fetching...");
+          console.log("🎶 spotify token for fetching link acquired, fetching...");
 
           // Make the Spotify API request with the obtained token and text data
           fetch(`https://api.spotify.com/v1/search?q=track:${encodeURIComponent(songNameElement.innerText)}&type=track&limit=1`, {

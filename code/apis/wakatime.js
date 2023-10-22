@@ -108,6 +108,7 @@ fetch(`https://api.choccymilk.uk/wakatime`, {
 
     // Append the languages container to the element with id 'waka_lang'
     document.getElementById('waka_lang').appendChild(languagesContainer);
+    console.log('📅 wakatime', resultArray);
 })
 .catch(error => {
     // Handle any errors that occurred during the fetch

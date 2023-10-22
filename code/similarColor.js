@@ -5,10 +5,10 @@ function getDominantColorFromImage(image) {
 
     if (dominantColor) {
       const hexColor = rgbToHex(dominantColor[0], dominantColor[1], dominantColor[2]);
-      console.log("🐛 dominant Color Hex:", hexColor); // Add this line to log the hex color
+      console.log("🎨 dominant Color Hex:", hexColor); // Add this line to log the hex color
       resolve(hexColor);
     } else {
-      reject("🐛 unable to extract the dominant color from the image.");
+      reject("❌ unable to extract the dominant color from the image.");
     }
   });
 }
@@ -80,7 +80,7 @@ $(document).ready(function() {
   var updatedMusicWidth = musicWidth + 11; // Add 12 pixels to the original height
   
   $("#preloader_music").css("width", updatedMusicWidth + "px", "important");
-  console.log("🐛 visible Music width:", musicWidth);
+  console.log("🎶 visible Music width:", musicWidth);
 
   // disable if window width is less than 550px
   if ($(window).width() <= 550) {
@@ -100,9 +100,9 @@ $(document).ready(function() {
   if (totalWidth <= maxWidth) {
     var updatedWidth = totalWidth;
     $("#preloader_tabs").css("width", updatedWidth + "px");
-    console.log("🐛 total Tabs Width:", totalWidth);
+    console.log("🐛 total tabs Width:", totalWidth);
   } else {
-    console.log("total width exceeds the maximum allowed width");
+    console.log("🐛 total width exceeds the maximum allowed width");
     $("#preloader_tabs").css("width", "calc(100% - 20px)");
     $("#preloader_tabs").css("transition", "0s");
   }
@@ -117,7 +117,7 @@ var loadtime = performance.now();
 var loadtime = Math.round(loadtime);
 var loadtime = loadtime / 1000;
 var loadtime = loadtime + "s";
-console.log("🐛 Page Load Time:", loadtime);
+console.log("📈 page Load Time:", loadtime);
   
   // 500ms delay
   setTimeout(function() {
@@ -128,12 +128,6 @@ console.log("🐛 Page Load Time:", loadtime);
   setTimeout(function() {
     $("body").css("transition", "0s");
   }, 800);
-  
-  //detect if website has loaded and console log
-  $(window).on("load", function() {
-    console.log("🐛 page Loaded!");
-  });
-
 }
 
 // Wait for the DOM to fully load
@@ -152,13 +146,13 @@ document.addEventListener("DOMContentLoaded", () => {
               const dominantColor = await getDominantColorFromImage(img);
               const similarColors = generateSimilarColors(dominantColor, 4);
               updateRootColors(dominantColor, similarColors);
-              console.log("🐛 Generated Colors:", similarColors);
+              console.log("🎨 generated Colors:", similarColors);
             } catch (error) {
               console.error(error);
             }
           };
           img.onerror = () => {
-            console.error("🐛 error loading the image.");
+            console.error("❌ error loading the image.");
           };
           img.src = imageUrl;
           observer.disconnect();

@@ -93,6 +93,7 @@ fetch('https://api.choccymilk.uk/activity')
       skeletonLoader.remove();
     }
   }); */
+  let steamGamesList = []; // Create an empty array to store game objects
 
   fetch('https://api.choccymilk.uk/steam-games')
   .then(response => response.json())
@@ -103,7 +104,7 @@ fetch('https://api.choccymilk.uk/activity')
     const filteredGames = games.filter(game => game.playtime_forever > 30 && game.name !== "Wallpaper Engine");
     filteredGames.sort((a, b) => b.playtime_forever - a.playtime_forever);
     
-    // Keep only the top 5 games
+    // Keep only the top 10 games
     const topGames = filteredGames.slice(0, 10);
 
     topGames.forEach(game => {
@@ -144,6 +145,7 @@ fetch('https://api.choccymilk.uk/activity')
       steamDiv.appendChild(steamImage);
       steamDiv.appendChild(steamName);
       steamDiv.appendChild(steamTime);
+      steamGamesList.push(game);
     });
   })
   .finally(() => {
@@ -151,4 +153,5 @@ fetch('https://api.choccymilk.uk/activity')
     if (skeletonLoader) {
       skeletonLoader.remove();
     }
+    console.log('📅 steam games:', steamGamesList);
   });

@@ -11,14 +11,14 @@ const discordUserIds = [
 ];
 
 function fetchDataAndUpdateLocalStorage() {
-  console.log('🐛 Fetching friends data...');
+  console.log('🔄 fetching friends data...');
 
   const skeletonLoaderFriends = document.getElementById('skeleton_loader_friends');
 
   Promise.all(discordUserIds.map(id => fetch(`https://api.choccymilk.uk/lookup/${id}`)))
     .then(responses => Promise.all(responses.map(response => response.json())))
     .then(data => {
-      console.log('Data fetched! :D');
+      console.log('✅ data fetched! :D');
       const timestamp = Date.now();
       const savedData = { data, timestamp };
       localStorage.setItem('discordFriends', JSON.stringify(savedData));
@@ -59,9 +59,6 @@ function fetchDataAndUpdateLocalStorage() {
           friendsContainer.appendChild(container);
         });
       });
-
-      const timeUntilNextFetch = (timestamp - Date.parse(localStorage.getItem('discordFriends').timestamp)) / 1000;
-      console.log(`Next fetch in ${12 * 3600 - timeUntilNextFetch} seconds.`);
 
       // Remove the skeleton loader element from the DOM
       if (skeletonLoaderFriends) {
@@ -124,7 +121,7 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
   const hoursUntilNextFetch = Math.floor(totalSecondsUntilNextFetch / 3600);
   const minutesUntilNextFetch = Math.floor((totalSecondsUntilNextFetch % 3600) / 60);
 
-  console.log(`🐛 Next fetch in ${hoursUntilNextFetch} hours and ${minutesUntilNextFetch} minutes.`);
+  console.log(`👥 next fetch in ${hoursUntilNextFetch} hours and ${minutesUntilNextFetch} minutes.`);
   
 }
 

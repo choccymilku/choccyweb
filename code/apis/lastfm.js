@@ -5,7 +5,7 @@ function getToken() {
     .then(response => response.json())
     .then(data => {
         spotifyToken = data.accessToken;
-        console.log("🐛 spotify token acquired, fetching...");
+        console.log("📅 spotify token acquired, fetching...");
     })
 
   }
@@ -20,7 +20,7 @@ function fetchTopArtistsFromLastFM() {
           return response.json();
       })
       .then(data => {
-          console.log("🐛 top artists - last.fm", data);
+          console.log("📅 top artists - last.fm", data);
           displayTopArtists(data.topartists.artist);
       })
       .catch(error => {
@@ -47,7 +47,7 @@ function fetchTopTracksFromLastFM() {
           return response.json();
       })
       .then(data => {
-          console.log("🐛 top tracks - last.fm", data);
+          console.log("📅 top tracks - last.fm", data);
           displayTopTracks(data.toptracks.track);
       })
       .catch(error => {
@@ -78,7 +78,7 @@ function fetchSpotifyImage(trackName, artistName, trackDiv) {
           imageElement.className = "lastfm_image noselect disabledrag";
           trackDiv.appendChild(imageElement);
       } else {
-          console.log("Song not found on Spotify.");
+          console.log("❌ song not found on Spotify.");
       }
   });
 }
@@ -99,7 +99,7 @@ function fetchSpotifyArtistImage(artistName, trackDiv) {
     // Function to recursively fetch artist images for all parts
     function fetchImagesRecursively(index) {
         if (index >= artistParts.length) {
-            console.log("Artist not found on Spotify.");
+            console.log("❌ artist not found on Spotify.");
             return; // All parts have been tried, and the artist is still not found
         }
 
@@ -123,7 +123,7 @@ function fetchSpotifyArtistImage(artistName, trackDiv) {
     }
             })
             .catch(error => {
-                console.error("Error fetching artist image:", error);
+                console.error("❌ error fetching artist image:", error);
                 // Handle the error, retry the request, or perform other actions as necessary
             });
     }

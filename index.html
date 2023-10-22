@@ -66,6 +66,9 @@
 .clickable {display: block;}
 </style>
 <script>
+  console.log('%cemoji meaning list:\n\n🎨 - color related stuff (getting color from image, making pallete)\n🎶 - music related stuff (setting preloader and heights correctly)\n🔄 - loading stuff\n📅 - data stuff\n📰 - lanyard\n✅ - loaded correctly\n👥 - next friends fetch in\n🐛 - debugging\n', 'background-color:coral;border-radius:6px;');
+</script>
+<script>
   var tabDataLogged = false;
   var tabFriendsLogged = false;
   var tabGalleryLogged = false;
@@ -74,21 +77,21 @@
   function checkLocalStorage() {
     var activeTabValue = localStorage.getItem('activeTab');
      if (activeTabValue === 'tab_data' && !tabDataLogged) {
-      console.log('🐛 loading data...');
+      console.log('🔄 loading data...');
       tabDataLogged = true;
       loadScript('./code/apis/games.js');
       loadScript('./code/apis/wakatime.js');
       loadScript('./code/apis/lastfm.js');
     }  else if (activeTabValue === 'tab_friends' && !tabFriendsLogged) {
-      console.log('🐛 loading friends...');
+      console.log('🔄 loading friends...');
       tabFriendsLogged = true;
       loadScript('./code/apis/friends.js');
     } else if (activeTabValue === 'tab_gallery' && !tabGalleryLogged) {
-      console.log('🐛 loading gallery...');
+      console.log('🔄 loading gallery...');
       tabGalleryLogged = true;
       loadScript('./code/apis/gallery.js');
     } else if (activeTabValue === 'tab_projects' && !tabProjectsLogged) {
-      console.log('🐛 loading projects...');
+      console.log('🔄 loading projects...');
       tabProjectsLogged = true;
       loadScript('./code/apis/github.js');
     } 

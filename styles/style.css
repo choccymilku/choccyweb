@@ -1144,6 +1144,7 @@ a:hover {color:var(--texthover) !important}
     z-index: 1;
     overflow: hidden;
     display: flex;
+    transition: 0.3s;
   }
 
   #preloader_topbar_left {

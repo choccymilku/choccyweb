@@ -117,7 +117,9 @@ document.addEventListener('DOMContentLoaded', function() {
               }
           });
         } else {
-          console.log('TO-DO list is empty.'); // Log a message if the TO-DO list is empty
+          console.log('🐛 TO-DO list is empty.'); // Log a message if the TO-DO list is empty
+          const todo_list = document.getElementById('todo_list');
+          todo_list.style.display = 'none';
         }
       })
       .catch(error => {
