@@ -1378,14 +1378,6 @@ a:hover {color:var(--texthover) !important}
     overflow-x: hidden;
   }
 
-  .music_setting {
-    cursor: pointer;
-  }
-
-  .music_setting:hover {
-    color: var(--texthover);
-  }
-
   #settings {
     margin-left: 2px;
   }

@@ -108,20 +108,8 @@ function loadScript(scriptUrl) {
   setInterval(checkLocalStorage, 0);
 </script>
 
-
-
-
-
-
-
-
 </head>
 <body id="body" class="light noselect">
-
- 
-<!-- <div style="background-color: black;width: 100%;height: 100%;position: absolute;z-index: 9999;margin-left: -6px;margin-top: -10px;" id="text">
-    </div> -->
-
 <div id="main">
 
   <div id="preloader">
@@ -223,56 +211,6 @@ function loadScript(scriptUrl) {
                   <span style="border-bottom: 2px solid var(--text);">theme:</span> 
                   <div id="theme-toggle" class="fontChange"></div>
                 </span>
-
-                <span id="music_set">
-                  <i class="fa-solid fa-music icon-style" style="margin-right: -3px;"></i>
-                  <span style="border-bottom: 2px solid var(--text);">music:</span>
-                  <div id="music_hide" class="music_setting">shown</div>
-                  <div id="music_show" class="music_setting" style="display: none;">hidden</div>
-                </span>
-
-<!--                 <span style="color:gray;fill:gray;" id="translate">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon-style" style="margin-right: -3px;" viewBox="0 0 576 512">
-                    <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 208H296c13.3 0 24 10.7 24 24s-10.7 24-24 24H120c-13.3 0-24-10.7-24-24s10.7-24 24-24zm256 0h80c13.3 0 24 10.7 24 24s-10.7 24-24 24H376c-13.3 0-24-10.7-24-24s10.7-24 24-24zM120 336h80c13.3 0 24 10.7 24 24s-10.7 24-24 24H120c-13.3 0-24-10.7-24-24s10.7-24 24-24zm160 0H456c13.3 0 24 10.7 24 24s-10.7 24-24 24H280c-13.3 0-24-10.7-24-24s10.7-24 24-24z"/></svg>
-                  <span style="border-bottom: 2px solid gray;">translation:</span>
-                  <div class="translate">WIP</div>
-
-                  <select id="languageSelector">
-                    <option value="en">English</option>
-                    <option value="zh">Chinese</option>
-                    <option value="fr">French</option>
-                    <option value="es">Spanish</option>
-                    <option value="ar">Arabic</option>
-                    <option value="ru">Russian</option>
-                    <option value="de">German</option>
-                    <option value="ja">Japanese</option>
-                    <option value="pt">Portuguese</option>
-                    <option value="hi">Hindi</option>
-                  </select>
-                  
-                  <button onclick="translateText()">Translate</button>
-                  
-                  <div id="loadingIcon" style="display: none;">
-                    <i class="fas fa-spinner fa-spin"></i> Loading...
-                  </div>
-                  
-                  <div id="translationResult"></div>
-                  
-                </span> -->
-
-<!--                 <span id="fonts">
-                  <i class="fa-solid fa-text-height icon-style" style="margin-right: -3px;"></i>
-                  <span style="border-bottom: 2px solid var(--text);">font style:</span> 
-                  <div id="dyslexic_off" class="fontChange">default</div>
-                  <div id="dyslexic_on" class="fontChange" style="display: none;">dyslexic</div>
-                </span> -->
-
-<!--                 <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon-style" style="margin-right: -3px;margin-bottom:-3px;"><path d="M464 112v64H320V112H464zM48 64C21.5 64 0 85.5 0 112v64c0 26.5 21.5 48 48 48H464c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zM464 336v64H192V336H464zM48 288c-26.5 0-48 21.5-48 48v64c0 26.5 21.5 48 48 48H464c26.5 0 48-21.5 48-48V336c0-26.5-21.5-48-48-48H48z"/></svg>
-                  <span style="border-bottom: 2px solid var(--text);">scrollbars:</span> 
-                  <div id="scrollbar_off" class="scrollbars" style="cursor: pointer;display: none;">no</div>
-                  <div id="scrollbar_on" class="scrollbars" style="cursor: pointer;">yes</div>
-                </span> -->
 
                 <span id="bug">
                   <i class="fa-solid fa-bug icon-style" style="margin-right: -3px;"></i>
@@ -409,37 +347,6 @@ function loadScript(scriptUrl) {
   location.reload();
   });
 </script>
-<!-- <script>
-  // toggle full gallery
-  function toggleGallery() {
-    var galleryInner = document.getElementById('gallery_full_view');
-    var fullGallery = document.getElementById('full_gallery');
-    var fullGallery2 = document.getElementById('full_gallery2');
-    
-    if (galleryInner.style.display === "none" || galleryInner.style.display === "") {
-      galleryInner.style.display = "block";
-    } else {
-      galleryInner.style.display = "none";
-    }
-  }
-
-  // close full
-  function closeGallery() {
-    var galleryInner = document.getElementById('gallery_full_view');
-    var fullGallery2 = document.getElementById('full_gallery2');
-    
-    galleryInner.style.display = "none";
-    // Add CSS changes for #full_gallery2 when the gallery is turned off
-    fullGallery2.style.backgroundColor = ""; // Reset background color for full_gallery2
-  }
-
-  // Add click event listener to the full_gallery element
-  document.getElementById('full_gallery').addEventListener('click', toggleGallery);
-
-  // Add click event listener to the full_gallery2 element
-  document.getElementById('full_gallery2').addEventListener('click', closeGallery);
-</script> -->
-
 <script>
   // handle preloader themes correctly
 if (localStorage.getItem('theme') === 'light') {

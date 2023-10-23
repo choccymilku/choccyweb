@@ -396,36 +396,4 @@ checkTextAvailability();
   const musicPlatform = document.getElementById('music');
   musicPlatform.style.display = 'none';
 }
-// if #music_hide is clicked, set localstorage, hide #music
-$('#music_hide').click(function() {
-  localStorage.setItem('music', 'true');
-  $('#music').hide();
-  $('#music_hide').hide();
-  $('#music_show').show();
-  if (window.innerWidth < 481) {
-    $('#topbar').css('height', '70px');
-    $('#topbar_left').css('margin-top', '0px');
-    $('.bar').css('height', 'calc(100% - 110px)');
-  }
-});
-// or if #music_show is clicked, set localstorage, show #music
-$('#music_show').click(function() {
-  localStorage.setItem('music', 'false');
-  $('#music').show();
-  $('#music_show').hide();
-  $('#music_hide').show();
-  if (window.innerWidth < 481) {
-    $('#topbar').css('height', '155px');
-    $('#topbar_left').css('margin-top', '-85px');
-    $('.bar').css('height', 'calc(100% - 195px)');
-  }
-});
-// make sure to check localstorage on page load
-if (localStorage.getItem('music') === 'true') {
-  $('#music').hide();
-  $('#music_hide').hide();
-  $('#music_show').show();
-} else if (localStorage.getItem('music') === 'false' && window.innerWidth < 481) {
-  $('#topbar').css('height', '155px');
-}
 }
