@@ -526,8 +526,25 @@ h1 { margin:0px }
 
 .gallery_image {
   height: 350px;
-  margin-right: 5px;
   border-radius: 8px;
+}
+
+.gallery_div {
+  margin-right: 5px;
+  margin-bottom: -10px;
+}
+
+.gallery_image_number {
+  background-color: var(--color5);
+  width: fit-content;
+  margin-bottom: -37px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-family: Rubik;
+  z-index: 9999;
+  position: relative;
+  border-top-left-radius: 7px;
+  border-bottom-right-radius: 8px;
 }
 
 .gallery_image:last-child {
@@ -830,7 +847,7 @@ a:hover {color:var(--texthover) !important}
   }
 
 
-  #update_notes_inner {
+  #update_notes_inner, #credit_notes_inner {
     background-color: var(--color4);
     margin-left: 5px;
     position: absolute;
@@ -843,7 +860,10 @@ a:hover {color:var(--texthover) !important}
     border-radius: 8px;
   }
   
-  #version_container {
+  #version_container, #credit_container{
+    display: none;
+  }
+  #gallery_credits {
     display: none;
   }
 
@@ -851,7 +871,7 @@ a:hover {color:var(--texthover) !important}
     cursor: pointer;
   }
 
-  #update_notes {
+  #update_notes, #credits {
     background-color: var(--color2);
     border-radius: 8px;
     margin: 5px;
@@ -864,7 +884,7 @@ a:hover {color:var(--texthover) !important}
     display: block;
   }
 
-  #full_gallery, #full_gallery2 {
+  #gallery_credits {
     font-size: 13px;
     margin-top: -16px;
     float: right;

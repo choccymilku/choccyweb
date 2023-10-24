@@ -28,40 +28,60 @@ const fetchDataWithRetry = (url, maxRetries, retryInterval) => {
 fetchDataWithRetry('https://gallerybot-reboot.choccymilku.repl.co/gallery', maxRetries, retryInterval)
   .then((data) => {
     // Assuming data is an array of objects
+    let numberCount = 1; // Start the numbering from 1
+    const promises = [];
+    const imagesContainer = document.querySelector(CHANNEL_IDS[0]);
+
     data.forEach((item, index) => {
-      // Create an img element
       const img = document.createElement('img');
+      const div = document.createElement('div');
+      const number = document.createElement('div');
+      div.classList.add('gallery_div');
+      number.classList.add('gallery_image_number');
+      number.innerHTML = numberCount;
+
+      div.appendChild(number);
+      div.appendChild(img);
       img.src = item; // Set the src attribute to the URL
 
       // Add the gallery_image class to the img element
       img.classList.add('gallery_image');
       img.classList.add('disabledrag');
 
-      // Append the img to the first div
-      const div1 = document.querySelector(CHANNEL_IDS[0]);
-      if (div1) {
-        div1.appendChild(img);
-      }
+      // Append the img to the container
+      imagesContainer.appendChild(div);
 
-      // Append the img to the second div with a different class
-      const div2 = document.querySelector(CHANNEL_IDS[1]);
-      if (div2) {
-        const imgClone = img.cloneNode(true); // Clone the img element
-        imgClone.classList.remove('gallery_image'); // Remove the initial class
-        imgClone.classList.add('gallery_image_full'); // Add a different class
-        div2.appendChild(imgClone);
-      }
+      // Create a promise for each image load
+      const imageLoadPromise = new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = reject;
+      });
 
-      // Remove the skeleton loader once the images are loaded
-      const skeletonLoader = document.querySelector('#skeleton_loader_gallery');
-      if (skeletonLoader) {
-        skeletonLoader.remove();
-      }
+      promises.push(imageLoadPromise);
+      numberCount++; // Increment the number for the next iteration
     });
+
+    // Wait for all images to be loaded before removing skeletons
+    Promise.all(promises)
+      .then(() => {
+        // Remove the skeleton loader once all images are loaded
+        const skeletonLoader = document.querySelector('#skeleton_loader_gallery');
+        if (skeletonLoader) {
+          skeletonLoader.remove();
+        }
+      })
+      .catch((error) => {
+        console.error('Error loading images:', error);
+      });
   })
   .catch((error) => {
     console.error('Max retries reached. Unable to fetch data:', error);
   });
+
+
+
+
+
 
 // show full view gallery
 

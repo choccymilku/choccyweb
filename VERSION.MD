@@ -1,4 +1,4 @@
-version 1.4.4
-add - hide music
-
-fix - tab loader on smaller devices not working properly
+version 1.4.5
+add - gallery numbering and credits
+add - api changes
+kill - hide music (broken)

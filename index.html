@@ -170,9 +170,9 @@ function loadScript(scriptUrl) {
 
         <div id="version" style="font-size: 10px;font-weight: bold;"></div>
 
-<!--         <div id="full_gallery">
-          full view
-          <i class="fa-solid fa-panorama"></i></div> -->
+        <div id="gallery_credits">
+          credits
+          <i class="fa-solid fa-brush"></i></div>
       </div>
 
       <div id="music">
@@ -231,6 +231,12 @@ function loadScript(scriptUrl) {
   <div id="version_container">
     <div id="update_notes_inner">
       <div id="update_notes"></div>
+    </div>
+  </div>
+
+  <div id="credit_container">
+    <div id="credit_notes_inner">
+      <div id="credits"></div>
     </div>
   </div>
 
@@ -398,8 +404,7 @@ if (localStorage.getItem('theme') === 'light') {
 }
 </script>
 <script> // version hover
-    const version = document.getElementById('version');
-  const pfp2 = document.getElementById('version');
+  const version = document.getElementById('version');
   const versionHover = document.getElementById('version_container');
 
   // Function to toggle the visibility of the profile_hover div
@@ -412,7 +417,7 @@ if (localStorage.getItem('theme') === 'light') {
   }
 
   // Event listener to show or hide profile_hover when clicking on pfp
-  pfp2.addEventListener('click', function (event) {
+  version.addEventListener('click', function (event) {
     event.stopPropagation(); // Prevent event bubbling to the document click listener
     toggleVersionHover();
   });
@@ -435,9 +440,47 @@ if (localStorage.getItem('theme') === 'light') {
     versionHover.style.display = 'block';
   }
 </script>
+<script> // credit hover
+const credit = document.getElementById('gallery_credits');
+const creditHover = document.getElementById('credit_container');
+
+// Function to toggle the visibility of the profile_hover div
+function toggleCreditHover() {
+  if (creditHover.style.display === 'block') {
+    creditHover.style.display = 'none';
+  } else {
+    creditHover.style.display = 'block';
+  }
+}
+
+// Event listener to show or hide profile_hover when clicking on pfp
+credit.addEventListener('click', function (event) {
+  event.stopPropagation(); // Prevent event bubbling to the document click listener
+  toggleCreditHover();
+});
+
+// Event listener to hide profile_hover when clicking outside the profile or profile_hover
+document.addEventListener('click', function (event) {
+  const target = event.target;
+  if (target !== profile && target !== creditHover && !profile.contains(target)) {
+    hideCreditHover();
+  }
+});
+
+// Function to hide the profile_hover div
+function hideCreditHover() {
+  creditHover.style.display = 'none';
+}
+
+// Function to show the profile_hover div
+function showCreditHover() {
+  creditHover.style.display = 'block';
+}
+</script>
 <script src="./config.js"></script>
 <script src="./code/tabs.js"></script>
 <script src="./code/similarColor.js"></script>
+<script src="./code/formatting.js"></script>
 <script src="./code/text.js"></script>
 <script src="./code/apis/accounts.js"></script>
 <script src="./code/apis/discord.js"></script>
