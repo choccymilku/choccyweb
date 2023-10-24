@@ -14,6 +14,8 @@ danny
 ricebeanzo
 benrey
 roseruh
+ashy
+nem
 doma
 vessel_3
 bibi
