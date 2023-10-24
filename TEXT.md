@@ -3,10 +3,11 @@ add - gallery numbering and credits
 add - api changes
 
 kill - hide music (broken)
----
-to-do
+
+to-do:
 yeah
----
+
+credits:
 fixy_cookies
 danny
 ricebeanzo
@@ -15,5 +16,4 @@ roseruh
 doma
 vessel_3
 bibi
-
 (if i forgot some, my apologies)

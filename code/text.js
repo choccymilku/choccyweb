@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Fetch the TO-DO list from the URL
-    fetch('https://api.choccymilk.uk/github_text')
-        .then(response => response.json())
+    fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/main/TEXT.md')
+        .then(response => response.text())
         .then(data => {
             // version number and text
             const versionMatch = data.version.match(/version (\d+\.\d+\.\d+)/i);
