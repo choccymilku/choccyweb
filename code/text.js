@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // to-do list
             const todo = data.todo;
             const todoDiv = document.getElementById('todo_list');
-            const todoItems = todo.split('\n'); // Assuming todo is a newline-separated string
+            const todoItems = todo.split('\n').filter(item => item.trim() !== '');
 
             // check if text exists
             if (todoItems.length > 0) {
