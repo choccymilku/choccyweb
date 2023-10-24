@@ -1,6 +1,4 @@
 let resultArray = []; // Create an empty array to store the extracted information
-
-
 fetch(`https://api.choccymilk.uk/wakatime`, {
 })
 .then(response => response.json())

@@ -78,11 +78,6 @@ fetchDataWithRetry('https://gallerybot-reboot.choccymilku.repl.co/gallery', maxR
     console.error('Max retries reached. Unable to fetch data:', error);
   });
 
-
-
-
-
-
 // show full view gallery
 
 function updateGalleryVisibility() {

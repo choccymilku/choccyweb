@@ -124,9 +124,6 @@ var custom_text =
 });
  */
 
-
-
-
 //DO NOT EDIT BELOW THIS LINE
 document.title = `${title}`;
 

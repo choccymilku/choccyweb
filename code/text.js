@@ -1,17 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Fetch the TO-DO list from the URL
-    fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/main/TEXT.md')
-        .then(response => response.text())
+    fetch('https://api.choccymilk.uk/github_text')
+        .then(response => response.json())
         .then(data => {
-            // version number and text
-            const versionMatch = data.version.match(/version (\d+\.\d+\.\d+)/i);
-            const version = versionMatch ? `v.${versionMatch[1]}` : 'forgor the version 💀';
-
+            console.log(data);
             // add version into the page
+            const version = data.version;
             const versionElement = document.getElementById('version');
             versionElement.innerHTML = version + ' <i class="fa-solid fa-circle-question"></i>';
+
             // match icons and format
-            const versionText = data.version.replace(/^version \d+\.\d+\.\d+\n/, '').trim().replace(/\n/g, '<br>');
+            const versionText = data.versionText.replace(/\n/g, '<br>');
+            console.log(versionText);
             const versionIconMap = {
                 'add': 'fas fa-plus',
                 'fix': 'fas fa-wrench',
@@ -62,12 +62,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateGalleryVisibility();
               }, 0); // Check every 1 second (adjust as needed)
             
-            const credit = data.galleryCredit;
-            const creditDiv = document.getElementById('credits');
-            creditDiv.innerHTML = credit;
-
-            const github_log = [version, todo, credit];
-            console.log(github_log);
+              const credits = data.credits;
+              const lastIndex = credits.lastIndexOf('\n');
+              const credit = credits.substring(0, lastIndex).replace(/\n/g, ', ') + credits.substring(lastIndex);
+              const creditDiv = document.getElementById('credits');
+              
+              // if it includes "(if i forgot some, my apologies)"
+              if (credit.includes('(if i forgot some, my apologies)')) {
+                const creditText = credit.replace('(if i forgot some, my apologies)', '<br><br><span style="font-family:SourceCode;font-size:12px;">(if i forgot some, my apologies)</span>');
+                creditDiv.innerHTML = `${creditText}`;
+              } else {
+                creditDiv.innerHTML = credit;
+              }
+              
+              
+              
+              
+              
         })
         .catch(error => {
             // Handle any errors that occurred during the fetch

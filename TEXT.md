@@ -5,7 +5,7 @@ add - api changes
 kill - hide music (broken)
 /////
 to-do:
-yeah
+
 /////
 credits:
 fixy_cookies
