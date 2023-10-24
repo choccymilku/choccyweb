@@ -47,7 +47,6 @@ avatarImg.src = avatarUrl;
             continue;
         }
 
-
         const connDiv = createConnectionDiv(conn);
         connectionsContainer.appendChild(connDiv);
       }

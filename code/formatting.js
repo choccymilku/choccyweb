@@ -1,10 +1,6 @@
 const text = `${custom_text}`
-
 var convertedText = convertTimestamps(text);
-
-// Display the converted text in the "about" element
 document.getElementById("text").innerHTML = convertedText;
-
 
 function convertTimestamps(text) {
     const timestampRegex = /<t:(\d+):([dtTFr])>/gi;
@@ -85,4 +81,3 @@ function convertTimestamps(text) {
 
 return formattedText;
 }
-

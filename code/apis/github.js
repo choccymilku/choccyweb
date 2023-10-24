@@ -73,25 +73,7 @@ function fetchAndUpdateIcons(discord_user_id) {
                 repoLanguage.innerHTML = '';
             }
     
-            /* const repoCreated = document.createElement('p');
-            repoCreated.classList.add('project-info-inner');
-            const createdDate = new Date(repo.created_at);
-            repoCreated.innerHTML =
-                `<i class="fa-solid fa-calendar"></i>
-                <span style="border-bottom:3px solid var(--text);">created:</span>
-                ${createdDate.toLocaleDateString()}`;
-
-            const repoStars = document.createElement('p');
-            repoStars.classList.add('project-info-inner');
-            repoStars.innerHTML = 
-                `<i class="fa-solid fa-star"></i>
-                <span style="border-bottom:3px solid var(--text);">stars:</span>
-                ${repo.stargazers_count}`; */
-    
             repoInfoDiv.appendChild(repoLanguage);
-/*             repoInfoDiv.appendChild(repoCreated);
-            repoInfoDiv.appendChild(repoStars); */
-    
             repoInnerDiv.appendChild(repoName);
             repoInnerDiv.appendChild(repoDescription);
             repoInnerDiv.appendChild(repoInfoDiv);
