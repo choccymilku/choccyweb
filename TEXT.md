@@ -6,7 +6,9 @@ add - recently listened tracks
 kill - removed friend tab (not needed really)
 /////
 to-do:
-general fixes
+general and visual fixes
+simplyfing stuff (for the sake of myself)
+last time game played for games
 /////
 credits:
 fixy_cookies
