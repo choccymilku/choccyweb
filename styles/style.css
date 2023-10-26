@@ -534,6 +534,10 @@ h1 { margin:0px }
   margin-bottom: -10px;
 }
 
+.gallery_div:last-child {
+  margin-right: 0px;
+}
+
 .gallery_image_number {
   background-color: var(--color5);
   width: fit-content;
@@ -1148,6 +1152,34 @@ a:hover {color:var(--texthover) !important}
     scrollbar-width: none;
   }
 
+  #lastfm_recent {
+    display: flex;
+    background-color: transparent;
+    overflow-x: scroll;
+    border-radius: 8px;
+    overflow-y: hidden;
+    scrollbar-width: none;
+  }
+
+  .lastfm_recent_name {
+    font-weight: bold;
+    font-size: 20px;
+    white-space: nowrap;
+    padding: 5px;
+    margin-top: -12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .lastfm_recent_artist {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px;
+    margin-top: -10px;
+    text-overflow: ellipsis;
+  }
+
   .lastfm_outer {
     background-color: var(--color3);
     padding: 5px;
@@ -1349,10 +1381,12 @@ a:hover {color:var(--texthover) !important}
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 155px;
+    font-weight: bold;
   }
   .games_lasted {
     top: 175px;
     margin: 5px;
+    margin-top: 8px;
     position: absolute;
     font-size: 12px;
   }

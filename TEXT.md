@@ -1,12 +1,12 @@
-version 1.4.5
+version 1.4.6
 add - gallery numbering and credits
-add - api changes
+add - backend and api changes
+add - recently listened tracks
 
-kill - hide music (broken)
+kill - removed friend tab (not needed really)
 /////
 to-do:
 general fixes
-backend improvements
 /////
 credits:
 fixy_cookies

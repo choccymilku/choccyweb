@@ -66,8 +66,10 @@ fetchDataWithRetry('https://gallerybot-reboot.choccymilku.repl.co/gallery', maxR
       .then(() => {
         // Remove the skeleton loader once all images are loaded
         const skeletonLoader = document.querySelector('#skeleton_loader_gallery');
+        const gallery_inner = document.querySelector('#gallery_inner');
         if (skeletonLoader) {
           skeletonLoader.remove();
+          gallery_inner.style.overflowY = "scroll";
         }
       })
       .catch((error) => {

@@ -86,21 +86,16 @@
 
     #gallery_inner {
         display: block;
-        overflow-y: scroll;
+        overflow-y: hidden;
         height: 100%;
         width: calc(100% + 5px);
         overflow-x: hidden;
     }
 
     .gallery_image {
-        width: calc(100% - 5px);
+        width: 100%;
         height: auto;
-        margin-bottom: -3px;
-    }
-
-    .gallery_image:last-child {
-        margin-bottom: -10px;
-        border-bottom-right-radius: 0px;
+        border-radius: 8px;
     }
 
     .gallery_text {
@@ -208,16 +203,25 @@
         flex: 0%;
         margin-bottom: 5px;
     }
+    #lastfm_recent > .lastfm_container {
+      flex: 0%;
+      margin-bottom: 5px;
+  }
 
     #lastfm_artist {
         margin-bottom: -5px !important;
     }
 
-    #lastfm_artist, #lastfm_top {
+    #lastfm_artist, #lastfm_top, #lastfm_recent {
         flex-wrap: wrap;
     }
 
     #lastfm_top {
+        width: calc(100% + 5px);
+        margin-bottom: -5px !important;
+    }
+
+    #lastfm_recent {
         width: calc(100% + 5px);
         margin-bottom: -5px !important;
     }
@@ -361,6 +365,20 @@
 
       .waka_lang_graph {
         height: 32px;
+      }
+
+      .gallery_div {
+        margin-bottom: -1px;
+      }
+
+      .gallery_div:last-child {
+        margin-bottom: -5px;
+        border-bottom-right-radius: 0px;
+      }
+
+      .gallery_div:last-child img {
+        border-bottom-right-radius: 0px;
+        margin-bottom: -10px;
       }
 }
 

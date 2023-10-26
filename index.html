@@ -266,6 +266,15 @@ function loadScript(scriptUrl) {
               <div id="lastfm_loader_top" class="skelly"></div>
             </div>
           </div>
+
+        <div style="font-family: Rubik;" id="recent_songs"><span>recent songs</span></div>
+
+          <div class="lastfm_outer" id="lastfm_recent_outer">
+            <div class="inner_scrollables" id="lastfm_recent">
+              <div id="lastfm_loader_recent" class="skelly"></div>
+            </div>
+          </div>
+
         <div class="info" id="top_songs_info">
           <span>fetched from </span>
           <a style="text-decoration: underline;" href="https://www.last.fm/api" target="_blank">last.fm</a>, 
@@ -403,6 +412,45 @@ if (localStorage.getItem('theme') === 'light') {
 } else {
 }
 </script>
+<script> // profile hover
+    // Get references to the profile elements
+    const profile = document.getElementById('profile');
+  const pfp = document.getElementById('pfp');
+  const profileHover = document.getElementById('profile_hover');
+
+  // Function to toggle the visibility of the profile_hover div
+  function toggleProfileHover() {
+    if (profileHover.style.display === 'block') {
+      profileHover.style.display = 'none';
+    } else {
+      profileHover.style.display = 'block';
+    }
+  }
+
+  // Event listener to show or hide profile_hover when clicking on pfp
+  pfp.addEventListener('click', function (event) {
+    event.stopPropagation(); // Prevent event bubbling to the document click listener
+    toggleProfileHover();
+  });
+
+  // Event listener to hide profile_hover when clicking outside the profile or profile_hover
+  document.addEventListener('click', function (event) {
+    const target = event.target;
+    if (target !== profile && target !== profileHover && !profile.contains(target)) {
+      hideProfileHover();
+    }
+  });
+
+  // Function to hide the profile_hover div
+  function hideProfileHover() {
+    profileHover.style.display = 'none';
+  }
+
+  // Function to show the profile_hover div
+  function showProfileHover() {
+    profileHover.style.display = 'block';
+  }
+</script>
 <script> // version hover
   const version = document.getElementById('version');
   const versionHover = document.getElementById('version_container');
@@ -485,9 +533,7 @@ function showCreditHover() {
 <script src="./code/apis/accounts.js"></script>
 <script src="./code/apis/discord.js"></script>
 <script src="./code/apis/pronounspage.js"></script>
-<script src="./code/fontchange.js"></script>
 <script src="./code/time.js"></script>
-<script src="./code/profileHover.js"></script>
 <script src="./code/horizontalScroll.js"></script>
 <script src="./code/skeletons.js"></script>
 </body>

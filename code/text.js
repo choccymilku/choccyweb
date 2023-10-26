@@ -74,11 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
               } else {
                 creditDiv.innerHTML = credit;
               }
-              
-              
-              
-              
-              
         })
         .catch(error => {
             // Handle any errors that occurred during the fetch
