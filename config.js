@@ -63,7 +63,8 @@ var custom_text =
 `i made this, call me choccy, or one of [these](https://docs.google.com/document/d/1XfJdYyFmd_hLXrUItX6q1aZZLpJkq_nOiULA0cit8Mw)\n` +
 `i code mostly in javascript and make websites for fun + trying to learn 3D modelling\n` +
 `i tinker with whatever my heart desires, and i talk too much about it ''#(ask me if you want to know some)#''\n` +   
-`<span id='birthday'></span>, <span id='pronouns'></span>, <span id='flags'></span> & czech :flag_cz: ''#(sadly)#''` +
+`<span id='birthday'></span>, <span id='pronouns'></span>, <span id='flags'></span> & czech :flag_cz: ''#(sadly)#''\n\n` +
+`''#(please note this website is still being actively worked on, expect features added and removed at any time)#''\n` +
 `<div id="todo_list"></div`;
 
 /* var custom_text =
@@ -87,42 +88,6 @@ var custom_text =
 `timestamp: [1630953600](https://hammertime.cyou/en-GB)\n` +
 `twemoji: 😊\n` +
 `this is text \n this is also text, on the same line\nn this is text on a new line`; */
-
-
-// can be removed if you don't intend to use to-do list anywhere, make sure the url is correct for your repository (must be raw.githubusercontent.com)
-
-/* fetch('https://raw.githubusercontent.com/choccymilku/choccy-newer-and-improved/main/VERSION.MD')
-.then(response => response.text())
-.then(text => {
-    var todo = text.split('\n');
-    var todo_list = document.getElementById('update_notes');
-    var versionElement = document.getElementById('version'); // Add this line
-    const versionPattern = /\bversion (\d+\.\d+(\.\d+)?)/i;
-
-    todo.forEach((item) => {
-        if (item.trim() === '') {
-            // If the line is empty, add a line break
-            todo_list.appendChild(document.createElement('br'));
-        } else {
-            // Check for different keywords and replace them with corresponding icons
-            var modifiedItem = item.replace(/bug\s+-/i, '<i class="fa-solid fa-bug" title="bug"></i>');
-            modifiedItem = modifiedItem.replace(/fix\s+-/i, '<i class="fa-solid fa-screwdriver-wrench" title="fix"></i>');
-            modifiedItem = modifiedItem.replace(/temp\s+-/i, '<i class="fa-solid fa-trowel-bricks" title="temporary fix"></i>');
-            modifiedItem = modifiedItem.replace(/add\s+-/i, '<i class="fa-solid fa-plus" title="add"></i>');
-            modifiedItem = modifiedItem.replace(/kill\s+-/i, '<i class="fa-solid fa-skull" title="removed"></i>');
-
-            const versionMatch = versionPattern.exec(modifiedItem);
-            if (versionMatch) {
-                versionElement.innerHTML = 'v.' + versionMatch[0].substring(8).replace(/\s/g, '') + ' <i class="fa-solid fa-circle-question"></i>';
-            } else {
-                var element = document.createElement(modifiedItem.toLowerCase().includes('v.') ? 'h1' : 'div');
-                element.innerHTML = modifiedItem; // Use innerHTML to render the icons
-                todo_list.appendChild(element);
-            }
-        }
-    });
-});
- */
 
 //DO NOT EDIT BELOW THIS LINE
 document.title = `${title}`;
