@@ -9,6 +9,8 @@ to-do:
 general and visual fixes
 simplyfing stuff (for the sake of myself)
 last time game played for games
+recently played games
+minimizing load times and optimization
 /////
 credits:
 fixy_cookies
@@ -21,4 +23,4 @@ nem
 doma
 vessel_3
 bibi
-(if i forgot some, my apologies)
+(if i forgot some, my apologies, please message me on discord with a request that you want to be added in (provide proof))
