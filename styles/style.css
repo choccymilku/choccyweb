@@ -866,12 +866,17 @@ a:hover {color:var(--texthover) !important}
   #version_container, #credit_container{
     display: none;
   }
+
   #gallery_credits {
     display: none;
+    z-index: 0;
+    position: relative;
   }
 
   #version {
     cursor: pointer;
+    z-index: 1;
+    position: relative;
   }
 
   #update_notes, #credits {
@@ -1201,11 +1206,12 @@ a:hover {color:var(--texthover) !important}
     text-overflow: ellipsis;
   }
 
-  .lastfm_outer {
+  .data_outer {
     background-color: var(--color3);
     padding: 5px;
     border-radius: 8px;
     width: calc(100% - 10px);
+    height: 200px;
   }
 
   #preloader_topbar {

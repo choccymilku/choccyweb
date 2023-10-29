@@ -15,7 +15,6 @@ async function getToken() {
 async function fetchData() {
     try {
         await getToken(); // Wait for the token to be retrieved
-        
         await fetchTopArtistsFromLastFM();
         await fetchTopTracksFromLastFM();
     } catch (error) {

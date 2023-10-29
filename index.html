@@ -231,11 +231,6 @@ function loadScript(scriptUrl) {
   <div id="version_container">
     <div id="update_notes_inner">
       <div id="update_notes"></div>
-    </div>
-  </div>
-
-  <div id="credit_container">
-    <div id="credit_notes_inner">
       <div id="credits"></div>
     </div>
   </div>
@@ -252,27 +247,18 @@ function loadScript(scriptUrl) {
       <div class="noselect bar_inner" id="data_inner">
 
         <div style="font-family: Rubik;" id="recent_songs"><span>recent songs</span></div>
-
-        <div class="lastfm_outer" id="lastfm_recent_outer">
-          <div class="inner_scrollables" id="lastfm_recent">
-            <div id="lastfm_loader_recent" class="skelly"></div>
+          <div class="data_outer" id="lastfm_recent_outer">
+            <div class="inner_scrollables" id="lastfm_recent"></div>
           </div>
-        </div>
 
         <div style="font-family: Rubik;margin-top: 10px;" id="top_songs"><span>top songs</span></div>
-
-          <div class="lastfm_outer">
-            <div class="inner_scrollables" id="lastfm_top">
-              <div id="lastfm_loader_top" class="skelly"></div>
-            </div>
+          <div class="data_outer">
+            <div class="inner_scrollables" id="lastfm_top"></div>
           </div>
 
         <div style="font-family: Rubik;" id="top_artists"><span>top artists</span></div>
-
-          <div class="lastfm_outer" id="lastfm_recent_outer">
-            <div class="inner_scrollables" id="lastfm_artist">
-              <div id="lastfm_loader_artist" class="skelly"></div>
-            </div>
+          <div class="data_outer" id="lastfm_recent_outer">
+            <div class="inner_scrollables" id="lastfm_artist"></div>
           </div>
 
         <div class="info" id="top_songs_info">
@@ -285,26 +271,25 @@ function loadScript(scriptUrl) {
         <div class="divider" style="margin-bottom: 10px;margin-top: 10px;"></div>
 
         <div style="font-family: Rubik;" id="games_and_activities"><span>games & activities</span></div>
-        <div id="games_data_outer">
-          <div id="games_data">
-            <div id="games_loader" class="skelly"></div>
+          <div class="data_outer">
+            <div id="games_data"></div>
           </div>
-        </div>
-        <div class="info" id="games_and_activities_info">
-          <span>fetched from </span>
-          <a style="text-decoration: underline;" href="https://developer.valvesoftware.com/wiki/Steam_Web_API#GetOwnedGames_.28v0001.29" target="_blank">steamcommunity.com</a>
-        </div>
+
+          <div class="info" id="games_and_activities_info">
+            <span>fetched from </span>
+            <a style="text-decoration: underline;" href="https://developer.valvesoftware.com/wiki/Steam_Web_API#GetOwnedGames_.28v0001.29" target="_blank">steamcommunity.com</a>
+          </div>
 
         <div class="divider" style="margin-bottom: 20px;margin-top: 10px;"></div>
+
         <div id="waka_data" style="margin-bottom: 20px;"></div>
+
         <div style="font-family: Rubik;" id="top_languages"><span>top languages</span></div>
         <div id="waka_lang"></div>
-        <div class="info" id="top_languages_info">
+          <div class="info" id="top_languages_info">
           <span>fetched from </span>
           <a style="text-decoration: underline;" href="https://wakatime.com" target="_blank">wakatime.com</a>
         </div>
-
-
       </div>
     </div>
   </div>
@@ -451,15 +436,33 @@ if (localStorage.getItem('theme') === 'light') {
     profileHover.style.display = 'block';
   }
 </script>
-<script> // version hover
+<script> // version and credits hover
   const version = document.getElementById('version');
+  const updates = document.getElementById('update_notes');
+  const galleryCredits = document.getElementById('gallery_credits');
+  const credits = document.getElementById('credits');
   const versionHover = document.getElementById('version_container');
 
-  // Function to toggle the visibility of the profile_hover div
-  function toggleVersionHover() {
+  function checkIfGallery () {
+    if (localStorage.getItem('activeTab') === 'tab_gallery') {
+      credits.style.display = 'block';
+      updates.style.display = 'none';
+      galleryCredits.style.display = 'block';
+    } else {
+      credits.style.display = 'none';
+      updates.style.display = 'block';
+      galleryCredits.style.display = 'none';
+    }
+  }
+  
+  setInterval(function() {
+    checkIfGallery();
+  }, 0);
+
+function toggleVersionHover() {
     if (versionHover.style.display === 'block') {
         versionHover.style.display = 'none';
-    } else {
+      } else {
         versionHover.style.display = 'block';
     }
   }
@@ -488,77 +491,6 @@ if (localStorage.getItem('theme') === 'light') {
     versionHover.style.display = 'block';
   }
 </script>
-<script> // credit hover
-const credit = document.getElementById('gallery_credits');
-const creditHover = document.getElementById('credit_container');
-
-// Function to toggle the visibility of the profile_hover div
-function toggleCreditHover() {
-  if (creditHover.style.display === 'block') {
-    creditHover.style.display = 'none';
-  } else {
-    creditHover.style.display = 'block';
-  }
-}
-
-// Event listener to show or hide profile_hover when clicking on pfp
-credit.addEventListener('click', function (event) {
-  event.stopPropagation(); // Prevent event bubbling to the document click listener
-  toggleCreditHover();
-});
-
-// Event listener to hide profile_hover when clicking outside the profile or profile_hover
-document.addEventListener('click', function (event) {
-  const target = event.target;
-  if (target !== profile && target !== creditHover && !profile.contains(target)) {
-    hideCreditHover();
-  }
-});
-
-// Function to hide the profile_hover div
-function hideCreditHover() {
-  creditHover.style.display = 'none';
-}
-
-// Function to show the profile_hover div
-function showCreditHover() {
-  creditHover.style.display = 'block';
-}
-</script>
-<!-- <script>
-function fetchData() {
-  const restApi = 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=choccymilku&api_key=53b12a31e5c9e626ef29a22967e54e63&limit=10&format=json';
-
-  fetch(restApi)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      // Handle the API response data here
-      console.log(data); // You can process the data as per your requirements
-
-      // Call fetchData again to initiate the next long poll
-      fetchData();
-    })
-    .catch(error => {
-      // Handle errors that occurred during the fetch
-      console.error('There has been a problem with your fetch operation:', error);
-
-      // Retry the fetch after a delay in case of failure
-      setTimeout(fetchData, 1000); // Retry after 1 second (adjust the delay as needed)
-    });
-}
-
-// Call the fetchData function to initiate the long poll
-fetchData();
-
-</script> -->
-
-
-
 <script src="./config.js"></script>
 <script src="./code/tabs.js"></script>
 <script src="./code/similarColor.js"></script>

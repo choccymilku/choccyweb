@@ -43,23 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 todoDiv.style.display = 'none'; // Hide the todoDiv if there are no items
             }
-
-            function updateGalleryVisibility() {
-                if (localStorage.getItem('activeTab') === 'tab_gallery') {
-                  document.getElementById('gallery_credits').style.display = "block";
-                } else {
-                  document.getElementById('gallery_credits').style.display = "none";
-                }
-              }
-              
-              // Initial setup
-              updateGalleryVisibility();
-              
-              // Set up a timer to continuously check for localStorage changes
-              setInterval(function() {
-                updateGalleryVisibility();
-              }, 0); // Check every 1 second (adjust as needed)
-            
               const credits = data.credits;
               const lastIndex = credits.lastIndexOf('\n');
               const credit = credits.substring(0, lastIndex).replace(/\n/g, ', ') + credits.substring(lastIndex);

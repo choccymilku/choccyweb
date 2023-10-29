@@ -8,6 +8,7 @@ to-do:
 general and visual fixes
 simplyfing stuff (for the sake of myself)
 minimizing load times and optimization
+more games to get
 rewrite?
 /////
 credits:

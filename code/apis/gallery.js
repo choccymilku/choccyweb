@@ -77,7 +77,7 @@ fetchDataWithRetry('https://gallerybot-reboot.choccymilku.repl.co/gallery', maxR
 
 // show full view gallery
 
-function updateGalleryVisibility() {
+/* function updateGalleryVisibility() {
   if (localStorage.getItem('activeTab') === 'tab_gallery') {
     document.getElementById('full_gallery').style.display = "block";
   } else {
@@ -91,7 +91,7 @@ updateGalleryVisibility();
 // Set up a timer to continuously check for localStorage changes
 setInterval(function() {
   updateGalleryVisibility();
-}, 0); // Check every 1 second (adjust as needed)
+}, 0); // Check every 1 second (adjust as needed) */
 
 
 // switcher for gallery
