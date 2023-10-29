@@ -506,7 +506,6 @@ h1 { margin:0px }
 /* gallery */
 #gallery_inner {
   display: flex;
-  width: 100%;
   border-radius: 8px;
   justify-content: space-between;
   overflow-x: scroll;
@@ -664,7 +663,7 @@ a:hover {color:var(--texthover) !important}
   height: 36px;
   margin-bottom: -8px;
 }
-.pronoun-values {background-color:var(--color3);padding-left:5px;padding-right:5px;border-radius:8px;display: inline-block;word-break: break-word;}
+.pronoun-values {background-color:var(--color4);padding-left:5px;padding-right:5px;border-radius:8px;display: inline-block;word-break: break-word;}
 .divider {width: 100%;height: 3px;background-color:  var(--color4);margin-top: 9px;margin-bottom: 9px;}
 
 #roblox {width: 300px;height: 100px;background-color: var(--wing1);margin-top: 20px;margin-bottom: 20px;}
@@ -1088,8 +1087,10 @@ a:hover {color:var(--texthover) !important}
     max-height: 155px;
     object-fit: cover;
     border-radius: 8px;
-    background-color: var(--color3);
     border-bottom-left-radius: 0px;
+    background: "linear-gradient(90deg, var(--color3), var(--color5), var(--color3))";
+    background-size: 200% 100%;
+    animation: gradientAnimation 1.5s ease infinite forwards;
   }
 
   .lastfm_playcount {
@@ -1103,6 +1104,26 @@ a:hover {color:var(--texthover) !important}
     border-top-left-radius: 8px;
     font-size: 24px;
     padding: 2px;
+  }
+
+  .lastfm_playcount_recent {
+    background-color: var(--color2);
+    width: fit-content;
+    position: relative;
+    margin-left: auto;
+    margin-top: -38px;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 8px;
+    font-size: 24px;
+    padding: 2px;
+    margin-bottom: 5px;
+  }
+
+  .lastfm_playcount_played_now {
+    font-family: Rubik;
+  }
+  .lastfm_playcount_played {
+    font-family: Rubik2;
   }
 
   .lastfm_name {
@@ -1321,6 +1342,14 @@ a:hover {color:var(--texthover) !important}
     height: 100%;
     border-bottom-right-radius: 0px;
     border-top-right-radius: 0px;
+  }
+
+  #waka_total {
+    display: flex;
+  }
+
+  #waka_total > div {
+    flex: 1;
   }
 
   .waka_lang_container {

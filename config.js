@@ -18,9 +18,7 @@ const pronounspage_username = "choccymilk"; //choccymilk or 01GXT9SVRPDFYR3DJGMA
 const title = "choccy, developer?"; 
 
 // your birthday (shown in the "about me" section) <not required>
-const bday_day = '6';
-const bday_month = '9';
-const bday_year = '2007';
+const birthday = `6, 9, 2007`; // first is day, then month, then year
 
 // username on the topbar <required> ⚠
 var username = "choccy";
@@ -63,7 +61,7 @@ var custom_text =
 `i made this, call me choccy, or one of [these](https://docs.google.com/document/d/1XfJdYyFmd_hLXrUItX6q1aZZLpJkq_nOiULA0cit8Mw)\n` +
 `i code mostly in javascript and make websites for fun + trying to learn 3D modelling\n` +
 `i tinker with whatever my heart desires, and i talk too much about it ''#(ask me if you want to know some)#''\n` +   
-`<span id='birthday'></span>, <span id='pronouns'></span>, <span id='flags'></span> & czech :flag_cz: ''#(sadly)#''\n\n` +
+`available from <t:1698411600:t> to <t:1698433200:t>\n<span id='birthday'></span>, <span id='pronouns'></span>, <span id='flags'></span> & czech :flag_cz: ''#(sadly)#''\n\n` +
 `''#(please note this website is still being actively worked on, expect features added and removed at any time)#''\n` +
 `<div id="todo_list"></div`;
 

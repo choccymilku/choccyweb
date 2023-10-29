@@ -22,23 +22,16 @@ function connect() {
   ws.addEventListener('close', event => {
     console.log('📰 lanyard WebSocket disconnected!');
     connected = false;
-    // Reconnect after a timeout (e.g., 5 seconds)
     reconnectTimeout = setTimeout(() => connect(), 0);
   });
 
   ws.addEventListener('message', event => {
     const data = JSON.parse(event.data);
-    console.log('📰 lanyard API call successful! fetching API data', data); // Add this line to log the data
-    if (data.op === 1) {
-      updateStatus(data.d);
-    } else if (data.op === 0) {
+    console.log('📰 lanyard API call successful! fetching API data', data);
+    if (data.op === 0) {
       updateStatus(data.d);
     }
   });
-}
-
-function updateStatus(data) {
-  // Update the status logic here
 }
 
 function startWebSocket() {
@@ -58,16 +51,146 @@ function stopWebSocket() {
 // Start the WebSocket connection
 startWebSocket();
 
-
 function updateStatus(data) {
-  const userStatus = data.discord_status;
+
+    async function getToken() {
+      try {
+          const response = await fetch("https://api.choccymilk.uk/spotify");
+          const data = await response.json();
+          spotifyToken = data.accessToken;
+      } catch (error) {
+          console.error("Error fetching Spotify token:", error);
+          // Handle the error, retry the request, or perform other actions as necessary
+      }
+  }
+
+  function fetchRecentSongsFromLastFM() {
+    try {
+        fetch(`https://api.choccymilk.uk/lastfm-recent`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("📅 recent songs - last.fm", data);
+            // Get the first 10 tracks
+            const recentTracks = data.recenttracks.track.slice(0, 10);
+            displayRecentTracks(recentTracks);
+        })
+        .catch(error => {
+            console.error("Error fetching recently listened tracks from Last.fm API:", error);
+            // Handle the error, retry the request, or perform other actions as necessary
+        });
+
+        function fetchSpotifyImage(trackName, artistName, trackDiv) {
+          trackDiv.style.background = "linear-gradient(90deg, var(--color3), var(--color5), var(--color3))";
+          trackDiv.style.backgroundSize = "200% 100%";
+          trackDiv.style.animation = "gradientAnimation 1.5s ease infinite forwards";
+          trackDiv.style.height = "155px";
+          trackDiv.style.marginBottom = "10px";
+          trackDiv.style.borderTopRightRadius = "8px";
+          trackDiv.style.borderTopLeftRadius = "8px";
+
+          fetch(`https://api.spotify.com/v1/search?q=track:${encodeURIComponent(trackName)}%20artist:${encodeURIComponent(artistName)}&type=track&limit=1`, {
+              headers: {
+                  "Authorization": `Bearer ${spotifyToken}`
+              },
+              method: "GET"
+          }).then(res => res.json()).then(res => {
+              if (res.tracks.items.length >= 1) {
+                  var imageUrl = res.tracks.items[0].album.images[0].url;
+                  var imageElement = document.createElement("img");
+                  imageElement.src = imageUrl;
+                  imageElement.className = "lastfm_image noselect disabledrag";
+                  trackDiv.appendChild(imageElement);
+              } else {
+                  console.log(`❌ song ${trackName} by ${artistName} not found on Spotify.`);
+                  var imageElement = document.createElement("img");
+                  imageElement.src = "https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png";
+                  imageElement.className = "lastfm_image noselect disabledrag";
+                  trackDiv.appendChild(imageElement);
+              }
+          });
+        }
+
+        function displayRecentTracks(tracks) {
+          // Clear the existing tracks before displaying new ones
+          const recentTracksDiv = document.getElementById("lastfm_recent");
+          recentTracksDiv.innerHTML = '';
+          const currentTimestamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
+      
+          tracks.forEach((track, index) => {
+              const isCurrentlyPlaying = index === 0;
+              const timestamp = track.date && track.date.uts ? parseInt(track.date.uts) : null;
+              const timeAgo = timestamp ? calculateTimeAgo(currentTimestamp, timestamp) : "N/A";
+      
+              if (isCurrentlyPlaying && !timestamp) {
+                  var playedSince = document.createElement("div");
+                  playedSince.textContent = 'now';
+                  playedSince.classList.add("lastfm_playcount_recent");
+                  playedSince.classList.add("lastfm_playcount_played_now");
+              } else {
+                  var playedSince = document.createElement("div");
+                  playedSince.textContent = timeAgo;
+                  playedSince.classList.add("lastfm_playcount_recent");
+                  playedSince.classList.add("lastfm_playcount_played");
+              }
+      
+              var trackDiv = document.createElement("div");
+              trackDiv.className = "lastfm_container noselect disabledrag";
+        
+              var trackImage = document.createElement("div");
+              fetchSpotifyImage(track.name, track.artist["#text"], trackImage);
+              trackDiv.appendChild(trackImage);
+        
+              var artistName = document.createElement("div");
+              artistName.textContent = track.artist["#text"];
+              artistName.classList.add("lastfm_recent_artist");;
+      
+              var trackName = document.createElement("div");
+              trackName.textContent = track.name;
+              trackName.classList.add("lastfm_recent_name");
+      
+                      trackDiv.appendChild(playedSince);
+              trackDiv.appendChild(trackName);
+              trackDiv.appendChild(artistName);
+              recentTracksDiv.appendChild(trackDiv);
+          });
+        }
+      
+        function calculateTimeAgo(currentTimestamp, trackTimestamp) {
+          const timeDifference = currentTimestamp - trackTimestamp;
+          const minutes = Math.floor(timeDifference / 60);
+          const hours = Math.floor(minutes / 60);
+          const days = Math.floor(hours / 24);
+      
+          if (days > 0) {
+              return days === 1 ? "1d" : `${days}d`;
+          } else if (hours > 0) {
+              return hours === 1 ? "1h" : `${hours}h`;
+          } else if (minutes > 0) {
+              return minutes === 1 ? "1m" : `${minutes}m`;
+          } else {
+              return '';
+          }
+      }
+    } catch (err) {
+        console.error("Last.fm request error:", err);
+        // Handle the error, retry the request, or perform other actions as necessary
+    }
+}
+getToken();
+fetchRecentSongsFromLastFM();
+
+const userStatus = data.discord_status;
 
 const activities = data.activities;
   const customStatus = activities ? activities.find(activity => activity.type === 4) : null;
-  const activityState = customStatus ? customStatus.state : null;
-
+/*   const activityState = customStatus ? customStatus.state : null;*/
   const statusCaseDiv = document.getElementById('status');
-const statusCaseText = document.getElementById('status_text');
+  const statusCaseText = document.getElementById('status_text');
 
   switch (userStatus) {
     case 'online':
@@ -194,8 +317,6 @@ const listeningToMusic = activities ? activities.some(activity =>
 if (listeningToMusic) {
   // Find the relevant music activity
   const musicActivity = activities.find(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 0 && activity.name === 'YouTube Music') || (activity.type === 2 && activity.name === 'Spotify'));
-
-  const spotifytrackLink = data.spotify;
   // Get the necessary details based on the music platform
   const type = musicActivity.type; // 0 for SoundCloud, 2 for Spotify
   const songName = musicActivity.details;
@@ -226,57 +347,54 @@ if (listeningToMusic) {
   artistElement.innerText = artist;
 
   const albumCoverElement = document.getElementById('music-cover');
+
   const trackLink = document.getElementById('music-track-link');
 
-// Function to check if the text is present in elements
-function checkTextAvailability() {
-  if (songNameElement.innerText && artistElement.innerText) {
-      // If both song name and artist are present, get the token and make the API request
-      getToken();
-  } else {
-      // If text is not available, wait and check again after a delay
-      setTimeout(checkTextAvailability, 1000); // Wait for 1 second and check again
-  }
-}
+    // Log if it's using Spotify or not
+    if (type === 2 && musicActivity.name === 'Spotify') {
+      console.log('🐛 Currently listening to Spotify: ' + songName);
+      const spotifytrackLink = 'https://open.spotify.com/track/' + data.spotify.track_id;
+      trackLink.href = spotifytrackLink;
+    } else {
+      console.log('🐛 Not listening to Spotify. Current song: ' + songName);
 
-// Function to handle Spotify API request
-function getToken() {
-  fetch("https://api.choccymilk.uk/spotify")
-      .then(response => response.json())
-      .then(data => {
-          var spotifyToken = data.accessToken; // Define spotifyToken inside this block
-          console.log("🎶 spotify token for fetching link acquired, fetching...");
+      // Define a function to fetch Spotify search URL
+  // Define a function to fetch Spotify search URL
+  async function fetchUrlWithSpotify(trackName) {
+    try {
+      const response = await fetch("https://api.choccymilk.uk/spotify");
+      const data = await response.json();
+      const spotifyToken = data.accessToken;
 
-          // Make the Spotify API request with the obtained token and text data
-          fetch(`https://api.spotify.com/v1/search?q=track:${encodeURIComponent(songNameElement.innerText)}&type=track&limit=1`, {
-              headers: {
-                  "Authorization": `Bearer ${spotifyToken}`
-              },
-              method: "GET"
-          })
-              .then(res => res.json())
-              .then(res => {
-                  if (res.tracks.items.length >= 1) {
-                      if (spotifytrackLink) {
-                        const trackId = spotifytrackLink.track_id;
-                        console.log('🐛 spotify link: https://open.spotify.com/track/' + trackId);
-                        trackLink.href = `https://open.spotify.com/track/${trackId}`;
-                      } else {
-                        console.log('🐛 non-spotify song: ' + songNameElement.innerText + ' | ' + res.tracks.items[0].external_urls.spotify);
-                        trackLink.href = res.tracks.items[0].external_urls.spotify;
-                      }
-                  } else {
-                      console.log("🐛 non-spotify song not found");
-                      // remove href
-                      trackLink.removeAttribute('href');
-                  }
-              });
+      // Fetch up to 5 Spotify tracks matching the song and artist
+      const spotifyResponse = await fetch(`https://api.spotify.com/v1/search?q=track:${encodeURIComponent(trackName)}&type=track&limit=1`, {
+        headers: {
+          "Authorization": `Bearer ${spotifyToken}`
+        }
       });
+
+      const spotifyData = await spotifyResponse.json();
+      
+      // Find the first track with a valid URL
+      const trackItem = spotifyData.tracks.items.find(item => item.external_urls.spotify);
+      
+      if (trackItem) {
+        console.log(`✅ Song ${trackName} found on Spotify.`);
+        const spotifytrackLink = trackItem.external_urls.spotify;
+        trackLink.href = spotifytrackLink;
+      } else {
+        console.log(`❌ No valid Spotify URL found for ${trackName}.`);
+        // Handle the case where no valid URL is found
+      }
+    } catch (error) {
+      console.error("Error fetching Spotify token or song data:", error);
+      // Handle the error, retry the request, or perform other actions as necessary
+    }
+  }
+
+  // Call the function with songName and artist
+  fetchUrlWithSpotify(songName, artist);
 }
-
-// Call the function to check for text availability
-checkTextAvailability();
-
 
   if (albumCover) {
     albumCoverElement.src = albumCover;

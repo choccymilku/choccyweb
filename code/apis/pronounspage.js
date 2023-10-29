@@ -67,8 +67,6 @@ const generateCustomFlagElement = (customFlag) => {
   return customFlagLink;
 };
 
-
-
     // Combine flags and customFlags into one array
     const allFlags = Array.isArray(flags) ? flags : [flags];
     const allCustomFlags = Array.isArray(customFlags) ? customFlags : [customFlags];

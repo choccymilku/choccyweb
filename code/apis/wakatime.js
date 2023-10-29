@@ -8,6 +8,7 @@ fetch(`https://api.choccymilk.uk/wakatime`, {
     const dailyAverage = data.data.human_readable_daily_average.replace(' hrs', 'h').replace(' mins', 'm');
     const total = data.data.human_readable_total.replace(' hrs', 'h').replace(' mins', 'm');
     const languages = data.data.languages;
+    const today = data.data.human_readable_daily_average.replace(' hr', 'h').replace(' mins', 'm');
 
     // handle bestday conversion to human readable format (e.g. 7th october 2021)
     // Convert the date string to a Date object
@@ -34,6 +35,7 @@ fetch(`https://api.choccymilk.uk/wakatime`, {
         bestDayDate: `${readableDay} ${readableMonth}, ${readableYear}`,
         dailyAverage: dailyAverage,
         total: total,
+        today: today,
         languages: languages.map(language => ({ name: language.name, text: language.text }))
     };
     resultArray.push(extractedData);
@@ -43,7 +45,16 @@ fetch(`https://api.choccymilk.uk/wakatime`, {
     document.getElementById('waka_data').appendChild(bestDayDiv);
 
     const totalDiv = document.createElement('div');
-    totalDiv.innerHTML = `<div id="waka_total" style="font-family: Rubik;margin-top:18px;"><span>total time</span></div><div>${total}</div>`;
+    totalDiv.innerHTML = 
+    `<div id="waka_total" style="font-family: Rubik;margin-top:18px;">
+        <div>total time<br>
+            <span style="font-family:GeologicaRoman">${total}</span>
+        </div>
+
+        <div>time today<br>
+        <span style="font-family:GeologicaRoman">${today}</span>
+    </div>
+    </div>`;
     document.getElementById('waka_data').appendChild(totalDiv);
 
     // Calculate total seconds for all languages

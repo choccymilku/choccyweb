@@ -31,9 +31,9 @@ fetchDataWithRetry('https://gallerybot-reboot.choccymilku.repl.co/gallery', maxR
     let numberCount = 1; // Start the numbering from 1
     const promises = [];
     const imagesContainer = document.querySelector(CHANNEL_IDS[0]);
-
+    
     data.forEach((item, index) => {
-      const img = document.createElement('img');
+      const img = new Image(); // Create a new Image element
       const div = document.createElement('div');
       const number = document.createElement('div');
       div.classList.add('gallery_div');
@@ -42,39 +42,34 @@ fetchDataWithRetry('https://gallerybot-reboot.choccymilku.repl.co/gallery', maxR
 
       div.appendChild(number);
       div.appendChild(img);
-      img.src = item; // Set the src attribute to the URL
 
-      // Add the gallery_image class to the img element
-      img.classList.add('gallery_image');
-      img.classList.add('disabledrag');
+      // Set up the load event listener for the image
+      img.onload = () => {
+        // Add the gallery_image class to the img element
+        img.classList.add('gallery_image');
+        img.classList.add('disabledrag');
 
-      // Append the img to the container
-      imagesContainer.appendChild(div);
+        // Append the img to the container
+        imagesContainer.appendChild(div);
 
-      // Create a promise for each image load
-      const imageLoadPromise = new Promise((resolve, reject) => {
-        img.onload = resolve;
-        img.onerror = reject;
-      });
+        numberCount++; // Increment the number for the next iteration
 
-      promises.push(imageLoadPromise);
-      numberCount++; // Increment the number for the next iteration
-    });
-
-    // Wait for all images to be loaded before removing skeletons
-    Promise.all(promises)
-      .then(() => {
-        // Remove the skeleton loader once all images are loaded
-        const skeletonLoader = document.querySelector('#skeleton_loader_gallery');
-        const gallery_inner = document.querySelector('#gallery_inner');
-        if (skeletonLoader) {
-          skeletonLoader.remove();
-          gallery_inner.style.overflowY = "scroll";
+        // Check if all images are loaded
+        if (numberCount === data.length) {
+          // Remove the skeleton loader once all images are loaded
+          const skeletonLoader = document.querySelector('#skeleton_loader_gallery');
+          const gallery_inner = document.querySelector('#gallery_inner');
+          if (skeletonLoader) {
+            skeletonLoader.remove();
+            gallery_inner.style.overflowY = "scroll";
+            gallery_inner.classList.add('inner_scrollables');
+          }
         }
-      })
-      .catch((error) => {
-        console.error('Error loading images:', error);
-      });
+      };
+
+      // Set the src attribute to trigger the load event
+      img.src = item;
+    });
   })
   .catch((error) => {
     console.error('Max retries reached. Unable to fetch data:', error);

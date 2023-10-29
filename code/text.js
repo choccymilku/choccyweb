@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Fetch the TO-DO list from the URL
-    fetch('https://api.choccymilk.uk/github_text')
+    fetch('https://api.choccymilk.uk/github')
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             // add version into the page
             const version = data.version;
             const versionElement = document.getElementById('version');
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // match icons and format
             const versionText = data.versionText.replace(/\n/g, '<br>');
-            console.log(versionText);
             const versionIconMap = {
                 'add': 'fas fa-plus',
                 'fix': 'fas fa-wrench',
@@ -68,8 +66,8 @@ document.addEventListener('DOMContentLoaded', function() {
               const creditDiv = document.getElementById('credits');
               
               // if it includes "(if i forgot some, my apologies)"
-              if (credit.includes('(if i forgot some, my apologies)')) {
-                const creditText = credit.replace('(if i forgot some, my apologies)', '<br><br><span style="font-family:SourceCode;font-size:12px;">(if i forgot some, my apologies)</span>');
+              if (credit.includes('(if i forgot some, my apologies, please message me on discord with a request that you want to be added in (provide proof))')) {
+                const creditText = credit.replace('(if i forgot some, my apologies, please message me on discord with a request that you want to be added in (provide proof))', '<br><br><span style="font-family:SourceCode;font-size:12px;">(if i forgot some, my apologies, please message me on discord with a request that you want to be added in (provide proof))</span>');
                 creditDiv.innerHTML = `${creditText}`;
               } else {
                 creditDiv.innerHTML = credit;

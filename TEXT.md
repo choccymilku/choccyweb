@@ -1,16 +1,14 @@
-version 1.4.6
-add - gallery numbering and credits
-add - backend and api changes
-add - recently listened tracks
-
-kill - removed friend tab (not needed really)
+version 1.4.7
+add - better recently listened tracks
+add - today time spent coding
+add - improved loaders
+add - optimizations
 /////
 to-do:
 general and visual fixes
 simplyfing stuff (for the sake of myself)
-last time game played for games
-recently played games
 minimizing load times and optimization
+rewrite?
 /////
 credits:
 fixy_cookies

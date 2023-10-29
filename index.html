@@ -251,13 +251,13 @@ function loadScript(scriptUrl) {
     <div class="noselect bar_outer" id="data_outer">
       <div class="noselect bar_inner" id="data_inner">
 
-        <div style="font-family: Rubik;" id="top_artists"><span>top artists</span></div>
+        <div style="font-family: Rubik;" id="recent_songs"><span>recent songs</span></div>
 
-          <div class="lastfm_outer" id="lastfm_recent_outer">
-            <div class="inner_scrollables" id="lastfm_artist">
-              <div id="lastfm_loader_artist" class="skelly"></div>
-            </div>
+        <div class="lastfm_outer" id="lastfm_recent_outer">
+          <div class="inner_scrollables" id="lastfm_recent">
+            <div id="lastfm_loader_recent" class="skelly"></div>
           </div>
+        </div>
 
         <div style="font-family: Rubik;margin-top: 10px;" id="top_songs"><span>top songs</span></div>
 
@@ -267,11 +267,11 @@ function loadScript(scriptUrl) {
             </div>
           </div>
 
-        <div style="font-family: Rubik;" id="recent_songs"><span>recent songs</span></div>
+        <div style="font-family: Rubik;" id="top_artists"><span>top artists</span></div>
 
           <div class="lastfm_outer" id="lastfm_recent_outer">
-            <div class="inner_scrollables" id="lastfm_recent">
-              <div id="lastfm_loader_recent" class="skelly"></div>
+            <div class="inner_scrollables" id="lastfm_artist">
+              <div id="lastfm_loader_artist" class="skelly"></div>
             </div>
           </div>
 
@@ -525,11 +525,46 @@ function showCreditHover() {
   creditHover.style.display = 'block';
 }
 </script>
+<!-- <script>
+function fetchData() {
+  const restApi = 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=choccymilku&api_key=53b12a31e5c9e626ef29a22967e54e63&limit=10&format=json';
+
+  fetch(restApi)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Handle the API response data here
+      console.log(data); // You can process the data as per your requirements
+
+      // Call fetchData again to initiate the next long poll
+      fetchData();
+    })
+    .catch(error => {
+      // Handle errors that occurred during the fetch
+      console.error('There has been a problem with your fetch operation:', error);
+
+      // Retry the fetch after a delay in case of failure
+      setTimeout(fetchData, 1000); // Retry after 1 second (adjust the delay as needed)
+    });
+}
+
+// Call the fetchData function to initiate the long poll
+fetchData();
+
+</script> -->
+
+
+
 <script src="./config.js"></script>
 <script src="./code/tabs.js"></script>
 <script src="./code/similarColor.js"></script>
 <script src="./code/formatting.js"></script>
 <script src="./code/text.js"></script>
+<script src="./code/birthday.js"></script>
 <script src="./code/apis/accounts.js"></script>
 <script src="./code/apis/discord.js"></script>
 <script src="./code/apis/pronounspage.js"></script>

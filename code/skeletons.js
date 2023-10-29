@@ -3,14 +3,10 @@
   const gallerySkeleton = document.getElementById('skeleton_loader_gallery');
   const projectsSkeleton = document.getElementById('skeleton_loader_projects');
   const friendsSkeleton = document.getElementById('skeleton_loader_friends');
-  const lastfmArtistSkeleton = document.getElementById('lastfm_loader_artist');
-  const lastfmTopSkeleton = document.getElementById('lastfm_loader_top');
   const gameSkeleton = document.getElementById('games_loader');
   let totalWidthProjects = 0;
   let totalWidthFriends = 0;
   let totalWidth = 0;
-  let totalWidthLastfm = 0;
-  let totalWidthLastfmTop = 0;
   let totalWidthGame = 0;
   
   for (let i = 0; i < 3; i++) {
@@ -49,8 +45,6 @@
     projectsSkeletonImage.style.height = `${height}px`;
     projectsSkeletonImage.style.marginBottom = `5px`;
 
-
-  
     // Append the div to the skeleton_loader_gallery container
     projectsSkeleton.appendChild(projectsSkeletonImage);
   
@@ -68,24 +62,6 @@
   
     // Append the div to the skeleton_loader_gallery container
     friendsSkeleton.appendChild(friendsSkeletonImage);
-  }
-
-  for (let i = 0; i < 10; i++) {
-    // Create a div element
-    const lastfmArtistSkeletonImage = document.createElement('div');
-    lastfmArtistSkeletonImage.classList.add('lastfm_loader_top');
-  
-    // Append the div to the skeleton_loader_gallery container
-    lastfmArtistSkeleton.appendChild(lastfmArtistSkeletonImage);
-  }
-
-  for (let i = 0; i < 10; i++) {
-    // Create a div element
-    const lastfmTopSkeletonImage = document.createElement('div');
-    lastfmTopSkeletonImage.classList.add('lastfm_loader_top');
-  
-    // Append the div to the skeleton_loader_gallery container
-    lastfmTopSkeleton.appendChild(lastfmTopSkeletonImage);
   }
 
   for (let i = 0; i < 10; i++) {
