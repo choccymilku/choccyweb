@@ -31,8 +31,6 @@ if (nextBirthday < new Date(currentYear, currentMonth - 1, currentDay)) {
 const timeDifference = nextBirthday - new Date(currentYear, currentMonth - 1, currentDay);
 const daysRemaining = Math.ceil(timeDifference / (1000 * 3600 * 24));
 
-const birthdayElement = document.getElementById("birthday");
-
 // define month names
 const monthNames = [
     "January", "February", "March", "April", "May", "June",
@@ -57,13 +55,17 @@ function dayAbbrev(day, currentDay) {
 // display birthday
 function remainingDaysProper(daysRemaining) {
     if (daysRemaining === 1) {
+        const birthdayElement = document.getElementById("birthday");
         birthdayElement.innerHTML = `${age} <span style="font-size:1rem">( ${nextAge} in ${daysRemaining} day)</span>`;
         return `${daysRemaining} day`;
     } else if (daysRemaining === 0) {
+        const birthdayElement = document.getElementById("birthday");
         birthdayElement.innerHTML = `<span style="font-size:3rem;">BIRTHDAY!!</span>`;
         return 'today!';
     } else  {
+        const birthdayElement = document.getElementById("birthday");
         birthdayElement.innerHTML = `${age} <span style="font-size:1rem">( ${nextAge} in ${daysRemaining} days)</span>`;
         return `${daysRemaining} days`;
     }
 }
+console.log('🐛 bday in ' + remainingDaysProper(daysRemaining));
