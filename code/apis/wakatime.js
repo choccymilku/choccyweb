@@ -72,6 +72,10 @@ fetch(`https://api.choccymilk.uk/wakatime`, {
         // ignore if percentage is less than 1%
         if (((language.total_seconds / totalSeconds) * 100).toFixed(2) < 1) {
             return;
+        } else if (
+            languageName === 'Other' ||
+            languageName === 'Markdown') {
+            return;
         }
         
         // calculate percentage 

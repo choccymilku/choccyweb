@@ -53,6 +53,17 @@ startWebSocket();
 
 function updateStatus(data) {
 
+  const discordUser = data.discord_user;
+  const avatarUrl = `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.${avatarFormat}?size=${avatarSize}`;
+  
+  const avatarLinkElement = document.getElementById('pfp_link');
+  avatarLinkElement.href = `https://discordapp.com/users/${discordUser.id}`;
+  avatarLinkElement.innerHTML = '<i class="fa-brands fa-discord" class="icon-style"></i>' + '<span class="connection-name" style="margin-left: 2px;">' + discordUser.username + '</span>';
+  avatarLinkElement.target = '_blank';
+
+  const avatarImg = document.getElementById('pfp');
+  avatarImg.src = avatarUrl;
+
     async function getToken() {
       try {
           const response = await fetch("https://api.choccymilk.uk/spotify");
@@ -76,7 +87,7 @@ function updateStatus(data) {
         .then(data => {
             console.log("📅 recent songs - last.fm", data);
             // Get the first 10 tracks
-            const recentTracks = data.recenttracks.track.slice(0, 10);
+            const recentTracks = data.recenttracks.track;
             displayRecentTracks(recentTracks);
         })
         .catch(error => {
@@ -122,20 +133,16 @@ function updateStatus(data) {
           const currentTimestamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
       
           tracks.forEach((track, index) => {
-              const isCurrentlyPlaying = index === 0;
               const timestamp = track.date && track.date.uts ? parseInt(track.date.uts) : null;
               const timeAgo = timestamp ? calculateTimeAgo(currentTimestamp, timestamp) : "N/A";
-      
-              if (isCurrentlyPlaying && !timestamp) {
-                  var playedSince = document.createElement("div");
-                  playedSince.textContent = 'now';
-                  playedSince.classList.add("lastfm_playcount_recent");
-                  playedSince.classList.add("lastfm_playcount_played_now");
+
+              if (index === 0 && !timestamp) {
+                return;
               } else {
-                  var playedSince = document.createElement("div");
-                  playedSince.textContent = timeAgo;
-                  playedSince.classList.add("lastfm_playcount_recent");
-                  playedSince.classList.add("lastfm_playcount_played");
+                var playedSince = document.createElement("div");
+                playedSince.textContent = timeAgo;
+                playedSince.classList.add("lastfm_playcount_recent");
+                playedSince.classList.add("lastfm_playcount_played");
               }
       
               var trackDiv = document.createElement("div");

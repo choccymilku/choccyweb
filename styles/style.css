@@ -1124,9 +1124,6 @@ a:hover {color:var(--texthover) !important}
     margin-bottom: 5px;
   }
 
-  .lastfm_playcount_played_now {
-    font-family: Rubik;
-  }
   .lastfm_playcount_played {
     font-family: Rubik2;
   }
