@@ -3,11 +3,9 @@
   const gallerySkeleton = document.getElementById('skeleton_loader_gallery');
   const projectsSkeleton = document.getElementById('skeleton_loader_projects');
   const friendsSkeleton = document.getElementById('skeleton_loader_friends');
-  const gameSkeleton = document.getElementById('games_loader');
   let totalWidthProjects = 0;
   let totalWidthFriends = 0;
   let totalWidth = 0;
-  let totalWidthGame = 0;
   
   for (let i = 0; i < 3; i++) {
     // Generate a random width between 250 and 450 pixels
@@ -62,15 +60,6 @@
   
     // Append the div to the skeleton_loader_gallery container
     friendsSkeleton.appendChild(friendsSkeletonImage);
-  }
-
-  for (let i = 0; i < 10; i++) {
-    // Create a div element
-    const gameSkeletonImage = document.createElement('div');
-    gameSkeletonImage.classList.add('lastfm_loader_top');
-  
-    // Append the div to the skeleton_loader_gallery container
-    gameSkeleton.appendChild(gameSkeletonImage);
   }
   
   // Ensure the total width is equal or over 1000 pixels
