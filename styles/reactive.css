@@ -384,6 +384,13 @@
         border-bottom-right-radius: 0px;
         margin-bottom: -10px;
       }
+
+      .lastfm_move {
+        margin-top: 0px;
+      }
+      .move_button {
+        display: none;
+      }
 }
 
 @media only screen and (max-width: 481px) {

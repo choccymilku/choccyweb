@@ -1,11 +1,11 @@
-version 1.4.7
-add - better recently listened tracks
-add - today time spent coding
-add - improved loaders
+version 1.4.75
+add - better recently listened tracks (now using live data)
+add - removed horizontal scroll in favor of buttons
 add - optimizations
 /////
 to-do:
 general and visual fixes
+fix gallery
 simplyfing stuff (for the sake of myself)
 minimizing load times and optimization
 more games to get

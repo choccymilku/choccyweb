@@ -245,18 +245,24 @@ function loadScript(scriptUrl) {
       <div class="noselect bar_inner" id="data_inner">
 
         <div style="font-family: Rubik;" id="recent_songs"><span>recent songs</span></div>
-          <div class="data_outer" id="lastfm_recent_outer">
-            <div class="inner_scrollables" id="lastfm_recent"></div>
-          </div>
+        <div class="data_outer" id="lastfm_recent_outer">
+          <button class="move_button" id="recent_left"><span style="left:-1px;position: relative;"> < </span></button>
+            <div class="inner_scrollables lastfm_move" id="lastfm_recent"></div>
+          <button class="move_button" id="recent_right"><span style="right:-1px;position: relative;"> > </span></button>
+        </div>
 
         <div style="font-family: Rubik;margin-top: 10px;" id="top_songs"><span>top songs</span></div>
-          <div class="data_outer">
-            <div class="inner_scrollables" id="lastfm_top"></div>
+          <div class="data_outer" id="lastfm_top_outer">
+            <button class="move_button" id="top_left"><span style="left:-1px;position: relative;"> < </span></button>
+              <div class="inner_scrollables lastfm_move" id="lastfm_top"></div>
+            <button class="move_button" id="top_right"><span style="right:-1px;position: relative;"> > </span></button>
           </div>
 
         <div style="font-family: Rubik;" id="top_artists"><span>top artists</span></div>
-          <div class="data_outer" id="lastfm_recent_outer">
-            <div class="inner_scrollables" id="lastfm_artist"></div>
+          <div class="data_outer" id="lastfm_artist_outer">
+            <button class="move_button" id="artist_left"><span style="left:-1px;position: relative;"> < </span></button>
+              <div class="inner_scrollables lastfm_move" id="lastfm_artist"></div>
+            <button class="move_button" id="artist_right"><span style="right:-1px;position: relative;"> > </span></button>
           </div>
 
         <div class="info" id="top_songs_info">
@@ -269,8 +275,10 @@ function loadScript(scriptUrl) {
         <div class="divider" style="margin-bottom: 10px;margin-top: 10px;"></div>
 
         <div style="font-family: Rubik;" id="games_and_activities"><span>games & activities</span></div>
-          <div class="data_outer">
-            <div id="games_data"></div>
+          <div class="data_outer" id="games_outer">
+            <button class="move_button" id="games_left"><span style="left:-1px;position: relative;"> < </span></button>
+              <div id="games_data" class="lastfm_move"></div>
+            <button class="move_button" id="games_right"><span style="right:-1px;position: relative;"> > </span></button>
           </div>
 
           <div class="info" id="games_and_activities_info">
@@ -489,6 +497,7 @@ function toggleVersionHover() {
     versionHover.style.display = 'block';
   }
 </script>
+
 <script src="./config.js"></script>
 <script src="./code/tabs.js"></script>
 <script src="./code/similarColor.js"></script>

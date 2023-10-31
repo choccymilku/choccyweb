@@ -1183,6 +1183,9 @@ a:hover {color:var(--texthover) !important}
     overflow-y: hidden;
     scrollbar-width: none;
   }
+  .lastfm_move {
+    margin-top: -35px;
+  }
 
   .lastfm_recent_name {
     font-weight: bold;
@@ -1199,7 +1202,7 @@ a:hover {color:var(--texthover) !important}
     white-space: nowrap;
     overflow: hidden;
     padding: 5px;
-    margin-top: -10px;
+    margin-top: -12px;
     text-overflow: ellipsis;
   }
 
@@ -1482,4 +1485,24 @@ a:hover {color:var(--texthover) !important}
     top: 10px;
     position: relative;
     display: block;
+  }
+
+  .move_button {
+    position: relative;
+    top: 75px;
+    margin-left: -10px;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    border: 2px solid var(--text);
+    background-color: var(--color1);
+    border-radius: 8px;
+    font-family: Rubik2;
+    cursor: pointer;
+    z-index: 9999;
+  }
+
+  .move_button:last-child {
+    left: calc(100% - 10px);
+    top:-127px;
   }

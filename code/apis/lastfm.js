@@ -12,6 +12,28 @@ async function getToken() {
     }
 }
 
+const socket = new WebSocket('ws://websocket.choccymilku.repl.co/lastfm-recent'); // WebSocket server address
+
+socket.onopen = (event) => {
+    console.log('📅 lastfm API call successful! fetching API data:', event);
+};
+
+socket.onmessage = (event) => {
+    const lastfmData = JSON.parse(event.data);
+    console.log('📅 recent tracks - last.fm ', lastfmData);
+
+    const recentTracks = lastfmData.recenttracks.track;
+    displayRecentTracks(recentTracks);
+};
+
+socket.onclose = (event) => {
+    console.log('WebSocket connection closed:', event);
+};
+
+socket.onclose = (event) => {
+    console.log('WebSocket connection closed:', event);
+};
+
 async function fetchData() {
     try {
         await getToken(); // Wait for the token to be retrieved
@@ -208,6 +230,64 @@ function displayTopTracks(tracks) {
 
       topTracksDiv.appendChild(trackDiv);
   });
+}
+
+function displayRecentTracks(tracks) {
+    const recentTracksDiv = document.getElementById("lastfm_recent");
+    recentTracksDiv.innerHTML = '';
+
+    const currentTimestamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
+
+    tracks.forEach((track, index) => {
+        const timestamp = track.date && track.date.uts ? parseInt(track.date.uts) : null;
+        const timeAgo = timestamp ? calculateTimeAgo(currentTimestamp, timestamp) : "N/A";
+
+        if (index === 0 && !timestamp) {
+            return;
+        } else {
+            var playedSince = document.createElement("div");
+            playedSince.textContent = timeAgo;
+            playedSince.classList.add("lastfm_playcount_recent");
+            playedSince.classList.add("lastfm_playcount_played");
+        }
+
+        var trackDiv = document.createElement("div");
+        trackDiv.className = "lastfm_container noselect disabledrag";
+
+        var trackImage = document.createElement("div");
+        fetchSpotifyImage(track.name, track.artist["#text"], trackImage);
+        trackDiv.appendChild(trackImage);
+
+        var artistName = document.createElement("div");
+        artistName.textContent = track.artist["#text"];
+        artistName.classList.add("lastfm_recent_artist");
+
+        var trackName = document.createElement("div");
+        trackName.textContent = track.name;
+        trackName.classList.add("lastfm_recent_name");
+
+        trackDiv.appendChild(playedSince);
+        trackDiv.appendChild(trackName);
+        trackDiv.appendChild(artistName);
+        recentTracksDiv.appendChild(trackDiv);
+    });
+}
+
+function calculateTimeAgo(currentTimestamp, trackTimestamp) {
+    const timeDifference = currentTimestamp - trackTimestamp;
+    const minutes = Math.floor(timeDifference / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+
+    if (days > 0) {
+        return days === 1 ? "1d" : `${days}d`;
+    } else if (hours > 0) {
+        return hours === 1 ? "1h" : `${hours}h`;
+    } else if (minutes > 0) {
+        return minutes === 1 ? "1m" : `${minutes}m`;
+    } else {
+        return '';
+    }
 }
 
 fetchData();
