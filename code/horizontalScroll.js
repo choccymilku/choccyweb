@@ -285,3 +285,24 @@ function getChildren() {
     }
     return visibleChildren;
 }
+
+// check if device is mobile
+var isMobile = false;
+if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) ||
+    navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) ||
+    navigator.userAgent.match(/Windows Phone/i)) {
+    isMobile = true;
+    const container = document.querySelectorAll('.lastfm_move');
+    recent_left.style.display = 'none';
+    recent_right.style.display = 'none';
+    top_left.style.display = 'none';
+    top_right.style.display = 'none';
+    artist_left.style.display = 'none';
+    artist_right.style.display = 'none';
+    games_left.style.display = 'none';
+    games_right.style.display = 'none';
+    container.forEach(function (container) {
+        container.style.marginTop = '0px';
+    });
+}
+console.log('🐛 isMobile?: ' + isMobile);

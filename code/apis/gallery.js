@@ -29,34 +29,18 @@ fetchDataWithRetry('https://gallerybot-reboot.choccymilku.repl.co/gallery', maxR
   .then((data) => {
     // Assuming data is an array of objects
     let numberCount = 1; // Start the numbering from 1
-    const promises = [];
     const imagesContainer = document.querySelector(CHANNEL_IDS[0]);
-    
+    const imagesToLoad = data.length;
+    let loadedImagesCount = 0;
+
     data.forEach((item, index) => {
-      const img = new Image(); // Create a new Image element
-      const div = document.createElement('div');
-      const number = document.createElement('div');
-      div.classList.add('gallery_div');
-      number.classList.add('gallery_image_number');
-      number.innerHTML = numberCount;
+      const img = document.createElement('img');
 
-      div.appendChild(number);
-      div.appendChild(img);
+      img.addEventListener('load', () => {
+        loadedImagesCount++;
 
-      // Set up the load event listener for the image
-      img.onload = () => {
-        // Add the gallery_image class to the img element
-        img.classList.add('gallery_image');
-        img.classList.add('disabledrag');
-
-        // Append the img to the container
-        imagesContainer.appendChild(div);
-
-        numberCount++; // Increment the number for the next iteration
-
-        // Check if all images are loaded
-        if (numberCount === data.length) {
-          // Remove the skeleton loader once all images are loaded
+        if (loadedImagesCount === imagesToLoad) {
+          // All images are loaded, remove the skeleton loader
           const skeletonLoader = document.querySelector('#skeleton_loader_gallery');
           const gallery_inner = document.querySelector('#gallery_inner');
           if (skeletonLoader) {
@@ -65,10 +49,26 @@ fetchDataWithRetry('https://gallerybot-reboot.choccymilku.repl.co/gallery', maxR
             gallery_inner.classList.add('inner_scrollables');
           }
         }
-      };
+      });
+
+      const div = document.createElement('div');
+      div.classList.add('gallery_div');
+
+      const number = document.createElement('div');
+      number.textContent = numberCount;
+      number.classList.add('gallery_image_number');
+
+      div.appendChild(number);
+      div.appendChild(img);
+      imagesContainer.appendChild(div);
+
+      img.classList.add('gallery_image');
+      img.classList.add('disabledrag');
 
       // Set the src attribute to trigger the load event
       img.src = item;
+
+      numberCount++; // Increment the image count
     });
   })
   .catch((error) => {
@@ -91,7 +91,7 @@ updateGalleryVisibility();
 // Set up a timer to continuously check for localStorage changes
 setInterval(function() {
   updateGalleryVisibility();
-}, 0); // Check every 1 second (adjust as needed) */
+}, 0); // Check every 1 second (adjust as needed)
 
 
 // switcher for gallery
@@ -147,5 +147,5 @@ setInterval(function() {
   document.getElementById('full_gallery').addEventListener('click', toggleGallery);
 
   // Add click event listener to the full_gallery2 element
-  document.getElementById('full_gallery2').addEventListener('click', closeGallery);
+  document.getElementById('full_gallery2').addEventListener('click', closeGallery); */
   

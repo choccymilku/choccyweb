@@ -12,7 +12,7 @@ async function getToken() {
     }
 }
 
-const socket = new WebSocket('ws://websocket.choccymilku.repl.co/lastfm-recent'); // WebSocket server address
+const socket = new WebSocket('wss://websocket.choccymilku.repl.co/lastfm-recent'); // WebSocket server address
 
 socket.onopen = (event) => {
     console.log('📅 lastfm API call successful! fetching API data:', event);

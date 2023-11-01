@@ -5,12 +5,9 @@ add - optimizations
 /////
 to-do:
 general and visual fixes
-fix gallery
 simplyfing stuff (for the sake of myself)
-minimizing load times and optimization
 more games to get
 rewrite?
-fix gallery
 /////
 credits:
 fixy_cookies
