@@ -4,10 +4,10 @@ add - removed horizontal scroll in favor of buttons
 add - optimizations
 /////
 to-do:
+complete rewrite 
 general and visual fixes
 simplyfing stuff (for the sake of myself)
 more games to get
-rewrite?
 /////
 credits:
 fixy_cookies
