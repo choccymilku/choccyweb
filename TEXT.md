@@ -1,11 +1,11 @@
-version 1.4.75
-add - better recently listened tracks (now using live data)
+version 1.4.8
+add - better recently listened tracks with live-ish data
 add - removed horizontal scroll in favor of buttons
 add - optimizations
+add - code simplification
 /////
 to-do:
 complete rewrite 
-general and visual fixes
 simplyfing stuff (for the sake of myself)
 more games to get
 /////

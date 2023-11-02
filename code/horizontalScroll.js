@@ -101,189 +101,67 @@ var top_isAnimating = false;
 var artist_isAnimating = false;
 var games_isAnimating = false;
 
-recent_left.addEventListener('click', function () {
-    if (!recent_isAnimating) {
-        recent_isAnimating = true;
-        recent_left.style.backgroundColor = 'var(--color5)'; // Change button color
-        recent_right.style.backgroundColor = 'var(--color5)'; // Change button color
-        var visibleChildren = getChildren();
-        var scrollAmount = visibleChildren * childWidth;
-        if (lastfm_recent.scrollLeft > 0) {
-            lastfm_recent.scrollBy({
-                left: -scrollAmount,
-                behavior: 'smooth'
-            });
-        }
-        setTimeout(function() {
-            recent_isAnimating = false;
-            recent_left.style.backgroundColor = ''; // Change button color back to default
-            recent_right.style.backgroundColor = ''; // Change button color back to default
-        }, 500); // Set a timeout of 500ms to prevent rapid scrolling
-    }
-});
+function setupScrolling(container, leftButton, rightButton) {
+    var lastfm_recent = document.getElementById(container);
+    var recent_left = document.getElementById(leftButton);
+    var recent_right = document.getElementById(rightButton);
+    var childWidth = 100; // Set your child element width here
+    var recent_isAnimating = false;
 
-recent_right.addEventListener('click', function () {
-    if (!recent_isAnimating) {
-        recent_isAnimating = true;
-        recent_left.style.backgroundColor = 'var(--color5)'; // Change button color
-        recent_right.style.backgroundColor = 'var(--color5)'; // Change button color
-        var visibleChildren = getChildren();
+    lastfm_recent.addEventListener('scroll', function() {
         var maxScrollLeft = lastfm_recent.scrollWidth - lastfm_recent.clientWidth;
-        var scrollAmount = visibleChildren * childWidth;
-        if (lastfm_recent.scrollLeft < maxScrollLeft) {
+
+        if (lastfm_recent.scrollLeft <= 0) {
+            console.log('start ' + container); // Log "start" when it reaches the start
+            recent_left.style.cursor = 'context-menu'; // Change cursor to default
+            lastfm_recent.scrollLeft = 0; // Prevent scrolling to the left
+        } else if (lastfm_recent.scrollLeft >= maxScrollLeft) {
+            console.log('end ' + container); // Log "end" when it reaches the end
+            recent_right.style.cursor = 'context-menu'; // Change cursor to default
+            lastfm_recent.scrollLeft = maxScrollLeft; // Prevent scrolling to the right
+        } else {
+            recent_left.style.cursor = 'pointer'; // Set cursor to 'pointer' for enabled left button
+            recent_right.style.cursor = 'pointer'; // Set cursor to 'pointer' for enabled right button
+        }
+    });
+
+    lastfm_recent.dispatchEvent(new Event('scroll'));
+
+    recent_left.addEventListener('click', function () {
+        scroll(-1);
+        recent_left.style.backgroundColor = 'var(--color5)'; // Change left button color when clicked
+        recent_right.style.backgroundColor = ''; // Reset right button color
+    });
+
+    recent_right.addEventListener('click', function () {
+        scroll(1);
+        recent_right.style.backgroundColor = 'var(--color5)'; // Change right button color when clicked
+        recent_left.style.backgroundColor = ''; // Reset left button color
+    });
+
+    function scroll(direction) {
+        var maxScrollLeft = lastfm_recent.scrollWidth - lastfm_recent.clientWidth;
+        if (!recent_isAnimating && ((direction === -1 && lastfm_recent.scrollLeft > 0) || (direction === 1 && lastfm_recent.scrollLeft < maxScrollLeft))) {
+            recent_isAnimating = true;
+            recent_right.style.backgroundColor = 'var(--color5)'; // Reset right button color
+            recent_left.style.backgroundColor = 'var(--color5)'; // Reset left button color
+            console.log('Scrolling ' + (direction === -1 ? 'left' : 'right') + ' ' + container);
+            var scrollAmount = direction * getVisibleChildren() * childWidth;
             lastfm_recent.scrollBy({
                 left: scrollAmount,
                 behavior: 'smooth'
             });
+            setTimeout(function() {
+                recent_isAnimating = false;
+                recent_right.style.backgroundColor = ''; // Reset right button color
+                recent_left.style.backgroundColor = ''; // Reset left button color
+            }, 500);
         }
-        setTimeout(function() {
-            recent_isAnimating = false;
-            recent_left.style.backgroundColor = ''; // Change button color back to default
-            recent_right.style.backgroundColor = ''; // Change button color back to default
-        }, 500); // Set a timeout of 500ms to prevent rapid scrolling
     }
-});
 
-top_left.addEventListener('click', function () {
-    if (!top_isAnimating) {
-        top_isAnimating = true;
-        top_left.style.backgroundColor = 'var(--color5)'; // Change button color
-        top_right.style.backgroundColor = 'var(--color5)'; // Change button color
-        var visibleChildren = getChildren();
-        var scrollAmount = visibleChildren * childWidth;
-        if (lastfm_top.scrollLeft > 0) {
-            lastfm_top.scrollBy({
-                left: -scrollAmount,
-                behavior: 'smooth'
-            });
-        }
-        setTimeout(function() {
-            top_isAnimating = false;
-            top_left.style.backgroundColor = ''; // Change button color back to default
-            top_right.style.backgroundColor = ''; // Change button color back to default
-        }, 500); // Set a timeout of 500ms to prevent rapid scrolling
+    function getVisibleChildren() {
+        return Math.floor(lastfm_recent.clientWidth / childWidth);
     }
-});
-
-top_right.addEventListener('click', function () {
-    if (!top_isAnimating) {
-        top_isAnimating = true;
-        top_left.style.backgroundColor = 'var(--color5)'; // Change button color
-        top_right.style.backgroundColor = 'var(--color5)'; // Change button color
-        var visibleChildren = getChildren();
-        var maxScrollLeft = lastfm_top.scrollWidth - lastfm_top.clientWidth;
-        var scrollAmount = visibleChildren * childWidth;
-        if (lastfm_top.scrollLeft < maxScrollLeft) {
-            lastfm_top.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
-        }
-        setTimeout(function() {
-            top_isAnimating = false;
-            top_left.style.backgroundColor = ''; // Change button color back to default
-            top_right.style.backgroundColor = ''; // Change button color back to default
-        }, 500); // Set a timeout of 500ms to prevent rapid scrolling
-    }
-});
-
-artist_left.addEventListener('click', function () {
-    if (!artist_isAnimating) {
-        artist_isAnimating = true;
-        artist_left.style.backgroundColor = 'var(--color5)'; // Change button color
-        artist_right.style.backgroundColor = 'var(--color5)'; // Change button color
-        var visibleChildren = getChildren();
-        var scrollAmount = visibleChildren * childWidth;
-        if (lastfm_artist.scrollLeft > 0) {
-            lastfm_artist.scrollBy({
-                left: -scrollAmount,
-                behavior: 'smooth'
-            });
-        }
-        setTimeout(function() {
-            artist_isAnimating = false;
-            artist_left.style.backgroundColor = ''; // Change button color back to default
-            artist_right.style.backgroundColor = ''; // Change button color back to default
-        }, 500); // Set a timeout of 500ms to prevent rapid scrolling
-    }
-});
-
-artist_right.addEventListener('click', function () {
-    if (!artist_isAnimating) {
-        artist_isAnimating = true;
-        artist_left.style.backgroundColor = 'var(--color5)'; // Change button color
-        artist_right.style.backgroundColor = 'var(--color5)'; // Change button color
-        var visibleChildren = getChildren();
-        var maxScrollLeft = lastfm_artist.scrollWidth - lastfm_artist.clientWidth;
-        var scrollAmount = visibleChildren * childWidth;
-        if (lastfm_artist.scrollLeft < maxScrollLeft) {
-            lastfm_artist.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
-        }
-        setTimeout(function() {
-            artist_isAnimating = false;
-            artist_left.style.backgroundColor = ''; // Change button color back to default
-            artist_right.style.backgroundColor = ''; // Change button color back to default
-        }, 500); // Set a timeout of 500ms to prevent rapid scrolling
-    }
-});
-
-games_left.addEventListener('click', function () {
-    if (!games_isAnimating) {
-        games_isAnimating = true;
-        games_left.style.backgroundColor = 'var(--color5)'; // Change button color
-        games_right.style.backgroundColor = 'var(--color5)'; // Change button color
-        var visibleChildren = getChildren();
-        var scrollAmount = visibleChildren * childWidth;
-        if (games.scrollLeft > 0) {
-            games.scrollBy({
-                left: -scrollAmount,
-                behavior: 'smooth'
-            });
-        }
-        setTimeout(function() {
-            games_isAnimating = false;
-            games_left.style.backgroundColor = ''; // Change button color back to default
-            games_right.style.backgroundColor = ''; // Change button color back to default
-        }, 500); // Set a timeout of 500ms to prevent rapid scrolling
-    }
-});
-
-games_right.addEventListener('click', function () {
-    if (!games_isAnimating) {
-        games_isAnimating = true;
-        games_left.style.backgroundColor = 'var(--color5)'; // Change button color
-        games_right.style.backgroundColor = 'var(--color5)'; // Change button color
-        var visibleChildren = getChildren();
-        var maxScrollLeft = games.scrollWidth - games.clientWidth;
-        var scrollAmount = visibleChildren * childWidth;
-        if (games.scrollLeft < maxScrollLeft) {
-            games.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
-        }
-        setTimeout(function() {
-            games_isAnimating = false;
-            games_left.style.backgroundColor = ''; // Change button color back to default
-            games_right.style.backgroundColor = ''; // Change button color back to default
-        }, 500); // Set a timeout of 500ms to prevent rapid scrolling
-    }
-});
-
-function getChildren() {
-    var children = lastfm_recent.children;
-    var visibleChildren = 0;
-    for (var i = 0; i < children.length; i++) {
-        var child = children[i];
-        var rect = child.getBoundingClientRect();
-        if (rect.right <= recent_outer.getBoundingClientRect().right && rect.left >= recent_outer.getBoundingClientRect().left) {
-            visibleChildren++;
-        }
-    }
-    return visibleChildren;
 }
 
 // check if device is mobile
@@ -292,7 +170,7 @@ if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i)
     navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) ||
     navigator.userAgent.match(/Windows Phone/i)) {
     isMobile = true;
-    const container = document.querySelectorAll('.lastfm_move');
+    const container = document.querySelectorAll('.data_move');
     recent_left.style.display = 'none';
     recent_right.style.display = 'none';
     top_left.style.display = 'none';
@@ -304,5 +182,10 @@ if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i)
     container.forEach(function (container) {
         container.style.marginTop = '0px';
     });
+} else {
+    setupScrolling('lastfm_recent', 'recent_left', 'recent_right');
+setupScrolling('lastfm_top', 'top_left', 'top_right');
+setupScrolling('lastfm_artist', 'artist_left', 'artist_right');
+setupScrolling('games_data', 'games_left', 'games_right');
 }
 console.log('🐛 isMobile?: ' + isMobile);

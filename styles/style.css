@@ -219,7 +219,7 @@ h1 { margin:0px }
 .bar_inner {
   background-color: var(--color2);
   overflow: hidden;
-  width: 100%;
+  height: calc(100% - 10px);
   border-radius: 8px; 
   position: relative;
   font-size: 30px;
@@ -232,9 +232,10 @@ h1 { margin:0px }
 }
 
 .bar_outer {
-  overflow: hidden !important;
+  overflow-x: hidden !important;
+  width: 100%; 
+  scrollbar-width: none;
 }
-
 
 /* bars */
 #tabs {
@@ -282,7 +283,6 @@ h1 { margin:0px }
   filter: brightness(0.875);
   z-index: 0;
 }
-
 
 /* topbar */
 #topbar {
@@ -355,7 +355,6 @@ h1 { margin:0px }
   filter: brightness(1.3);
 }
 
-
 #status_text_block {
   display: none;
   z-index: 9999;
@@ -377,10 +376,6 @@ h1 { margin:0px }
 #timeFormatBtn:hover {
   color: var(--texthover);
 }
-.scrollbars:hover {
-  color: var(--texthover);
-}
-
 
 /* profile */
 #profile {
@@ -388,10 +383,6 @@ h1 { margin:0px }
   margin-top: 10px;
   height: 100%;
   right: 0;
-  position: absolute;
-}
-
-#pfp_wrapper {
   position: absolute;
 }
 
@@ -503,58 +494,6 @@ h1 { margin:0px }
   background-color: var(--color2);
 }
 
-/* gallery */
-#gallery_inner {
-  display: flex;
-  border-radius: 8px;
-  justify-content: space-between;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  position: relative;
-  padding: 0px;
-  background-color: transparent;
-}
-
-#gallery_outer {
-  background-color: var(--color1);
-  overflow: hidden !important;
-  border-radius: 8px;
-  height: fit-content;
-  width: 100%;
-}
-
-.gallery_image {
-  height: 350px;
-  border-radius: 8px;
-}
-
-.gallery_div {
-  margin-right: 5px;
-  margin-bottom: -10px;
-}
-
-.gallery_div:last-child {
-  margin-right: 0px;
-}
-
-.gallery_image_number {
-  background-color: var(--color5);
-  width: fit-content;
-  margin-bottom: -37px;
-  padding-right: 10px;
-  padding-left: 10px;
-  font-family: Rubik;
-  z-index: 9999;
-  position: relative;
-  border-top-left-radius: 7px;
-  border-bottom-right-radius: 8px;
-}
-
-.gallery_image:last-child {
-  margin-right: 0px;
-}
-
-
 /* friends */
 #friends_inner {
   display: flex;
@@ -621,61 +560,6 @@ h1 { margin:0px }
   text-align: center;
 }
 
-/* other stuff*/
-.flag-name {text-decoration: none;transition: 0.15s;color:var(--text)}
-.flag-name:hover {color:var(--texthover) !important}
-.flag-name-null {color:var(--text) !important}
-.flag-name-null:hover {color:var(--text) !important}
-a {color:var(--text);text-decoration: none;}
-a:hover {color:var(--texthover) !important}
-.flag-emojis {height: 24px;margin-bottom: -3px;border-radius: 4px;}
-.emojis {height: 26px;margin-right:5px;margin-bottom: -2px;}
-.emojis-big {height: 48px;margin-right:5px;}
-.emojis-bigger {height: 64px;margin-right:5px;}
-.emojis-biggest {height: 82px;margin-right:5px;}
-
-.emojis:last-of-type {margin-right:2px !important;}
-#link:hover {color: var(--text);text-decoration: none;}
-#link {transition: 0.15s;}
-.emoji {
-  height: 28px;
-}
-.emoji-status {
-  height: 26px;
-  width: 26px;
-  border-radius: 8px;
-  float: left;
-}
-#status-emoji {
-  position: absolute;
-  z-index: 1;
-  height: 26px;
-  border-radius: 8px;
-  float: left;
-}
-
-.country-flags {
-  width: 40px;
-  object-fit:cover;
-}
-.discord_emoji {
-  display: inline-block;
-  height: 36px;
-  margin-bottom: -8px;
-}
-.pronoun-values {background-color:var(--color4);padding-left:5px;padding-right:5px;border-radius:8px;display: inline-block;word-break: break-word;}
-.divider {width: 100%;height: 3px;background-color:  var(--color4);margin-top: 9px;margin-bottom: 9px;}
-
-#roblox {width: 300px;height: 100px;background-color: var(--wing1);margin-top: 20px;margin-bottom: 20px;}
-
-#preloader {
-  width: calc(100% + 18px);
-  height: calc(100% + 20px);
-  margin-left: -11px;
-  margin-top: -10px;
-  position: fixed;
-  z-index: 9999;
-}
 
 /* music */
 #music {
@@ -756,6 +640,8 @@ a:hover {color:var(--texthover) !important}
   margin-top: 3px;
 }
 
+
+/* projects */
 .project-div:first-child {
   margin-top: 0px;
 }
@@ -768,20 +654,6 @@ a:hover {color:var(--texthover) !important}
   overflow: scroll;
   width: 100%;
   scrollbar-width: none;
-}
-
-#data_outer {
-  width: 100%; 
-  scrollbar-width: none;
-}
-
-#data_inner {
-  height: calc(100% - 10px);
-  width: calc(100% - 10px);
-  overflow-y: scroll;
-  overflow-x: hidden;
-  padding: 5px !important;
-  background-color: var(--color2);
 }
 
 #project_inner {
@@ -799,7 +671,6 @@ a:hover {color:var(--texthover) !important}
   background-color: var(--color2);
   margin-bottom: 5px;
 }
-
 
 .project-div-inner {
   margin: 5px;
@@ -827,29 +698,7 @@ a:hover {color:var(--texthover) !important}
   font-size: 22px;
 }
 
-.spoiler {
-	background-color: var(--color3);
-	cursor: pointer;
-	padding: 0.02rem 5px;
-	transition: 0.15s;
-	margin-top: 12px;
-  border-radius: 10px;
-  }
-  
-  .spoiler:hover {
-	background-color: var(--color4);
-  }
-  .spoiler .inner {
-	opacity: 0;
-  }
-  
-  .spoiler.clicked .inner {
-	display: inline;
-	opacity: 1;
-	width: 100%;
-  }
-
-
+/* updates and credits */
   #update_notes_inner, #credit_notes_inner {
     background-color: var(--color4);
     margin-left: 5px;
@@ -891,6 +740,57 @@ a:hover {color:var(--texthover) !important}
   #version:hover #version_container {
     display: block;
   }
+
+  /* gallery */
+#gallery_inner {
+  display: flex;
+  border-radius: 8px;
+  justify-content: space-between;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  position: relative;
+  padding: 0px;
+  background-color: transparent;
+}
+
+#gallery_outer {
+  background-color: var(--color1);
+  overflow: hidden !important;
+  border-radius: 8px;
+  height: fit-content;
+  width: 100%;
+}
+
+.gallery_image {
+  height: 350px;
+  border-radius: 8px;
+}
+
+.gallery_div {
+  margin-right: 5px;
+  margin-bottom: -10px;
+}
+
+.gallery_div:last-child {
+  margin-right: 0px;
+}
+
+.gallery_image_number {
+  background-color: var(--color5);
+  width: fit-content;
+  margin-bottom: -37px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-family: Rubik;
+  z-index: 9999;
+  position: relative;
+  border-top-left-radius: 7px;
+  border-bottom-right-radius: 8px;
+}
+
+.gallery_image:last-child {
+  margin-right: 0px;
+}
 
   #gallery_credits {
     font-size: 13px;
@@ -991,6 +891,8 @@ a:hover {color:var(--texthover) !important}
     opacity: 0;
   }
 
+
+/* skeletons */
   .skelly {
     display: flex;
   }
@@ -1006,27 +908,8 @@ a:hover {color:var(--texthover) !important}
       background-position: 100% 50%;
     }
   }
-
-  .skeleton_loader_friends_container {
-    border-radius: 8px;
-    margin-right: 5px;
-    box-sizing: border-box;
-    margin-bottom: 1px;
-    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3)); /* Initial gradient background */
-    background-size: 200% 100%; /* Set background size for animation */
-    animation: gradientAnimation 1.5s ease infinite forwards; /* Apply the gradient animation */
-  }
-
   .skeleton_loader_gallery_image {
     height: 350px;
-    margin-right: 5px;
-    border-radius: 8px;
-    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3)); /* Initial gradient background */
-    background-size: 200% 100%; /* Set background size for animation */
-    animation: gradientAnimation 1.5s ease infinite forwards; /* Apply the gradient animation */
-  }
-
-  .skeleton_loader_friends_image {
     margin-right: 5px;
     border-radius: 8px;
     background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3)); /* Initial gradient background */
@@ -1042,16 +925,6 @@ a:hover {color:var(--texthover) !important}
     animation: gradientAnimation 1.5s ease infinite forwards; /* Apply the gradient animation */
   }
 
-  .lastfm_loader_artist, .lastfm_loader_top {
-    margin-right: 5px;
-    border-radius: 8px;
-    height: 200px;
-    min-width: 155px;
-    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3)); /* Initial gradient background */
-    background-size: 200% 100%; /* Set background size for animation */
-    animation: gradientAnimation 1.5s ease infinite forwards; /* Apply the gradient animation */
-  }
-  
   .skeleton_loader_gallery_image:last-child, .skeleton_loader_friends_container:last-child {
     margin-right: 0px;
   }
@@ -1074,395 +947,8 @@ a:hover {color:var(--texthover) !important}
     display: block;
   }
 
-  .lastfm_container {
-    background-color: var(--color2);
-    height: 200px;
-    min-width: 155px;
-    border-radius: 8px;
-    margin-right: 5px;
-  }
 
-  .lastfm_container:last-child {
-    margin-right: 0px;
-  }
-
-  .lastfm_image {
-    height: 100%;
-    width: 100%;
-    max-height: 155px;
-    object-fit: cover;
-    border-radius: 8px;
-    border-bottom-left-radius: 0px;
-    background: "linear-gradient(90deg, var(--color3), var(--color5), var(--color3))";
-    background-size: 200% 100%;
-    animation: gradientAnimation 1.5s ease infinite forwards;
-  }
-
-  .lastfm_playcount {
-    background-color: var(--color2);
-    width: fit-content;
-    position: relative;
-    margin-left: auto;
-    margin-top: -38px;
-    font-family: Rubik;
-    border-bottom-right-radius: 8px;
-    border-top-left-radius: 8px;
-    font-size: 24px;
-    padding: 2px;
-  }
-
-  .lastfm_playcount_recent {
-    background-color: var(--color2);
-    width: fit-content;
-    position: relative;
-    margin-left: auto;
-    margin-top: -38px;
-    border-bottom-right-radius: 8px;
-    border-top-left-radius: 8px;
-    font-size: 24px;
-    padding: 2px;
-    margin-bottom: 5px;
-  }
-
-  .lastfm_playcount_played {
-    font-family: Rubik2;
-  }
-
-  .lastfm_name {
-    font-weight: bold;
-    font-size: 20px;
-    white-space: nowrap;
-    padding: 5px;
-    margin-top: -8px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .lastfm_artist_name {
-    font-weight: bold;
-    font-size: 29px;
-    white-space: nowrap;
-    overflow: hidden;
-    padding: 5px;
-    margin-top: -5px;
-    text-overflow: ellipsis;
-  }
-
-  .lastfm_artist {
-    font-size: 12px;
-    white-space: nowrap;
-    overflow: hidden;
-    padding: 5px;
-    margin-top: -10px;
-    text-overflow: ellipsis;
-  }
-
-  #lastfm_top {
-    display: flex;
-    background-color: transparent;
-    overflow-x: scroll;
-    border-radius: 8px;
-    overflow-y: hidden;
-    scrollbar-width: none;
-  }
-
-  #lastfm_artist {
-    display: flex;
-    background-color: transparent;
-    overflow-x: scroll;
-    border-radius: 8px;
-    overflow-y: hidden;
-    scrollbar-width: none;
-  }
-
-  #lastfm_recent {
-    display: flex;
-    background-color: transparent;
-    overflow-x: scroll;
-    border-radius: 8px;
-    overflow-y: hidden;
-    scrollbar-width: none;
-  }
-  .lastfm_move {
-    margin-top: -35px;
-  }
-
-  .lastfm_recent_name {
-    font-weight: bold;
-    font-size: 20px;
-    white-space: nowrap;
-    padding: 5px;
-    margin-top: -12px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .lastfm_recent_artist {
-    font-size: 12px;
-    white-space: nowrap;
-    overflow: hidden;
-    padding: 5px;
-    margin-top: -12px;
-    text-overflow: ellipsis;
-  }
-
-  .data_outer {
-    background-color: var(--color3);
-    padding: 5px;
-    border-radius: 8px;
-    width: calc(100% - 10px);
-    height: 200px;
-  }
-
-  #preloader_topbar {
-    height: 90px;
-    margin-bottom: 5px;
-    border-radius: 8px;
-    margin-top: -5px;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    display: flex;
-    transition: 0.3s;
-  }
-
-  #preloader_topbar_left {
-    width: 120px;
-    height: 80px;
-    border-radius: 8px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin: 5px;
-    transition: 0.3s;
-    background-size: 200% 100%;
-    animation: gradientAnimation 1.5s ease infinite forwards;
-  }
-
-  .preloader_inner {
-    width: calc(100% - 10px);
-    height: calc(100% - 10px);
-    padding: 5px;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  #preloader_main {
-    height: calc(100% - 128px);
-    width: calc(100% - 10px);
-    padding: 5px;
-    border-radius: 8px;
-    transition: 0.3s;
-    margin-top: -2px;
-  }
-
-  #preloader {
-    margin-top: -50px;
-    width: calc(100% - 10px);
-    margin-left: 5px;
-    padding-top: 100px;
-  }
-
-  #preloader_pfp {
-    width: 70px;
-    height: 70px;
-    position: absolute;
-    right: 0;
-    margin-right: 5px;
-    margin-top: 5px;
-    border-radius: 50%;
-    background-size: 200% 100%;
-    animation: gradientAnimation 1.5s ease infinite forwards;
-  }
-
-  #preloader_tabs {
-    width: 100%;
-    height: 60px;
-    margin-top: -100px;
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-    transition: 0.3s;
-  }
-
-  #preloader_fill {
-    width: 100%;
-    height: 15px;
-    margin-top: -10px;
-  }
-
-  .preloader_text {
-    height: 37px;
-    width: 100%;
-    margin-bottom: 10px;
-    border-radius: 8px;
-  }
-
-
-  @keyframes preloaderAnimation {
-    0% {
-      background-position: 100% 50%;
-    }
-    50% {
-      background-position: 0% 50%;
-    }
-    100% {
-      background-position: 100% 50%;
-    }
-  }
-
-  #preloader_music {
-    max-width: calc(100% - 220px);
-    height: 80px;
-    width: 200px;
-    margin: 5px;
-    border-radius: 8px;
-    position: relative;
-    margin-left: 0px;
-    opacity: 0;
-    transition: 0.3s;
-  }
-
-  #preloader_music_art {
-    height: 70px;
-    width: 70px;
-    border-radius: 8px;
-    margin-left: 5px;
-    top: 5px;
-    position: relative;
-  }
-
-  #preloader_music_inner {
-    width: calc(100% - 85px);
-    height: calc(100% - 10px);
-    border-radius: 8px;
-    margin-left: 80px;
-    margin-top: -70px;
-    top: 5px;
-    position: relative;
-  }
-  .waka_lang_graph {
-    background-color: var(--color5);
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    height: 100%;
-    border-bottom-right-radius: 0px;
-    border-top-right-radius: 0px;
-  }
-
-  #waka_total {
-    display: flex;
-  }
-
-  #waka_total > div {
-    flex: 1;
-  }
-
-  .waka_lang_container {
-    display: flex;
-    margin-bottom: 5px;
-    font-size: 16px;
-    border-radius: 8px;
-    width: calc(100% + 10px);
-  }
-
-  .waka_lang_container:last-child {
-    margin-bottom: 0px;
-  }
-
-  .waka_lang_graph_border {
-    width: calc(100% - 210px);
-    border: 3px solid var(--color2);
-    border-radius: 8px;
-    margin-left: 5px;
-    overflow: hidden;
-  }
-
-  .waka_lang_time_and_name {
-    display: block;
-    width: 180px;
-    padding: 5px;
-    background-color: var(--color2);
-    border-radius: 8px;
-  }
-
-  #waka_lang {
-    background-color: var(--color3);
-    width: calc(100% - 5px);
-    padding: 2.5px;
-    border-radius: 8px;
-  }
-
-  .waka_lang_time {
-    margin-top: 0px;
-  }
-
-  .games_image {
-    width: 155px;
-    height: 155px;
-    margin-top: 0px;
-    object-fit: cover;
-    position: absolute;
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-  }
-
-  .games_name {
-    top: 150px;
-    position: relative;
-    margin: 5px;
-    font-size: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 155px;
-    font-weight: bold;
-  }
-  .games_lasted {
-    top: 175px;
-    margin: 5px;
-    margin-top: 8px;
-    position: absolute;
-    font-size: 12px;
-  }
-
-  .games_activity {
-    background-color: var(--color2);
-    min-width: 155px;
-    height: 200px;
-    border-radius: 8px;
-    margin-right: 5px;
-    position: relative;
-  }
-
-  .games_activity:last-child {
-    margin-right: 0px;
-  }
-
-  #games_data_outer {
-    background-color: var(--color3);
-    position: relative;
-    padding: 5px;
-    width: calc(100% - 10px);
-    border-radius: 8px;
-  }
-
-  #games_data {
-    display: flex;
-    overflow-x: scroll;
-    border-radius: 8px;
-    width: 100%;
-    scrollbar-width: none;
-  }
-
-  .info {
-    font-family: SourceCode;
-    font-size: 12px;
-    text-align: right;
-    margin-right: 10px;
-    margin-top: 5px;
-  }
-
+/* misc */
   #text {
     overflow-x: hidden;
   }
@@ -1485,24 +971,4 @@ a:hover {color:var(--texthover) !important}
     top: 10px;
     position: relative;
     display: block;
-  }
-
-  .move_button {
-    position: relative;
-    top: 75px;
-    margin-left: -10px;
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-    border: 2px solid var(--text);
-    background-color: var(--color1);
-    border-radius: 8px;
-    font-family: Rubik2;
-    cursor: pointer;
-    z-index: 9999;
-  }
-
-  .move_button:last-child {
-    left: calc(100% - 10px);
-    top:-127px;
   }

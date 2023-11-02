@@ -1,0 +1,66 @@
+/* other stuff*/
+.flag-name {text-decoration: none;transition: 0.15s;color:var(--text)}
+.flag-name:hover {color:var(--texthover) !important}
+.flag-name-null {color:var(--text) !important}
+.flag-name-null:hover {color:var(--text) !important}
+a {color:var(--text);text-decoration: none;}
+a:hover {color:var(--texthover) !important}
+.flag-emojis {height: 24px;margin-bottom: -3px;border-radius: 4px;}
+.emojis {height: 26px;margin-right:5px;margin-bottom: -2px;}
+.emojis-big {height: 48px;margin-right:5px;}
+.emojis-bigger {height: 64px;margin-right:5px;}
+.emojis-biggest {height: 82px;margin-right:5px;}
+
+.emojis:last-of-type {margin-right:2px !important;}
+#link:hover {color: var(--text);text-decoration: none;}
+#link {transition: 0.15s;}
+.emoji {
+  height: 28px;
+}
+.emoji-status {
+  height: 26px;
+  width: 26px;
+  border-radius: 8px;
+  float: left;
+}
+#status-emoji {
+  position: absolute;
+  z-index: 1;
+  height: 26px;
+  border-radius: 8px;
+  float: left;
+}
+
+.country-flags {
+  width: 40px;
+  object-fit:cover;
+}
+.discord_emoji {
+  display: inline-block;
+  height: 36px;
+  margin-bottom: -8px;
+}
+.pronoun-values {background-color:var(--color4);padding-left:5px;padding-right:5px;border-radius:8px;display: inline-block;word-break: break-word;}
+.divider {width: 100%;height: 3px;background-color:  var(--color4);margin-top: 9px;margin-bottom: 9px;}
+
+.spoiler {
+	background-color: var(--color3);
+	cursor: pointer;
+	padding: 0.02rem 5px;
+	transition: 0.15s;
+	margin-top: 12px;
+  border-radius: 10px;
+  }
+  
+  .spoiler:hover {
+	background-color: var(--color4);
+  }
+  .spoiler .inner {
+	opacity: 0;
+  }
+  
+  .spoiler.clicked .inner {
+	display: inline;
+	opacity: 1;
+	width: 100%;
+  }

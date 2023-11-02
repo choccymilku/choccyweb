@@ -1,9 +1,8 @@
-const skeletonLoader = document.getElementById('games_loader');
-  let steamGamesList = []; // Create an empty array to store game objects
+let steamGamesList = []; // Create an empty array to store game objects
 
-  fetch('https://api.choccymilk.uk/steam-games')
-  .then(response => response.json())
-  .then(data => {
+fetch('https://api.choccymilk.uk/steam-games')
+.then(response => response.json())
+.then(data => {
     const { games } = data.response;
     
     // Filter and sort games by playtime
@@ -13,8 +12,10 @@ const skeletonLoader = document.getElementById('games_loader');
     // Keep only the top 10 games
     const topGames = filteredGames.slice(0, 10);
 
-    topGames.forEach(game => {
+    // Get the steamDataContainer after fetching data
+    const steamDataContainer = document.getElementById('games_data');
 
+    topGames.forEach(game => {
         // convert playtime to hours and minutes
         function convertPlaytime(playtimeInMinutes) {
             if (playtimeInMinutes >= 60) {
@@ -25,39 +26,46 @@ const skeletonLoader = document.getElementById('games_loader');
                 return `${playtimeInMinutes}m`;
             }
         }
-          // create divs for each game
-          const steamDiv = document.createElement('div');
-      steamDiv.className = 'games_activity';
-      const playtime = convertPlaytime(game.playtime_forever);
+
+        const playtime = convertPlaytime(game.playtime_forever);
+
+        // create divs for each game
+        const steamDiv = document.createElement('div');
+        steamDiv.className = 'data_container';  
+        
+        // name
+        const steamName = document.createElement('div');
+        steamName.innerHTML = game.name;
+        steamName.className = 'data_top_name_bigger';
+
+        const steamPlaytime = document.createElement('div');
+        steamPlaytime.innerHTML = playtime;
+        steamPlaytime.className = 'data_playcount data_playcount_smaller';
   
-      // name
-      const steamName = document.createElement('div');
-      steamName.innerHTML = game.name;
-      steamName.className = 'games_name';
-  
-      // time played
-      const steamTime = document.createElement('div');
-      steamTime.innerHTML = playtime;
-      steamTime.className = 'games_lasted';
-  
-      // image
-      const steamImage = document.createElement('img');
-      steamImage.src = `https://cdn.akamai.steamstatic.com/steam/apps/${game.appid}/header.jpg`;
-      steamImage.className = 'games_image';
-  
-      // append to games_data div
-      const steamDataContainer = document.getElementById('games_data');
-      steamDataContainer.appendChild(steamDiv);
-      steamDiv.appendChild(steamImage);
-      steamDiv.appendChild(steamName);
-      steamDiv.appendChild(steamTime);
-      steamGamesList.push(game);
+        // image
+        const steamImage = document.createElement('img');
+        steamImage.src = `https://cdn.akamai.steamstatic.com/steam/apps/${game.appid}/header.jpg`;
+        steamImage.className = 'data_image';
+
+
+        const steamImageLoader = document.createElement('div');
+        steamImageLoader.style.background = "linear-gradient(90deg, var(--color3), var(--color5), var(--color3))";
+        steamImageLoader.style.backgroundSize = "200% 100%";
+        steamImageLoader.style.animation = "gradientAnimation 1.5s ease infinite forwards";
+        steamImageLoader.style.height = "155px";
+        steamImageLoader.style.marginBottom = "10px";
+        steamImageLoader.style.borderTopRightRadius = "8px";
+        steamImageLoader.style.borderTopLeftRadius = "8px";
+
+        steamDiv.appendChild(steamImageLoader);
+        steamImageLoader.appendChild(steamImage);
+
+        steamDataContainer.appendChild(steamDiv);
+        steamDiv.appendChild(steamPlaytime);
+        steamDiv.appendChild(steamName);
+        steamGamesList.push(game);
     });
-  })
-  .finally(() => {
-    // Remove the skeleton loader once the second fetch operation is completed
-    if (skeletonLoader) {
-      skeletonLoader.remove();
-    }
+})
+.finally(() => {
     console.log('📅 steam games:', steamGamesList);
-  });
+});

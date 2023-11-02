@@ -12,11 +12,11 @@ const currentDay = new Date().getDate();
 // check if birthday has passed
 if (currentDay > day) {
     // birthday has passed
-    var age = currentYear - year;
+    var age = currentYear - year + 1;
     var nextAge = age + 1;
 } else {
     // birthday has not passed
-    var age = currentYear - year + 1;
+    var age = currentYear - year;
     var nextAge = age + 1;
 }
 

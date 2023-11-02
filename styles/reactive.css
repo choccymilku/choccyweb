@@ -195,43 +195,30 @@
         display: none !important;
     }
 
-    #lastfm_artist > .lastfm_container {
+    .data_move > .data_container {
         flex: 0%;
         margin-bottom: 5px;
     }
-    #lastfm_top > .lastfm_container {
-        flex: 0%;
-        margin-bottom: 5px;
-    }
-    #lastfm_recent > .lastfm_container {
-      flex: 0%;
-      margin-bottom: 5px;
-  }
 
-    #lastfm_artist {
-        margin-bottom: -5px !important;
+    .data_move {
+      flex-wrap: wrap;
+      width: calc(100% + 5px);
+      margin-bottom: -5px !important;
     }
 
-    #lastfm_artist, #lastfm_top, #lastfm_recent {
-        flex-wrap: wrap;
-    }
-
-    #lastfm_top {
-        width: calc(100% + 5px);
-        margin-bottom: -5px !important;
-    }
-
-    #lastfm_recent {
-        width: calc(100% + 5px);
-        margin-bottom: -5px !important;
-    }
-
-    #lastfm_artist {
-        width: calc(100% + 5px);
-    }
-
-    .lastfm_container:last-child {
+    .data_container:last-child {
         margin-right: 5px;
+      }
+
+      .data_outer {
+        height: fit-content;
+      }
+
+      .data_move {
+        margin-top: 0px;
+      }
+      .data_button_container {
+        display: none;
       }
 
     #preloader_tabs {
@@ -294,53 +281,12 @@
         box-sizing: border-box;
       }
 
-      .games_activity {
-        width: calc(50% - 5px) !important;
-        margin-right: 0px;
-      }
-
-      #games_data {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5px;
-        width: calc(100% + 5px);
-      }
-
-      #data_inner {
-        overflow-x: hidden;
-      }
-
-      .data_outer {
-        height: fit-content;
-      }
-
-      .games_image {
-        width: 100%;
-      }
-
-      .games_name {
-        max-width: fit-content;
-      }
 
       #skeleton_loader_friends {
         width: calc(100% + 5px);
         height: calc(100% + 5px);
         flex-wrap: wrap;
       }
-
-      #lastfm_loader_artist {   
-        flex-wrap: wrap;
-      }
-
-      #lastfm_loader_top {   
-        flex-wrap: wrap;
-      }
-
-      .lastfm_loader_top {
-        width: calc(50% - 5px);
-        margin-bottom: 5px;
-      }
-
       .waka_lang_time_and_name {
         width: 100%;
         height: 22px;
@@ -384,13 +330,6 @@
         border-bottom-right-radius: 0px;
         margin-bottom: -10px;
       }
-
-      .lastfm_move {
-        margin-top: 0px;
-      }
-      .move_button {
-        display: none;
-      }
 }
 
 @media only screen and (max-width: 481px) {
@@ -408,21 +347,5 @@
     }
     .skeleton_loader_friends_image {
         width: 100% !important;
-      }
-
-      .games_activity {
-        width: calc(100% - 5px) !important;
-        margin-right: 0px;
-      }
-
-      #games_data {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5px;
-        width: calc(100% + 5px);
-      }
-
-      .games_image {
-        width: 100%;
       }
 }

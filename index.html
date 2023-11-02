@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
     <link rel="icon" type="image/x-icon" href="./styles/icon.png">
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/data.css">
+    <link rel="stylesheet" href="./styles/projects.css">
+    <link rel="stylesheet" href="./styles/text.css">
+    <link rel="stylesheet" href="./styles/preloader.css">
     <link rel="stylesheet" href="./styles/reactive.css">
     <link rel="stylesheet" href="./fonts/stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -246,23 +250,29 @@ function loadScript(scriptUrl) {
 
         <div style="font-family: Rubik;" id="recent_songs"><span>recent songs</span></div>
         <div class="data_outer" id="lastfm_recent_outer">
-          <button class="move_button" id="recent_left"><span style="left:-1px;position: relative;"> < </span></button>
-            <div class="inner_scrollables lastfm_move" id="lastfm_recent"></div>
-          <button class="move_button" id="recent_right"><span style="right:-1px;position: relative;"> > </span></button>
+          <div class="data_button_container">
+            <button class="data_button" id="recent_left"><span style="left:-1px;position: relative;"> < </span></button>
+            <button class="data_button" id="recent_right"><span style="right:-1px;position: relative;"> > </span></button>
+          </div>
+            <div class="data_move" id="lastfm_recent"></div>
         </div>
 
         <div style="font-family: Rubik;margin-top: 10px;" id="top_songs"><span>top songs</span></div>
           <div class="data_outer" id="lastfm_top_outer">
-            <button class="move_button" id="top_left"><span style="left:-1px;position: relative;"> < </span></button>
-              <div class="inner_scrollables lastfm_move" id="lastfm_top"></div>
-            <button class="move_button" id="top_right"><span style="right:-1px;position: relative;"> > </span></button>
+            <div class="data_button_container">
+              <button class="data_button" id="top_left"><span style="left:-1px;position: relative;"> < </span></button>
+              <button class="data_button" id="top_right"><span style="right:-1px;position: relative;"> > </span></button>
+            </div>
+              <div class="data_move" id="lastfm_top"></div>
           </div>
 
         <div style="font-family: Rubik;" id="top_artists"><span>top artists</span></div>
           <div class="data_outer" id="lastfm_artist_outer">
-            <button class="move_button" id="artist_left"><span style="left:-1px;position: relative;"> < </span></button>
-              <div class="inner_scrollables lastfm_move" id="lastfm_artist"></div>
-            <button class="move_button" id="artist_right"><span style="right:-1px;position: relative;"> > </span></button>
+            <div class="data_button_container">
+              <button class="data_button" id="artist_left"><span style="left:-1px;position: relative;"> < </span></button>
+              <button class="data_button" id="artist_right"><span style="right:-1px;position: relative;"> > </span></button>
+            </div>
+              <div class="data_move" id="lastfm_artist"></div>
           </div>
 
         <div class="info" id="top_songs_info">
@@ -276,9 +286,11 @@ function loadScript(scriptUrl) {
 
         <div style="font-family: Rubik;" id="games_and_activities"><span>games & activities</span></div>
           <div class="data_outer" id="games_outer">
-            <button class="move_button" id="games_left"><span style="left:-1px;position: relative;"> < </span></button>
-              <div id="games_data" class="lastfm_move"></div>
-            <button class="move_button" id="games_right"><span style="right:-1px;position: relative;"> > </span></button>
+            <div class="data_button_container">
+              <button class="data_button" id="games_left"><span style="left:-1px;position: relative;"> < </span></button>
+              <button class="data_button" id="games_right"><span style="right:-1px;position: relative;"> > </span></button>
+            </div>
+              <div class="data_move" id="games_data"></div>
           </div>
 
           <div class="info" id="games_and_activities_info">
