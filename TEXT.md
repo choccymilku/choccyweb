@@ -1,11 +1,9 @@
 version 1.5
 add - rewriten some code
 add - yeah
-awdaw
 /////
 to-do:
 more games to get
-somethuing
 /////
 credits:
 fixy_cookies
