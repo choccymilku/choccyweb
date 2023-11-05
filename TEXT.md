@@ -1,6 +1,5 @@
 version 1.5
 add - rewriten some code
-time finished: 3:46 AM
 /////
 to-do:
 more games to get
