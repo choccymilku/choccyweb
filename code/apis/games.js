@@ -5,6 +5,37 @@ fetch('https://api.choccymilk.uk/steam-games')
 .then(data => {
     const { games } = data.response;
     
+    // get time from all games
+    const totalPlaytime = games.reduce((accumulator, game) => accumulator + game.playtime_forever, 0);
+    const totalPlaytimeDiv = document.getElementById('games_user');
+
+    // Calculate weeks, days, hours, and remaining minutes
+    const weeks = Math.floor(totalPlaytime / (60 * 24 * 7));
+    const remainingMinutes = totalPlaytime % (60 * 24 * 7);
+    const days = Math.floor(remainingMinutes / (60 * 24));
+    const hours = Math.floor((remainingMinutes % (60 * 24)) / 60);
+    const minutes = remainingMinutes % 60;
+
+    // Build the formatted string
+    let formattedPlaytime = '';
+    if (weeks > 0) {
+        formattedPlaytime += `<span class="info_large">${weeks} week${weeks > 1 ? 's' : ''}, </span>`;
+    }
+    if (days > 0) {
+        formattedPlaytime += `<span class="info_large">${days} day${days > 1 ? 's' : ''}, </span>`;
+    }
+    if (hours > 0) {
+        formattedPlaytime += `<span class="info_large">${hours} hour${hours > 1 ? 's' : ''}</span>`;
+        if (minutes > 0) {
+            formattedPlaytime += ' and ';
+        }
+    }
+    if (minutes > 0 || formattedPlaytime === '') {
+        formattedPlaytime += `<span class="info_large">${minutes} minute${minutes > 1 ? 's' : ''}</span>`;
+    }
+    totalPlaytimeDiv.innerHTML = `played for ${formattedPlaytime}`;
+    totalPlaytimeDiv.style.fontFamily = "Rubik";
+    
     // Filter and sort games by playtime
     const filteredGames = games.filter(game => game.playtime_forever > 30 && game.name !== "Wallpaper Engine");
     filteredGames.sort((a, b) => b.playtime_forever - a.playtime_forever);
@@ -14,6 +45,7 @@ fetch('https://api.choccymilk.uk/steam-games')
 
     // Get the steamDataContainer after fetching data
     const steamDataContainer = document.getElementById('games_data');
+    steamDataContainer.innerHTML = '';
 
     topGames.forEach(game => {
         // convert playtime to hours and minutes

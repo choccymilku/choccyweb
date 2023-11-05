@@ -114,6 +114,10 @@ function loadScript(scriptUrl) {
 
 </head>
 <body id="body" class="light noselect">
+  <script>
+    const themeLoader = localStorage.getItem('theme') || 'dark';
+    document.documentElement.dataset.theme = themeLoader;
+  </script>
 <div id="main">
 
   <div id="preloader">
@@ -129,33 +133,9 @@ function loadScript(scriptUrl) {
     </div>
     
     <div id="preloader_main">
-      <div class="preloader_inner">
-        <div id="preloader_text"></div>
-        <div id="load_time" style="display: none;"></div>
-      </div>
+      <div class="preloader_inner"></div>
     </div>
   </div>
-
-
-  <script>
-    // Get a random number between 6 and 12 for the number of elements
-    var numberOfElements = Math.floor(Math.random() * 7) + 6;
-  
-    // into #preloader_text, create divs with class="preloader_text" and random widths
-    for (var i = 0; i < numberOfElements; i++) {
-      // Get a random number between 40 and 120
-      var randomNumber = Math.floor(Math.random() * 81) + 40;
-      // Create a div element
-      var div = document.createElement('div');
-      // Assign class name
-      div.className = 'preloader_text';
-      // Set width using calc(100% - randomNumber)
-      div.style.width = 'calc(100% - ' + randomNumber + 'px)';
-      // Append the div to #preloader_text
-      document.getElementById('preloader_text').appendChild(div);
-    }
-  </script>
-  
 
   <div id="tabs"></div>
 
@@ -177,21 +157,25 @@ function loadScript(scriptUrl) {
           <i class="fa-solid fa-brush"></i></div>
       </div>
 
-      <div id="music">
-        <a id="music-track-link" target="_blank" class="music-cover disabledrag">
-          <img id="music-cover" src="./styles/blank.png" class="music-cover disabledrag"></img>
-        </a>
+        <div id="music">
+          <a id="music-track-link" target="_blank" class="disabledrag">
 
-        <div id="music-content">
-          <div id="music-song"></div>
-          <div id="music-artist"></div>
-            <div id="music-elapsed-time-wrapper"></div>
-            <div id="music-progress-bar-wrapper"></div>
+        <div id="music_inner">
+          <img id="music-cover" src="./styles/blank.png" class="music-cover disabledrag loader"></img>
+
+          <div id="music-content">
+            <div id="music-song"></div>
+            <div id="music-artist"></div>
+            <div id="directly-spotify" style="font-size: 12px;"></div>
+              <div id="music-progress-bar-wrapper"></div>
+              <div id="music-elapsed-time-wrapper"></div>
+          </div>
         </div>
+      </a>
       </div>
 
       <div id="profile">
-        <img class="disabledrag" id="pfp" src="./styles/blank.png"/>
+        <img class="disabledrag loader" id="pfp" src="./styles/blank.png"/>
 
         <div id="profile_hover">
           <div id="profile_arrow"></div>
@@ -248,7 +232,9 @@ function loadScript(scriptUrl) {
     <div class="noselect bar_outer" id="data_outer">
       <div class="noselect bar_inner" id="data_inner">
 
-        <div style="font-family: Rubik;" id="recent_songs"><span>recent songs</span></div>
+        <div style="font-family: Rubik;" id="recent_songs">
+          recent songs <!-- <i class="fa-solid fa-rotate icon-style" id="refresh_recent"></i> -->
+        </div>
         <div class="data_outer" id="lastfm_recent_outer">
           <div class="data_button_container">
             <button class="data_button" id="recent_left"><span style="left:-1px;position: relative;"> < </span></button>
@@ -276,6 +262,7 @@ function loadScript(scriptUrl) {
           </div>
 
         <div class="info" id="top_songs_info">
+          <div id="lastfm_user"></div>
           <span>fetched from </span>
           <a style="text-decoration: underline;" href="https://www.last.fm/api" target="_blank">last.fm</a>, 
           <span>artwork by </span>
@@ -294,6 +281,7 @@ function loadScript(scriptUrl) {
           </div>
 
           <div class="info" id="games_and_activities_info">
+            <div id="games_user"></div>
             <span>fetched from </span>
             <a style="text-decoration: underline;" href="https://developer.valvesoftware.com/wiki/Steam_Web_API#GetOwnedGames_.28v0001.29" target="_blank">steamcommunity.com</a>
           </div>
@@ -365,59 +353,71 @@ function loadScript(scriptUrl) {
   location.reload();
   });
 </script>
-<script>
-  // handle preloader themes correctly
-if (localStorage.getItem('theme') === 'light') {
-  document.getElementById('body').style.transition = '0s';
-  document.getElementById('body').style.backgroundColor = '#d4d4d4';
-  document.getElementById('preloader_topbar').style.backgroundColor = '#e7e7e7';
-  document.getElementById('preloader_main').style.backgroundColor = '#e7e7e7';
-  document.getElementById('preloader_main').style.transition = '0s';
-  document.getElementById('preloader_tabs').style.backgroundColor = '#e7e7e7';
-  document.getElementById('preloader_tabs').style.transition = '0s';
-  document.getElementById('preloader_music').style.backgroundColor = '#d4d4d4';
-  document.getElementById('preloader_music').style.backgroundColor = '#d4d4d4';
-  document.getElementById('preloader').style.backgroundColor = '#d4d4d4';
+<script> // colors
+// Set default theme if localStorage has no theme value
+const theme = localStorage.getItem('theme') || 'dark';
 
-  document.getElementById('preloader_pfp').style.background = 'linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1)';
-  document.getElementById('preloader_pfp').style.backgroundSize = '200% 100%';
-  document.getElementById('preloader_pfp').style.animation = 'gradientAnimation 1.5s ease infinite forwards';
-  document.getElementById('preloader_pfp').style.border = '5px solid #d4d4d4';
+// Common styles for different themes
+const themes = {
+  dark: {
+    light: '#242636',
+    darker: '#2C2E41',
+    darkest: '#34344B',
+  },
+  light: {
+    light: '#e7e7e7',
+    darker: '#d4d4d4',
+    darkest: '#c1c1c1',
+  },
+  halloween: {
+    light: '#1d1c1c',
+    darker: '#0b0b0b',
+    darkest: '#1d1c1c',
+  },
+  christmas: {
+    light: '#ff7878',
+    darker: '#ffffff',
+    darkest: '#74d680',
+  },
+};
 
-  document.getElementById('preloader_music_art').style.background = 'linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1)';
-  document.getElementById('preloader_music_art').style.backgroundSize = '200% 100%';
-  document.getElementById('preloader_music_art').style.animation = 'gradientAnimation 1.5s ease infinite forwards';
+// Apply theme styles
+const applyStyles = (theme) => {
+  const styles = themes[theme];
+  document.getElementById('body').style.backgroundColor = styles.darker;
+  document.getElementById('preloader').style.backgroundColor = styles.darker;
 
-  document.getElementById('preloader_music_inner').style.background= 'linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1)';
-  document.getElementById('preloader_music_inner').style.backgroundSize = '200% 100%';
-  document.getElementById('preloader_music_inner').style.animation = 'gradientAnimation 1.5s ease infinite forwards';
-    
-  document.getElementById('preloader_topbar_left').style.background= 'linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1)';
-  document.getElementById('preloader_topbar_left').style.backgroundSize = '200% 100%';
-  document.getElementById('preloader_topbar_left').style.animation = 'gradientAnimation 1.5s ease infinite forwards';
+  document.getElementById('preloader_pfp').style.background = styles.darkest;
 
-  document.querySelector('.preloader_inner').style.backgroundColor = '#d4d4d4';
+  document.getElementById('preloader_topbar_left').style.background = styles.darker;
 
-  // Select all elements with class 'preloader_text'
-  var preloaderTextElements = document.querySelectorAll('.preloader_text');
+  document.getElementById('preloader_music_art').style.background = styles.darkest;
 
-  // Loop through the NodeList and set the background color for each element
-  preloaderTextElements.forEach(function(element) {
-    element.style.background = 'linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1)';
-    element.style.backgroundSize = '200% 100%';
-    element.style.animation = 'gradientAnimation 1.5s ease infinite forwards;';
-  });
+  document.getElementById('preloader_tabs').style.backgroundColor = styles.light;
+  document.getElementById('preloader_topbar').style.backgroundColor = styles.light;
+  document.getElementById('preloader_music_inner').style.backgroundColor = styles.darkest;
 
-  // if window size is less than 600px, change the border color of preloader_pfp
-  if (window.innerWidth < 600) {
-    document.getElementById('preloader_pfp').style.border = '5px solid #e7e7e7';
-  }
-} else {
+  document.getElementById('preloader_music').style.backgroundColor = styles.darker;
+
+  document.getElementById('preloader_main').style.backgroundColor = styles.light;
+  document.querySelector('.preloader_inner').style.backgroundColor = styles.darker;
+
+  
+// Change border color of preloader_pfp if window size is less than 600px
+if (window.innerWidth < 600) {
+  document.getElementById('preloader_pfp').style.border = `5px solid ${styles.light}`;
+} else if (window.innerWidth > 600) {
+  document.getElementById('preloader_pfp').style.border = `5px solid ${styles.darker}`;
 }
+};
+
+// Apply theme-specific styles
+applyStyles(theme);
+
 </script>
 <script> // profile hover
     // Get references to the profile elements
-    const profile = document.getElementById('profile');
+  const profile = document.getElementById('profile');
   const pfp = document.getElementById('pfp');
   const profileHover = document.getElementById('profile_hover');
 
@@ -509,7 +509,6 @@ function toggleVersionHover() {
     versionHover.style.display = 'block';
   }
 </script>
-
 <script src="./config.js"></script>
 <script src="./code/tabs.js"></script>
 <script src="./code/similarColor.js"></script>

@@ -1,12 +1,8 @@
-version 1.4.8
-add - better recently listened tracks with live-ish data
-add - removed horizontal scroll in favor of buttons
-add - optimizations
-add - code simplification
+version 1.5
+add - rewriten some code
+time: 3:46 AM
 /////
 to-do:
-complete rewrite 
-simplyfing stuff (for the sake of myself)
 more games to get
 /////
 credits:

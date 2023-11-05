@@ -80,87 +80,66 @@ scroll2Containers.forEach(function(container) {
   container.addEventListener('wheel', handleScroll);
 });
 
-var lastfm_recent = document.getElementById('lastfm_recent');
-var recent_outer = document.getElementById('lastfm_recent_outer');
-var lastfm_top = document.getElementById('lastfm_top');
-var lastfm_artist = document.getElementById('lastfm_artist');
-var games = document.getElementById('games_data');
-
-var recent_left = document.getElementById('recent_left');
-var recent_right = document.getElementById('recent_right');
-var top_left = document.getElementById('top_left');
-var top_right = document.getElementById('top_right');
-var artist_left = document.getElementById('artist_left');
-var artist_right = document.getElementById('artist_right');
-var games_left = document.getElementById('games_left');
-var games_right = document.getElementById('games_right');
-
-var childWidth = 160; // Width of each child element
-var recent_isAnimating = false;
-var top_isAnimating = false;
-var artist_isAnimating = false;
-var games_isAnimating = false;
-
 function setupScrolling(container, leftButton, rightButton) {
-    var lastfm_recent = document.getElementById(container);
-    var recent_left = document.getElementById(leftButton);
-    var recent_right = document.getElementById(rightButton);
-    var childWidth = 100; // Set your child element width here
+    var containers = document.getElementById(container);
+    var left = document.getElementById(leftButton);
+    var right = document.getElementById(rightButton);
+    var childWidth = 160; // Set your child element width here
     var recent_isAnimating = false;
 
-    lastfm_recent.addEventListener('scroll', function() {
-        var maxScrollLeft = lastfm_recent.scrollWidth - lastfm_recent.clientWidth;
+    containers.addEventListener('scroll', function() {
+        var maxScrollLeft = containers.scrollWidth - containers.clientWidth;
 
-        if (lastfm_recent.scrollLeft <= 0) {
-            console.log('start ' + container); // Log "start" when it reaches the start
-            recent_left.style.cursor = 'context-menu'; // Change cursor to default
-            lastfm_recent.scrollLeft = 0; // Prevent scrolling to the left
-        } else if (lastfm_recent.scrollLeft >= maxScrollLeft) {
-            console.log('end ' + container); // Log "end" when it reaches the end
-            recent_right.style.cursor = 'context-menu'; // Change cursor to default
-            lastfm_recent.scrollLeft = maxScrollLeft; // Prevent scrolling to the right
+        if (containers.scrollLeft <= 0) {
+            console.log('🐛 start ' + container); // Log "start" when it reaches the start
+            left.style.cursor = 'context-menu'; // Change cursor to default
+            containers.scrollLeft = 0; // Prevent scrolling to the left
+        } else if (containers.scrollLeft >= maxScrollLeft) {
+            console.log('🐛 end ' + container); // Log "end" when it reaches the end
+            right.style.cursor = 'context-menu'; // Change cursor to default
+            right.style.backgroundColor = ''; // Reset right button color
+            left.style.backgroundColor = ''; // Reset left button color
+            containers.scrollLeft = maxScrollLeft; // Prevent scrolling to the right
         } else {
-            recent_left.style.cursor = 'pointer'; // Set cursor to 'pointer' for enabled left button
-            recent_right.style.cursor = 'pointer'; // Set cursor to 'pointer' for enabled right button
+            left.style.cursor = 'pointer'; // Set cursor to 'pointer' for enabled left button
+            right.style.cursor = 'pointer'; // Set cursor to 'pointer' for enabled right button
         }
     });
 
-    lastfm_recent.dispatchEvent(new Event('scroll'));
+    containers.dispatchEvent(new Event('scroll'));
 
-    recent_left.addEventListener('click', function () {
+    left.addEventListener('click', function () {
         scroll(-1);
-        recent_left.style.backgroundColor = 'var(--color5)'; // Change left button color when clicked
-        recent_right.style.backgroundColor = ''; // Reset right button color
+        right.style.backgroundColor = ''; // Reset right button color
     });
 
-    recent_right.addEventListener('click', function () {
+    right.addEventListener('click', function () {
         scroll(1);
-        recent_right.style.backgroundColor = 'var(--color5)'; // Change right button color when clicked
-        recent_left.style.backgroundColor = ''; // Reset left button color
+        left.style.backgroundColor = ''; // Reset left button color
     });
 
     function scroll(direction) {
-        var maxScrollLeft = lastfm_recent.scrollWidth - lastfm_recent.clientWidth;
-        if (!recent_isAnimating && ((direction === -1 && lastfm_recent.scrollLeft > 0) || (direction === 1 && lastfm_recent.scrollLeft < maxScrollLeft))) {
+        var maxScrollLeft = containers.scrollWidth - containers.clientWidth;
+        if (!recent_isAnimating && ((direction === -1 && containers.scrollLeft > 0) || (direction === 1 && containers.scrollLeft < maxScrollLeft))) {
             recent_isAnimating = true;
-            recent_right.style.backgroundColor = 'var(--color5)'; // Reset right button color
-            recent_left.style.backgroundColor = 'var(--color5)'; // Reset left button color
-            console.log('Scrolling ' + (direction === -1 ? 'left' : 'right') + ' ' + container);
+            right.style.backgroundColor = 'var(--color5)'; // Reset right button color
+            left.style.backgroundColor = 'var(--color5)'; // Reset left button color
+            console.log('🐛 Scrolling ' + (direction === -1 ? 'left' : 'right') + ' ' + container);
             var scrollAmount = direction * getVisibleChildren() * childWidth;
-            lastfm_recent.scrollBy({
+            containers.scrollBy({
                 left: scrollAmount,
                 behavior: 'smooth'
             });
             setTimeout(function() {
                 recent_isAnimating = false;
-                recent_right.style.backgroundColor = ''; // Reset right button color
-                recent_left.style.backgroundColor = ''; // Reset left button color
+                right.style.backgroundColor = ''; // Reset right button color
+                left.style.backgroundColor = ''; // Reset left button color
             }, 500);
         }
     }
 
     function getVisibleChildren() {
-        return Math.floor(lastfm_recent.clientWidth / childWidth);
+        return Math.floor(containers.clientWidth / childWidth);
     }
 }
 

@@ -1,4 +1,4 @@
-function getDominantColorFromImage(image) {
+/* function getDominantColorFromImage(image) {
   return new Promise((resolve, reject) => {
     const colorThief = new ColorThief();
     const dominantColor = colorThief.getColor(image);
@@ -63,71 +63,6 @@ setTimeout(function() {
   const textHoverColor = getHoverTextColorBasedOnBrightness(dominantColor);
   document.documentElement.style.setProperty("--texthover", textHoverColor);
 }, 500);
-
-if (localStorage.getItem("activeTab") !== "tab_data") {
-  if ($(window).width() >= 550) {
-      var visibleBarHeight = $(".bar:visible").height();
-      var updatedHeight = visibleBarHeight + 2; // Add 2 pixels to the original height
-      
-      $("#preloader_main").css("height", updatedHeight + "px", "important");
-      console.log("🐛 visible Bar Height:", visibleBarHeight);
-  }
-} else if (localStorage.getItem("activeTab") === "tab_data") {
-}
-
-$(document).ready(function() {
-  var musicWidth = $("#music").width();
-  var updatedMusicWidth = musicWidth + 11; // Add 12 pixels to the original height
-  
-  $("#preloader_music").css("width", updatedMusicWidth + "px", "important");
-  console.log("🎶 visible Music width:", musicWidth);
-
-  // disable if window width is less than 550px
-  if ($(window).width() <= 550) {
-    $("#preloader_music").css("width", "100%", "important");
-  }
-});
-
-$(document).ready(function() {
-  var totalWidth = 0;
-  var maxWidth = $("#tabs").width(); // Get the maximum allowed width of #tabs
-
-  $("#tabs").children().each(function(index) {
-    var elementWidth = $(this).width();
-    totalWidth += elementWidth + 19.5;
-  });
-
-  if (totalWidth <= maxWidth) {
-    var updatedWidth = totalWidth;
-    $("#preloader_tabs").css("width", updatedWidth + "px");
-    console.log("🐛 total tabs Width:", totalWidth);
-  } else {
-    console.log("🐛 total width exceeds the maximum allowed width");
-    $("#preloader_tabs").css("width", "calc(100% - 20px)");
-    $("#preloader_tabs").css("transition", "0s");
-  }
-});
-
-$("#preloader").css("background-color", "transparent");
-$("#preloader_tabs").css("transition", "0.3s");
-$("#preloader_main").css("transition", "0.3s");
-
-// calculate how long it takes to load the page and color the background
-var loadtime = performance.now();
-var loadtime = Math.round(loadtime);
-var loadtime = loadtime / 1000;
-var loadtime = loadtime + "s";
-console.log("📈 page Load Time:", loadtime);
-  
-  // 500ms delay
-  setTimeout(function() {
-    $("#preloader").css("display", "none");
-    $("body").css("background-color", "var(--color2)");
-  }, 500);
-
-  setTimeout(function() {
-    $("body").css("transition", "0s");
-  }, 800);
 }
 
 // Wait for the DOM to fully load
@@ -162,10 +97,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   observer.observe(imageElement, { attributes: true });
-});
+}); */
 
 function getUserPreference() {
-  return localStorage.getItem("theme") || "disabled"; // Use "disabled" as the default
+  return localStorage.getItem("theme") || "dark"; // Use "disabled" as the default
 }
 
 function saveUserPreference(userPreference) {
@@ -185,7 +120,7 @@ function getAppliedMode(userPreference) {
   if (userPreference === "christmas") {
     return "christmas";
   }
-  return "disabled";
+  return "dark";
 }
 
 function setAppliedMode(mode) {
@@ -203,13 +138,10 @@ function rotatePreferences(userPreference) {
     return "christmas";
   }
   if (userPreference === "christmas") {
-    return "disabled";
-  }
-  if (userPreference === "disabled") {
     return "dark";
   }
   // for invalid values, just in case
-  return "disabled"; // Default to "disabled" if none of the above conditions match
+  return "dark"; // Default to "disabled" if none of the above conditions match
 }
 
 const themeToggler = document.getElementById("theme-toggle");

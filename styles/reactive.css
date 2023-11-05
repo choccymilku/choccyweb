@@ -221,6 +221,10 @@
         display: none;
       }
 
+      .data_image {
+        width: 100% !important;
+      }
+
     #preloader_tabs {
         position: fixed;
         bottom: 0;
@@ -245,13 +249,12 @@
     }
 
     #preloader_main {
-        height: calc(100% - 183px);
         border-bottom-right-radius: 0px;
         border-bottom-left-radius: 0px;
     }
 
     #preloader_music {
-        width: calc(100% - 135px) !important;
+        width: calc(100% - 132px) !important;
         max-width: inherit;
       }
 
@@ -334,11 +337,18 @@
 
 @media only screen and (max-width: 481px) {
     #preloader_music {
-        margin-top: 90px;
-        margin-left: -128px;
+        margin-top: 89px;
+        margin-left: -133px;
+        transition: 0s;
         max-width: calc(100% - 10px);
         width: calc(100% - 10px) !important;
     }
+}
+
+@media only screen and (max-width: 550px) {
+  #preloader_pfp {
+    border: 5px solid var(--color1);
+  }
 }
 
 @media only screen and (max-width: 394px) {

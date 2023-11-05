@@ -1,10 +1,11 @@
 #preloader {
   width: calc(100% + 18px);
-  height: calc(100% + 20px);
+  height: calc(100% + 18px);
   margin-left: -11px;
   margin-top: -10px;
   position: fixed;
   z-index: 9999;
+  transition: 0.3s;
 }
 
   #preloader_topbar {
@@ -41,12 +42,11 @@
   }
 
   #preloader_main {
-    height: calc(100% - 128px);
+    height: calc(100% - 183px);
     width: calc(100% - 10px);
     padding: 5px;
     border-radius: 8px;
     transition: 0.3s;
-    margin-top: -2px;
   }
 
   #preloader {

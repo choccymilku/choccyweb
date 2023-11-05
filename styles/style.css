@@ -53,143 +53,21 @@
   --texthover: #686868 !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #2C2E41;
-  }
-  #preloader_topbar {
-    background-color: #242636;
-  }
-  #preloader_main {
-    background-color: #242636;
-  }
-  #preloader_tabs {
-    background-color: #242636;
-  }
-  .preloader_inner {
-    background-color: #2C2E41;
-  }
-  .preloader_text {
-    background: linear-gradient(90deg, #34344B, #44465A , #34344B);
-    background-size: 200% 100%;
-    animation: gradientAnimation 1.5s ease infinite forwards;
-  }
-
-  #preloader_music {
-    background-color: #2C2E41;
-  }
-
-  #preloader_music_art {
-    background: linear-gradient(90deg, #34344B, #44465A , #34344B);    
-    background-size: 200% 100%;
-    animation: gradientAnimation 1.5s ease infinite forwards;
-  }
-
-  #preloader_music_inner {
-    background: linear-gradient(90deg, #34344B, #44465A , #34344B);    
-    background-size: 200% 100%;
-    animation: gradientAnimation 1.5s ease infinite forwards;
-  }
-  
-  #preloader_music {
-    background-color: #2C2E41;
-  }
-
-  #preloader_pfp {
-    background: linear-gradient(90deg, #34344B, #44465A , #34344B);    
-    border: 5px solid #2C2E41;
-  }
-
-  #preloader_topbar_left {
-    background: linear-gradient(90deg, #34344B, #44465A , #34344B);
-  }
-
-  #preloader {
-    background-color: #2C2E41;
-  }
-
-  #load_time {
-    color: white;
-  }
-
-  @media only screen and (max-width: 550px) {
-    #preloader_pfp {
-      border: 5px solid #242636;
-    }
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: #d4d4d4;
-  }
-  #preloader_topbar {
-    background-color: #e7e7e7;
-  }
-  #preloader_main {
-    background-color: #e7e7e7;
-  }
-  #preloader_tabs {
-    background-color: #e7e7e7;
-  }
-  .preloader_inner {
-    background-color: #d4d4d4;
-  }
-  .preloader_text {
-    background: linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1);
-    background-size: 200% 100%;
-    animation: gradientAnimation 1.5s ease infinite forwards;
-  }
-
-  #preloader_music {
-    background-color: #d4d4d4;
-  }
-
-  #preloader_music_art {
-    background: linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1);
-    background-size: 200% 100%;
-    animation: gradientAnimation 1.5s ease infinite forwards;
-  }
-
-  #preloader_music_inner {
-    background: linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1);
-    background-size: 200% 100%;
-    animation: gradientAnimation 1.5s ease infinite forwards;
-  }
-  
-  #preloader_music {
-    background-color: #d4d4d4;
-  }
-
-  #preloader_pfp {
-    background: linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1);
-    border: 5px solid #d4d4d4;
-  }
-
-  #preloader_topbar_left {
-    background: linear-gradient(90deg, #c1c1c1, #9b9b9b , #c1c1c1);
-  }
-
-  #preloader {
-    background-color: #d4d4d4;
-  }
-
-  #load_time {
-    color: black;
-  }
-  
-  @media only screen and (max-width: 550px) {
-    #preloader_pfp {
-      border: 5px solid #e7e7e7 !important;
-    }
-  }
-}
-
 body {
     color: var(--text);
     overflow-y: hidden;
-    transition: 0.3s;
     font-family: GeologicaRoman;
+}
+
+@media (prefers-color-scheme: dark) {
+    #body {background-color: #2c2e41;}
+}
+@media (prefers-color-scheme: light) {
+    #body {background-color: #e7e7e7;}
+}
+
+.data_link.has-href {
+  color: red;
 }
 
 h1 { margin:0px }
@@ -219,7 +97,6 @@ h1 { margin:0px }
 .bar_inner {
   background-color: var(--color2);
   overflow: hidden;
-  height: calc(100% - 10px);
   border-radius: 8px; 
   position: relative;
   font-size: 30px;
@@ -268,7 +145,7 @@ h1 { margin:0px }
   font-size: 30px;
   display: flex;
   justify-content: center;
-  margin-left: -3px;
+  margin-left: -5px;
   cursor: pointer;
   border-top-left-radius: 8px;
   background-color: var(--color1);
@@ -494,6 +371,10 @@ h1 { margin:0px }
   background-color: var(--color2);
 }
 
+.loader {
+  background: var(--color3);
+}
+
 /* friends */
 #friends_inner {
   display: flex;
@@ -558,6 +439,15 @@ h1 { margin:0px }
   padding-left: 10px;
   font-size: 20px;
   text-align: center;
+}
+
+#refresh_recent {
+  margin-left: auto;
+  position: relative;
+  float: right;
+  width: fit-content;
+  cursor: pointer;
+  margin-top: 4px;
 }
 
 
@@ -635,9 +525,29 @@ h1 { margin:0px }
 }
 
 #music-progress-bar-wrapper {
-  width: calc(100% - 12px);
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
   margin-right: 0px;
   margin-top: 3px;
+  background-color: var(--color2);
+}
+
+.music_time {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1rem;
+}
+
+.music_time:last-child {
+  margin-left: auto;
+}
+
+.music_progressbar_inner {
+  height: 4px;
+  background-color: var(--color5);
+  border-radius: 4px;
 }
 
 
@@ -912,32 +822,17 @@ h1 { margin:0px }
     height: 350px;
     margin-right: 5px;
     border-radius: 8px;
-    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3)); /* Initial gradient background */
-    background-size: 200% 100%; /* Set background size for animation */
-    animation: gradientAnimation 1.5s ease infinite forwards; /* Apply the gradient animation */
+    background: var(--color4);
   }
 
   .skeleton_loader_projects_image {
     margin-right: 5px;
     border-radius: 8px;
-    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3)); /* Initial gradient background */
-    background-size: 200% 100%; /* Set background size for animation */
-    animation: gradientAnimation 1.5s ease infinite forwards; /* Apply the gradient animation */
+    background: var(--color4);
   }
 
   .skeleton_loader_gallery_image:last-child, .skeleton_loader_friends_container:last-child {
     margin-right: 0px;
-  }
-
-  .skeleton_loader_lastfm {
-    width: 155px;
-    border-radius: 8px;
-    height: 155px;
-    box-sizing: border-box;
-    margin-bottom: 1px;
-    background: linear-gradient(90deg, var(--color3), var(--color5), var(--color3)); /* Initial gradient background */
-    background-size: 200% 100%; /* Set background size for animation */
-    animation: gradientAnimation 1.5s ease infinite forwards; /* Apply the gradient animation */
   }
 
   #skeleton_loader_projects {

@@ -1,5 +1,6 @@
 let ws;
 let connected = false;
+let spotifyconnected = false;
 let reconnectTimeout;
 
 function connect() {
@@ -48,6 +49,71 @@ function stopWebSocket() {
   }
 }
 
+/* function connectSpotify () {
+  spotifyws = new WebSocket('ws://localhost:8888/ws');
+  console.log('📰 connecting to spotify websocket');
+  spotifyws.addEventListener('open', () => {
+    spotifyws.send(JSON.stringify({
+      action: 'get_data'
+    }));
+  }
+  );
+
+  spotifyws.onerror = event => {
+    console.error('WebSocket error', event);
+    const musicPlatform = document.getElementById('music');
+    musicPlatform.style.display = 'none';
+  }
+  
+  spotifyws.onmessage = event => {
+    const data = JSON.parse(event.data);
+    if (data.is_playing === true) {
+      console.log(`🐛 spotify API call successful! fetching API data`, data);
+      const songName = data.item.name;
+      const artistName = data.item.artists[0].name;
+      const songImage = data.item.album.images[0].url;
+      const duration = data.item.duration_ms;
+      const progress = data.progress_ms;
+      const url = data.item.external_urls.spotify;
+  
+      document.getElementById("directly-spotify").textContent = 'directly from spotify';
+      document.getElementById("music-cover").src = songImage;
+      document.getElementById("music-song").textContent = songName;
+      document.getElementById("music-artist").textContent = artistName;
+      document.getElementById("music-track-link").href = url;
+      document.getElementById("music-elapsed-time-wrapper").style.display = 'none';
+  
+      // Calculate progress percentage
+      const progressPercentage = (progress / duration) * 100;
+  
+      // Create a new div element for the progress bar
+      const progressBar = document.createElement("div");
+      progressBar.style.width = `${progressPercentage}%`; // Set the width based on progress percentage
+      progressBar.classList.add("music_progressbar_inner");
+  
+      const progressBarWrapper = document.getElementById("music-progress-bar-wrapper");
+      progressBarWrapper.innerHTML = "";
+      progressBarWrapper.appendChild(progressBar);
+  
+      const musicPlatform = document.getElementById('music');
+      musicPlatform.style.display = 'block';
+      console.log('🐛 lanyard music isnt available, using spotify');
+    } else {
+      const musicPlatform = document.getElementById('music');
+      musicPlatform.style.display = 'none';
+      console.log('🐛 neither lanyard or spotify are playing music, hiding')
+    }
+  }
+    spotifyconnected = true;
+  };
+
+function closeSpotify () {
+  if (spotifyconnected) {
+    spotifyws.close();
+    spotifyconnected = false;
+  }
+}
+ */
 // Start the WebSocket connection
 startWebSocket();
 
@@ -117,8 +183,8 @@ const updateTopBarHeight = () => {
     topbar.style.height = '155px';
     topbarLeft.style.marginTop = '-85px';
     preloader_topbar.style.height = '176px';
-    preloader_main.style.height = 'calc(100% - 269px)'
-    preloader_main.style.transition = '0s';
+    preloader_main.style.height = 'calc(100% - 268.80px)'
+    preloader_main.style.transition = '0.3s';
 
     preloader_music.style.display = 'block';
 
@@ -198,8 +264,7 @@ const listeningToMusic = activities ? activities.some(activity =>
 if (listeningToMusic) {
   // Find the relevant music activity
   const musicActivity = activities.find(activity => (activity.type === 0 && activity.name === 'SoundCloud') || (activity.type === 0 && activity.name === 'YouTube Music') || (activity.type === 2 && activity.name === 'Spotify'));
-  // Get the necessary details based on the music platform
-  const type = musicActivity.type; // 0 for SoundCloud, 2 for Spotify
+  const type = musicActivity.type;
   const songName = musicActivity.details;
   const artist = musicActivity.state;
   const albumCover = 
@@ -207,17 +272,26 @@ if (listeningToMusic) {
   type === 2 ? `https://i.scdn.co/image/${musicActivity.assets.large_image.replace('spotify:', '')}`
     : `https://lh3.googleusercontent.com/${musicActivity.assets.large_image.slice(musicActivity.assets.large_image.indexOf("https/"))}`;
 
-
   $(document).ready(function() {
-    setTimeout(function() { 
-      const preloaderMusic = document.getElementById('preloader_music');
-      preloaderMusic.style.opacity = '1';
-    }, 300);
-    var topbarLeftWidth = $("#topbar_left").width();
-    var updatedtopbarLeftWidth = topbarLeftWidth + 12; // Add 10 pixels to the original width
-  
-    $("#preloader_topbar_left").css("width", updatedtopbarLeftWidth + "px", "important");
-    console.log("🎶 visible Music width:", topbarLeftWidth);
+    const preloaderMusic = document.getElementById('preloader_music');
+    preloaderMusic.style.opacity = '1'
+    const music = document.getElementById('music').offsetWidth; 
+    const topbarLeft = document.getElementById('topbar_left').offsetWidth;
+
+    $("#preloader_topbar_left").css("width", topbarLeft + "px", "important");
+    console.log("🎶 Topbar width:", topbarLeft);
+    $("#preloader_music").css("width", music + "px", "important");
+    console.log("🎶 Music width:", music);
+
+    if ( window.innerWidth < 481 ) {
+      const topbarLeft = document.getElementById('topbar_left').offsetWidth;
+      $("#preloader_topbar_left").css("width", topbarLeft, "important");
+      console.log("🎶 womp:", music);
+    } else if ( window.innerWidth < 550 ) {
+      const topbarLeft = document.getElementById('topbar_left').offsetWidth + 5;
+      $("#preloader_topbar_left").css("width", topbarLeft, "important");
+      console.log("🎶 womp2:", music);
+    }
   });
 
   // Update the UI elements
@@ -233,11 +307,11 @@ if (listeningToMusic) {
 
     // Log if it's using Spotify or not
     if (type === 2 && musicActivity.name === 'Spotify') {
-      console.log('🐛 Currently listening to Spotify: ' + songName);
+      console.log('🐛 currently listening to Spotify: ' + songName);
       const spotifytrackLink = 'https://open.spotify.com/track/' + data.spotify.track_id;
       trackLink.href = spotifytrackLink;
     } else {
-      console.log('🐛 Not listening to Spotify. Current song: ' + songName);
+      console.log('🐛 not listening to Spotify. Current song: ' + songName);
 
       // Define a function to fetch Spotify search URL
   // Define a function to fetch Spotify search URL
@@ -279,7 +353,6 @@ if (listeningToMusic) {
 
   if (albumCover) {
     albumCoverElement.src = albumCover;
-    albumCoverElement.setAttribute('title', songName + '\n' + artist);
   } else {
     albumCoverElement.src = ''; // Remove the image if no album cover available
   }
@@ -302,18 +375,11 @@ if (listeningToMusic) {
 
   const ElapsedTimeDisplayLeft = document.createElement('h6');
   ElapsedTimeDisplayLeft.id = 'music-elapsed-time-left';
-  ElapsedTimeDisplayLeft.style.whiteSpace = 'nowrap';
-  ElapsedTimeDisplayLeft.style.overflow = 'hidden';
-  ElapsedTimeDisplayLeft.style.textOverflow = 'ellipsis';
-  ElapsedTimeDisplayLeft.style.fontSize = '1rem';
+  ElapsedTimeDisplayLeft.classList.add('music_time');
 
   const ElapsedTimeDisplayRight = document.createElement('h6');
   ElapsedTimeDisplayRight.id = 'music-elapsed-time-right';
-  ElapsedTimeDisplayRight.style.whiteSpace = 'nowrap';
-  ElapsedTimeDisplayRight.style.overflow = 'hidden';
-  ElapsedTimeDisplayRight.style.textOverflow = 'ellipsis';
-  ElapsedTimeDisplayRight.style.fontSize = '1rem';
-  ElapsedTimeDisplayRight.style.marginLeft = 'auto';
+  ElapsedTimeDisplayRight.classList.add('music_time');
 
   ElapsedTimeWrapperNew.appendChild(ElapsedTimeDisplayLeft);
   ElapsedTimeWrapperNew.appendChild(ElapsedTimeDisplayRight);
@@ -354,16 +420,9 @@ if (listeningToMusic) {
   // Create a new element for the progress bar
   const ProgressBarWrapperNew = document.createElement('div');
   ProgressBarWrapperNew.id = 'music-progress-bar-wrapper';
-  ProgressBarWrapperNew.style.width = '100%';
-  ProgressBarWrapperNew.style.height = '4px';
-  ProgressBarWrapperNew.style.backgroundColor = 'var(--color2)';
-  ProgressBarWrapperNew.style.borderRadius = '4px';
 
   const ProgressBar = document.createElement('div');
-  ProgressBar.style.width = '0%';
-  ProgressBar.style.height = '100%';
-  ProgressBar.style.backgroundColor = 'var(--color5)';
-  ProgressBar.style.borderRadius = '4px';
+  ProgressBar.classList.add('music_progressbar_inner');
 
   ProgressBarWrapperNew.appendChild(ProgressBar);
   artistElement.parentNode.insertBefore(ProgressBarWrapperNew, artistElement.nextSibling);
@@ -372,7 +431,6 @@ if (listeningToMusic) {
     // Get the latest timestamps and calculate the elapsed time
     const Timestamps = musicActivity.timestamps;
     const StartTime = Timestamps.start;
-    const EndTime = Timestamps.end;
     const elapsed = Date.now() - StartTime;
     const elapsedPercentage = (elapsed / TotalTime) * 100;
 
@@ -390,8 +448,12 @@ if (listeningToMusic) {
   const musicPlatform = document.getElementById('music');
   musicPlatform.style.display = 'block';
 
+/*   console.log('🐛 playing from lanyard');
+  closeSpotify();
+  spotifyconnected = false; */
 } else if (!listeningToMusic) {
-  // Hide the music UI
+/*   spotifyconnected = true;
+  connectSpotify(); */
   const musicPlatform = document.getElementById('music');
   musicPlatform.style.display = 'none';
 }
