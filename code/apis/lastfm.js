@@ -224,14 +224,20 @@ function fetchSpotifyImage(trackName, artistName, albumName, trackDiv) {
     trackDiv.style.borderTopRightRadius = "8px";
     trackDiv.style.borderTopLeftRadius = "8px";
 
-    let encodedTrackName = encodeURIComponent(trackName);
-    let apiUrl = `https://api.spotify.com/v1/search?q=track:${encodedTrackName}%20artist:${encodeURIComponent(artistName)}`;
+    let apiUrl = "https://api.spotify.com/v1/search?q=";
+
+    if (trackName) {
+        apiUrl += `track:${encodeURIComponent(trackName)}`;
+    }
+
+    if (artistName) {
+        apiUrl += `%20artist:${encodeURIComponent(artistName)}`;
+    }
 
     if (albumName && albumName !== trackName) {
-        apiUrl += `%20album:${encodeURIComponent(albumName)}&type=track&limit=1&market=US`;
-    } else {
-        apiUrl += "&type=track&limit=1";
+        apiUrl += `%20album:${encodeURIComponent(albumName)}`;
     }
+    apiUrl += "&type=track&limit=1";
 
     fetch(apiUrl, {
         headers: {
@@ -256,16 +262,10 @@ function fetchSpotifyImage(trackName, artistName, albumName, trackDiv) {
             linkElement.appendChild(imageElement);
         } else if (albumName) {
             // Retry without using album name if album image is not found
-            console.log(`Album image not found for ${trackName} by ${artistName} on ${albumName}. Retrying without album...`);
-            fetchSpotifyImage(trackName, artistName, null, trackDiv);
-            console.log(apiUrl);
-        } else {
-            console.log(`❌ song ${trackName} by ${artistName} not found on Spotify.`);
-            console.log(apiUrl);
-            var imageElement = document.createElement("img");
-            imageElement.src = "https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png";
-            imageElement.className = "data_image noselect disabledrag";
-            trackDiv.appendChild(imageElement);
+            console.log(`❌ album image not found for ${trackName} by ${artistName} on ${albumName}, retrying without album name`);
+            fetchSpotifyImage(trackName, null, null, trackDiv);
+        } else  {
+            console.log(`man fuck this im not fixing this`);
         } 
     })
 }

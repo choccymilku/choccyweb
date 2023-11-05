@@ -1,6 +1,7 @@
 version 1.5
 add - rewriten some code
-add - yeah
+add - new loaders with less motion
+add - api changes
 /////
 to-do:
 more games to get
@@ -15,7 +16,6 @@ ashy
 nem
 doma
 vessel_3
-yo
 bibi
 (if i forgot some, my apologies, please message me on discord with a request that you want to be added in (provide proof))
 /////

@@ -23,18 +23,34 @@ function fetchAndUpdateIcons() {
       // Clear the existing icons
       connectionsContainer.innerHTML = "";
 
-      for (const conn of connections) {
-        if (
-            conn.type === "epicgames" ||
-            conn.type === "leagueoflegends" ||
-            conn.type === "riotgames" ||
-            conn.type === "crunchyroll" ||
-            conn.type === "battlenet"
-        ) {
-            // Skip unwanted connections
-            continue;
+      // Find the domain connection outside the loop
+      const domainConnection = connections.find(conn => conn.type === "domain");
+      // Check if domain connection exists and construct the domain URL
+      const domainURL = domainConnection ? "https://" + domainConnection.name : null;
+      const pageurl = window.location.href;
+
+        if (domainURL === pageurl) {
+            console.log(`🐛 urls are same, ignoring adding this domain to the list\n${domainURL} | ${pageurl}`);
+        } else {
+          console.log(`🐛 urls are not same, not doing anything\n${domainURL} | ${pageurl}`);
         }
 
+      for (const conn of connections) {
+        const isSameDomain = conn.type === "domain" && domainURL === pageurl;
+
+        if (
+          (conn.type === "epicgames" ||
+          conn.type === "leagueoflegends" ||
+          conn.type === "riotgames" ||
+          conn.type === "crunchyroll" ||
+          conn.type === "battlenet" ||
+          isSameDomain)
+        ) {
+          // Skip this connection and continue to the next one
+          continue;
+        }
+
+        // If the connection type is not one of the specified types or domainURL is not equal to pageurl, create connection div and append it to connectionsContainer
         const connDiv = createConnectionDiv(conn);
         connectionsContainer.appendChild(connDiv);
       }

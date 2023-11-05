@@ -5,61 +5,46 @@ fetch(`https://api.choccymilk.uk/wakatime`, {
 .then(data => {
     // declare best day constant
     const bestDay = data.data.best_day;
-    const dailyAverage = data.data.human_readable_daily_average.replace(' hrs', 'h').replace(' mins', 'm');
-    const total = data.data.human_readable_total.replace(' hrs', 'h').replace(' mins', 'm');
+    const total = data.data.total_seconds;
+
+    const weeks = Math.floor(total / 604800);
+    const remainingSeconds = total % 604800;
+    const days = Math.floor(remainingSeconds / 86400);
+    const hours = Math.floor((remainingSeconds % 86400) / 3600);
+    const minutes = Math.floor((remainingSeconds % 3600) / 60);
+
+    const firstLanguage = data.data.languages[0].name;
+
     const languages = data.data.languages;
-    const today = data.data.human_readable_daily_average.replace(' hr', 'h').replace(' mins', 'm');
+    const today = data.data.human_readable_daily_average.replace(' hr', ' hours').replace(' mins', ' minutes');
 
-    // handle bestday conversion to human readable format (e.g. 7th october 2021)
-    // Convert the date string to a Date object
-    const dateParts = bestDay.date.split('-'); // Split the date string into an array of parts
-    const year = parseInt(dateParts[0]); // Get the year part and convert it to an integer
-    const month = parseInt(dateParts[1]) - 1; // Get the month part (subtract 1 as months are 0-indexed in JavaScript)
-    const day = parseInt(dateParts[2]); // Get the day part
-
-    // Create a new Date object with the extracted year, month, and day
-    const formattedDate = new Date(year, month, day);
-
-    // add th, nd or st to the day and display as 7th, 1st, 2nd etc.
-    const readableDay = day + (
-        day > 3 && day < 21 ? 'th' : 
-        day % 10 === 1 ? 'st' : 
-        day % 10 === 2 ? 'nd' : 
-        day % 10 === 3 ? 'rd' : 'th'
-    ); // Get the day (e.g., 7th)
-    const readableMonth = formattedDate.toLocaleString('en-US', { month: 'long' }); // Get the month (e.g., 'January')
-    const readableYear = formattedDate.getFullYear(); // Get the year (e.g., 2023)
-
-    const extractedData = {
-        bestDayText: bestDay.text,
-        bestDayDate: `${readableDay} ${readableMonth}, ${readableYear}`,
-        dailyAverage: dailyAverage,
-        total: total,
-        today: today,
-        languages: languages.map(language => ({ name: language.name, text: language.text }))
-    };
-    resultArray.push(extractedData);
-
-    const bestDayDiv = document.createElement('div');
-    bestDayDiv.innerHTML = `<div id="waka_best" style="font-family: Rubik;"><span>most active day</span></div><div>${readableMonth} ${readableDay}, ${readableYear} (${bestDay.text.replace(' hrs', 'h').replace(' mins', 'm')})</div>`;
-    document.getElementById('waka_data').appendChild(bestDayDiv);
-
-    const totalDiv = document.createElement('div');
-    totalDiv.innerHTML = 
-    `<div id="waka_total" style="font-family: Rubik;margin-top:18px;">
-        <div>total time<br>
-            <span style="font-family:GeologicaRoman">${total}</span>
-        </div>
-
-        <div>time today<br>
-        <span style="font-family:GeologicaRoman">${today}</span>
-    </div>
-    </div>`;
-    document.getElementById('waka_data').appendChild(totalDiv);
+    
+    // Build the formatted string
+    let formattedTotal = '';
+    if (weeks > 0) {
+        formattedTotal += `<span class="info_large">${weeks} week${weeks > 1 ? 's' : ''}</span>, `;
+    }
+    if (days > 0) {
+        formattedTotal += `<span class="info_large">${days} day${days > 1 ? 's' : ''}</span>, `;
+    }
+    if (hours > 0) {
+        formattedTotal += `<span class="info_large">${hours} hour${hours > 1 ? 's' : ''}</span>, `;
+        if (minutes > 0) {
+            formattedTotal += ' and ';
+        }
+    }
+    if (minutes > 0 || formattedTotal === '') {
+        formattedTotal += `<span class="info_large">${minutes} minute${minutes > 1 ? 's' : ''}</span>`;
+    }
+    document.getElementById('waka_user').innerHTML = `coded for ${formattedTotal}`;
+    document.getElementById('waka_user').style.fontFamily = "Rubik";
 
     // Calculate total seconds for all languages
-    const totalSeconds = languages.reduce((total, language) => total + language.total_seconds, 0);
+    const totalSeconds = languages.reduce((total, language) => total + language.total_seconds, 0);   
+    
+    
 
+    
     // Create a container for languages
     const languagesContainer = document.createElement('div');
     languagesContainer.id = 'waka_lang';
@@ -117,6 +102,14 @@ fetch(`https://api.choccymilk.uk/wakatime`, {
 
         // Append the language container to the languages container
         languagesContainer.appendChild(languageContainer);
+
+        const extractedData = {
+            bestDayText: bestDay.text,
+            total: total,
+            today: today,
+            languages: languages.map(language => ({ name: language.name, text: language.text }))
+        };
+        resultArray.push(extractedData);
     });
 
     // Append the languages container to the element with id 'waka_lang'

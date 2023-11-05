@@ -112,6 +112,7 @@ h1 { margin:0px }
   overflow-x: hidden !important;
   width: 100%; 
   scrollbar-width: none;
+  border-radius: 8px;
 }
 
 /* bars */
@@ -538,6 +539,7 @@ h1 { margin:0px }
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 1rem;
+  color: var(--text);
 }
 
 .music_time:last-child {
@@ -570,7 +572,7 @@ h1 { margin:0px }
   height: 100%;
   overflow-x: hidden;
   padding: 0px !important;
-  background-color: var(--color1);
+  background-color: transparent !important;
 }
 
 .project-div{

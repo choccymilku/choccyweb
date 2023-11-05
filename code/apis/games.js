@@ -19,13 +19,13 @@ fetch('https://api.choccymilk.uk/steam-games')
     // Build the formatted string
     let formattedPlaytime = '';
     if (weeks > 0) {
-        formattedPlaytime += `<span class="info_large">${weeks} week${weeks > 1 ? 's' : ''}, </span>`;
+        formattedPlaytime += `<span class="info_large">${weeks} week${weeks > 1 ? 's' : ''}</span>, `;
     }
     if (days > 0) {
-        formattedPlaytime += `<span class="info_large">${days} day${days > 1 ? 's' : ''}, </span>`;
+        formattedPlaytime += `<span class="info_large">${days} day${days > 1 ? 's' : ''}</span>, `;
     }
     if (hours > 0) {
-        formattedPlaytime += `<span class="info_large">${hours} hour${hours > 1 ? 's' : ''}</span>`;
+        formattedPlaytime += `<span class="info_large">${hours} hour${hours > 1 ? 's' : ''}</span>, `;
         if (minutes > 0) {
             formattedPlaytime += ' and ';
         }

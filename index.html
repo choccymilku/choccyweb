@@ -293,6 +293,7 @@ function loadScript(scriptUrl) {
         <div style="font-family: Rubik;" id="top_languages"><span>top languages</span></div>
         <div id="waka_lang"></div>
           <div class="info" id="top_languages_info">
+            <div id="waka_user"></div>
           <span>fetched from </span>
           <a style="text-decoration: underline;" href="https://wakatime.com" target="_blank">wakatime.com</a>
         </div>
@@ -354,9 +355,18 @@ function loadScript(scriptUrl) {
   });
 </script>
 <script> // colors
-// Set default theme if localStorage has no theme value
-const theme = localStorage.getItem('theme') || 'dark';
+// Get user preference from localStorage
+const userPreferenceTheme = localStorage.getItem('theme');
 
+// Get users preferred color scheme based on their system settings
+const userPreferences = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+
+// Set theme based on user preference, or default to user system preference, or default to 'dark'
+const theme = userPreferenceTheme || userPreferences || 'dark';
+
+// Set theme in localStorage
+localStorage.setItem('theme', theme);
+console.log('🐛 prefers: ' + userPreferences + " theme");
 // Common styles for different themes
 const themes = {
   dark: {

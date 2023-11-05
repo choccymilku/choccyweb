@@ -4,7 +4,7 @@ function finishLoading() {
           if (localStorage.getItem("activeTab") !== "tab_data") {
             if ($(window).width() >= 550) {
               var visibleBarHeight = $(".bar:visible").height();
-              var updatedHeight = visibleBarHeight + 2; // Add 2 pixels to the original height
+              var updatedHeight = visibleBarHeight;
               $("#preloader_main").css("height", updatedHeight + "px", "important");
               console.log("🐛 visible Bar Height:", visibleBarHeight);
             }
@@ -16,7 +16,7 @@ function finishLoading() {
       
             $("#tabs").children().each(function(index) {
               var elementWidth = $(this).width();
-              totalWidth += elementWidth + 16.5;
+              totalWidth += elementWidth + 17.7;
             });
       
             if (totalWidth <= maxWidth) {
@@ -100,7 +100,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
               const credits = data.credits;
               const lastIndex = credits.lastIndexOf('\n');
-              const credit = credits.substring(0, lastIndex).replace(/\n/g, ', ') + credits.substring(lastIndex);
+              const secondLastIndex = credits.lastIndexOf('\n', lastIndex - 1);
+              const credit = credits.substring(0, secondLastIndex).replace(/\n/g, ', ') + credits.substring(secondLastIndex);
               const creditDiv = document.getElementById('credits');
               
               // if it includes "(if i forgot some, my apologies)"
