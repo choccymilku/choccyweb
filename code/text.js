@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
             versionElement.innerHTML = version + ' <i class="fa-solid fa-circle-question"></i>';
 
             // match icons and format
-            const versionText = data.versionText.replace(/\n/g, '<br>');
+            const versionText = data.update.replace(/\n/g, '<br>');
             const versionIconMap = {
                 'add': 'fas fa-plus',
                 'fix': 'fas fa-wrench',
