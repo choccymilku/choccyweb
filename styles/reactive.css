@@ -249,6 +249,7 @@
     }
 
     #preloader_main {
+      height: calc(100% - 183px);
         border-bottom-right-radius: 0px;
         border-bottom-left-radius: 0px;
     }
@@ -338,7 +339,7 @@
 @media only screen and (max-width: 481px) {
     #preloader_music {
         margin-top: 89px;
-        margin-left: -133px;
+        margin-left: -132px;
         transition: 0s;
         max-width: calc(100% - 10px);
         width: calc(100% - 10px) !important;
