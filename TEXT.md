@@ -5,6 +5,8 @@ add - api changes
 /////
 to-do:
 more games to get
+a link button for data instead of the whole container
+fixes
 /////
 credits:
 fixy_cookies
