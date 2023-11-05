@@ -1,23 +1,6 @@
 let isLoading = true;
 let spotifyToken;
 
-const refreshAccessToken = async () => {
-    try {
-      const response = await fetch('https://accounts.spotify.com/api/token', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `grant_type=refresh_token&refresh_token=${refreshToken}&client_id=${SPOTIFY_CLIENT_ID}&client_secret=${SPOTIFY_CLIENT_SECRET}`,
-      });
-      const data = await response.json();
-      accessToken = data.access_token;
-      console.log('Access token refreshed:', accessToken);
-    } catch (error) {
-      console.error('Error refreshing access token:', error);
-    }
-  };
-
 async function getToken() {
     try {
         const response = await fetch("https://api.choccymilk.uk/spotify");
@@ -25,7 +8,6 @@ async function getToken() {
         spotifyToken = data.accessToken;
         if (response.status === 401) {
             // If token expired, refresh it and retry
-            await refreshAccessToken();
             console.log("Spotify token refreshed:", spotifyToken);
             await getToken(); // Retry the request with the new token
         }
