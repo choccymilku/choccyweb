@@ -6,7 +6,7 @@ you want this? here's a tutorial how to deploy this repository yourself:
 3. your own service for back-end apis and web deployment
 
 # getting started
-1. fork the website and api repositories to your local machine and your GitHub account
+1. fork the website and api repositories to your local machine and your github account
 
 2. edit to your liking (config.js for website, .env.example for api) (rename to .env)
 
