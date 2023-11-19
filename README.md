@@ -1,22 +1,25 @@
-# website project thingy
-
-welcome, this is the open source project for https://choccymilk.uk
+you want this? here's a tutorial how to deploy this repository yourself:
 
 # what you'll need to get started
-1. discord account (live data, activity, PFP etc.)
-2. pronouns.page account - optional but recommended (timezone, flags/custom flags, pronouns etc.)
-3. editing skills (open config.js to configure the website to your liking)
-4. your own back-end for handling apis and what not (can be repl.it or hop.io)
+1. basic knowledge of html, css and javascript 
+2. various api keys (spotify, soundcloud, discord, lastfm, pronouns.page)
+3. your own service for back-end apis and web deployment
 
-# how do I publish it?
-1. fork the repository to your account (use github desktop to get the code locally (recommended))
-2. edit config.js to your liking, you can find what each variable does directly in the file (should appear as a green text)
+# getting started
+1. fork the website and api repositories to your local machine and your GitHub account
 
-3. join the Lanyard discord server: https://discord.gg/lanyard (joining the server will make the files accounts.js and discord.js work with your discord ID, which displays your profile and connections) (THIS IS NEEDED)
+2. edit to your liking (config.js for website, .env.example for api) (rename to .env)
 
-4. host the website, this comes to your personal preference, you can use cloudflare for hosting your website: https://dash.cloudflare.com, select "workers and pages" -> "pages" and follow the instructions, you can either connect your repository, or upload files directly from your computer
+3. deploy api (i'd recommend hop.io for this)
 
-CONFIGS WITH "⚠️" MUST HAVE AN INPUT, OTHERWISE IT WONT WORK
+4. authorize your accounts to the api by accesing these endpoints: /discordauth, /soundauth and /spotifyauth (this step is crucial, otherwise nothing will work, like at all.)
+
+5. run the website locally, check if everything is working correctly
+
+6. deploy your website, use either cloudflare, vercel of hop for this
+
+# it won't work
+check if you've done everything correctly, if issue persists, dm me on discord and I'll be happy to help you (please dm me immediately rather than wait for me to accept your request.)
 
 # notes
 note this is currently work in progress, more info on how to host this will be made soon
