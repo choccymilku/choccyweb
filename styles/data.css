@@ -1,6 +1,7 @@
 .data_container {
-    background-color: var(--color2);
+    background-color: var(--background);
     height: 200px;
+    padding-bottom: 6px;
     min-width: 155px;
     border-radius: 8px;
     margin-right: 5px;
@@ -17,74 +18,99 @@
     object-fit: cover;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
-    background:  var(--color4);
-  }
-
-  .data_playcount_skeleton {
-    background-color: var(--color2);
-    width: 44.81px;
-    height: 32px;
-    border-top-left-radius: 8px;
-    position: relative;
-    margin-left: auto;
-    top: -28px;
-  }
-
-  .data_playcount {
-    background-color: var(--color2);
-    width: fit-content;
-    color: var(--text);
-    position: relative;
-    margin-left: auto;
-    margin-top: -38px;
-    font-family: Rubik;
-    border-bottom-right-radius: 8px;
-    border-top-left-radius: 8px;
-    font-size: 24px;
-    padding: 2px;
-  }
-
-  .data_playcount_smaller {
-    font-family: Rubik2;
+    background:  var(--border);
   }
 
   .data_top_name {
     font-weight: bold;
     font-size: 20px;
     white-space: nowrap;
-    padding: 5px;
-    margin-top: -8px;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-  
-  .data_top_name_bigger {
-    font-weight: bold;
-    font-size: 29px;
-    white-space: nowrap;
-    overflow: hidden;
-    padding: 5px;
-    margin-top: -6px;
-    text-overflow: ellipsis;
-  }
-
-  .data_top_name_middle {
-    font-weight: bold;
-    font-size: 24px;
-    white-space: nowrap;
-    overflow: hidden;
-    padding: 5px;
-    margin-top: 0px;
-    text-overflow: ellipsis;
+    margin-left: 6px;
+    margin-right: 6px;
   }
 
   .data_bottom_name {
     font-size: 12px;
     white-space: nowrap;
     overflow: hidden;
-    padding: 5px;
-    margin-top: -12px;
     text-overflow: ellipsis;
+    margin-left: 6px;
+    margin-right: 6px;
+    color: var(--text) !important;
+  }
+
+  .data_duration {
+    font-size: 16px;
+    position: absolute;
+    bottom: 40px;
+    right: 0px;
+    padding: 6px 6px 0px 6px;
+    border-top-left-radius: 6px;
+    font-family: Rubik;
+    background-color: var(--background);
+    color: var(--text) !important;
+  }
+
+  .data_added {
+    padding: 6px;
+    padding-bottom: 0px;
+    width: fit-content;
+    margin-top: -25.5px;
+    position: relative;
+    font-size: 16px;
+    margin-left: auto;
+    border-top-left-radius: 10px;
+    font-family: Rubik;
+    background-color: var(--background);
+    color: var(--text) !important;
+  }
+
+  .data_playcount {
+    font-size: 16px;
+    position: relative;
+    top: -30px;
+    margin-bottom: -30px;
+    width: fit-content;
+    margin-left: auto;
+    right: 0px;
+    padding: 6px 6px 0px 6px;
+    border-top-left-radius: 6px;
+    font-family: Rubik;
+    background-color: var(--background);
+    color: var(--text) !important;
+  }
+
+  .data_genres {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 26px;
+    color: var(--text) !important;
+  }
+  
+  .data_top_name_bigger {
+    font-weight: bold;
+    font-size: 29px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 3px;
+  }
+
+  .user_data {
+    font-size: 12px;
+    padding-top:5px;
+  }
+
+  #games_user, #waka_user {
+    margin-bottom: 16px;
   }
 
   .data_move {
@@ -95,19 +121,28 @@
     overflow-y: hidden;
     scrollbar-width: none;
     margin-top: -30px;
+    width: 100%;
   }
 
   .data_outer {
-    background-color: var(--color3);
-    padding: 5px;
     border-radius: 8px;
-    width: calc(100% - 10px);
     height: 200px;
+    margin-left: 6px;
+    width: calc(100% - 12px);
   }
 
   .data_link {
     padding-bottom: 40px;
     position: relative;
+  }
+
+  .data_alt_link {
+    width: 30px;
+    top: -44px;
+    position: relative;
+    margin-left: auto;
+    font-size: 30px;
+    display: none;
   }
 
   .data_button {
@@ -119,7 +154,7 @@
     font-size: 20px;
     border: 2px solid var(--text);
     color: var(--text);
-    background-color: var(--color1);
+    background-color: var(--border);
     border-radius: 8px;
     font-family: Rubik2;
     cursor: pointer;
@@ -136,7 +171,7 @@
   }
 
   .waka_lang_graph {
-    background-color: var(--color5);
+    background-color: var(--background);
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -158,7 +193,7 @@
     margin-bottom: 5px;
     font-size: 16px;
     border-radius: 8px;
-    width: calc(100% + 10px);
+    width: 100%;
   }
 
   .waka_lang_container:last-child {
@@ -166,8 +201,8 @@
   }
 
   .waka_lang_graph_border {
-    width: calc(100% - 210px);
-    border: 3px solid var(--color2);
+    width: 100%;
+    background-color: var(--border);
     border-radius: 8px;
     margin-left: 5px;
     overflow: hidden;
@@ -175,14 +210,13 @@
 
   .waka_lang_time_and_name {
     display: block;
-    width: 180px;
+    width: 220px;
     padding: 5px;
-    background-color: var(--color2);
+    background-color: var(--background);
     border-radius: 8px;
   }
 
   #waka_lang {
-    background-color: var(--color3);
     width: calc(100% - 5px);
     padding: 2.5px;
     border-radius: 8px;

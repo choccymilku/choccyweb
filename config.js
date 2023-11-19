@@ -1,7 +1,7 @@
 // discord related ⚠
 const discord_user_id = '945717456163442708';
 // avatar size and format
-const avatarSize = 128; //128, 256, 512, 1024, 2048
+const avatarSize = 256; //128, 256, 512, 1024, 2048
 const avatarFormat = "png"; //png, jpg
 
 // your roblox ID <not required>
@@ -15,19 +15,16 @@ const co_host_name = ""; //your co-host name
 const pronounspage_username = "choccymilk"; //choccymilk or 01GXT9SVRPDFYR3DJGMAEJ2FN4
 
 // title for the page (shown in the tab) <required> ⚠
-const title = "choccy, developer?"; 
+const title = "choccy's something"; 
 
 // your birthday (shown in the "about me" section) <not required>
 const birthday = `6, 9, 2007`; // first is day, then month, then year
 
-// username on the topbar <required> ⚠
-var username = "choccy";
-
 // tabs <required>
-const tabNames = ["./me", "./data", "./projects", "./gallery"];
-const tabIds = ["tab_me", "tab_data", "tab_projects", "tab_gallery"];
-const tabBlocks = ["text_outer", "data", "projects", "gallery"];
-const tabIcons = ["home", "clock", "briefcase", "image"];
+const tabNames = ["./me", "./data", "./gallery"];
+const tabIds = ["tab_me", "tab_data", "tab_gallery"];
+const tabBlocks = ["text_outer", "data", "gallery"];
+const tabIcons = ["home", "clock", "image"];
 
 // "about me" text, supports markdowns, can be found in "text.js" <required> ⚠
 // what you can use:
@@ -89,6 +86,3 @@ var custom_text =
 
 //DO NOT EDIT BELOW THIS LINE
 document.title = `${title}`;
-
-const userTitle = document.getElementById("userTitle");
-userTitle.textContent = username;

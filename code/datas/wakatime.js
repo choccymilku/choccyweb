@@ -7,11 +7,7 @@ fetch(`https://api.choccymilk.uk/wakatime`, {
     const bestDay = data.data.best_day;
     const total = data.data.total_seconds;
 
-    const weeks = Math.floor(total / 604800);
     const remainingSeconds = total % 604800;
-    const days = Math.floor(remainingSeconds / 86400);
-    const hours = Math.floor((remainingSeconds % 86400) / 3600);
-    const minutes = Math.floor((remainingSeconds % 3600) / 60);
 
     const firstLanguage = data.data.languages[0].name;
 
@@ -19,23 +15,39 @@ fetch(`https://api.choccymilk.uk/wakatime`, {
     const today = data.data.human_readable_daily_average.replace(' hr', ' hours').replace(' mins', ' minutes');
 
     
-    // Build the formatted string
-    let formattedTotal = '';
-    if (weeks > 0) {
-        formattedTotal += `<span class="info_large">${weeks} week${weeks > 1 ? 's' : ''}</span>, `;
-    }
-    if (days > 0) {
-        formattedTotal += `<span class="info_large">${days} day${days > 1 ? 's' : ''}</span>, `;
-    }
-    if (hours > 0) {
-        formattedTotal += `<span class="info_large">${hours} hour${hours > 1 ? 's' : ''}</span>, `;
-        if (minutes > 0) {
-            formattedTotal += ' and ';
-        }
-    }
-    if (minutes > 0 || formattedTotal === '') {
-        formattedTotal += `<span class="info_large">${minutes} minute${minutes > 1 ? 's' : ''}</span>`;
-    }
+   // Calculate weeks, days, hours, and remaining minutes
+   const weeks = Math.floor(remainingSeconds / (60 * 60 * 24 * 7));
+   const days = Math.floor(remainingSeconds / (60 * 60 * 24)) % 7;
+   const hours = Math.floor(remainingSeconds / (60 * 60)) % 24;
+   const minutes = Math.floor(remainingSeconds / 60) % 60;
+
+   // Build the formatted string
+   let formattedTotal = '';
+   if (weeks > 0) {
+    formattedTotal += `<span class="info_large">${weeks} week${weeks > 1 ? 's' : ''}</span>`;
+       if (days > 0 || (hours > 0 && minutes > 0)) {
+        formattedTotal += ', ';
+       } else if (days === 0 && (hours > 0 || minutes > 0)) {
+        formattedTotal += ' and ';
+       }
+   }
+   if (days > 0) {
+    formattedTotal += `<span class="info_large">${days} day${days > 1 ? 's' : ''}</span>`;
+       if (hours > 0 && minutes > 0) {
+        formattedTotal += ', ';
+       } else if (hours > 0 || minutes > 0) {
+        formattedTotal += ' and ';
+       }
+   }
+   if (hours > 0) {
+    formattedTotal += `<span class="info_large">${hours} hour${hours > 1 ? 's' : ''}</span>`;
+       if (minutes > 0) {
+        formattedTotal += ' and ';
+       }
+   }
+   if (minutes > 0 || (weeks === 0 && days === 0 && hours === 0 && formattedTotal === '')) {
+    formattedTotal += `<span class="info_large">${minutes} minute${minutes > 1 ? 's' : ''}</span>`;
+   }
     document.getElementById('waka_user').innerHTML = `coded for ${formattedTotal}`;
     document.getElementById('waka_user').style.fontFamily = "Rubik";
 

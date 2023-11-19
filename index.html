@@ -6,29 +6,29 @@
     <link rel="icon" type="image/x-icon" href="./styles/icon.png">
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/data.css">
-    <link rel="stylesheet" href="./styles/projects.css">
     <link rel="stylesheet" href="./styles/text.css">
-    <link rel="stylesheet" href="./styles/preloader.css">
+    <link rel="stylesheet" href="./styles/icons.css">
     <link rel="stylesheet" href="./styles/reactive.css">
     <link rel="stylesheet" href="./fonts/stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
     <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.2/chroma.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
 
 <style>
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently */
 }
 
 .disabledrag {
@@ -39,42 +39,26 @@
    -user-drag: none;
 }
 
-/* width */
-/* ::-webkit-scrollbar {
-  width: var(--scrollbar-width, 10px);
-  height: var(--scrollbar-height, 10px);
-} */
-
 ::-webkit-scrollbar {
   width: 0px;
   height: 0px;
 }
-/* Track */
 ::-webkit-scrollbar-track {
-  background: var(--color3);
   border-radius: 8px;
 }
  
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--color5); 
   border-radius: 8px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color4);
   border-radius: 8px; 
 }
 
 .clickable {display: block;}
 </style>
 <script>
-  console.log('%cemoji meaning list:\n\n🎨 - color related stuff (getting color from image, making pallete)\n🎶 - music related stuff (setting preloader and heights correctly)\n🔄 - loading stuff\n📅 - data stuff\n📰 - lanyard\n✅ - loaded correctly\n👥 - next friends fetch in\n🐛 - debugging\n', 'background-color:coral;border-radius:6px;');
-</script>
-<script>
   var tabDataLogged = false;
-  var tabFriendsLogged = false;
   var tabGalleryLogged = false;
   var tabProjectsLogged = false;
 
@@ -83,22 +67,14 @@
      if (activeTabValue === 'tab_data' && !tabDataLogged) {
       console.log('🔄 loading data...');
       tabDataLogged = true;
-      loadScript('./code/apis/games.js');
-      loadScript('./code/apis/wakatime.js');
-      loadScript('./code/apis/lastfm.js');
-    }  else if (activeTabValue === 'tab_friends' && !tabFriendsLogged) {
-      console.log('🔄 loading friends...');
-      tabFriendsLogged = true;
-      loadScript('./code/apis/friends.js');
+      loadScript('./code/datas/games.js');
+      loadScript('./code/datas/wakatime.js');
+      loadScript('./code/datas/music.js');
     } else if (activeTabValue === 'tab_gallery' && !tabGalleryLogged) {
       console.log('🔄 loading gallery...');
       tabGalleryLogged = true;
-      loadScript('./code/apis/gallery.js');
-    } else if (activeTabValue === 'tab_projects' && !tabProjectsLogged) {
-      console.log('🔄 loading projects...');
-      tabProjectsLogged = true;
-      loadScript('./code/apis/github.js');
-    } 
+      loadScript('./code/fetches/gallery.js');
+    }
   }
 
   // Function to dynamically load scripts
@@ -113,235 +89,199 @@ function loadScript(scriptUrl) {
 </script>
 
 </head>
-<body id="body" class="light noselect">
-  <script>
-    const themeLoader = localStorage.getItem('theme') || 'dark';
-    document.documentElement.dataset.theme = themeLoader;
-  </script>
-<div id="main">
+<body id="body" class="noselect">
 
-  <div id="preloader">
-    <div id="preloader_tabs_fill"></div>
-    <div id="preloader_tabs"></div>
-    <div id="preloader_topbar">
-      <div id="preloader_topbar_left"></div>
-      <div id="preloader_music">
-        <div id="preloader_music_art"></div>
-        <div id="preloader_music_inner"></div>
-      </div>
-      <div id="preloader_pfp"></div>
-    </div>
-    
-    <div id="preloader_main">
-      <div class="preloader_inner"></div>
-    </div>
-  </div>
 
-  <div id="tabs"></div>
+  <div id="main_wrapper">
+    <div id="main">
 
-    <div id="topbar"> 
-      <div id="topbar_left">
-        <div style="margin-bottom: 0px;margin-top:-6px;font-weight: bold;font-size: 32px;" id="userTitle"></div>
-          <div id="status">
-            <div id="status_text_block">
-              <div id="status_arrow"></div>
-              <div id="status_text">loading...</div>
+      <div id="left_wrapper">
+          <div id="left">
+            <img id="avatar" class="disabledrag" src="./styles/blank.png"></img>
+
+              <div id="accounts">
+                <div class="connection-div"><span class="icons8-loader icon-loader-style"></span></div>
+                <div class="connection-div"><span class="icons8-loader icon-loader-style"></span></div>
+                <div class="connection-div"><span class="icons8-loader icon-loader-style"></span></div>
+                <div class="connection-div"><span class="icons8-loader icon-loader-style"></span></div>
+                <div class="connection-div"><span class="icons8-loader icon-loader-style"></span></div>
+                <div class="connection-div"><span class="icons8-loader icon-loader-style"></span></div>
+                <div class="connection-div"><span class="icons8-loader icon-loader-style"></span></div>
+                <div class="connection-div"><span class="icons8-loader icon-loader-style"></span></div>
+              </div>
+
+                  <div id="music">
+                      <a id="link_wrapper" target="_blank">
+                        <div id="music_progress_bar_back">
+                        <div id="music_progress_bar"></div>
+                      </div>
+                          <img id="music_cover" class="disabledrag" src="./styles/blank.png"></img>
+                      </a>
+
+                      <div id="music_bottom_extender">
+                    <div id="music_bottom">
+                      <div id="music_bottom_inner">
+
+                        <div id="music_song"></div>
+                        <div id="music_artist"></div>
+                        <div id="music_album"></div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  </div>
             </div>
-          </div>
-        <div id='clock'>fetching...</div>
-
-        <div id="version" style="font-size: 10px;font-weight: bold;"></div>
-
-        <div id="gallery_credits">
-          credits
-          <i class="fa-solid fa-brush"></i></div>
       </div>
 
-        <div id="music">
-          <a id="music-track-link" target="_blank" class="disabledrag">
-
-        <div id="music_inner">
-          <img id="music-cover" src="./styles/blank.png" class="music-cover disabledrag loader"></img>
-
-          <div id="music-content">
-            <div id="music-song"></div>
-            <div id="music-artist"></div>
-            <div id="directly-spotify" style="font-size: 12px;"></div>
-              <div id="music-progress-bar-wrapper"></div>
-              <div id="music-elapsed-time-wrapper"></div>
+      <div id="right_side">
+        <div id="top_side">
+          <div id="tabs">
+            <div id="settings">
+              <div id="settings_button">
+                <span id="settings_but_spin" class="icons8-settings settings-style"></span>
+              </div>
+            </div>
+            <div id="tabs_inner"></div>
+          </div>
+  
+          <div id="settings_page">
+  
+            <span class="setting_pill">
+              <span style="border-bottom: 2px solid var(--text);">sidebar oritentation</span>
+              <div id="sidebar_oritentation" class="settings_button"></div></span>
+            </span>
+  
+            <span class="setting_pill">
+              <span style="border-bottom: 2px solid var(--text);">tab oritentation</span>
+              <div id="tabs_oritentation" class="settings_button"></div></span>
+            </span>
+  
+            <span id="bug" class="setting_pill">
+              <span style="border-bottom: 2px solid var(--text);">broken?
+              <div id="reset" class="settings_button">reset</div></span>
+            </span>
           </div>
         </div>
-      </a>
-      </div>
 
-      <div id="profile">
-        <img class="disabledrag loader" id="pfp" src="./styles/blank.png"/>
+        <div id="right_wrapper">
+          <div class="bar" id="text_outer">
+            <div class="noselect bar_inner" id="text"></div>
+          </div>
+        
+          <div class="bar" id="data">
+            <div class="noselect bar_outer" id="data_outer">
 
-        <div id="profile_hover">
-          <div id="profile_arrow"></div>
+                  <div id="lastfm_user" class="user_data"></div>
 
-            <div id="profile_inner">
-              <a id="pfp_link"></a>
-                <div id="accounts"></div>
-                <div style="height: 1px;width: 100%;background-color: var(--text);margin: 5px;margin-left: 0px;"></div>
-          
-              <div id="settings">
-                <span id="time_format">
-                  <i class="fa-solid fa-clock-rotate-left icon-style" style="margin-right: -3px;"></i>
-                  <span style="border-bottom: 2px solid var(--text);">time format:</span> 
-                  <span style="cursor: pointer;display: block;margin-top: 4px;" id="timeFormatBtn"></span>
-                </span>
+                  <div style="margin-top: 20px;"><span style="font-family: Rubik;font-size: 26px;">recent songs</span>
+                <div class="data_outer" id="lastfm_recent_outer">
+                  <div class="data_button_container">
+                    <button class="data_button" id="recent_left"><span style="left:-1px;position: relative;"> < </span></button>
+                    <button class="data_button" id="recent_right"><span style="right:-1px;position: relative;"> > </span></button>
+                  </div>
+                    <div class="data_move" id="spotify_recent"></div>
+                </div>
+              </div>
 
-                <span id="theme">
-                  <i class="fa-solid fa-pencil icon-style" style="margin-right: -3px;"></i>
-                  <span style="border-bottom: 2px solid var(--text);">theme:</span> 
-                  <div id="theme-toggle" class="fontChange"></div>
-                </span>
+              <div style="margin-top: 20px;"><span style="font-family: Rubik;font-size: 26px;">liked songs</span>
+                <div class="data_outer" id="lastfm_liked_outer">
+                  <div class="data_button_container">
+                    <button class="data_button" id="liked_left"><span style="left:-1px;position: relative;"> < </span></button>
+                    <button class="data_button" id="liked_right"><span style="right:-1px;position: relative;"> > </span></button>
+                  </div>
+                    <div class="data_move" id="spotify_liked"></div>
+                </div>
+                </div>
+        
+                <div style="margin-top: 20px;"><span style="font-family: Rubik;font-size: 26px;">top songs</span>
+                  <div class="data_outer" id="lastfm_top_outer">
+                    <div class="data_button_container">
+                      <button class="data_button" id="top_left"><span style="left:-1px;position: relative;"> < </span></button>
+                      <button class="data_button" id="top_right"><span style="right:-1px;position: relative;"> > </span></button>
+                    </div>
+                      <div class="data_move" id="spotify_top"></div>
+                  </div>
+                  </div> 
+        
+                  <div style="margin-top: 20px;margin-bottom: 10px;"><span style="font-family: Rubik;font-size: 26px;">top artists</span>
+                  <div class="data_outer" id="lastfm_artist_outer">
+                    <div class="data_button_container">
+                      <button class="data_button" id="artist_left"><span style="left:-1px;position: relative;"> < </span></button>
+                      <button class="data_button" id="artist_right"><span style="right:-1px;position: relative;"> > </span></button>
+                    </div>
+                      <div class="data_move" id="spotify_artists"></div>
+                  </div>
+                  </div> 
+        
+                <div class="info" id="top_songs_info">
+                  <span>fetched from </span>
+                  <a style="text-decoration: underline;" href="https://www.last.fm/api" target="_blank">last.fm</a> (total) &
+                  <a style="text-decoration: underline;" href="https://developer.spotify.com/documentation/web-api" target="_blank">spotify.com</a> (music) 
+                  <br>collecting last.fm since Jul 25th 2023 & spotify since Jan 20th 2022<br>
+                </div>
 
-                <span id="bug">
-                  <i class="fa-solid fa-bug icon-style" style="margin-right: -3px;"></i>
-                  <span style="border-bottom: 2px solid var(--text);">broken?</span>
-                  <div id="reset">reset</div>
-                </span>
-
-                <span style="display: none;">
-                  <div style="height: 1px;width: 100%;background-color: var(--text);margin: 5px;margin-left: 0px;"></div>
-                <span style="color:lightcoral;display:block;">EXPERIMENTAL</span> 
-              </span>            
+                <div class="divider" style="margin-bottom: 10px;margin-top: 10px;"></div>
+        
+                  <div id="games_user" class="user_data"></div>
+                  <div class="data_outer" id="games_outer">
+                    <div class="data_button_container">
+                      <button class="data_button" id="games_left"><span style="left:-1px;position: relative;"> < </span></button>
+                      <button class="data_button" id="games_right"><span style="right:-1px;position: relative;"> > </span></button>
+                    </div>
+                      <div class="data_move" id="games_data"></div>
+                  </div>
+        
+                  <div class="info" id="games_and_activities_info">
+                    <span>fetched from </span>
+                    <a style="text-decoration: underline;" href="https://developer.valvesoftware.com/wiki/Steam_Web_API#GetOwnedGames_.28v0001.29" target="_blank">steamcommunity.com</a>
+                    <br>collecting since Jun 23rd 2023
+                  </div>
+        
+                <div class="divider" style="margin-top: 10px;"></div>
+                
+                  <div id="waka_user" class="user_data"></div>
+                <div id="waka_lang"></div>
+                  <div class="info" id="top_languages_info">
+                  <span>fetched from </span>
+                  <a style="text-decoration: underline;" href="https://wakatime.com" target="_blank">wakatime.com</a>
+                  <br>collecting since Oct 1st 2023
+                </div>
+              </div>
+          </div>
+        
+          <div class="bar" id="people">
+            <div class="noselect bar_outer" id="friends_outer">
+                <div class="noselect bar_inner inner_scrollables" id="friends_inner">
+                  <div id="skeleton_loader_friends" class="skelly"></div>
+              </div>
             </div>
           </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="version_container">
-    <div id="update_notes_inner">
-      <div id="update_notes"></div>
-      <div id="credits"></div>
-    </div>
-  </div>
-
-
-<!-- add your tabs here -->
-
-  <div class="bar" id="text_outer">
-    <div class="noselect bar_inner" id="text"></div>
-  </div>
-
-  <div class="bar" id="data">
-    <div class="noselect bar_outer" id="data_outer">
-      <div class="noselect bar_inner" id="data_inner">
-
-        <div style="font-family: Rubik;" id="recent_songs">
-          recent songs <!-- <i class="fa-solid fa-rotate icon-style" id="refresh_recent"></i> -->
-        </div>
-        <div class="data_outer" id="lastfm_recent_outer">
-          <div class="data_button_container">
-            <button class="data_button" id="recent_left"><span style="left:-1px;position: relative;"> < </span></button>
-            <button class="data_button" id="recent_right"><span style="right:-1px;position: relative;"> > </span></button>
-          </div>
-            <div class="data_move" id="lastfm_recent"></div>
-        </div>
-
-        <div style="font-family: Rubik;margin-top: 10px;" id="top_songs"><span>top songs</span></div>
-          <div class="data_outer" id="lastfm_top_outer">
-            <div class="data_button_container">
-              <button class="data_button" id="top_left"><span style="left:-1px;position: relative;"> < </span></button>
-              <button class="data_button" id="top_right"><span style="right:-1px;position: relative;"> > </span></button>
+        
+          <div class="bar" id="projects">
+            <div class="noselect bar_outer" id="project_outer">
+              <div id="skeleton_loader_projects" class="skelly"></div>
+                <div class="noselect bar_inner" id="project_inner">
+              </div>
             </div>
-              <div class="data_move" id="lastfm_top"></div>
           </div>
-
-        <div style="font-family: Rubik;" id="top_artists"><span>top artists</span></div>
-          <div class="data_outer" id="lastfm_artist_outer">
-            <div class="data_button_container">
-              <button class="data_button" id="artist_left"><span style="left:-1px;position: relative;"> < </span></button>
-              <button class="data_button" id="artist_right"><span style="right:-1px;position: relative;"> > </span></button>
+        
+          <div class="bar" id="gallery">
+            <div id="gallery_outer_1">
+            <div class="noselect bar_outer" id="gallery_outer">
+              <div class="noselect bar_inner inner_scrollables gallery_inner" id="gallery_inner">
+                <div id="column1" class="gallery_column"></div>
+                <div id="column2" class="gallery_column"></div>
+                <div id="mobile_column" style="display: none;"></div>
+              </div>
             </div>
-              <div class="data_move" id="lastfm_artist"></div>
           </div>
-
-        <div class="info" id="top_songs_info">
-          <div id="lastfm_user"></div>
-          <span>fetched from </span>
-          <a style="text-decoration: underline;" href="https://www.last.fm/api" target="_blank">last.fm</a>, 
-          <span>artwork by </span>
-          <a style="text-decoration: underline;" href="https://developer.spotify.com/documentation/web-api/reference/search" target="_blank">spotify.com</a>
-        </div>
-
-        <div class="divider" style="margin-bottom: 10px;margin-top: 10px;"></div>
-
-        <div style="font-family: Rubik;" id="games_and_activities"><span>games & activities</span></div>
-          <div class="data_outer" id="games_outer">
-            <div class="data_button_container">
-              <button class="data_button" id="games_left"><span style="left:-1px;position: relative;"> < </span></button>
-              <button class="data_button" id="games_right"><span style="right:-1px;position: relative;"> > </span></button>
-            </div>
-              <div class="data_move" id="games_data"></div>
           </div>
-
-          <div class="info" id="games_and_activities_info">
-            <div id="games_user"></div>
-            <span>fetched from </span>
-            <a style="text-decoration: underline;" href="https://developer.valvesoftware.com/wiki/Steam_Web_API#GetOwnedGames_.28v0001.29" target="_blank">steamcommunity.com</a>
-          </div>
-
-        <div class="divider" style="margin-bottom: 20px;margin-top: 10px;"></div>
-
-        <div id="waka_data" style="margin-bottom: 20px;"></div>
-
-        <div style="font-family: Rubik;" id="top_languages"><span>top languages</span></div>
-        <div id="waka_lang"></div>
-          <div class="info" id="top_languages_info">
-            <div id="waka_user"></div>
-          <span>fetched from </span>
-          <a style="text-decoration: underline;" href="https://wakatime.com" target="_blank">wakatime.com</a>
         </div>
       </div>
+
     </div>
   </div>
-
-  <div class="bar" id="people">
-    <div class="noselect bar_outer" id="friends_outer">
-        <div class="noselect bar_inner inner_scrollables" id="friends_inner">
-          <div id="skeleton_loader_friends" class="skelly"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="bar" id="projects">
-    <div class="noselect bar_outer" id="project_outer">
-      <div id="skeleton_loader_projects" class="skelly"></div>
-        <div class="noselect bar_inner" id="project_inner">
-      </div>
-    </div>
-  </div>
-
-  <div class="bar" id="gallery">
-    <div class="noselect bar_outer" id="gallery_outer">
-      <div class="noselect bar_inner inner_scrollables gallery_inner" id="gallery_inner">
-        <div id="skeleton_loader_gallery" class="skelly"></div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<div id="gallery_full_view">
-  <div id="gallery_button">
-    <div id="full_gallery2">close full view</div>
-  </div>
-
-  <div id="gallery_full_button_left" class="gallery_buttons" onclick="plusSlides(-1)">
-    <div id="prev_gallery_text" class="gallery_text">prev</div>
-  </div>
-
-    <div id="gallery_full_images" class="gallery_inner"></div>
-
-  <div id="gallery_full_button_right" class="gallery_buttons" onclick="plusSlides(1)">    
-    <div id="next_gallery_text" class="gallery_text">next</div>
-  </div>
-</div>
 
 <script> // reset button
   // use button id to reset localstorage or anything saved in the browser and reload the page
@@ -354,89 +294,21 @@ function loadScript(scriptUrl) {
   location.reload();
   });
 </script>
-<script> // colors
-// Get user preference from localStorage
-const userPreferenceTheme = localStorage.getItem('theme');
-
-// Get users preferred color scheme based on their system settings
-const userPreferences = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-
-// Set theme based on user preference, or default to user system preference, or default to 'dark'
-const theme = userPreferenceTheme || userPreferences || 'dark';
-
-// Set theme in localStorage
-localStorage.setItem('theme', theme);
-console.log('🐛 prefers: ' + userPreferences + " theme");
-// Common styles for different themes
-const themes = {
-  dark: {
-    light: '#242636',
-    darker: '#2C2E41',
-    darkest: '#34344B',
-  },
-  light: {
-    light: '#e7e7e7',
-    darker: '#d4d4d4',
-    darkest: '#c1c1c1',
-  },
-  halloween: {
-    light: '#1d1c1c',
-    darker: '#0b0b0b',
-    darkest: '#1d1c1c',
-  },
-  christmas: {
-    light: '#ff7878',
-    darker: '#ffffff',
-    darkest: '#74d680',
-  },
-};
-
-// Apply theme styles
-const applyStyles = (theme) => {
-  const styles = themes[theme];
-  document.getElementById('body').style.backgroundColor = styles.darker;
-  document.getElementById('preloader').style.backgroundColor = styles.darker;
-
-  document.getElementById('preloader_pfp').style.background = styles.darkest;
-
-  document.getElementById('preloader_topbar_left').style.background = styles.darker;
-
-  document.getElementById('preloader_music_art').style.background = styles.darkest;
-
-  document.getElementById('preloader_tabs').style.backgroundColor = styles.light;
-  document.getElementById('preloader_topbar').style.backgroundColor = styles.light;
-  document.getElementById('preloader_music_inner').style.backgroundColor = styles.darkest;
-
-  document.getElementById('preloader_music').style.backgroundColor = styles.darker;
-
-  document.getElementById('preloader_main').style.backgroundColor = styles.light;
-  document.querySelector('.preloader_inner').style.backgroundColor = styles.darker;
-
-  
-// Change border color of preloader_pfp if window size is less than 600px
-if (window.innerWidth < 600) {
-  document.getElementById('preloader_pfp').style.border = `5px solid ${styles.light}`;
-} else if (window.innerWidth > 600) {
-  document.getElementById('preloader_pfp').style.border = `5px solid ${styles.darker}`;
-}
-};
-
-// Apply theme-specific styles
-applyStyles(theme);
-
-</script>
-<script> // profile hover
-    // Get references to the profile elements
-  const profile = document.getElementById('profile');
-  const pfp = document.getElementById('pfp');
-  const profileHover = document.getElementById('profile_hover');
+<script>
+  // profile hover
+  // Get references to the profile elements
+  const profile = document.getElementById('avatar');
+  const pfp = document.getElementById('settings_but_spin');
+  const profileHover = document.getElementById('settings_page');
 
   // Function to toggle the visibility of the profile_hover div
   function toggleProfileHover() {
     if (profileHover.style.display === 'block') {
       profileHover.style.display = 'none';
+      pfp.style.animation = 'spinBack 0.3s ease-out forwards'; // Spin back animation
     } else {
       profileHover.style.display = 'block';
+      pfp.style.animation = 'spin 0.3s ease-out forwards'; // Spin animation
     }
   }
 
@@ -444,14 +316,6 @@ applyStyles(theme);
   pfp.addEventListener('click', function (event) {
     event.stopPropagation(); // Prevent event bubbling to the document click listener
     toggleProfileHover();
-  });
-
-  // Event listener to hide profile_hover when clicking outside the profile or profile_hover
-  document.addEventListener('click', function (event) {
-    const target = event.target;
-    if (target !== profile && target !== profileHover && !profile.contains(target)) {
-      hideProfileHover();
-    }
   });
 
   // Function to hide the profile_hover div
@@ -464,72 +328,58 @@ applyStyles(theme);
     profileHover.style.display = 'block';
   }
 </script>
-<script> // version and credits hover
-  const version = document.getElementById('version');
-  const updates = document.getElementById('update_notes');
-  const galleryCredits = document.getElementById('gallery_credits');
-  const credits = document.getElementById('credits');
-  const versionHover = document.getElementById('version_container');
+<script>
+  // JavaScript to handle hover event and apply styles to right_wrapper
+  const linkWrapper = document.getElementById('link_wrapper');
+  const rightWrapper = document.getElementById('right_wrapper');
+  const musicBottom = document.getElementById('music_bottom_extender');
 
-  function checkIfGallery () {
-    if (localStorage.getItem('activeTab') === 'tab_gallery') {
-      credits.style.display = 'block';
-      updates.style.display = 'none';
-      galleryCredits.style.display = 'block';
+  function handleHover() {
+    rightWrapper.style.height = 'calc(100% - 178px)';
+  }
+
+  function handleMouseOut() {
+    rightWrapper.style.height = '';
+  }
+
+  function checkWindowWidth() {
+    if (window.innerWidth >= 550) {
+      linkWrapper.addEventListener('mouseover', handleHover);
+      linkWrapper.addEventListener('mouseout', handleMouseOut);
+
+      musicBottom.addEventListener('mouseover', handleHover);
+      musicBottom.addEventListener('mouseout', handleMouseOut);
     } else {
-      credits.style.display = 'none';
-      updates.style.display = 'block';
-      galleryCredits.style.display = 'none';
-    }
-  }
-  
-  setInterval(function() {
-    checkIfGallery();
-  }, 0);
+      // Remove event listeners if window width is under 550px
+      linkWrapper.removeEventListener('mouseover', handleHover);
+      linkWrapper.removeEventListener('mouseout', handleMouseOut);
 
-function toggleVersionHover() {
-    if (versionHover.style.display === 'block') {
-        versionHover.style.display = 'none';
-      } else {
-        versionHover.style.display = 'block';
+      musicBottom.removeEventListener('mouseover', handleHover);
+      musicBottom.removeEventListener('mouseout', handleMouseOut);
     }
   }
 
-  // Event listener to show or hide profile_hover when clicking on pfp
-  version.addEventListener('click', function (event) {
-    event.stopPropagation(); // Prevent event bubbling to the document click listener
-    toggleVersionHover();
-  });
+  // Initial check on page load
+  checkWindowWidth();
 
-  // Event listener to hide profile_hover when clicking outside the profile or profile_hover
-  document.addEventListener('click', function (event) {
-    const target = event.target;
-    if (target !== profile && target !== versionHover && !profile.contains(target)) {
-      hideVersionHover();
-    }
-  });
-
-  // Function to hide the profile_hover div
-  function hideVersionHover() {
-    versionHover.style.display = 'none';
-  }
-
-  // Function to show the profile_hover div
-  function showVersionHover() {
-    versionHover.style.display = 'block';
-  }
+  // Check window width on resize
+  window.addEventListener('resize', checkWindowWidth);
 </script>
+
+
+
 <script src="./config.js"></script>
 <script src="./code/tabs.js"></script>
-<script src="./code/similarColor.js"></script>
-<script src="./code/formatting.js"></script>
-<script src="./code/text.js"></script>
-<script src="./code/birthday.js"></script>
-<script src="./code/apis/accounts.js"></script>
-<script src="./code/apis/discord.js"></script>
-<script src="./code/apis/pronounspage.js"></script>
-<script src="./code/time.js"></script>
+
+<script src="./code/formats/formatting.js"></script>
+<script src="./code/formats/birthday.js"></script>
+<script src="./code/formats/time.js"></script>
+
+<script src="./code/fetches/connections.js"></script>
+<script src="./code/fetches/pronounspage.js"></script>
+<script src="./code/fetches/updates.js"></script>
+
 <script src="./code/horizontalScroll.js"></script>
-<script src="./code/skeletons.js"></script>
+<script src="./code/preference.js"></script>
 </body>
 </html>

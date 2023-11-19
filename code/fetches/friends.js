@@ -15,9 +15,7 @@ const discordUserIds = [
 function fetchDataAndUpdateLocalStorage() {
   console.log('🔄 fetching friends data...');
 
-  const skeletonLoaderFriends = document.getElementById('skeleton_loader_friends');
-
-  Promise.all(discordUserIds.map(id => fetch(`https://api.choccymilk.uk/lookup/${id}`)))
+  Promise.all(discordUserIds.map(id => fetch(`https://legaldirtycomputeranimation.choccymilku.repl.co/lookup/${id}`)))
     .then(responses => Promise.all(responses.map(response => response.json())))
     .then(data => {
       console.log('✅ data fetched! :D');
@@ -25,7 +23,7 @@ function fetchDataAndUpdateLocalStorage() {
       const savedData = { data, timestamp };
       localStorage.setItem('discordFriends', JSON.stringify(savedData));
 
-      const friendsContainers = document.querySelectorAll('#friends_inner');
+      const friendsContainers = document.querySelectorAll('#friends');
       friendsContainers.forEach(friendsContainer => {
         data.forEach(friendData => {
           const id = friendData.id;
@@ -61,11 +59,6 @@ function fetchDataAndUpdateLocalStorage() {
           friendsContainer.appendChild(container);
         });
       });
-
-      // Remove the skeleton loader element from the DOM
-      if (skeletonLoaderFriends) {
-        skeletonLoaderFriends.remove();
-      }
     })
     .catch(error => console.error(error));
 }
@@ -76,7 +69,7 @@ const skeletonLoaderFriends = document.getElementById('skeleton_loader_friends')
 if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
   fetchDataAndUpdateLocalStorage();
 } else {
-  const friendsContainers = document.querySelectorAll('#friends_inner');
+  const friendsContainers = document.querySelectorAll('#friends');
   friendsContainers.forEach(friendsContainer => {
     savedData.data.forEach(friendData => {
       const id = friendData.id;
@@ -111,10 +104,6 @@ if (!savedData || Date.now() - savedData.timestamp >= 12 * 3600 * 1000) {
 
       friendsContainer.appendChild(container);
 
-      // Remove the skeleton loader element from the DOM
-        if (skeletonLoaderFriends) {
-          skeletonLoaderFriends.remove();
-        }
     });
   });
 

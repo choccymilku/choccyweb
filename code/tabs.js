@@ -1,7 +1,6 @@
-// script.js
 document.addEventListener("DOMContentLoaded", function () {
     // Get the tab container
-    const tabsContainer = document.getElementById("tabs");
+    const tabsContainer = document.getElementById("tabs_inner");
 
     // Function to show a specific tabBlock and hide all others
     function showTabBlock(tabBlock) {
@@ -20,6 +19,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to set the active tabId and update the UI
     function setActiveTab(tabId) {
+        // Remove #data or #gallery from the URL
+        const urlWithoutHash = window.location.href.split("#")[0];
+        window.history.replaceState({}, document.title, urlWithoutHash);
+
         // Store the active tabId in localStorage
         localStorage.setItem("activeTab", tabId);
 
@@ -33,11 +36,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (tabElement) {
                 if (id === tabId) {
-                    tabElement.style.backgroundColor = "var(--color4)";
-                    tabElement.style.filter = "brightness(0.95)";
+                    tabElement.style.backgroundColor = "var(--icon)";
+                    tabElement.style.cursor = "default";
+                    tabElement.style.paddingRight = "30px";
+                    tabElement.style.paddingLeft = "30px";
                 } else {
                     tabElement.style.backgroundColor = "";
-                    tabElement.style.filter = "";
+                    tabElement.style.cursor = "";
+                    tabElement.style.paddingRight = "";
+                    tabElement.style.paddingLeft = "";
                 }
             }
         });
@@ -84,16 +91,27 @@ document.addEventListener("DOMContentLoaded", function () {
             const iconName = tabIcons[i]; // Get the Font Awesome icon name
 
             const tabElement = generateTabElement(tabName, tabId, tabBlock, useIcons, iconName);
-            
+
             // Add the tab to the container
             tabsContainer.appendChild(tabElement);
         }
 
         // Check if an active tab is stored in localStorage, if not, default to the first tab
-        const activeTab = localStorage.getItem("activeTab") || tabIds[0];
+        const activeTab = getActiveTabFromUrl() || localStorage.getItem("activeTab") || tabIds[0];
 
         // Set the active tab
         setActiveTab(activeTab);
+    }
+
+    // Function to check if the URL contains "#data" and return the corresponding tabId
+    function getActiveTabFromUrl() {
+        const url = window.location.href;
+        if (url.includes("#data")) {
+            return "tab_data";
+        } else if (url.includes("#gallery")) {
+            return "tab_gallery";
+        }
+        return null;
     }
 
     // Call the updateTabStyles function initially

@@ -49,7 +49,7 @@ function convertTimestamps(text) {
         default:
           formattedDate = "";
       }
-      return `<span style="background-color:var(--color4);padding-left:5px;padding-right:5px;border-radius:8px;font-size: 26px;white-space: nowrap;" class="timestamp">${formattedDate}</span>`;
+      return `<span style="background-color:var(--border);padding-left:5px;padding-right:5px;border-radius:8px;font-size: 26px;white-space: nowrap;" class="timestamp">${formattedDate}</span>`;
     })    
   
       .replace(flagRegex, (match, countryCode) => {

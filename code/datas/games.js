@@ -19,23 +19,34 @@ fetch('https://api.choccymilk.uk/steam-games')
     // Build the formatted string
     let formattedPlaytime = '';
     if (weeks > 0) {
-        formattedPlaytime += `<span class="info_large">${weeks} week${weeks > 1 ? 's' : ''}</span>, `;
+        formattedPlaytime += `<span class="info_large">${weeks} week${weeks > 1 ? 's' : ''}</span>`;
+        if (days > 0 || (hours > 0 && minutes > 0)) {
+            formattedPlaytime += ', ';
+        } else if (days === 0 && (hours > 0 || minutes > 0)) {
+            formattedPlaytime += ' and ';
+        }
     }
     if (days > 0) {
-        formattedPlaytime += `<span class="info_large">${days} day${days > 1 ? 's' : ''}</span>, `;
+        formattedPlaytime += `<span class="info_large">${days} day${days > 1 ? 's' : ''}</span>`;
+        if (hours > 0 && minutes > 0) {
+            formattedPlaytime += ', ';
+        } else if (hours > 0 || minutes > 0) {
+            formattedPlaytime += ' and ';
+        }
     }
     if (hours > 0) {
-        formattedPlaytime += `<span class="info_large">${hours} hour${hours > 1 ? 's' : ''}</span>, `;
+        formattedPlaytime += `<span class="info_large">${hours} hour${hours > 1 ? 's' : ''}</span>`;
         if (minutes > 0) {
             formattedPlaytime += ' and ';
         }
     }
-    if (minutes > 0 || formattedPlaytime === '') {
+    if (minutes > 0 || (weeks === 0 && days === 0 && hours === 0 && formattedPlaytime === '')) {
         formattedPlaytime += `<span class="info_large">${minutes} minute${minutes > 1 ? 's' : ''}</span>`;
     }
+
     totalPlaytimeDiv.innerHTML = `played for ${formattedPlaytime}`;
     totalPlaytimeDiv.style.fontFamily = "Rubik";
-    
+ 
     // Filter and sort games by playtime
     const filteredGames = games.filter(game => game.playtime_forever > 30 && game.name !== "Wallpaper Engine");
     filteredGames.sort((a, b) => b.playtime_forever - a.playtime_forever);
@@ -62,39 +73,46 @@ fetch('https://api.choccymilk.uk/steam-games')
         const playtime = convertPlaytime(game.playtime_forever);
 
         // create divs for each game
-        const steamDiv = document.createElement('div');
+        const steamDiv = document.createElement('a');
         steamDiv.className = 'data_container';  
         
         // name
         const steamName = document.createElement('div');
         steamName.innerHTML = game.name;
-        steamName.className = 'data_top_name_bigger';
+        steamName.className = 'data_top_name';
 
         const steamPlaytime = document.createElement('div');
         steamPlaytime.innerHTML = playtime;
-        steamPlaytime.className = 'data_playcount data_playcount_smaller';
+        steamPlaytime.className = 'data_bottom_name';
   
         // image
+        const steamLink = document.createElement('a');
+        steamLink.href = `https://store.steampowered.com/app/${game.appid}`;
+        steamLink.target = '_blank';
+        steamLink.classList.add('data_link');
+
         const steamImage = document.createElement('img');
         steamImage.src = `https://cdn.akamai.steamstatic.com/steam/apps/${game.appid}/header.jpg`;
         steamImage.className = 'data_image';
 
+        // append link to image
+        steamLink.appendChild(steamImage);
+        steamDiv.appendChild(steamLink);
 
-        const steamImageLoader = document.createElement('div');
+
+/*         const steamImageLoader = document.createElement('div');
         steamImageLoader.style.background = "linear-gradient(90deg, var(--color3), var(--color5), var(--color3))";
         steamImageLoader.style.backgroundSize = "200% 100%";
         steamImageLoader.style.animation = "gradientAnimation 1.5s ease infinite forwards";
         steamImageLoader.style.height = "155px";
-        steamImageLoader.style.marginBottom = "10px";
+        steamImageLoader.style.marginBottom = "5px";
         steamImageLoader.style.borderTopRightRadius = "8px";
-        steamImageLoader.style.borderTopLeftRadius = "8px";
+        steamImageLoader.style.borderTopLeftRadius = "8px"; */
 
-        steamDiv.appendChild(steamImageLoader);
-        steamImageLoader.appendChild(steamImage);
 
         steamDataContainer.appendChild(steamDiv);
-        steamDiv.appendChild(steamPlaytime);
         steamDiv.appendChild(steamName);
+        steamDiv.appendChild(steamPlaytime);
         steamGamesList.push(game);
     });
 })

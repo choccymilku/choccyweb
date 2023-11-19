@@ -1,4 +1,4 @@
-var scroll2Containers = document.querySelectorAll('#gallery_inner, #tabs');
+var scroll2Containers = document.querySelectorAll('#tabs_inner, #accounts');
 var scrollAmounts = new Map();
 var isScrolling = false;
 var isEnabled = true; // Initially enabled
@@ -80,6 +80,7 @@ scroll2Containers.forEach(function(container) {
   container.addEventListener('wheel', handleScroll);
 });
 
+
 function setupScrolling(container, leftButton, rightButton) {
     var containers = document.getElementById(container);
     var left = document.getElementById(leftButton);
@@ -93,16 +94,15 @@ function setupScrolling(container, leftButton, rightButton) {
         if (containers.scrollLeft <= 0) {
             console.log('🐛 start ' + container); // Log "start" when it reaches the start
             left.style.cursor = 'context-menu'; // Change cursor to default
+            right.style.cursor = 'pointer'; // Change cursor to pointer
             containers.scrollLeft = 0; // Prevent scrolling to the left
         } else if (containers.scrollLeft >= maxScrollLeft) {
             console.log('🐛 end ' + container); // Log "end" when it reaches the end
             right.style.cursor = 'context-menu'; // Change cursor to default
             right.style.backgroundColor = ''; // Reset right button color
             left.style.backgroundColor = ''; // Reset left button color
+            left.style.cursor = 'pointer'; // Change cursor to pointer
             containers.scrollLeft = maxScrollLeft; // Prevent scrolling to the right
-        } else {
-            left.style.cursor = 'pointer'; // Set cursor to 'pointer' for enabled left button
-            right.style.cursor = 'pointer'; // Set cursor to 'pointer' for enabled right button
         }
     });
 
@@ -122,9 +122,10 @@ function setupScrolling(container, leftButton, rightButton) {
         var maxScrollLeft = containers.scrollWidth - containers.clientWidth;
         if (!recent_isAnimating && ((direction === -1 && containers.scrollLeft > 0) || (direction === 1 && containers.scrollLeft < maxScrollLeft))) {
             recent_isAnimating = true;
-            right.style.backgroundColor = 'var(--color5)'; // Reset right button color
-            left.style.backgroundColor = 'var(--color5)'; // Reset left button color
+            right.style.backgroundColor = 'var(--icon)'; // Reset right button color
+            left.style.backgroundColor = 'var(--icon)'; // Reset left button color
             console.log('🐛 Scrolling ' + (direction === -1 ? 'left' : 'right') + ' ' + container);
+            left.style.cursor = 'pointer'; // Change cursor to pointer
             var scrollAmount = direction * getVisibleChildren() * childWidth;
             containers.scrollBy({
                 left: scrollAmount,
@@ -161,10 +162,51 @@ if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i)
     container.forEach(function (container) {
         container.style.marginTop = '0px';
     });
+    // wait for page to load
+    document.addEventListener('DOMContentLoaded', function () {
+      // wait for .data_link to appear
+      setTimeout(function () {
+        // add .data_link to .data_container
+        const container = document.querySelectorAll('.data_container');
+        const link = document.querySelectorAll('.data_link');
+        const linkAlt = document.querySelectorAll('.data_alt_link');
+        const topName = document.querySelectorAll('.data_top_name');
+        const topNameBigger = document.querySelectorAll('.data_top_name_bigger');
+        const bottomName = document.querySelectorAll('.data_bottom_name');
+        
+        linkAlt.forEach(function (linkAlt) {
+          // set style
+          linkAlt.style.display = 'block';
+        });
+
+        topName.forEach(function (topName) {
+          // set style
+          topName.style.marginRight = '30px';
+        });
+
+        topNameBigger.forEach(function (topNameBigger) {
+          // set style
+          topNameBigger.style.marginRight = '30px';
+        });
+
+        bottomName.forEach(function (bottomName) {
+          // set style
+          bottomName.style.marginRight = '30px';
+        });
+
+        
+        container.forEach(function (container) {
+          // change to div
+          container.outerHTML = container.outerHTML.replace(/<a /, '<div ').replace(/<\/a>/, '</div>');
+        });
+
+      }, 2000);
+    });
 } else {
-    setupScrolling('lastfm_recent', 'recent_left', 'recent_right');
-setupScrolling('lastfm_top', 'top_left', 'top_right');
-setupScrolling('lastfm_artist', 'artist_left', 'artist_right');
-setupScrolling('games_data', 'games_left', 'games_right');
-}
-console.log('🐛 isMobile?: ' + isMobile);
+  setupScrolling('spotify_recent', 'recent_left', 'recent_right');
+  setupScrolling('spotify_liked', 'liked_left', 'liked_right');
+  setupScrolling('spotify_top', 'top_left', 'top_right');
+  setupScrolling('spotify_artists', 'artist_left', 'artist_right');
+  setupScrolling('games_data', 'games_left', 'games_right');
+  }
+  console.log('🐛 isMobile?: ' + isMobile);
