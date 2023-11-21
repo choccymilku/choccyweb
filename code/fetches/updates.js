@@ -69,9 +69,6 @@ function simulateProgressAndUpdateUI(data) {
     if (isPlaying === true) {
         document.getElementById("music").style.display = "block";
 
-        document.getElementById("right_wrapper").style.marginTop = "";
-        document.getElementById("right_wrapper").style.height = "";
-
         if (local === true) {
           const sanitizedName = encodeURIComponent(name.replace(/\s*\(?\d+%?\)?\s*\+?\s*reverb\s*/gi, '').trim());
           const sanitizedArtist = encodeURIComponent(artist.trim());
@@ -140,13 +137,6 @@ function simulateProgressAndUpdateUI(data) {
         updateProgress();;
 
     } else {
-      console.log('not playing');
-
-      // if width is under 550
-      if (window.innerWidth <= 550) {
-        document.getElementById("right_wrapper").style.marginTop = "74px";
-        document.getElementById("right_wrapper").style.height = "calc(100% - 124px)";
-      }
         resetUI();
     }
 }

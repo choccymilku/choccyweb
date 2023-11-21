@@ -129,6 +129,7 @@ fetch(`https://api.choccymilk.uk/wakatime`, {
     console.log('📅 wakatime', resultArray);
 })
 .catch(error => {
-    // Handle any errors that occurred during the fetch
-    console.error('Error:', error);
+    document.getElementById('waka_user').innerHTML = `<img src="../styles/bwomp.png" class="bwomp" /><span style="margin-left:6px;width:calc(100% - 12px);display:block;">something went horribly wrong, have a sad spongebob png.</span>`;
+    document.getElementById('waka_user').style.marginBottom = "-5px";
+    document.getElementById('waka_user').style.fontFamily = "SourceCode";
 });

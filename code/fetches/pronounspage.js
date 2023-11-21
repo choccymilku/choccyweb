@@ -1,4 +1,4 @@
-const url = `https://en.pronouns.page/api/profile/get/${pronounspage_username}?version=2&props=pronouns,age,flags,timezone`;
+const url = `https://en.pronouns.page/api/profile/get/${pronounspage_username}?version=2`;
 
 fetch(url)
   .then(response => response.json())

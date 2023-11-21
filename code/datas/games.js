@@ -114,8 +114,13 @@ fetch('https://api.choccymilk.uk/steam-games')
         steamDiv.appendChild(steamName);
         steamDiv.appendChild(steamPlaytime);
         steamGamesList.push(game);
+    })
+    .catch(error => {
+      document.getElementById('games_outer').innerHTML = `<img src="../styles/bwomp.png" class="bwomp" /><span>something went horribly wrong, have a sad spongebob png.</span>`;
+      document.getElementById('games_outer').style.marginBottom = "-10px";
+      document.getElementById('games_outer').style.fontFamily = "SourceCode";
+    })
+    .finally(() => {
+        console.log('📅 steam games:', steamGamesList);
     });
-})
-.finally(() => {
-    console.log('📅 steam games:', steamGamesList);
 });

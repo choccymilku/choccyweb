@@ -151,14 +151,6 @@ if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i)
     navigator.userAgent.match(/Windows Phone/i)) {
     isMobile = true;
     const container = document.querySelectorAll('.data_move');
-    recent_left.style.display = 'none';
-    recent_right.style.display = 'none';
-    top_left.style.display = 'none';
-    top_right.style.display = 'none';
-    artist_left.style.display = 'none';
-    artist_right.style.display = 'none';
-    games_left.style.display = 'none';
-    games_right.style.display = 'none';
     container.forEach(function (container) {
         container.style.marginTop = '0px';
     });
@@ -167,40 +159,15 @@ if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i)
       // wait for .data_link to appear
       setTimeout(function () {
         // add .data_link to .data_container
-        const container = document.querySelectorAll('.data_container');
-        const link = document.querySelectorAll('.data_link');
-        const linkAlt = document.querySelectorAll('.data_alt_link');
-        const topName = document.querySelectorAll('.data_top_name');
-        const topNameBigger = document.querySelectorAll('.data_top_name_bigger');
-        const bottomName = document.querySelectorAll('.data_bottom_name');
-        
-        linkAlt.forEach(function (linkAlt) {
-          // set style
-          linkAlt.style.display = 'block';
-        });
 
-        topName.forEach(function (topName) {
-          // set style
-          topName.style.marginRight = '30px';
-        });
+        const container = document.querySelectorAll('.data_button_container');
 
-        topNameBigger.forEach(function (topNameBigger) {
-          // set style
-          topNameBigger.style.marginRight = '30px';
-        });
-
-        bottomName.forEach(function (bottomName) {
-          // set style
-          bottomName.style.marginRight = '30px';
-        });
-
-        
         container.forEach(function (container) {
           // change to div
-          container.outerHTML = container.outerHTML.replace(/<a /, '<div ').replace(/<\/a>/, '</div>');
+          container.style.display = "none";
         });
 
-      }, 2000);
+      }, 0);
     });
 } else {
   setupScrolling('spotify_recent', 'recent_left', 'recent_right');

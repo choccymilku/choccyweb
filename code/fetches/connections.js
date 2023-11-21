@@ -30,8 +30,8 @@ function fetchAndUpdateIcons() {
       const domainConnection = connections.find(conn => conn.type === "domain");
 
       // Check if domain connection exists and construct the domain URL
-      const domainURL = domainConnection ? "https://" + domainConnection.name : null;
-      const pageurl = window.location.href;
+      const domainURL = domainConnection ? "https://" + domainConnection.name + "/" : null;
+      const pageurl = window.location.href + "/";
 
       // if lastfm appears twice, remove the second one
       const lastfmConnectionIndices = connections.reduce((indices, conn, index) => {

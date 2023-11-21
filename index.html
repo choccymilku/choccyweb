@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/data.css">
     <link rel="stylesheet" href="./styles/text.css">
-    <link rel="stylesheet" href="./styles/icons.css">
     <link rel="stylesheet" href="./styles/reactive.css">
+    <link rel="stylesheet" href="./styles/icons.css">
     <link rel="stylesheet" href="./fonts/stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -88,6 +88,27 @@ function loadScript(scriptUrl) {
   setInterval(checkLocalStorage, 0);
 </script>
 
+<script>
+  let isReloaded = false;
+
+  function checkWindowSize() {
+    if (window.innerWidth <= 550 && !isReloaded) {
+      console.log('🔄 loading mobile...');
+      localStorage.removeItem('tabs_oritentation');
+      isReloaded = true;
+      location.reload();
+    } else if (window.innerWidth > 550) {
+      isReloaded = false; // Reset flag if window size is larger than 550
+    }
+  }
+
+  // Add event listener for window resize
+  window.addEventListener('resize', checkWindowSize);
+</script>
+
+
+
+
 </head>
 <body id="body" class="noselect">
 
@@ -148,13 +169,15 @@ function loadScript(scriptUrl) {
           <div id="settings_page">
   
             <span class="setting_pill">
-              <span style="border-bottom: 2px solid var(--text);">sidebar oritentation</span>
+              <span id="sidebar_oritentation_text2" style="border-bottom: 2px solid var(--text);">settings oritentation</span>
+              <span id="sidebar_oritentation_text" style="border-bottom: 2px solid var(--text);">sidebar oritentation</span>
               <div id="sidebar_oritentation" class="settings_button"></div></span>
             </span>
   
             <span class="setting_pill">
               <span style="border-bottom: 2px solid var(--text);">tab oritentation</span>
-              <div id="tabs_oritentation" class="settings_button"></div></span>
+              <div id="tabs_oritentation" class="settings_button"></div>
+              <div id="tabs_oritentation_mobile" class="settings_button"></div></span>
             </span>
   
             <span id="bug" class="setting_pill">
@@ -213,12 +236,83 @@ function loadScript(scriptUrl) {
                       <div class="data_move" id="spotify_artists"></div>
                   </div>
                   </div> 
+
+                  <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                      // Function to get days difference
+                      function getDays(date) {
+                        const unix = Math.floor(date.getTime() / 1000);
+                        const currentUnix = Math.floor(Date.now() / 1000);
+                        const difference = currentUnix - unix;
+                        const days = Math.floor(difference / 86400);
+                        return days === 1 ? ' (' + days + ' day)' : ' (' + days + ' days)';
+                      }
+                  
+                      // Function to get formatted month
+                      function getMonth(date) {
+                        const month = date.toLocaleString('default', { month: 'short' });
+                        const day = date.getDate();
+                        const year = date.getFullYear();
+                        const daySuffix = day === 1 ? 'st' : day === 2 ? 'nd' : day === 3 ? 'rd' : 'th';
+                        return month + ' ' + day + daySuffix + ' ' + year;
+                      }
+                  
+                      // Function to process user data elements
+                      function processUserDataElements() {
+                        // Get all elements with id starting with "userdata_"
+                        const userDataElements = document.querySelectorAll('[id^="userdata_"]');
+                  
+                        // Loop through each element
+                        userDataElements.forEach(function(element) {
+                          // Get platform name from the element id
+                          const platform = element.id.replace('userdata_', '');
+                  
+                          // Determine the date based on the platform
+                          let date;
+                          switch (platform) {
+                            case 'steam':
+                              date = new Date(2023, 5, 23);
+                              break;
+                            case 'wakatime':
+                              date = new Date(2023, 9, 1);
+                              break;
+                            // Add more cases for other platforms if needed
+                  
+                            case 'lastfmspotify':
+                              // Special case for userdata_lastfmspotify
+                              date = {
+                                lastfm: new Date(2023, 6, 25),
+                                spotify: new Date(2022, 0, 20)
+                              };
+                              break;
+                  
+                            default:
+                              // Default date if platform not recognized
+                              date = new Date();
+                          }
+                  
+                          // Display the message in the element
+                          if (platform === 'lastfmspotify') {
+                            element.innerHTML = 'collecting last.fm since ' + getMonth(date.lastfm) + getDays(date.lastfm) + 
+                                                 '<br>collecting spotify since ' + getMonth(date.spotify) + getDays(date.spotify);
+                          } else {
+                            element.textContent = 'collecting since ' + getMonth(date) + getDays(date);
+                          }
+                        });
+                      }
+                  
+                      // Call the function to process user data elements
+                      processUserDataElements();
+                    });
+                  </script>
+                
+                  
         
                 <div class="info" id="top_songs_info">
                   <span>fetched from </span>
-                  <a style="text-decoration: underline;" href="https://www.last.fm/api" target="_blank">last.fm</a> (total) &
-                  <a style="text-decoration: underline;" href="https://developer.spotify.com/documentation/web-api" target="_blank">spotify.com</a> (music) 
-                  <br>collecting last.fm since Jul 25th 2023 & spotify since Jan 20th 2022<br>
+                  <a style="text-decoration: underline;" href="https://www.last.fm/api" target="_blank">last.fm</a> &
+                  <a style="text-decoration: underline;" href="https://developer.spotify.com/documentation/web-api" target="_blank">spotify.com</a>
+                  <div id="userdata_lastfmspotify"></div>
                 </div>
 
                 <div class="divider" style="margin-bottom: 10px;margin-top: 10px;"></div>
@@ -235,7 +329,7 @@ function loadScript(scriptUrl) {
                   <div class="info" id="games_and_activities_info">
                     <span>fetched from </span>
                     <a style="text-decoration: underline;" href="https://developer.valvesoftware.com/wiki/Steam_Web_API#GetOwnedGames_.28v0001.29" target="_blank">steamcommunity.com</a>
-                    <br>collecting since Jun 23rd 2023
+                    <div id="userdata_steam"></div>
                   </div>
         
                 <div class="divider" style="margin-top: 10px;"></div>
@@ -245,7 +339,7 @@ function loadScript(scriptUrl) {
                   <div class="info" id="top_languages_info">
                   <span>fetched from </span>
                   <a style="text-decoration: underline;" href="https://wakatime.com" target="_blank">wakatime.com</a>
-                  <br>collecting since Oct 1st 2023
+                  <div id="userdata_wakatime"></div>
                 </div>
               </div>
           </div>
@@ -327,43 +421,6 @@ function loadScript(scriptUrl) {
   function showProfileHover() {
     profileHover.style.display = 'block';
   }
-</script>
-<script>
-  // JavaScript to handle hover event and apply styles to right_wrapper
-  const linkWrapper = document.getElementById('link_wrapper');
-  const rightWrapper = document.getElementById('right_wrapper');
-  const musicBottom = document.getElementById('music_bottom_extender');
-
-  function handleHover() {
-    rightWrapper.style.height = 'calc(100% - 178px)';
-  }
-
-  function handleMouseOut() {
-    rightWrapper.style.height = '';
-  }
-
-  function checkWindowWidth() {
-    if (window.innerWidth >= 550) {
-      linkWrapper.addEventListener('mouseover', handleHover);
-      linkWrapper.addEventListener('mouseout', handleMouseOut);
-
-      musicBottom.addEventListener('mouseover', handleHover);
-      musicBottom.addEventListener('mouseout', handleMouseOut);
-    } else {
-      // Remove event listeners if window width is under 550px
-      linkWrapper.removeEventListener('mouseover', handleHover);
-      linkWrapper.removeEventListener('mouseout', handleMouseOut);
-
-      musicBottom.removeEventListener('mouseover', handleHover);
-      musicBottom.removeEventListener('mouseout', handleMouseOut);
-    }
-  }
-
-  // Initial check on page load
-  checkWindowWidth();
-
-  // Check window width on resize
-  window.addEventListener('resize', checkWindowWidth);
 </script>
 
 

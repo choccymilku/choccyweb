@@ -539,7 +539,6 @@ function displayUserAndTotalStats(user, totalTime) {
     userText.innerHTML =
         `listened for ${formattedPlaytime}
     to <span class="info_large">${track} tracks</span> 
-    through <span class="info_large">${album} albums</span> 
     from <span class="info_large">${artist} artists</span>`;
     userText.style.fontFamily = "Rubik";
     userStatsDiv.appendChild(userText);
