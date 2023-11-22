@@ -3,6 +3,7 @@
     width: 32px;
     margin: 6px;
     filter: var(--filter);
+    transition: 0.1s;
 }
 .icon-loader-style {
     height: 32px;
@@ -33,7 +34,7 @@
     border-bottom-right-radius: 8px;
 }
 
-.icon-style:hover {
+.icon-style:hover, .settings-style:hover {
     filter: var(--filterhover);
 }
 
@@ -43,6 +44,7 @@
     margin: 4px;
     filter: var(--filter);
     cursor: pointer;
+    transition: 0.1s;
 }
 
 .icon-nohover {
