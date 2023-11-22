@@ -182,8 +182,8 @@ function fetchSpotifyImage(trackName, artistName, trackDiv) {
     trackDiv.style.borderTopLeftRadius = "8px";
 
     // replace non english characters (japanese, korean, etc.)
-    trackName = trackName.replace(/'%/g, '').replace(/%/g, '').toLowerCase();
-    artistName = artistName.replace(/'%/g, '').replace(/%/g, '').toLowerCase();
+    trackName = trackName.replace(/[%']/g, '').toLowerCase();
+    artistName = artistName.replace(/[%']/g, '').toLowerCase();
 
     let apiUrl;
 
@@ -301,6 +301,8 @@ function fetchSpotifyArtistImage(artistName, trackDiv) {
     trackDiv.style.marginBottom = "10px";
     trackDiv.style.borderTopRightRadius = "8px";
     trackDiv.style.borderTopLeftRadius = "8px";
+
+    artistName = artistName.replace(/[%']/g, '').toLowerCase();
 
 
     // Function to fetch artist image for a single part
