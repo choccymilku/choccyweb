@@ -88,4 +88,8 @@
   #tabs_oritentation {
     display: none;
   }
+
+  .gallery_image:last-child {
+    margin-bottom: -5px;
+  }
 }

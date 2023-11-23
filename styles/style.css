@@ -309,6 +309,15 @@ body {
   height: 44px;
 }
 
+#music_song_text {
+  max-width: calc(100% - 46px);
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
 #link_wrapper:hover + #music_bottom_extender,
 #music_bottom_extender:hover {
   display: block !important;
@@ -320,8 +329,8 @@ body {
   overflow: hidden;
   white-space: nowrap;
   font-weight: 600;
-  margin-bottom: 3px;
   margin-top: 3px;
+  margin-bottom: -3px;
 }
 
 #music_artist {
@@ -329,6 +338,7 @@ body {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  color: var(--text);
 }
 
 .bar {

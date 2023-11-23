@@ -12,6 +12,23 @@
     filter: var(--filter);
 }
 
+.icon-music-style-spotify {
+    height: 32px;
+    width: 32px;
+    margin-bottom: 6px;
+    margin-left: 6px;
+    filter: var(--filterSpotify);
+}
+
+.icon-music-style-soundcloud {
+    height: 48px;
+    width: 48px;
+    margin-bottom: -3px;
+    margin-top: -4px;
+    margin-left: 6px;
+    filter: var(--filterSoundcloud);
+}
+
 .icon-style-data-soundcloud {
     width: 42px;
     height: 32px;
@@ -49,6 +66,12 @@
 
 .icon-nohover {
     filter: var(--filterhover) !important;
+}
+
+.icons8-soundcloud {
+    display: inline-block;
+    background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjxzdmcgdmlld0JveD0iMCAwIDMyIDMyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0aXRsZS8+PGcgZGF0YS1uYW1lPSJzb3VuZGNsb3VkIG11c2ljIHNvdW5kIGF1ZGlvIiBpZD0ic291bmRjbG91ZF9tdXNpY19zb3VuZF9hdWRpbyI+PHBhdGggZD0iTTQsMTZhMSwxLDAsMCwwLTEsMXY0YTEsMSwwLDAsMCwyLDBWMTdBMSwxLDAsMCwwLDQsMTZaIi8+PHBhdGggZD0iTTcsMTNhMSwxLDAsMCwwLTEsMXY4YTEsMSwwLDAsMCwyLDBWMTRBMSwxLDAsMCwwLDcsMTNaIi8+PHBhdGggZD0iTTEwLDEyYTEsMSwwLDAsMC0xLDF2OWExLDEsMCwwLDAsMiwwVjEzQTEsMSwwLDAsMCwxMCwxMloiLz48cGF0aCBkPSJNMTMsOWExLDEsMCwwLDAtMSwxVjIyYTEsMSwwLDAsMCwyLDBWMTBBMSwxLDAsMCwwLDEzLDlaIi8+PHBhdGggZD0iTTI2LDE1LjExQTgsOCwwLDAsMCwxOCw4YTMsMywwLDAsMC0zLDNWMjJhMSwxLDAsMCwwLDIsMFYxMWExLDEsMCwwLDEsMS0xLDYsNiwwLDAsMSw2LDYsMSwxLDAsMCwwLDEsMSwyLDIsMCwwLDEsMCw0SDIwYTEsMSwwLDAsMCwwLDJoNUE0LDQsMCwwLDAsMjYsMTUuMTFaIi8+PC9nPjwvc3ZnPg==');
+    background-size: 100%;
 }
 
 .icons8-soundcloud-data {

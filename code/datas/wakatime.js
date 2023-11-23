@@ -53,13 +53,11 @@ fetch(`https://api.choccymilk.uk/wakatime`, {
 
     // Calculate total seconds for all languages
     const totalSeconds = languages.reduce((total, language) => total + language.total_seconds, 0);   
-    
-    
 
     
     // Create a container for languages
     const languagesContainer = document.createElement('div');
-    languagesContainer.id = 'waka_lang';
+    languagesContainer.id = 'waka_lang_outer';
 
     // Loop through languages and create a container for each language
     languages.forEach(language => {
@@ -78,6 +76,9 @@ fetch(`https://api.choccymilk.uk/wakatime`, {
         // calculate percentage 
         const languagePercentage = ((language.total_seconds / totalSeconds) * 100).toFixed(2);
 
+        // Format percentage string
+        const formattedPercentage = languagePercentage.endsWith('.00') ? parseInt(languagePercentage) + '%' : languagePercentage + '%';
+
         // Create a container for each language
         const languageContainer = document.createElement('div');
         languageContainer.className = 'waka_lang_container';
@@ -85,7 +86,7 @@ fetch(`https://api.choccymilk.uk/wakatime`, {
         // Create an element for the language name
         const langName = document.createElement('div');
         langName.className = 'waka_lang_name';
-        langName.innerText = `${languageName} (${languagePercentage}%)`;
+        langName.innerText = `${languageName} (${formattedPercentage})`;
 
         // Create an element for the language time
         const langTime = document.createElement('div');

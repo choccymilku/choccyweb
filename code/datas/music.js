@@ -155,19 +155,15 @@ for (var i = 0; i < lastfm_recent_outer.length; i++) {
   for (var j = 0; j < 10; j++) {
     var data_skeleton = document.createElement('div');
     var data_skeleton_inner = document.createElement('div');
-    var data_skeleton_number = document.createElement('div');
-
-    data_skeleton_number.className = 'data_playcount_skeleton';
 
     data_skeleton_inner.className = 'data_image';
     data_skeleton_inner.style.width = '155px';
     data_skeleton_inner.style.height = '155px';
 
-    data_skeleton.className = 'data_container data_skeleton';
+    data_skeleton.className = 'data_container';
     data_skeleton.style.width = '155px';
 
     data_skeleton.appendChild(data_skeleton_inner);
-    data_skeleton.appendChild(data_skeleton_number);
 
     // Append the generated elements to the current node in lastfm_recent_outer
     lastfm_recent_outer[i].appendChild(data_skeleton);
@@ -189,7 +185,7 @@ function fetchSpotifyImage(trackName, artistName, trackDiv) {
 
     apiUrl = `https://api.choccymilk.uk/spotify-search/${encodeURIComponent(trackName)}/${encodeURIComponent(artistName)}`;
 
-    console.log(`\x1b[32m🟢 searching for\x1b[0m \x1b[1m${trackName}\x1b[0m by \x1b[1m${artistName}\x1b[0m \x1b[32mwith Spotify\x1b[0m\x1b[2m${apiUrl}\x1b[0m`);
+    console.log(`\x1b[32m🟢 Spotify song\x1b[0m -> \x1b[1m${trackName}\x1b[0m by \x1b[1m${artistName}\x1b[2m\n${apiUrl}\x1b[0m`);
 
     fetch(`https://api.choccymilk.uk/spotify-search/${encodeURIComponent(trackName)}/${encodeURIComponent(artistName)}`, {
         headers: {
@@ -226,7 +222,8 @@ function fetchSpotifyImage(trackName, artistName, trackDiv) {
        
         } else {
             // log error
-            console.log(`\x1b[31m🔴 no results for\x1b[0m \x1b[1m${trackName}\x1b[0m by \x1b[1m${artistName}\x1b[0m,\x1b[33m using SoundCloud\x1b[0m`);
+            console.log(`\x1b[31m🔴 Not on Spotify\x1b[0m -> \x1b[1m${trackName}\x1b[0m by \x1b[1m${artistName}\x1b`);
+
             useSoundCloud(trackName, artistName, trackDiv); 
         }
     });
@@ -240,7 +237,8 @@ function useSoundCloud(trackName, artistName, trackDiv) {
         .then(data => {
             // if successful, use soundcloud
             if (data.length > 0) {
-                console.log(`\x1b[33m🟠 searching for\x1b[0m \x1b[1m${trackName}\x1b[0m by \x1b[1m${artistName}\x1b[0m \x1b[33mwith SoundCloud\x1b[0m\x1b[2m${soundcloudUrl}\x1b[0m`);
+                console.log(`\x1b[33m🟠 SoundCloud\x1b[0m -> \x1b[1m${trackName}\x1b[0m by \x1b[1m${artistName}\x1b[2m\n${soundcloudUrl}\x1b[0m`);
+
 
                 var trackUrl = data[0].url;
                 var imageUrl = data[0].art;
@@ -266,22 +264,8 @@ function useSoundCloud(trackName, artistName, trackDiv) {
                 soundcloudWrapper.appendChild(soundcloudElement);
                 linkElement.appendChild(imageElement);
             } else if (data.length === 0) {
-                console.log(`🔴 no results found for ${trackName} by ${artistName}`);
+                console.log(`⛔ \x1b[31mNo results found for ${trackName} by ${artistName}`);
 
-                var linkElement = document.createElement("a");
-                linkElement.target = "_blank";
-                linkElement.className = "data_link";
-
-                var soundcloudWrapper = document.createElement("div");
-                soundcloudWrapper.classList.add("data_icon_wrapper");
-
-                var soundcloudElement = document.createElement("span");
-                soundcloudElement.classList.add("icons8-soundcloud-data");
-                soundcloudElement.classList.add("icon-style-data-soundcloud");
-
-                trackDiv.appendChild(linkElement);
-                linkElement.appendChild(soundcloudWrapper);
-                soundcloudWrapper.appendChild(soundcloudElement);
             }
         })
         .catch(error => {
@@ -289,7 +273,7 @@ function useSoundCloud(trackName, artistName, trackDiv) {
         
             // Add more detailed logging if needed
             if (error instanceof TypeError) {
-                console.error('TypeError occurred. Likely a network issue or CORS problem.');
+                console.error('fuck');
             }
         });
         
@@ -310,7 +294,8 @@ function fetchSpotifyArtistImage(artistName, trackDiv) {
 
     apiUrl = `https://api.choccymilk.uk/spotify-search-artist/${encodeURIComponent(artistName)}`;
 
-    console.log(`\x1b[32m🟢 searching for artist\x1b[0m \x1b[1m${artistName}\x1b[0m \x1b[32mwith Spotify\x1b[0m\x1b[2m${apiUrl}\x1b[0m`);
+    console.log(`\x1b[32m🟢 Spotify artist\x1b[0m -> \x1b[1m${artistName}\x1b[2m\n${apiUrl}\x1b[0m`);
+
 
     fetch(`https://api.choccymilk.uk/spotify-search-artist/${encodeURIComponent(artistName)}`, {
     }).then(response => response.json()).then(response => {

@@ -79,20 +79,39 @@ function simulateProgressAndUpdateUI(data) {
               if (data.length === 0) {
                 document.getElementById("music_artist").innerHTML = "by " + artist;
                 document.getElementById("music_cover").src = data.nowPlaying.imageUrl;
-                document.getElementById("link_wrapper").href = data.nowPlaying.url;
-                document.getElementById("music_song").innerHTML = name;
-            } else {
+                document.getElementById("music_link_wrapper").href = data.nowPlaying.url;
+                document.getElementById("music_song").innerHTML = `<span id="music_song_text">${name}</span><span class="icons8-soundcloud icon-music-style-soundcloud"></span>`;
+            
+                var musicLinkWrapper = document.getElementById("music_link_wrapper");
+                var musicSongText = document.getElementById("music_song_text");
+                musicLinkWrapper.addEventListener("mouseenter", function () {
+                    musicSongText.style.color = "#1fd760";
+                });
+                musicLinkWrapper.addEventListener("mouseleave", function () {
+                    musicSongText.style.color = "";
+                });
+              } else {
               const music_cover_url = data[0].art;
               document.getElementById("music_cover").src = music_cover_url;
         
               const trackUrl = data[0].url;            
-              document.getElementById("link_wrapper").href = trackUrl;
+              document.getElementById("music_link_wrapper").href = trackUrl;
 
               const trackName = data[0].title;
-              document.getElementById("music_song").innerHTML = trackName;
-        
+              document.getElementById("music_song").innerHTML = `<span id="music_song_text">${trackName}</span><span class="icons8-soundcloud icon-music-style-soundcloud"></span>`;
+              document.getElementById("music_song_text").style.maxWidth = "calc(100% - 55px)";
+
               const artistUrl = data[0].artist;
               document.getElementById("music_artist").innerHTML = "by " + artistUrl;
+
+              var musicLinkWrapper = document.getElementById("music_link_wrapper");
+              var musicSongText = document.getElementById("music_song_text");
+              musicLinkWrapper.addEventListener("mouseenter", function () {
+                  musicSongText.style.color = "#ff5500";
+              });
+              musicLinkWrapper.addEventListener("mouseleave", function () {
+                  musicSongText.style.color = "";
+              });
         
               if (cover === null) {
                 document.getElementById("music_cover").src = data[0].art;
@@ -106,8 +125,16 @@ function simulateProgressAndUpdateUI(data) {
         } else {
           document.getElementById("music_artist").innerHTML = "by " + artist;
           document.getElementById("music_cover").src = data.nowPlaying.imageUrl;
-          document.getElementById("link_wrapper").href = data.nowPlaying.url;
-          document.getElementById("music_song").innerHTML = name;
+          document.getElementById("music_link_wrapper").href = data.nowPlaying.url;
+          document.getElementById("music_song").innerHTML = `<span id="music_song_text">${name}</span><span class="icons8-spotify icon-music-style-spotify"></span>`;
+          var musicLinkWrapper = document.getElementById("music_link_wrapper");
+          var musicSongText = document.getElementById("music_song_text");
+          musicLinkWrapper.addEventListener("mouseenter", function () {
+              musicSongText.style.color = "#1fd760";
+          });
+          musicLinkWrapper.addEventListener("mouseleave", function () {
+              musicSongText.style.color = "";
+          });
         }
 
         // Reset progress if the song has just started

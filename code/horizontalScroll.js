@@ -161,6 +161,26 @@ if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i)
         // add .data_link to .data_container
 
         const container = document.querySelectorAll('.data_button_container');
+        const moveContainers = document.querySelectorAll('.data_outer');
+        const wakaContainer = document.querySelectorAll('#waka_lang');
+        const infoContainer = document.querySelectorAll('.info');
+
+        infoContainer.forEach(function (infoContainer) {
+          infoContainer.style.marginRight = '0px';
+        });
+
+        wakaContainer.forEach(function (wakaContainer) {
+          // change to div
+          wakaContainer.style.padding = '0px';
+          wakaContainer.style.width = '100%';
+          wakaContainer.style.marginBottom = '5px';
+        });
+
+        moveContainers.forEach(function (moveContainer) {
+          // change to div
+          moveContainer.style.marginLeft = '0px';
+          moveContainer.style.width = '100%';
+        });
 
         container.forEach(function (container) {
           // change to div

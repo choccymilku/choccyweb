@@ -102,12 +102,9 @@ function loadScript(scriptUrl) {
     }
   }
 
-  // Add event listener for window resize
-  window.addEventListener('resize', checkWindowSize);
+  // Add event listener for window resize, only once
+  window.addEventListener('resize', _.debounce(checkWindowSize, 1000));
 </script>
-
-
-
 
 </head>
 <body id="body" class="noselect">
@@ -139,12 +136,14 @@ function loadScript(scriptUrl) {
                       </a>
 
                       <div id="music_bottom_extender">
-                    <div id="music_bottom">
+                        <div id="music_bottom">
                       <div id="music_bottom_inner">
 
+                      <a id="music_link_wrapper" target="_blank">
                         <div id="music_song"></div>
+                        <span id="music_platform"></span>
+                      </a>
                         <div id="music_artist"></div>
-                        <div id="music_album"></div>
 
                       </div>
                     </div>
@@ -244,7 +243,21 @@ function loadScript(scriptUrl) {
                         const currentUnix = Math.floor(Date.now() / 1000);
                         const difference = currentUnix - unix;
                         const days = Math.floor(difference / 86400);
-                        return days === 1 ? ' (' + days + ' day)' : ' (' + days + ' days)';
+                        // convert to months if more than 30 days, years if more than 365 days
+
+                        if (days > 365) {
+                          const years = Math.floor(days / 365);
+                          const months = Math.floor((days % 365) / 30);
+                          const daysLeft = Math.floor((days % 365) % 30);
+                          return ' (' + years + 'yr, ' + months + 'mo, ' + daysLeft + 'd)';
+                        } else if (days > 30) {
+                          const months = Math.floor(days / 30);
+                          const daysLeft = Math.floor(days % 30);
+                          return ' (' + months + 'mo, ' + daysLeft + 'd)';
+                        } else {
+                          return ' (' + days + 'd)';
+                        }
+                      
                       }
                   
                       // Function to get formatted month
@@ -252,7 +265,26 @@ function loadScript(scriptUrl) {
                         const month = date.toLocaleString('default', { month: 'short' });
                         const day = date.getDate();
                         const year = date.getFullYear();
-                        const daySuffix = day === 1 ? 'st' : day === 2 ? 'nd' : day === 3 ? 'rd' : 'th';
+                        console.log(day);
+                        // assign suffix to month
+                        let daySuffix;
+                        switch (day) {
+                          case 1:
+                          case 21:
+                          case 31:
+                            daySuffix = 'st';
+                            break;
+                          case 2:
+                          case 22:
+                            daySuffix = 'nd';
+                            break;
+                          case 3:
+                          case 23:
+                            daySuffix = 'rd';
+                            break;
+                          default:
+                            daySuffix = 'th';
+                        }
                         return month + ' ' + day + daySuffix + ' ' + year;
                       }
                   

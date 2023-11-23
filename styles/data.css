@@ -217,8 +217,8 @@
   }
 
   #waka_lang {
-    width: calc(100% - 5px);
-    padding: 2.5px;
+    width: calc(100% - 12px);
+    padding: 5px;
     border-radius: 8px;
   }
 
