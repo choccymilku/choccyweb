@@ -20,6 +20,7 @@ function convertTimestamps(text) {
     const biggerImageRegex = /\[\!\!\[(.*?)\]\!\!\]/g;
     const biggestImageRegex = /\[\!\!\!\[(.*?)\]\!\!\!\]/g;
     const dividerRegex = /\;\;divider\;\;/g;
+    const largeTextRegex = /<l>(.*?)<\/l>/gi;
     
     const formattedText = text.replace(timestampRegex, (_, timestamp, format) => {
       const date = new Date(parseInt(timestamp) * 1000);
@@ -70,7 +71,7 @@ function convertTimestamps(text) {
 .replace(codeRegex, '<code>$1</code>')
 .replace(linkRegex, '<a href="$2" id="link" target="_blank" style="text-decoration:underline;">$1</a>')
 .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
-.replace(/\nn/g, "<span style='display:block;'>‎ </span>")
+.replace(/\nn/g, "<span style='display:block;height:0.85rem'></span>")
 .replace(/\n/g, "<span style='display:block;height:0.25rem'></span>")
 .replace(superscriptRegex, '<span style="font-size: 0.7rem;">$1</span>')
 .replace(imageRegex, "<img class='emojis' src='$1'/>")
@@ -78,6 +79,7 @@ function convertTimestamps(text) {
 .replace(biggerImageRegex, "<img class='emojis-bigger' src='$1'/>")
 .replace(biggestImageRegex, "<img class='emojis-biggest' src='$1'/>")
 .replace(dividerRegex, "<div class='divider'></div>")
+.replace(largeTextRegex, "<span style='font-size: 2.35rem;background-color:var(--border);padding:3px;border-radius:10px;display:inline-block;font-family:Rubik;'>$1</span>")
 
 return formattedText;
 }

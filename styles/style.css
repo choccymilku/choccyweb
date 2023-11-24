@@ -76,8 +76,8 @@ body {
   background-color: var(--borderInner);
   position: relative;
   top: 1px;
-  height: calc(100% - 57px);
-  margin-top: 68px;
+  height: calc(100% + 4px);
+  margin-top: 6px;
   width: 100%;
   overflow: scroll;
   float: right;
@@ -120,20 +120,22 @@ body {
 }
 
 #settings {
-  background-color: var(--borderInner);
   border-radius: 10px;
   width: 45px;
   height: 45px;
-  position: absolute;
-  left: -64px;
+  margin-bottom: 6px;
+  background-color: var(--borderInner);
   padding: 6px;
+  margin-left: -64px;
+  margin-top: 6px;
+  position: absolute;
 }
 
 #settings_button {
   cursor: pointer;
   height: 45px;
   border-radius: 10px;
-  background-color: var(--background);
+  background-color:var(--background)
 }
 
 .settings_button {
@@ -283,10 +285,20 @@ body {
   padding-left: 20px;
   position: fixed;
   z-index: 29999;
+  height: fit-content;
   display: none;
   margin-top: -114px;
   margin-left: 38px;
   width: calc(100% - 88px);
+}
+
+.title_text {
+  font-size: 2.35rem;background-color:var(--border);padding:3px;border-radius:10px;display:inline-block;font-family:Rubik;
+}
+
+.title_text_data {
+  font-size: 2.35rem;background-color:var(--border);padding:3px;border-radius:10px;display:inline-block;font-family:Rubik;
+margin-top: -8px;
 }
 
 #music_bottom {
@@ -342,7 +354,6 @@ body {
 }
 
 .bar {
-  display: none;
   padding: 6px;
   width: calc(100% - 12px);
 }
@@ -386,7 +397,7 @@ body {
 .gallery_image {
   width: 100%;
   margin-bottom: 1px;
-  border-radius: 10px;
+  border-radius: 24px;
   background: var(--border);
 }
 
@@ -397,24 +408,15 @@ body {
 
 #gallery_outer_1 {
   width: calc(100% - 12px);
-  height: calc(100% - 12px);
+  height: calc(100% - 72px);
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 24px;
   position: absolute;
+  border-bottom: 6px solid transparent;
 }
 
 .gallery_image:last-child {
-  margin-bottom: 0px;
-  height: fit-content;
-}
-
-#compact_user {
-  background-color: red;
-  height: 45px;
-  width: 125px;
-  margin: 6px;
-  border-radius: 10px;
-  margin-right: 58px;
+  margin-bottom: -8px;
 }
 
 #compact_user_avatar_back {

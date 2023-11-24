@@ -82,13 +82,19 @@ function simulateProgressAndUpdateUI(data) {
                 document.getElementById("music_link_wrapper").href = data.nowPlaying.url;
                 document.getElementById("music_song").innerHTML = `<span id="music_song_text">${name}</span><span class="icons8-soundcloud icon-music-style-soundcloud"></span>`;
             
-                var musicLinkWrapper = document.getElementById("music_link_wrapper");
-                var musicSongText = document.getElementById("music_song_text");
-                musicLinkWrapper.addEventListener("mouseenter", function () {
-                    musicSongText.style.color = "#1fd760";
+                // if music_link_wrapper is hovered, change the color of music_song_text
+                document.getElementById("music_link_wrapper").addEventListener("mouseenter", function () {
+                  document.getElementById("music_song_text").style.color = "#1fd760";
                 });
-                musicLinkWrapper.addEventListener("mouseleave", function () {
-                    musicSongText.style.color = "";
+                document.getElementById("music_link_wrapper").addEventListener("mouseleave", function () {
+                  document.getElementById("music_song_text").style.color = "";
+                });
+                // also work for mobile
+                document.getElementById("music_link_wrapper").addEventListener("touchstart", function () {
+                  document.getElementById("music_song_text").style.color = "#1fd760";
+                });
+                document.getElementById("music_link_wrapper").addEventListener("touchend", function () {
+                  document.getElementById("music_song_text").style.color = "";
                 });
               } else {
               const music_cover_url = data[0].art;
@@ -104,13 +110,19 @@ function simulateProgressAndUpdateUI(data) {
               const artistUrl = data[0].artist;
               document.getElementById("music_artist").innerHTML = "by " + artistUrl;
 
-              var musicLinkWrapper = document.getElementById("music_link_wrapper");
-              var musicSongText = document.getElementById("music_song_text");
-              musicLinkWrapper.addEventListener("mouseenter", function () {
-                  musicSongText.style.color = "#ff5500";
+              // if music_link_wrapper is hovered, change the color of music_song_text
+              document.getElementById("music_link_wrapper").addEventListener("mouseenter", function () {
+                document.getElementById("music_song_text").style.color = "#ff5500";
               });
-              musicLinkWrapper.addEventListener("mouseleave", function () {
-                  musicSongText.style.color = "";
+              document.getElementById("music_link_wrapper").addEventListener("mouseleave", function () {
+                document.getElementById("music_song_text").style.color = "";
+              });
+              // also work for mobile
+              document.getElementById("music_link_wrapper").addEventListener("touchstart", function () {
+                document.getElementById("music_song_text").style.color = "#ff5500";
+              });
+              document.getElementById("music_link_wrapper").addEventListener("touchend", function () {
+                document.getElementById("music_song_text").style.color = "";
               });
         
               if (cover === null) {
@@ -127,13 +139,19 @@ function simulateProgressAndUpdateUI(data) {
           document.getElementById("music_cover").src = data.nowPlaying.imageUrl;
           document.getElementById("music_link_wrapper").href = data.nowPlaying.url;
           document.getElementById("music_song").innerHTML = `<span id="music_song_text">${name}</span><span class="icons8-spotify icon-music-style-spotify"></span>`;
-          var musicLinkWrapper = document.getElementById("music_link_wrapper");
-          var musicSongText = document.getElementById("music_song_text");
-          musicLinkWrapper.addEventListener("mouseenter", function () {
-              musicSongText.style.color = "#1fd760";
+          // if music_link_wrapper is hovered, change the color of music_song_text
+          document.getElementById("music_link_wrapper").addEventListener("mouseenter", function () {
+            document.getElementById("music_song_text").style.color = "#1fd760";
           });
-          musicLinkWrapper.addEventListener("mouseleave", function () {
-              musicSongText.style.color = "";
+          document.getElementById("music_link_wrapper").addEventListener("mouseleave", function () {
+            document.getElementById("music_song_text").style.color = "";
+          });
+          // also work for mobile
+          document.getElementById("music_link_wrapper").addEventListener("touchstart", function () {
+            document.getElementById("music_song_text").style.color = "#1fd760";
+          });
+          document.getElementById("music_link_wrapper").addEventListener("touchend", function () {
+            document.getElementById("music_song_text").style.color = "";
           });
         }
 

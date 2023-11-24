@@ -29,6 +29,7 @@
     text-overflow: ellipsis;
     margin-left: 6px;
     margin-right: 6px;
+    margin-top: -3px;
   }
 
   .data_bottom_name {
@@ -89,7 +90,7 @@
     text-overflow: ellipsis;
     margin-left: 6px;
     margin-right: 6px;
-    margin-top: 26px;
+    margin-top: 20px;
     color: var(--text) !important;
   }
   
@@ -128,6 +129,7 @@
     border-radius: 8px;
     height: 200px;
     margin-left: 6px;
+    margin-top: 6px;
     width: calc(100% - 12px);
   }
 

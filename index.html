@@ -64,13 +64,7 @@
 
   function checkLocalStorage() {
     var activeTabValue = localStorage.getItem('activeTab');
-     if (activeTabValue === 'tab_data' && !tabDataLogged) {
-      console.log('🔄 loading data...');
-      tabDataLogged = true;
-      loadScript('./code/datas/games.js');
-      loadScript('./code/datas/wakatime.js');
-      loadScript('./code/datas/music.js');
-    } else if (activeTabValue === 'tab_gallery' && !tabGalleryLogged) {
+    if (activeTabValue === 'tab_gallery' && !tabGalleryLogged) {
       console.log('🔄 loading gallery...');
       tabGalleryLogged = true;
       loadScript('./code/fetches/gallery.js');
@@ -154,28 +148,19 @@ function loadScript(scriptUrl) {
       </div>
 
       <div id="right_side">
-        <div id="top_side">
-          <div id="tabs">
-            <div id="settings">
-              <div id="settings_button">
-                <span id="settings_but_spin" class="icons8-settings settings-style"></span>
-              </div>
-            </div>
-            <div id="tabs_inner"></div>
+
+        <div id="settings">
+          <div id="settings_button">
+            <span id="settings_but_spin" class="icons8-settings settings-style"></span>
           </div>
+        </div>
   
           <div id="settings_page">
   
             <span class="setting_pill">
-              <span id="sidebar_oritentation_text2" style="border-bottom: 2px solid var(--text);">settings oritentation</span>
               <span id="sidebar_oritentation_text" style="border-bottom: 2px solid var(--text);">sidebar oritentation</span>
-              <div id="sidebar_oritentation" class="settings_button"></div></span>
-            </span>
-  
-            <span class="setting_pill">
-              <span style="border-bottom: 2px solid var(--text);">tab oritentation</span>
-              <div id="tabs_oritentation" class="settings_button"></div>
-              <div id="tabs_oritentation_mobile" class="settings_button"></div></span>
+              <div id="sidebar_oritentation" class="settings_button"></div>
+              <div id="sidebar_oritentation_mobile" style="display: none;" class="settings_button"></div></span>
             </span>
   
             <span id="bug" class="setting_pill">
@@ -183,19 +168,13 @@ function loadScript(scriptUrl) {
               <div id="reset" class="settings_button">reset</div></span>
             </span>
           </div>
-        </div>
 
         <div id="right_wrapper">
           <div class="bar" id="text_outer">
             <div class="noselect bar_inner" id="text"></div>
-          </div>
-        
-          <div class="bar" id="data">
-            <div class="noselect bar_outer" id="data_outer">
+              <div id="lastfm_user" class="user_data"></div>
 
-                  <div id="lastfm_user" class="user_data"></div>
-
-                  <div style="margin-top: 20px;"><span style="font-family: Rubik;font-size: 26px;">recent songs</span>
+                  <div style="margin-top: 20px;"><span class="title_text_data">/recent</span>
                 <div class="data_outer" id="lastfm_recent_outer">
                   <div class="data_button_container">
                     <button class="data_button" id="recent_left"><span style="left:-1px;position: relative;"> < </span></button>
@@ -205,7 +184,7 @@ function loadScript(scriptUrl) {
                 </div>
               </div>
 
-              <div style="margin-top: 20px;"><span style="font-family: Rubik;font-size: 26px;">liked songs</span>
+              <div style="margin-top: 20px;"><span class="title_text_data">/liked</span>
                 <div class="data_outer" id="lastfm_liked_outer">
                   <div class="data_button_container">
                     <button class="data_button" id="liked_left"><span style="left:-1px;position: relative;"> < </span></button>
@@ -215,7 +194,7 @@ function loadScript(scriptUrl) {
                 </div>
                 </div>
         
-                <div style="margin-top: 20px;"><span style="font-family: Rubik;font-size: 26px;">top songs</span>
+                <div style="margin-top: 20px;"><span class="title_text_data">/top</span>
                   <div class="data_outer" id="lastfm_top_outer">
                     <div class="data_button_container">
                       <button class="data_button" id="top_left"><span style="left:-1px;position: relative;"> < </span></button>
@@ -225,7 +204,7 @@ function loadScript(scriptUrl) {
                   </div>
                   </div> 
         
-                  <div style="margin-top: 20px;margin-bottom: 10px;"><span style="font-family: Rubik;font-size: 26px;">top artists</span>
+                  <div style="margin-top: 20px;margin-bottom: 10px;"><span class="title_text_data">/artists</span>
                   <div class="data_outer" id="lastfm_artist_outer">
                     <div class="data_button_container">
                       <button class="data_button" id="artist_left"><span style="left:-1px;position: relative;"> < </span></button>
@@ -268,34 +247,22 @@ function loadScript(scriptUrl) {
                   <a style="text-decoration: underline;" href="https://wakatime.com" target="_blank">wakatime.com</a>
                   <div id="userdata_wakatime"></div>
                 </div>
-              </div>
-          </div>
-        
-          <div class="bar" id="people">
-            <div class="noselect bar_outer" id="friends_outer">
-                <div class="noselect bar_inner inner_scrollables" id="friends_inner">
-                  <div id="skeleton_loader_friends" class="skelly"></div>
-              </div>
-            </div>
-          </div>
-        
-          <div class="bar" id="projects">
-            <div class="noselect bar_outer" id="project_outer">
-              <div id="skeleton_loader_projects" class="skelly"></div>
-                <div class="noselect bar_inner" id="project_inner">
-              </div>
-            </div>
-          </div>
-        
-          <div class="bar" id="gallery">
-            <div id="gallery_outer_1">
-            <div class="noselect bar_outer" id="gallery_outer">
-              <div class="noselect bar_inner inner_scrollables gallery_inner" id="gallery_inner">
-                <div id="column1" class="gallery_column"></div>
-                <div id="column2" class="gallery_column"></div>
-                <div id="mobile_column" style="display: none;"></div>
-              </div>
-            </div>
+
+                <div class="divider" style="margin-top: 10px;margin-bottom: 20px;"></div>
+
+                <div style="margin-top: 20px;"><span class="title_text_data" style="margin-bottom: 6px;width: calc(100% - 6px);">/gallery</span>
+
+                <div id="gallery_outer_1">
+                  <div class="noselect bar_outer" id="gallery_outer">
+                    <div class="noselect bar_inner inner_scrollables gallery_inner" id="gallery_inner">
+                      <div id="column1" class="gallery_column"></div>
+                      <div id="column2" class="gallery_column"></div>
+                      <div id="mobile_column" style="display: none;"></div>
+                    </div>
+                  </div>
+                </div>
+
+            
           </div>
           </div>
         </div>
@@ -487,5 +454,11 @@ return ` (${days}d)`;
 
 <script src="./code/horizontalScroll.js"></script>
 <script src="./code/preference.js"></script>
+
+<script src="./code/datas/music.js"></script>
+<script src="./code/datas/games.js"></script>
+<script src="./code/datas/wakatime.js"></script>
+
+<script src="./code/fetches/gallery.js"></script>
 </body>
 </html>

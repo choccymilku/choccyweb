@@ -15,16 +15,12 @@ const co_host_name = ""; //your co-host name
 const pronounspage_username = "choccymilk"; //choccymilk or 01GXT9SVRPDFYR3DJGMAEJ2FN4
 
 // title for the page (shown in the tab) <required> ⚠
-const title = "choccy's something"; 
+const title = "choccys"; 
 
 // your birthday (shown in the "about me" section) <not required>
 const birthday = `6, 9, 2007`; // first is day, then month, then year
 
-// tabs <required>
-const tabNames = ["./me", "./data", "./gallery"];
-const tabIds = ["tab_me", "tab_data", "tab_gallery"];
-const tabBlocks = ["text_outer", "data", "gallery"];
-const tabIcons = ["home", "clock", "image"];
+
 
 // "about me" text, supports markdowns, can be found in "text.js" <required> ⚠
 // what you can use:
@@ -39,6 +35,7 @@ const tabIcons = ["home", "clock", "image"];
 // - link: [hello](https://hello.com)
 // - flag: :flag_<cz>: (https://flagicons.lipis.dev for all flags)
 // - superscript: #hello#
+// - large text: <l>hello</l>
 
 // --- IMAGES ---
 // - images (emoji size): [[https://image.png]] OR [[./images/image.png]] (local)
@@ -55,12 +52,10 @@ const tabIcons = ["home", "clock", "image"];
 
 
 var custom_text = 
-`i made this, call me choccy, or one of [these](https://docs.google.com/document/d/1XfJdYyFmd_hLXrUItX6q1aZZLpJkq_nOiULA0cit8Mw)\n` +
-`i code mostly in javascript and make websites for fun + trying to learn 3D modelling\n` +
-`i tinker with whatever my heart desires, and i talk too much about it ''#(ask me if you want to know some)#''\n` +   
-`available from <t:1698411600:t> to <t:1698433200:t>\n<span id='birthday'></span>, <span id='pronouns'></span>, <span id='flags'></span> & czech :flag_cz: ''#(sadly)#''\n\n` +
-`''#(please note this website is still being actively worked on, expect features added and removed at any time)#''\n` +
-`<div id="todo_list"></div`;
+`<l>/me</l>\n call me one of [these](https://docs.google.com/document/d/1XfJdYyFmd_hLXrUItX6q1aZZLpJkq_nOiULA0cit8Mw)\n` +
+`i code in javascript and do occasional 3D modelling;;divider;;` +
+`<l>/about</l>\navailable from <t:1698411600:t> to <t:1698433200:t>\n<span id='birthday'></span> <span id='pronouns'></span> <span id='flags'></span> & czech :flag_cz: ''#(sadly)#''\n\n` +
+`some statistics i guess ↓\n;;divider;;`;
 
 /* var custom_text =
 `**bold**\n` +

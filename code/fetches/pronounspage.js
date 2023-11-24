@@ -106,53 +106,7 @@ const generateCustomFlagElement = (customFlag) => {
           }
         }
       });
-    }
-
-    const timezone = data.profiles.en.timezone.tz;
-
-    function updateClock(timezone) {
-      const now = new Date();
-    
-      // Display time in the specified timezone
-      const clockFormat = localStorage.getItem('clockFormat');
-      const timeOptions = {
-        hour12: clockFormat === '12-hour', // Use 12-hour format if clockFormat is '12-hour'
-        hour: '2-digit', // Use 2-digit format for the hour
-        minute: '2-digit',
-        timeZone: timezone
-      };
-      const timeString = now.toLocaleTimeString([], timeOptions);
-    
-      // Replace "00" with "12" in the formatted time for 12-hour format
-      if (clockFormat === '12-hour') {
-        formattedTime = timeString.replace(/^00/, '12');
-      } else {
-        formattedTime = timeString;
-      }
-    
-      // Capitalize "am" and "pm"
-      formattedTime = formattedTime.replace(/am|pm/gi, match => match.toUpperCase());
-    
-      // Display the day of the week
-      const dayOptions = {
-        weekday: 'short'
-      };
-      const dayString = now.toLocaleDateString([], dayOptions);
-    
-      const clockText = `${formattedTime} / ${dayString}`;
-    
-      // Update the clock element with the formatted time, day, and offset
-      clockElement.innerHTML = `${clockText}`;
-    }
-    
-    let clockElement = document.getElementById('clock');
-    
-    // Call updateClock once immediately when the page loads
-    updateClock(timezone);
-    
-    // Then, update the clock every second
-    setInterval(() => updateClock(timezone), 1000);
-    
+    }    
   })
 
   .catch(error => {
