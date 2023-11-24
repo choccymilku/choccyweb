@@ -235,110 +235,6 @@ function loadScript(scriptUrl) {
                   </div>
                   </div> 
 
-                  <script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                      // Function to get days difference
-                      function getDays(date) {
-                        const unix = Math.floor(date.getTime() / 1000);
-                        const currentUnix = Math.floor(Date.now() / 1000);
-                        const difference = currentUnix - unix;
-                        const days = Math.floor(difference / 86400);
-                        // convert to months if more than 30 days, years if more than 365 days
-
-                        if (days > 365) {
-                          const years = Math.floor(days / 365);
-                          const months = Math.floor((days % 365) / 30);
-                          const daysLeft = Math.floor((days % 365) % 30);
-                          return ' (' + years + 'yr, ' + months + 'mo, ' + daysLeft + 'd)';
-                        } else if (days > 30) {
-                          const months = Math.floor(days / 30);
-                          const daysLeft = Math.floor(days % 30);
-                          return ' (' + months + 'mo, ' + daysLeft + 'd)';
-                        } else {
-                          return ' (' + days + 'd)';
-                        }
-                      
-                      }
-                  
-                      // Function to get formatted month
-                      function getMonth(date) {
-                        const month = date.toLocaleString('default', { month: 'short' });
-                        const day = date.getDate();
-                        const year = date.getFullYear();
-                        console.log(day);
-                        // assign suffix to month
-                        let daySuffix;
-                        switch (day) {
-                          case 1:
-                          case 21:
-                          case 31:
-                            daySuffix = 'st';
-                            break;
-                          case 2:
-                          case 22:
-                            daySuffix = 'nd';
-                            break;
-                          case 3:
-                          case 23:
-                            daySuffix = 'rd';
-                            break;
-                          default:
-                            daySuffix = 'th';
-                        }
-                        return month + ' ' + day + daySuffix + ' ' + year;
-                      }
-                  
-                      // Function to process user data elements
-                      function processUserDataElements() {
-                        // Get all elements with id starting with "userdata_"
-                        const userDataElements = document.querySelectorAll('[id^="userdata_"]');
-                  
-                        // Loop through each element
-                        userDataElements.forEach(function(element) {
-                          // Get platform name from the element id
-                          const platform = element.id.replace('userdata_', '');
-                  
-                          // Determine the date based on the platform
-                          let date;
-                          switch (platform) {
-                            case 'steam':
-                              date = new Date(2019, 5, 23);
-                              break;
-                            case 'wakatime':
-                              date = new Date(2023, 9, 1);
-                              break;
-                            // Add more cases for other platforms if needed
-                  
-                            case 'lastfmspotify':
-                              // Special case for userdata_lastfmspotify
-                              date = {
-                                lastfm: new Date(2023, 6, 25),
-                                spotify: new Date(2022, 0, 20)
-                              };
-                              break;
-                  
-                            default:
-                              // Default date if platform not recognized
-                              date = new Date();
-                          }
-                  
-                          // Display the message in the element
-                          if (platform === 'lastfmspotify') {
-                            element.innerHTML = 'collecting last.fm since ' + getMonth(date.lastfm) + getDays(date.lastfm) + 
-                                                 '<br>collecting spotify since ' + getMonth(date.spotify) + getDays(date.spotify);
-                          } else {
-                            element.textContent = 'collecting since ' + getMonth(date) + getDays(date);
-                          }
-                        });
-                      }
-                  
-                      // Call the function to process user data elements
-                      processUserDataElements();
-                    });
-                  </script>
-                
-                  
-        
                 <div class="info" id="top_songs_info">
                   <span>fetched from </span>
                   <a style="text-decoration: underline;" href="https://www.last.fm/api" target="_blank">last.fm</a> &
@@ -452,6 +348,128 @@ function loadScript(scriptUrl) {
   function showProfileHover() {
     profileHover.style.display = 'block';
   }
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Function to get days difference
+    function getDays(date) {
+    const unix = Math.floor(date.getTime() / 1000);
+    const currentUnix = Math.floor(Date.now() / 1000);
+    const difference = currentUnix - unix;
+    const days = Math.floor(difference / 86400);
+
+    if (days > 365) {
+      let years = Math.floor(days / 365);
+      const remainingDays = days % 365;
+      const leapDays = Math.floor(remainingDays / 366); // Number of leap days in remaining days
+
+    if (leapDays > 0) {
+      // Adjust years and remaining days considering leap years
+      const leapYearDays = leapDays * 366;
+      const nonLeapYearDays = remainingDays - leapYearDays;
+
+      years += leapDays;
+      const months = Math.floor(nonLeapYearDays / 30);
+      const daysLeft = nonLeapYearDays % 30;
+
+if (years > 2) {
+return ` (${years}yrs, ${months}mo, ${daysLeft}d)`;
+} else {
+return ` (${years}yr, ${months}mo, ${daysLeft}d)`;
+}
+} else {
+const months = Math.floor(remainingDays / 30);
+const daysLeft = remainingDays % 30;
+
+if (years > 2) {
+return ` (${years}yrs, ${months}mo, ${daysLeft}d)`;
+} else {
+return ` (${years}yr, ${months}mo, ${daysLeft}d)`;
+}
+}
+} else if (days > 30) {
+const months = Math.floor(days / 30);
+const daysLeft = days % 30;
+return ` (${months}mo, ${daysLeft}d)`;
+} else {
+return ` (${days}d)`;
+}
+}
+
+    // Function to get formatted month
+    function getMonth(date) {
+      const month = date.toLocaleString('default', { month: 'short' });
+      const day = date.getDate();
+      const year = date.getFullYear();
+      // assign suffix to month
+      let daySuffix;
+      switch (day) {
+        case 1:
+        case 21:
+        case 31:
+          daySuffix = 'st';
+          break;
+        case 2:
+        case 22:
+          daySuffix = 'nd';
+          break;
+        case 3:
+        case 23:
+          daySuffix = 'rd';
+          break;
+        default:
+          daySuffix = 'th';
+      }
+      return month + ' ' + day + daySuffix + ' ' + year;
+    }
+
+    // Function to process user data elements
+    function processUserDataElements() {
+      // Get all elements with id starting with "userdata_"
+      const userDataElements = document.querySelectorAll('[id^="userdata_"]');
+
+      // Loop through each element
+      userDataElements.forEach(function(element) {
+        // Get platform name from the element id
+        const platform = element.id.replace('userdata_', '');
+
+        // Determine the date based on the platform
+        let date;
+        switch (platform) {
+          case 'steam':
+            date = new Date(2019, 5, 23);
+            break;
+          case 'wakatime':
+            date = new Date(2023, 9, 1);
+            break;
+          // Add more cases for other platforms if needed
+
+          case 'lastfmspotify':
+            // Special case for userdata_lastfmspotify
+            date = {
+              lastfm: new Date(2023, 6, 25),
+              spotify: new Date(2022, 0, 20)
+            };
+            break;
+
+          default:
+            // Default date if platform not recognized
+            date = new Date();
+        }
+
+        // Display the message in the element
+        if (platform === 'lastfmspotify') {
+          element.innerHTML = 'collecting last.fm since ' + getMonth(date.lastfm) + getDays(date.lastfm) + 
+                               '<br>collecting spotify since ' + getMonth(date.spotify) + getDays(date.spotify);
+        } else {
+          element.textContent = 'collecting since ' + getMonth(date) + getDays(date);
+        }
+      });
+    }
+
+    // Call the function to process user data elements
+    processUserDataElements();
+  });
 </script>
 
 

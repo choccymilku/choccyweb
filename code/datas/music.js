@@ -103,7 +103,7 @@ function fetchTopArtists() {
 
 function fetchTopTracks() {
   try {
-      fetch(`https://api.choccymilk.uk/lastfm-tracks`)
+      fetch(`https://api.choccymilk.uk/lastfm-top`)
       .then(response => {
           if (!response.ok) {
               throw new Error("Network response was not ok");
@@ -135,6 +135,11 @@ function fetchRecentTracks() {
         })
         .then(data => {
             console.log("📅 recent tracks - last.fm", data);
+            // ignore now playing track
+            if (data.recenttracks.track[0]["@attr"]) {
+                data.recenttracks.track.shift();
+            }
+
             displayRecentTracks(data.recenttracks.track);
         })
         .catch(error => {
@@ -345,11 +350,6 @@ function fetchSpotifyArtistImage(artistName, trackDiv) {
 function displayRecentTracks(tracks) {
     const recentTracksDiv = document.getElementById("spotify_recent");
     recentTracksDiv.innerHTML = '';
-
-    // ignore now playing track
-    if (tracks[0]["@attr"]) {
-        tracks.shift();
-    }
 
     tracks.forEach((track) => {
         var trackDiv = document.createElement("a");
