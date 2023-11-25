@@ -53,7 +53,7 @@ const birthday = `6, 9, 2007`; // first is day, then month, then year
 
 var custom_text = 
 `<l>/me</l>\n call me one of [these](https://docs.google.com/document/d/1XfJdYyFmd_hLXrUItX6q1aZZLpJkq_nOiULA0cit8Mw)\n` +
-`i code in javascript and do occasional 3D modelling;;divider;;` +
+`i code in javascript and do occasional 3D modelling and video editing;;divider;;` +
 `<l>/about</l>\navailable from <t:1698411600:t> to <t:1698433200:t>\n<span id='birthday'></span> <span id='pronouns'></span> <span id='flags'></span> & czech :flag_cz: ''#(sadly)#''\n\n` +
 `some statistics i guess ↓\n;;divider;;`;
 
