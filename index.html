@@ -57,30 +57,6 @@
 
 .clickable {display: block;}
 </style>
-<script>
-  var tabDataLogged = false;
-  var tabGalleryLogged = false;
-  var tabProjectsLogged = false;
-
-  function checkLocalStorage() {
-    var activeTabValue = localStorage.getItem('activeTab');
-    if (activeTabValue === 'tab_gallery' && !tabGalleryLogged) {
-      console.log('🔄 loading gallery...');
-      tabGalleryLogged = true;
-      loadScript('./code/fetches/gallery.js');
-    }
-  }
-
-  // Function to dynamically load scripts
-function loadScript(scriptUrl) {
-  var script = document.createElement('script');
-  script.src = scriptUrl;
-  script.setAttribute('data-dynamic', 'true'); // Mark script as dynamic
-  document.body.appendChild(script);
-}
-
-  setInterval(checkLocalStorage, 0);
-</script>
 
 <script>
   let isReloaded = false;
@@ -102,7 +78,6 @@ function loadScript(scriptUrl) {
 
 </head>
 <body id="body" class="noselect">
-
 
   <div id="main_wrapper">
     <div id="main">
@@ -172,6 +147,11 @@ function loadScript(scriptUrl) {
         <div id="right_wrapper">
           <div class="bar" id="text_outer">
             <div class="noselect bar_inner" id="text"></div>
+
+            <div id="lastfm_mobile" class="title_text" style="width: fit-content;margin-top: 10px;display:none;">
+              load data
+            </div>
+            <div id="hide_if_mobile">
               <div id="lastfm_user" class="user_data"></div>
 
                   <div style="margin-top: 20px;"><span class="title_text_data">/recent</span>
@@ -221,6 +201,7 @@ function loadScript(scriptUrl) {
                   <div id="userdata_lastfmspotify"></div>
                 </div>
 
+
                 <div class="divider" style="margin-bottom: 10px;margin-top: 10px;"></div>
         
                   <div id="games_user" class="user_data"></div>
@@ -249,9 +230,12 @@ function loadScript(scriptUrl) {
                 </div>
 
                 <div class="divider" style="margin-top: 10px;margin-bottom: 20px;"></div>
+              </div>
 
-                <div style="margin-top: 20px;"><span class="title_text_data" style="margin-bottom: 6px;width: calc(100% - 6px);">/gallery</span>
+              <div id="gallery_mobile" class="title_text" style="width: fit-content;display: none;">load gallery</div>
 
+              <div id="gallery_main">
+                <div id="gallery_text" style="margin-top: 20px;"><span class="title_text_data" style="margin-bottom: 6px;width: calc(100% - 6px);">/gallery</span>
                 <div id="gallery_outer_1">
                   <div class="noselect bar_outer" id="gallery_outer">
                     <div class="noselect bar_inner inner_scrollables gallery_inner" id="gallery_inner">
@@ -261,6 +245,7 @@ function loadScript(scriptUrl) {
                     </div>
                   </div>
                 </div>
+              </div>
 
             
           </div>
@@ -442,7 +427,6 @@ return ` (${days}d)`;
 
 
 <script src="./config.js"></script>
-<script src="./code/tabs.js"></script>
 
 <script src="./code/formats/formatting.js"></script>
 <script src="./code/formats/birthday.js"></script>
@@ -455,10 +439,6 @@ return ` (${days}d)`;
 <script src="./code/horizontalScroll.js"></script>
 <script src="./code/preference.js"></script>
 
-<script src="./code/datas/music.js"></script>
-<script src="./code/datas/games.js"></script>
-<script src="./code/datas/wakatime.js"></script>
-
-<script src="./code/fetches/gallery.js"></script>
+<script src="./code/checkmobile.js"></script>
 </body>
 </html>

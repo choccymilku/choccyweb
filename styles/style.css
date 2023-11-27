@@ -294,6 +294,7 @@ body {
 
 .title_text {
   font-size: 2.35rem;background-color:var(--border);padding:3px;border-radius:10px;display:inline-block;font-family:Rubik;
+  cursor: pointer;
 }
 
 .title_text_data {
