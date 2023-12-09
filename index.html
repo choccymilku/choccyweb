@@ -75,6 +75,12 @@
   // Add event listener for window resize, only once
   window.addEventListener('resize', _.debounce(checkWindowSize, 1000));
 </script>
+<script>
+  navigator.connection.addEventListener('typechange', function(){
+    console.log(navigator.connection.type);
+    console.log(navigator.connection.effectiveType);
+ });
+</script>
 
 </head>
 <body id="body" class="noselect">

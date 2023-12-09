@@ -1,5 +1,4 @@
 let isLoading = true;
-let spotifyToken;
 
 // Define the fetchData function
 async function fetchData() {
@@ -89,7 +88,7 @@ function fetchTopArtists() {
       })
       .then(data => {
           console.log("📅 top artists - last.fm", data);
-          displayTopArtists(data.topartists.artist);
+          displayTopArtists(data);
       })
       .catch(error => {
           console.error("Error fetching top artists from Last.fm API:", error);
@@ -112,7 +111,7 @@ function fetchTopTracks() {
       })
       .then(data => {
           console.log("📅 top tracks - last.fm", data);
-          displayTopTracks(data.toptracks.track);
+          displayTopTracks(data);
       })
       .catch(error => {
           console.error("Error fetching top tracks from Last.fm API:", error);
@@ -135,12 +134,8 @@ function fetchRecentTracks() {
         })
         .then(data => {
             console.log("📅 recent tracks - last.fm", data);
-            // ignore now playing track
-            if (data.recenttracks.track[0]["@attr"]) {
-                data.recenttracks.track.shift();
-            }
 
-            displayRecentTracks(data.recenttracks.track);
+            displayRecentTracks(data);
         })
         .catch(error => {
             console.error("Error fetching top tracks from Last.fm API:", error);
@@ -175,178 +170,6 @@ for (var i = 0; i < lastfm_recent_outer.length; i++) {
   }
 }
 
-function fetchSpotifyImage(trackName, artistName, trackDiv) {
-    trackDiv.style.background = "var(--border)";
-    trackDiv.style.height = "155px";
-    trackDiv.style.marginBottom = "5px";
-    trackDiv.style.borderTopRightRadius = "8px";
-    trackDiv.style.borderTopLeftRadius = "8px";
-
-    // replace non english characters (japanese, korean, etc.)
-    trackName = trackName.replace(/[%']/g, '').toLowerCase();
-    artistName = artistName.replace(/[%']/g, '').toLowerCase();
-
-    let apiUrl;
-
-    apiUrl = `https://api.choccymilk.uk/spotify-search/${encodeURIComponent(trackName)}/${encodeURIComponent(artistName)}`;
-
-    console.log(`\x1b[32m🟢 Spotify song\x1b[0m -> \x1b[1m${trackName}\x1b[0m by \x1b[1m${artistName}\x1b[2m\n${apiUrl}\x1b[0m`);
-
-    fetch(`https://api.choccymilk.uk/spotify-search/${encodeURIComponent(trackName)}/${encodeURIComponent(artistName)}`, {
-        headers: {
-            "Authorization": `Bearer ${spotifyToken}`
-        },
-        method: "GET"
-    }).then(response => response.json()).then(response => {
-        if (response.length > 0) {
-            var res = response[0];
-
-            var imageUrl = res.image;
-            var trackUrl = res.url;
-
-            var imageElement = document.createElement("img");
-            imageElement.src = imageUrl;
-            imageElement.className = "data_image noselect disabledrag";
-
-            var linkElement = document.createElement("a");
-            linkElement.href = trackUrl;
-            linkElement.target = "_blank";
-            linkElement.className = "data_link";
-
-            var spotifyWrapper = document.createElement("div");
-            spotifyWrapper.classList.add("data_icon_wrapper");
-
-            var spotifyElement = document.createElement("span");
-            spotifyElement.classList.add("icons8-spotify-data");
-            spotifyElement.classList.add("icon-style-data-spotify");
-
-            trackDiv.appendChild(linkElement);
-            linkElement.appendChild(spotifyWrapper);
-            spotifyWrapper.appendChild(spotifyElement);
-            linkElement.appendChild(imageElement);
-       
-        } else {
-            // log error
-            console.log(`\x1b[31m🔴 Not on Spotify\x1b[0m -> \x1b[1m${trackName}\x1b[0m by \x1b[1m${artistName}\x1b`);
-
-            useSoundCloud(trackName, artistName, trackDiv); 
-        }
-    });
-}
-
-function useSoundCloud(trackName, artistName, trackDiv) {
-    let soundcloudUrl = `https://api.choccymilk.uk/sound-search/${encodeURIComponent(trackName)}/${encodeURIComponent(artistName)}`;
-    
-    fetch(soundcloudUrl)
-        .then(response => response.json())
-        .then(data => {
-            // if successful, use soundcloud
-            if (data.length > 0) {
-                console.log(`\x1b[33m🟠 SoundCloud\x1b[0m -> \x1b[1m${trackName}\x1b[0m by \x1b[1m${artistName}\x1b[2m\n${soundcloudUrl}\x1b[0m`);
-
-
-                var trackUrl = data[0].url;
-                var imageUrl = data[0].art;
-
-                var imageElement = document.createElement("img");
-                imageElement.src = imageUrl;
-                imageElement.className = "data_image noselect disabledrag";
-
-                var linkElement = document.createElement("a");
-                linkElement.href = trackUrl;
-                linkElement.target = "_blank";
-                linkElement.className = "data_link";
-
-                var soundcloudWrapper = document.createElement("div");
-                soundcloudWrapper.classList.add("data_icon_wrapper");
-
-                var soundcloudElement = document.createElement("span");
-                soundcloudElement.classList.add("icons8-soundcloud-data");
-                soundcloudElement.classList.add("icon-style-data-soundcloud");
-
-                trackDiv.appendChild(linkElement);
-                linkElement.appendChild(soundcloudWrapper);
-                soundcloudWrapper.appendChild(soundcloudElement);
-                linkElement.appendChild(imageElement);
-            } else if (data.length === 0) {
-                console.log(`⛔ \x1b[31mNo results found for ${trackName} by ${artistName}`);
-
-            }
-        })
-        .catch(error => {
-            console.error(`🔴 error fetching from soundcloud\n${error}`);
-        
-            // Add more detailed logging if needed
-            if (error instanceof TypeError) {
-                console.error('fuck');
-            }
-        });
-        
-}
-
-function fetchSpotifyArtistImage(artistName, trackDiv) {
-    trackDiv.style.background = "var(--border)";
-    trackDiv.style.height = "155px";
-    trackDiv.style.marginBottom = "10px";
-    trackDiv.style.borderTopRightRadius = "8px";
-    trackDiv.style.borderTopLeftRadius = "8px";
-
-    artistName = artistName.replace(/[%']/g, '').toLowerCase();
-
-
-    // Function to fetch artist image for a single part
-    let apiUrl;
-
-    apiUrl = `https://api.choccymilk.uk/spotify-search-artist/${encodeURIComponent(artistName)}`;
-
-    console.log(`\x1b[32m🟢 Spotify artist\x1b[0m -> \x1b[1m${artistName}\x1b[2m\n${apiUrl}\x1b[0m`);
-
-
-    fetch(`https://api.choccymilk.uk/spotify-search-artist/${encodeURIComponent(artistName)}`, {
-    }).then(response => response.json()).then(response => {
-        if (response.length > 0) {
-            var res = response[0];
-
-            var imageUrl = res.image;
-            var trackUrl = res.url;
-
-            var imageElement = document.createElement("img");
-            imageElement.src = imageUrl;
-            imageElement.className = "data_image noselect disabledrag";
-
-            var linkElement = document.createElement("a");
-            linkElement.href = trackUrl;
-            linkElement.target = "_blank";
-            linkElement.className = "data_link";
-
-            var genresElement = document.createElement("div");
-            // seperate by space
-            genresElement.textContent = res.genres.join(", ");
-            genresElement.classList.add("data_genres");
-
-            var spotifyWrapper = document.createElement("div");
-            spotifyWrapper.classList.add("data_icon_wrapper");
-
-            var spotifyElement = document.createElement("span");
-            spotifyElement.classList.add("icons8-spotify-data");
-            spotifyElement.classList.add("icon-style-data-spotify");
-
-            trackDiv.appendChild(linkElement);
-            linkElement.appendChild(spotifyWrapper);
-            spotifyWrapper.appendChild(spotifyElement);
-            trackDiv.appendChild(genresElement);
-            linkElement.appendChild(imageElement);
-        } else {
-            // log error
-            console.log(`\x1b[31m🔴 no results found for \x1b[1m${artistName}\x1b[0m, using \x1b[33msoundcloud\x1b[0m`);
-            useSoundCloudArtist(artistName, trackDiv); 
-        }
-    }).catch(error => {
-        // Handle errors that occur during the fetch
-        console.error("Error fetching data:", error);
-    });
-}
-
 function displayRecentTracks(tracks) {
     const recentTracksDiv = document.getElementById("spotify_recent");
     recentTracksDiv.innerHTML = '';
@@ -355,23 +178,31 @@ function displayRecentTracks(tracks) {
         var trackDiv = document.createElement("a");
         trackDiv.className = "data_container noselect disabledrag";
 
-        var trackImage = document.createElement("div");
-        fetchSpotifyImage(track.name, track.artist["#text"], trackImage);
-        trackDiv.appendChild(trackImage);
+        var trackUrl = document.createElement("a");
+        trackUrl.href = track.url;
+        trackUrl.target = "_blank";
+        trackUrl.className = "data_link";
+
+        var trackImage = document.createElement("img");
+        trackImage.src = track.image;
+        trackImage.className = "data_image noselect disabledrag";
 
         var trackName = document.createElement("div");
         trackName.textContent = track.name;
         trackName.classList.add("data_top_name");
 
         var artistName = document.createElement("div");
-        artistName.textContent = track.artist["#text"];
+        artistName.textContent = track.artist;
         artistName.classList.add("data_bottom_name");
 
         var addedAtElement = document.createElement("div");
-        addedAtElement.textContent = calculateTimeAgo(Date.now() / 1000, track.date.uts);
+        addedAtElement.textContent = calculateTimeAgo(Date.now() / 1000, track.date);
         addedAtElement.classList.add("data_added");
 
-        trackDiv.appendChild(addedAtElement);
+        trackUrl.appendChild(trackImage);
+        trackUrl.appendChild(addedAtElement);
+
+        trackDiv.appendChild(trackUrl);
         trackDiv.appendChild(trackName);
         trackDiv.appendChild(artistName);
         recentTracksDiv.appendChild(trackDiv);
@@ -391,15 +222,7 @@ function displayRecentLiked(tracks) {
         trackLink.className = "data_link";
         trackDiv.appendChild(trackLink);
 
-        var spotifyWrapper = document.createElement("div");
-        spotifyWrapper.classList.add("data_icon_wrapper");
-
-        var spotifyElement = document.createElement("span");
-        spotifyElement.classList.add("icons8-spotify-data");
-        spotifyElement.classList.add("icon-style-data-spotify");
-
         var addedAtElement = document.createElement("div");
-        // convert from data to ago
         addedAtElement.textContent = data.added;
         addedAtElement.classList.add("data_duration");
 
@@ -417,9 +240,7 @@ function displayRecentLiked(tracks) {
 
         trackDiv.appendChild(trackName);
         trackDiv.appendChild(trackArtist);
-        trackLink.appendChild(spotifyWrapper);
         trackLink.appendChild(addedAtElement);
-        spotifyWrapper.appendChild(spotifyElement);
         trackLink.appendChild(trackImage);
         likedTracks.appendChild(trackDiv);
     });
@@ -432,21 +253,29 @@ function displayTopTracks(tracks) {
         var trackDiv = document.createElement("a");
         trackDiv.className = "data_container noselect disabledrag";
 
-        var trackImage = document.createElement("div");
-        fetchSpotifyImage(track.name, track.artist.name, trackImage);
-        trackDiv.appendChild(trackImage);
+        var trackUrl = document.createElement("a");
+        trackUrl.href = track.url;
+        trackUrl.target = "_blank";
+        trackUrl.className = "data_link";
+
+        var trackImage = document.createElement("img");
+        trackImage.src = track.image;
+        trackImage.className = "data_image noselect disabledrag";
 
         var trackName = document.createElement("div");
         trackName.textContent = track.name;
         trackName.classList.add("data_top_name");
 
         var artistName = document.createElement("div");
-        artistName.textContent = track.artist.name;
+        artistName.textContent = track.artist;
         artistName.classList.add("data_bottom_name");
 
         var addedAtElement = document.createElement("div");
         addedAtElement.textContent = track.playcount;
         addedAtElement.classList.add("data_added");
+
+        trackDiv.appendChild(trackUrl);
+        trackUrl.appendChild(trackImage);
 
         trackDiv.appendChild(addedAtElement);
         trackDiv.appendChild(trackName);
@@ -462,21 +291,33 @@ function displayTopArtists(tracks) {
         var trackDiv = document.createElement("a");
         trackDiv.className = "data_container noselect disabledrag";
 
-        var trackImage = document.createElement("div");
-        fetchSpotifyArtistImage(track.name, trackImage);
-        trackDiv.appendChild(trackImage);
+        var trackUrl = document.createElement("a");
+        trackUrl.href = track.url;
+        trackUrl.target = "_blank";
+        trackUrl.className = "data_link";
+
+        var trackImage = document.createElement("img");
+        trackImage.src = track.image;
+        trackImage.className = "data_image noselect disabledrag";
 
         var addedAtElement = document.createElement("div");
         addedAtElement.textContent = track.playcount;
-        addedAtElement.style.marginTop = "-30.5px";
         addedAtElement.classList.add("data_added");
 
         var trackName = document.createElement("div");
         trackName.textContent = track.name;
         trackName.classList.add("data_top_name");
 
+        var genres = document.createElement("div");
+        genres.textContent = track.genres;
+        genres.classList.add("data_bottom_name");
+
+        trackDiv.appendChild(trackUrl);
+        trackUrl.appendChild(trackImage);
+
         trackDiv.appendChild(addedAtElement);
         trackDiv.appendChild(trackName);
+        trackDiv.appendChild(genres);
         topArtists.appendChild(trackDiv);
     });
 }
