@@ -12,11 +12,42 @@
     filter: var(--filter);
 }
 
-.icon-music-style-spotify {
-    height: 22px;
-    width: 22px;
+.icon-music-style {
+    height: 32px;
+    width: 32px;
     margin-bottom: 6px;
     margin-left: 6px;
+}
+
+.icon-music-style-spotify {
+    height: 32px;
+    width: 32px;
+    margin-bottom: 6px;
+    margin-left: 6px;
+    filter: var(--filterSpotify);
+}
+
+.icon-music-style-soundcloud {
+    height: 48px;
+    width: 48px;
+    margin-bottom: -3px;
+    margin-top: -4px;
+    margin-left: 6px;
+    filter: var(--filterSoundcloud);
+}
+
+.icon-style-data-soundcloud {
+    width: 42px;
+    height: 32px;
+    filter: var(--filterSoundcloud);
+    margin-top: -8px;
+}
+.icon-style-data-spotify {
+    width: 22px;
+    height: 22px;
+    filter: var(--filterSpotify);
+    margin-left: 10px;
+    margin-top: 2Px;
 }
 
 .data_icon_wrapper {
