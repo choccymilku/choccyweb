@@ -183,6 +183,14 @@ function displayRecentTracks(tracks) {
         trackUrl.target = "_blank";
         trackUrl.className = "data_link";
 
+        var source = document.createElement("span");
+        // for class icons8-source (source as a variable is reserved)
+        source.className = "icon-music-style-spotify";
+
+        var sourceIcon = document.createElement("span");
+        sourceIcon.className = "icons8-" + track.source + "-data";
+        sourceIcon.className += " icon-style";
+
         var trackImage = document.createElement("img");
         trackImage.src = track.image;
         trackImage.className = "data_image noselect disabledrag";
@@ -201,6 +209,8 @@ function displayRecentTracks(tracks) {
 
         trackUrl.appendChild(trackImage);
         trackUrl.appendChild(addedAtElement);
+        trackUrl.appendChild(source);
+        source.appendChild(sourceIcon);
 
         trackDiv.appendChild(trackUrl);
         trackDiv.appendChild(trackName);
